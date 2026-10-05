@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Find a Mechanic | WrenchLink</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🔧 WrenchLink
+    </div>
+
+    <a href="index.html" class="btn btn-small">
+        Back to WrenchLink
+    </a>
+
+</header>
+
+
+<main>
+
+<section class="services">
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            WRENCHLINK
+        </p>
+
+        <h1>
+            Find a Mechanic
+        </h1>
+
+        <p>
+            Find mobile mechanics near you.
+        </p>
+
+    </div>
+
+
+    <!-- SEARCH -->
+
+    <div class="service-card">
+
+        <h2>
+            Search Mechanics
+        </h2>
+
+        <form id="mechanicSearch">
+
+            <label for="location">
+                Your Location
+            </label>
+
+            <input
+                id="location"
+                type="text"
+                placeholder="Enter ZIP code or city"
+                required
+            >
+
+
+            <label for="service">
+                Service Needed
+            </label>
+
+            <select id="service">
+
+                <option value="">
+                    Select a service
+                </option>
+
+                <option value="brakes">
+                    Brakes & Rotors
+                </option>
+
+                <option value="battery">
+                    Battery
+                </option>
+
+                <option value="alternator">
+                    Alternator
+                </option>
+
+                <option value="starter">
+                    Starter
+                </option>
+
+                <option value="diagnostics">
+                    Diagnostics
+                </option>
+
+                <option value="oil">
+                    Oil Change
+                </option>
+
+                <option value="roadside">
+                    Roadside Assistance
+                </option>
+
+                <option value="other">
+                    Other
+                </option>
+
+            </select>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                🔍 Search Mechanics
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- RESULTS -->
+
+    <div
+        id="mechanicResults"
+        class="service-grid"
+        style="margin-top: 30px;"
+    >
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                👨‍🔧
+            </div>
+
+            <h3>
+                Mobile Mechanics
+            </h3>
+
+            <p>
+                Search by location and service to find
+                mechanics available in your area.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+
+        <strong>🔧 WrenchLink</strong>
+
+        <p>
+            Connecting drivers with mobile mechanics.
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+document
+    .getElementById("mechanicSearch")
+    .addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        const location =
+            document.getElementById("location").value;
+
+        const service =
+            document.getElementById("service").value;
+
+        const results =
+            document.getElementById("mechanicResults");
+
+        results.innerHTML = `
+
+            <div class="service-card">
+
+                <div class="service-icon">
+                    🔍
+                </div>
+
+                <h3>
+                    Searching...
+                </h3>
+
+                <p>
+                    Looking for mobile mechanics near
+                    ${location}.
+                </p>
+
+                <p>
+                    Service requested:
+                    ${service || "Any service"}
+                </p>
+
+            </div>
+
+        `;
+
+    });
+
+</script>
+
+</body>
+
+</html>

@@ -2,416 +2,195 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0b0f14">
-    <meta name="description" content="WrenchLink connects drivers with trusted mobile mechanics.">
-    <title>WrenchLink | Mobile Mechanics On Demand</title>
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>WrenchLink</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header class="topbar">
-    <a href="#" class="logo" onclick="show('home')">
-        <span class="logo-mark">W</span>
-        <span>Wrench<span class="accent">Link</span></span>
-    </a>
+    <!-- HEADER -->
+    <header class="header">
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-    <nav id="desktopNav">
-        <a href="#services">Services</a>
-        <a href="#how">How It Works</a>
-        <a href="#mechanicCTA">For Mechanics</a>
-        <button class="nav-btn" onclick="show('customer')">Find a Mechanic</button>
-    </nav>
-</header>
-
-<main>
-
-<!-- HOME -->
-<section id="home" class="screen active">
-
-    <section class="hero">
-
-        <div class="hero-content">
-
-            <div class="eyebrow">
-                <span class="live-dot"></span>
-                MOBILE MECHANICS ON DEMAND
-            </div>
-
-            <h1>
-                Your mechanic<br>
-                <span>comes to you.</span>
-            </h1>
-
-            <p class="hero-text">
-                Get automotive help wherever you are.
-                Connect with mobile mechanics ready to come to you.
-            </p>
-
-            <div class="hero-actions">
-                <button class="primary large" onclick="show('customer')">
-                    🚗 Find a Mechanic
-                </button>
-
-                <button class="secondary large" onclick="show('mechanic')">
-                    🧰 I'm a Mechanic
-                </button>
-            </div>
-
-            <div class="trust-row">
-                <div>
-                    <strong>24/7</strong>
-                    <span>Request anytime</span>
-                </div>
-
-                <div>
-                    <strong>LOCAL</strong>
-                    <span>Mechanics near you</span>
-                </div>
-
-                <div>
-                    <strong>DIRECT</strong>
-                    <span>Connect with mechanics</span>
-                </div>
-            </div>
-
+        <div class="logo">
+            🔧 WrenchLink
         </div>
 
-        <div class="hero-visual">
-            <div class="car-glow"></div>
+        <nav class="nav">
+            <a href="#">Home</a>
+            <a href="#">Find a Mechanic</a>
+            <a href="#">Services</a>
+            <a href="#">About</a>
+        </nav>
 
-            <div class="tool-card card-one">
-                🔧
-                <span>Mobile Service</span>
-            </div>
-
-            <div class="tool-card card-two">
-                📍
-                <span>Mechanic Nearby</span>
-            </div>
-
-            <div class="vehicle-icon">🚙</div>
-        </div>
-
-    </section>
-
-
-    <!-- SERVICES -->
-    <section id="services" class="section">
-
-        <div class="section-heading">
-            <div>
-                <span class="eyebrow">WHAT WE DO</span>
-                <h2>Help when you need it.</h2>
-            </div>
-
-            <p>
-                Tell us what's wrong and find the right mobile mechanic.
-            </p>
-        </div>
-
-        <div class="service-grid">
-
-            <button onclick="selectService('Diagnostics')">
-                <span>🔍</span>
-                <b>Diagnostics</b>
-                <small>Find the problem</small>
-            </button>
-
-            <button onclick="selectService('Brakes')">
-                <span>🛑</span>
-                <b>Brakes</b>
-                <small>Brake service</small>
-            </button>
-
-            <button onclick="selectService('Battery')">
-                <span>🔋</span>
-                <b>Battery</b>
-                <small>Battery & jump starts</small>
-            </button>
-
-            <button onclick="selectService('Electrical')">
-                <span>⚡</span>
-                <b>Electrical</b>
-                <small>Electrical problems</small>
-            </button>
-
-            <button onclick="selectService('Engine')">
-                <span>⚙️</span>
-                <b>Engine</b>
-                <small>Mechanical repairs</small>
-            </button>
-
-            <button onclick="selectService('Roadside')">
-                <span>🚨</span>
-                <b>Roadside</b>
-                <small>Emergency assistance</small>
-            </button>
-
-        </div>
-
-    </section>
-
-
-    <!-- HOW IT WORKS -->
-    <section id="how" class="section dark-section">
-
-        <div class="section-heading centered">
-            <span class="eyebrow">HOW IT WORKS</span>
-            <h2>Simple from start to finish.</h2>
-        </div>
-
-        <div class="steps">
-
-            <div class="step">
-                <div class="step-number">01</div>
-                <span>📋</span>
-                <h3>Tell us what you need</h3>
-                <p>
-                    Choose a service and describe what's happening with your vehicle.
-                </p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">02</div>
-                <span>📍</span>
-                <h3>Find a mechanic</h3>
-                <p>
-                    Nearby mechanics can see your request and accept the job.
-                </p>
-            </div>
-
-            <div class="step">
-                <div class="step-number">03</div>
-                <span>🔧</span>
-                <h3>Get back on the road</h3>
-                <p>
-                    Your mechanic comes to you and gets the job done.
-                </p>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- MECHANIC CTA -->
-    <section id="mechanicCTA" class="mechanic-banner">
-
-        <div>
-            <span class="eyebrow">FOR MOBILE MECHANICS</span>
-
-            <h2>Turn your skills into jobs.</h2>
-
-            <p>
-                Join WrenchLink and connect with customers who need
-                automotive help in your area.
-            </p>
-        </div>
-
-        <button class="primary large" onclick="show('mechanic')">
-            Join as a Mechanic →
+        <button class="btn btn-small">
+            Sign In
         </button>
 
-    </section>
+    </header>
 
 
-    <!-- TRUST -->
-    <section class="trust-section">
+    <!-- HERO -->
+    <main>
 
-        <div class="trust-box">
-            <span>🛡️</span>
+        <section class="hero">
 
-            <div>
-                <h3>Built around trust.</h3>
-                <p>
-                    WrenchLink is designed to connect customers and mechanics
-                    while keeping communication, jobs and reviews organized.
+            <div class="hero-content">
+
+                <p class="eyebrow">
+                    MOBILE MECHANIC MARKETPLACE
                 </p>
-            </div>
-        </div>
 
-        <div class="trust-box">
-            <span>💵</span>
+                <h1>
+                    Find a Mechanic<br>
+                    <span>You Can Trust.</span>
+                </h1>
 
-            <div>
-                <h3>Cash payments at launch.</h3>
-                <p>
-                    Customers and mechanics can arrange cash payment directly.
-                    Online payments can be added later.
+                <p class="hero-text">
+                    Connect with trusted mobile mechanics
+                    who come directly to you.
                 </p>
+
+                <div class="hero-buttons">
+
+                    <button class="btn btn-primary">
+                        🔧 Find a Mechanic
+                    </button>
+
+                    <button class="btn">
+                        Become a Mechanic
+                    </button>
+
+                </div>
+
             </div>
-        </div>
 
-    </section>
-
-</section>
+        </section>
 
 
-<!-- CUSTOMER -->
-<section id="customer" class="screen app-screen">
+        <!-- SERVICES -->
+        <section class="services">
 
-    <button class="back" onclick="show('home')">← Back</button>
+            <div class="section-heading">
 
-    <div class="form-header">
-        <span class="eyebrow">CUSTOMER</span>
-        <h2>Request a mechanic.</h2>
-        <p>Give us a few details and we'll create your service request.</p>
-    </div>
+                <p class="eyebrow">
+                    WHAT WE OFFER
+                </p>
 
-    <div class="form-card">
+                <h2>
+                    Automotive Services
+                </h2>
 
-        <label>
-            Your name
-            <input id="name" placeholder="John Smith">
-        </label>
+                <p>
+                    Get the help you need wherever your vehicle is.
+                </p>
 
-        <label>
-            Phone number
-            <input id="phone" type="tel" placeholder="(555) 555-5555">
-        </label>
-
-        <label>
-            Vehicle
-            <input id="vehicle" placeholder="2019 Kia Soul">
-        </label>
-
-        <label>
-            Service needed
-            <select id="service">
-                <option>Diagnostics</option>
-                <option>Alternator</option>
-                <option>Starter</option>
-                <option>Brakes</option>
-                <option>Battery / Jump Start</option>
-                <option>Roadside Assistance</option>
-                <option>Electrical</option>
-                <option>Engine / Mechanical</option>
-                <option>Other</option>
-            </select>
-        </label>
-
-        <label>
-            What's happening?
-            <textarea id="problem" placeholder="Describe the problem with your vehicle..."></textarea>
-        </label>
-
-        <label>
-            Service location
-            <input id="location" placeholder="Address or area">
-        </label>
-
-        <div class="cash-note">
-            💵 <b>Cash payment at launch</b>
-            <small>Payment is arranged directly between customer and mechanic.</small>
-        </div>
-
-        <button class="primary large" onclick="requestJob()">
-            Request Mechanic
-        </button>
-
-        <p id="msg" class="message"></p>
-
-    </div>
-
-</section>
+            </div>
 
 
-<!-- MECHANIC -->
-<section id="mechanic" class="screen app-screen">
+            <div class="service-grid">
 
-    <button class="back" onclick="show('home')">← Back</button>
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
 
-    <div class="form-header">
-        <span class="eyebrow">MECHANIC</span>
-        <h2>Find your next job.</h2>
-        <p>View customer requests and accept available work.</p>
-    </div>
+                    <h3>
+                        Mobile Repairs
+                    </h3>
 
-    <div class="mechanic-status">
+                    <p>
+                        Get repairs performed at your
+                        home, work, or roadside.
+                    </p>
+
+                    <button class="btn btn-small">
+                        Find a Mechanic
+                    </button>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="service-icon">🚗</div>
+
+                    <h3>
+                        Roadside Assistance
+                    </h3>
+
+                    <p>
+                        Get help when your vehicle
+                        leaves you stranded.
+                    </p>
+
+                    <button class="btn btn-small">
+                        Get Help
+                    </button>
+                </div>
+
+
+                <div class="service-card">
+                    <div class="service-icon">🛠️</div>
+
+                    <h3>
+                        Certified Mechanics
+                    </h3>
+
+                    <p>
+                        Connect with mechanics
+                        offering professional services.
+                    </p>
+
+                    <button class="btn btn-small">
+                        Browse Mechanics
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section class="cta">
+
+            <h2>
+                Need a mechanic?
+            </h2>
+
+            <p>
+                Tell us what your vehicle needs
+                and find a mechanic near you.
+            </p>
+
+            <button class="btn btn-primary">
+                Find a Mechanic
+            </button>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
         <div>
-            <span class="status-dot"></span>
-            <b>Available for jobs</b>
-        </div>
-
-        <button onclick="loadJobs()">Refresh</button>
-    </div>
-
-    <div id="jobs"></div>
-
-</section>
-
-</main>
-
-
-<footer>
-
-    <div class="footer-main">
-
-        <div class="footer-brand">
-            <div class="logo">
-                <span class="logo-mark">W</span>
-                <span>Wrench<span class="accent">Link</span></span>
-            </div>
-
+            <strong>🔧 WrenchLink</strong>
             <p>
                 Connecting drivers with mobile mechanics.
             </p>
         </div>
 
-        <div>
-            <b>WrenchLink</b>
-            <a href="#services">Services</a>
-            <a href="#how">How It Works</a>
-            <a href="#mechanicCTA">For Mechanics</a>
-        </div>
-
-        <div>
-            <b>Support</b>
-            <a href="#">Help Center</a>
-            <a href="#">Safety</a>
+        <div class="footer-links">
             <a href="#">Privacy</a>
             <a href="#">Terms</a>
+            <a href="#">Contact</a>
         </div>
 
-    </div>
+    </footer>
 
-    <div class="footer-bottom">
-        © 2026 WrenchLink. All rights reserved.
-    </div>
-
-</footer>
-
-
-<nav class="mobile-nav">
-
-    <button onclick="show('home')">
-        🏠
-        <small>Home</small>
-    </button>
-
-    <button onclick="show('customer')">
-        🔧
-        <small>Find</small>
-    </button>
-
-    <button onclick="show('mechanic')">
-        📋
-        <small>Jobs</small>
-    </button>
-
-    <button onclick="alert('Messaging activates after a job is accepted.')">
-        💬
-        <small>Messages</small>
-    </button>
-
-</nav>
-
-
-<script src="app.js"></script>
 
 </body>
 </html>

@@ -1,97 +1,99 @@
-// =========================
-// MOBILE MENU
-// =========================
+// =========================================
+// WRENCHLINK 2.0
+// JAVASCRIPT
+// =========================================
 
-const menuButton = document.querySelector(".menu-button");
-const navLinks = document.querySelector(".nav-links");
 
-if (menuButton && navLinks) {
-    menuButton.addEventListener("click", () => {
-        navLinks.classList.toggle("active");
-    });
+// FIND A MECHANIC
+function findMechanic() {
+    alert("Let's find a mechanic near you!");
 }
 
 
-// =========================
-// CLOSE MOBILE MENU
-// =========================
-
-document.querySelectorAll(".nav-links a").forEach(link => {
-    link.addEventListener("click", () => {
-        navLinks?.classList.remove("active");
-    });
-});
+// BECOME A MECHANIC
+function becomeMechanic() {
+    alert("Mechanic registration coming soon!");
+}
 
 
-// =========================
-// BUTTON ANIMATION
-// =========================
-
-document.querySelectorAll(".btn").forEach(button => {
-    button.addEventListener("click", () => {
-        button.style.transform = "scale(0.96)";
-
-        setTimeout(() => {
-            button.style.transform = "";
-        }, 120);
-    });
-});
+// GET HELP
+function getHelp() {
+    alert("Roadside assistance coming soon!");
+}
 
 
-// =========================
-// CONTACT FORM
-// =========================
+// BROWSE MECHANICS
+function browseMechanics() {
+    alert("Mechanic directory coming soon!");
+}
 
-const contactForm = document.querySelector("#contact-form");
 
-if (contactForm) {
-    contactForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+// LEARN MORE
+function learnMore() {
+    alert("More WrenchLink information coming soon!");
+}
 
-        const name = document.querySelector("#name")?.value.trim();
-        const email = document.querySelector("#email")?.value.trim();
-        const message = document.querySelector("#message")?.value.trim();
 
-        if (!name || !email || !message) {
-            alert("Please fill out all fields.");
-            return;
+// SIGN IN
+function signIn() {
+    alert("Sign-in coming soon!");
+}
+
+
+// =========================================
+// BUTTON CONNECTIONS
+// =========================================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    const buttons = document.querySelectorAll("button");
+
+    buttons.forEach(function (button) {
+
+        const text = button.textContent.trim().toLowerCase();
+
+
+        if (text.includes("find a mechanic")) {
+
+            button.addEventListener("click", findMechanic);
+
         }
 
-        alert(`Thanks ${name}! Your message has been received.`);
 
-        contactForm.reset();
-    });
-}
+        else if (text.includes("become a mechanic")) {
 
+            button.addEventListener("click", becomeMechanic);
 
-// =========================
-// CURRENT YEAR
-// =========================
-
-const yearElement = document.querySelector("#year");
-
-if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-}
-
-
-// =========================
-// SCROLL REVEAL
-// =========================
-
-const revealElements = document.querySelectorAll(".card, .section-title, .section-subtitle");
-
-const revealOnScroll = () => {
-    revealElements.forEach(element => {
-        const position = element.getBoundingClientRect().top;
-        const screenPosition = window.innerHeight - 100;
-
-        if (position < screenPosition) {
-            element.classList.add("show");
         }
+
+
+        else if (text.includes("get help")) {
+
+            button.addEventListener("click", getHelp);
+
+        }
+
+
+        else if (text.includes("browse mechanics")) {
+
+            button.addEventListener("click", browseMechanics);
+
+        }
+
+
+        else if (text.includes("learn more")) {
+
+            button.addEventListener("click", learnMore);
+
+        }
+
+
+        else if (text.includes("sign in")) {
+
+            button.addEventListener("click", signIn);
+
+        }
+
     });
-};
 
-window.addEventListener("scroll", revealOnScroll);
-
-revealOnScroll();
+});

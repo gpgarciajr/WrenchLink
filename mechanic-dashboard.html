@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Mechanic Dashboard | WrenchLink</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🔧 WrenchLink
+    </div>
+
+    <a href="index.html" class="btn btn-small">
+        WrenchLink Home
+    </a>
+
+</header>
+
+
+<main>
+
+<section class="services">
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            MECHANIC DASHBOARD
+        </p>
+
+        <h1>
+            Mechanic Dashboard
+        </h1>
+
+        <p>
+            Manage your profile, service requests, jobs,
+            and customers.
+        </p>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                📋
+            </div>
+
+            <h3>
+                Available Jobs
+            </h3>
+
+            <p>
+                View customers looking for mobile mechanic services.
+            </p>
+
+            <a href="mechanics.html"
+               class="btn btn-primary">
+                View Jobs
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                👤
+            </div>
+
+            <h3>
+                My Profile
+            </h3>
+
+            <p>
+                Manage your mechanic profile and service information.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="editProfile()">
+                Edit Profile
+            </button>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                📍
+            </div>
+
+            <h3>
+                Service Area
+            </h3>
+
+            <p>
+                Manage the locations where you provide mobile service.
+            </p>
+
+            <button
+                class="btn btn-primary"
+                onclick="serviceArea()">
+                Manage Area
+            </button>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- JOB REQUESTS -->
+
+    <div class="service-card"
+         style="margin-top: 30px;">
+
+        <h2>
+            Customer Requests
+        </h2>
+
+        <p>
+            New customer service requests will appear here.
+        </p>
+
+        <div id="jobRequests">
+
+            <p>
+                No new job requests at this time.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACTIVE JOBS -->
+
+    <div class="service-card"
+         style="margin-top: 25px;">
+
+        <h2>
+            Active Jobs
+        </h2>
+
+        <p>
+            Jobs you accept will appear here.
+        </p>
+
+        <div id="activeJobs">
+
+            <p>
+                You currently have no active jobs.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- COMPLETED JOBS -->
+
+    <div class="service-card"
+         style="margin-top: 25px;">
+
+        <h2>
+            Completed Jobs
+        </h2>
+
+        <p>
+            Your completed jobs and service history
+            will appear here.
+        </p>
+
+        <div id="completedJobs">
+
+            <p>
+                No completed jobs yet.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- REVIEWS -->
+
+    <div class="service-card"
+         style="margin-top: 25px;">
+
+        <h2>
+            Customer Reviews
+        </h2>
+
+        <p>
+            Your customer ratings and reviews will appear here.
+        </p>
+
+        <div id="reviews">
+
+            <p>
+                No reviews yet.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <div class="service-card"
+         style="margin-top: 25px;">
+
+        <h2>
+            Mechanic Account
+        </h2>
+
+        <p>
+            Manage your WrenchLink mechanic account.
+        </p>
+
+        <button
+            class="btn btn-primary"
+            onclick="accountSettings()">
+            Account Settings
+        </button>
+
+        <button
+            class="btn btn-primary"
+            onclick="deleteAccount()"
+            style="margin-left: 10px;">
+            Delete Account
+        </button>
+
+        <button
+            class="btn btn-primary"
+            onclick="signOut()"
+            style="margin-left: 10px;">
+            Sign Out
+        </button>
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+
+        <strong>
+            🔧 WrenchLink
+        </strong>
+
+        <p>
+            Connecting drivers with mobile mechanics.
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function editProfile() {
+
+    alert(
+        "Mechanic profile editing will be connected to the WrenchLink account system."
+    );
+
+}
+
+
+function serviceArea() {
+
+    alert(
+        "Service area management will be connected to location services."
+    );
+
+}
+
+
+function accountSettings() {
+
+    alert(
+        "Account settings will be connected when WrenchLink authentication is added."
+    );
+
+}
+
+
+function deleteAccount() {
+
+    const confirmation = confirm(
+        "Are you sure you want to delete your WrenchLink mechanic account?"
+    );
+
+    if (confirmation) {
+
+        alert(
+            "Account deletion will be connected to the WrenchLink account system."
+        );
+
+    }
+
+}
+
+
+function signOut() {
+
+    alert(
+        "Sign out will be connected when WrenchLink authentication is added."
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>

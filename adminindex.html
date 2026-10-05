@@ -1,0 +1,322 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>WrenchLink Admin</title>
+
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+
+    <!-- ADMIN HEADER -->
+    <header class="admin-header">
+
+        <div class="admin-logo">
+            🔧 WrenchLink
+            <span>ADMIN</span>
+        </div>
+
+        <button id="logoutBtn" class="logout-btn">
+            Logout
+        </button>
+
+    </header>
+
+
+    <!-- ADMIN LAYOUT -->
+    <div class="admin-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+
+            <button class="nav-button active"
+                    data-section="dashboard">
+                📊 Dashboard
+            </button>
+
+            <button class="nav-button"
+                    data-section="users">
+                👥 Users
+            </button>
+
+            <button class="nav-button"
+                    data-section="mechanics">
+                🧑‍🔧 Mechanics
+            </button>
+
+            <button class="nav-button"
+                    data-section="requests">
+                📋 Service Requests
+            </button>
+
+            <button class="nav-button"
+                    data-section="reviews">
+                ⭐ Reviews
+            </button>
+
+            <button class="nav-button"
+                    data-section="reports">
+                🚩 Reports
+            </button>
+
+            <button class="nav-button"
+                    data-section="settings">
+                ⚙️ Settings
+            </button>
+
+        </aside>
+
+
+        <!-- MAIN CONTENT -->
+        <main class="admin-main">
+
+
+            <!-- DASHBOARD -->
+            <section id="dashboard"
+                     class="admin-section active">
+
+                <div class="page-title">
+                    <p>ADMINISTRATION</p>
+
+                    <h1>
+                        Dashboard
+                    </h1>
+
+                    <span>
+                        Welcome to WrenchLink Admin.
+                    </span>
+                </div>
+
+
+                <div class="stats-grid">
+
+                    <div class="stat-card">
+                        <span>👥</span>
+                        <h2 id="userCount">0</h2>
+                        <p>Total Users</p>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <span>🧑‍🔧</span>
+                        <h2 id="mechanicCount">0</h2>
+                        <p>Mechanics</p>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <span>📋</span>
+                        <h2 id="requestCount">0</h2>
+                        <p>Service Requests</p>
+                    </div>
+
+
+                    <div class="stat-card">
+                        <span>⭐</span>
+                        <h2 id="reviewCount">0</h2>
+                        <p>Reviews</p>
+                    </div>
+
+                </div>
+
+
+                <div class="welcome-card">
+
+                    <h2>
+                        WrenchLink Control Center
+                    </h2>
+
+                    <p>
+                        This is your administrative area.
+                        From here you will eventually be able
+                        to manage users, mechanics, service
+                        requests, reviews, reports, and settings.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <!-- USERS -->
+            <section id="users"
+                     class="admin-section">
+
+                <div class="page-title">
+                    <p>MANAGEMENT</p>
+
+                    <h1>Users</h1>
+
+                    <span>
+                        Manage WrenchLink customer accounts.
+                    </span>
+                </div>
+
+                <div class="empty-card">
+                    👥
+                    <h2>No users yet</h2>
+                    <p>
+                        User accounts will appear here once
+                        the database is connected.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- MECHANICS -->
+            <section id="mechanics"
+                     class="admin-section">
+
+                <div class="page-title">
+                    <p>MANAGEMENT</p>
+
+                    <h1>Mechanics</h1>
+
+                    <span>
+                        Manage and approve mechanics.
+                    </span>
+                </div>
+
+                <div class="empty-card">
+                    🧑‍🔧
+                    <h2>No mechanics yet</h2>
+                    <p>
+                        Mechanic applications will appear here.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- REQUESTS -->
+            <section id="requests"
+                     class="admin-section">
+
+                <div class="page-title">
+                    <p>SERVICE</p>
+
+                    <h1>Service Requests</h1>
+
+                    <span>
+                        Monitor customer service requests.
+                    </span>
+                </div>
+
+                <div class="empty-card">
+                    📋
+                    <h2>No service requests</h2>
+                    <p>
+                        Requests will appear here when customers
+                        begin using WrenchLink.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- REVIEWS -->
+            <section id="reviews"
+                     class="admin-section">
+
+                <div class="page-title">
+                    <p>FEEDBACK</p>
+
+                    <h1>Reviews</h1>
+
+                    <span>
+                        Monitor customer and mechanic reviews.
+                    </span>
+                </div>
+
+                <div class="empty-card">
+                    ⭐
+                    <h2>No reviews yet</h2>
+                    <p>
+                        Reviews will appear here.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- REPORTS -->
+            <section id="reports"
+                     class="admin-section">
+
+                <div class="page-title">
+                    <p>SAFETY</p>
+
+                    <h1>Reports</h1>
+
+                    <span>
+                        Review reported accounts and activity.
+                    </span>
+                </div>
+
+                <div class="empty-card">
+                    🚩
+                    <h2>No reports</h2>
+                    <p>
+                        Reported activity will appear here.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+            <section id="settings"
+                     class="admin-section">
+
+                <div class="page-title">
+                    <p>CONFIGURATION</p>
+
+                    <h1>Settings</h1>
+
+                    <span>
+                        Manage WrenchLink settings.
+                    </span>
+                </div>
+
+                <div class="settings-card">
+
+                    <h2>Application Settings</h2>
+
+                    <label>
+                        Application Name
+                    </label>
+
+                    <input
+                        type="text"
+                        value="WrenchLink"
+                        id="appName">
+
+                    <button
+                        class="save-btn"
+                        id="saveSettingsBtn">
+                        Save Settings
+                    </button>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
+```

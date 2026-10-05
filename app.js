@@ -1,6 +1,97 @@
-let jobs=JSON.parse(localStorage.getItem('wrenchlink_jobs')||'[]');
-function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo(0,0);if(id==='mechanic')loadJobs()}
-function requestJob(){const j={id:Date.now(),name:name.value,phone:phone.value,vehicle:vehicle.value,service:service.value,problem:problem.value,location:location.value,status:'Requested',payment:'Cash'};if(!j.name||!j.phone||!j.vehicle||!j.problem||!j.location){msg.textContent='Please complete all fields.';return}jobs.unshift(j);localStorage.setItem('wrenchlink_jobs',JSON.stringify(jobs));msg.textContent='✅ Request created. Mechanics can now see it.'}
-function loadJobs(){jobs=JSON.parse(localStorage.getItem('wrenchlink_jobs')||'[]');const box=document.getElementById('jobs');box.innerHTML=jobs.length?jobs.map(j=>`<div class="job"><span class="pill">${j.status} • ${j.payment}</span><h3>${j.service}</h3><p><b>${j.vehicle}</b></p><p>📍 ${j.location}</p><p>${j.problem}</p>${j.status==='Requested'?`<button onclick="acceptJob(${j.id})">Accept Job</button>`:'<b>Job accepted</b>'}</div>`).join(''):'<p class="muted">No jobs yet.</p>'}
-function acceptJob(id){const j=jobs.find(x=>x.id===id);if(!j)return;j.status='Accepted';localStorage.setItem('wrenchlink_jobs',JSON.stringify(jobs));loadJobs();alert('Job accepted!')}
-function deleteData(){if(confirm('Delete local account data?')){localStorage.clear();alert('Local data deleted.');show('home')}}
+// =========================
+// MOBILE MENU
+// =========================
+
+const menuButton = document.querySelector(".menu-button");
+const navLinks = document.querySelector(".nav-links");
+
+if (menuButton && navLinks) {
+    menuButton.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+    });
+}
+
+
+// =========================
+// CLOSE MOBILE MENU
+// =========================
+
+document.querySelectorAll(".nav-links a").forEach(link => {
+    link.addEventListener("click", () => {
+        navLinks?.classList.remove("active");
+    });
+});
+
+
+// =========================
+// BUTTON ANIMATION
+// =========================
+
+document.querySelectorAll(".btn").forEach(button => {
+    button.addEventListener("click", () => {
+        button.style.transform = "scale(0.96)";
+
+        setTimeout(() => {
+            button.style.transform = "";
+        }, 120);
+    });
+});
+
+
+// =========================
+// CONTACT FORM
+// =========================
+
+const contactForm = document.querySelector("#contact-form");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.querySelector("#name")?.value.trim();
+        const email = document.querySelector("#email")?.value.trim();
+        const message = document.querySelector("#message")?.value.trim();
+
+        if (!name || !email || !message) {
+            alert("Please fill out all fields.");
+            return;
+        }
+
+        alert(`Thanks ${name}! Your message has been received.`);
+
+        contactForm.reset();
+    });
+}
+
+
+// =========================
+// CURRENT YEAR
+// =========================
+
+const yearElement = document.querySelector("#year");
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
+
+
+// =========================
+// SCROLL REVEAL
+// =========================
+
+const revealElements = document.querySelectorAll(".card, .section-title, .section-subtitle");
+
+const revealOnScroll = () => {
+    revealElements.forEach(element => {
+        const position = element.getBoundingClientRect().top;
+        const screenPosition = window.innerHeight - 100;
+
+        if (position < screenPosition) {
+            element.classList.add("show");
+        }
+    });
+};
+
+window.addEventListener("scroll", revealOnScroll);
+
+revealOnScroll();

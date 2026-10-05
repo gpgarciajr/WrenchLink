@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Contact | WrenchLink</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🔧 WrenchLink
+    </div>
+
+    <a href="index.html" class="btn btn-small">
+        Back to WrenchLink
+    </a>
+
+</header>
+
+
+<main>
+
+<section class="services">
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            WRENCHLINK
+        </p>
+
+        <h1>
+            Contact WrenchLink
+        </h1>
+
+        <p>
+            We're here to help.
+        </p>
+
+    </div>
+
+
+    <div class="service-card">
+
+        <h2>Get in Touch</h2>
+
+        <p>
+            Have a question about WrenchLink, your account,
+            finding a mechanic, or using the platform?
+            Contact us and we'll get back to you.
+        </p>
+
+
+        <h2>Customer Support</h2>
+
+        <p>
+            For questions about a service request or mechanic,
+            please include as much information as possible so
+            we can better assist you.
+        </p>
+
+
+        <h2>Business Contact</h2>
+
+        <p>
+            Phone:
+            <a href="tel:7738140125">
+                773-814-0125
+            </a>
+        </p>
+
+
+        <h2>Contact Form</h2>
+
+        <form onsubmit="sendMessage(event)">
+
+            <label for="name">
+                Name
+            </label>
+
+            <input
+                id="name"
+                type="text"
+                placeholder="Your name"
+                required
+            >
+
+
+            <label for="email">
+                Email
+            </label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Your email"
+                required
+            >
+
+
+            <label for="message">
+                Message
+            </label>
+
+            <textarea
+                id="message"
+                rows="6"
+                placeholder="How can we help?"
+                required
+            ></textarea>
+
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+
+        <strong>🔧 WrenchLink</strong>
+
+        <p>
+            Connecting drivers with mobile mechanics.
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function sendMessage(event) {
+
+    event.preventDefault();
+
+    alert(
+        "Thanks for contacting WrenchLink! " +
+        "We'll get back to you as soon as possible."
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>

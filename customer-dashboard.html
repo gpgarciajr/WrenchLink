@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Customer Dashboard | WrenchLink</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <div class="logo">
+        🔧 WrenchLink
+    </div>
+
+    <a href="index.html" class="btn btn-small">
+        WrenchLink Home
+    </a>
+
+</header>
+
+
+<main>
+
+<section class="services">
+
+    <div class="section-heading">
+
+        <p class="eyebrow">
+            CUSTOMER DASHBOARD
+        </p>
+
+        <h1>
+            Welcome to WrenchLink
+        </h1>
+
+        <p>
+            Manage your mechanic requests, jobs, and account.
+        </p>
+
+    </div>
+
+
+    <!-- QUICK ACTIONS -->
+
+    <div class="service-grid">
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                🔧
+            </div>
+
+            <h3>
+                Find a Mechanic
+            </h3>
+
+            <p>
+                Search for a mobile mechanic near you.
+            </p>
+
+            <a href="mechanics.html"
+               class="btn btn-primary">
+                Find a Mechanic
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                📋
+            </div>
+
+            <h3>
+                Post a Job
+            </h3>
+
+            <p>
+                Tell mechanics what vehicle service you need.
+            </p>
+
+            <a href="post-job.html"
+               class="btn btn-primary">
+                Post a Job
+            </a>
+
+        </div>
+
+
+        <div class="service-card">
+
+            <div class="service-icon">
+                🚨
+            </div>
+
+            <h3>
+                Roadside Assistance
+            </h3>
+
+            <p>
+                Request immediate roadside assistance.
+            </p>
+
+            <a href="roadside.html"
+               class="btn btn-primary">
+                Get Help
+            </a>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- ACTIVE REQUESTS -->
+
+    <div class="service-card"
+         style="margin-top: 30px;">
+
+        <h2>
+            Active Requests
+        </h2>
+
+        <p id="activeRequests">
+            You currently have no active service requests.
+        </p>
+
+        <div id="requestList"></div>
+
+    </div>
+
+
+    <!-- JOB HISTORY -->
+
+    <div class="service-card"
+         style="margin-top: 25px;">
+
+        <h2>
+            Service History
+        </h2>
+
+        <p id="jobHistory">
+            Your completed services will appear here.
+        </p>
+
+    </div>
+
+
+    <!-- ACCOUNT -->
+
+    <div class="service-card"
+         style="margin-top: 25px;">
+
+        <h2>
+            Account
+        </h2>
+
+        <p>
+            Manage your WrenchLink account.
+        </p>
+
+        <button
+            class="btn btn-primary"
+            onclick="accountSettings()">
+            Account Settings
+        </button>
+
+        <button
+            class="btn btn-primary"
+            onclick="deleteAccount()"
+            style="margin-left: 10px;">
+            Delete Account
+        </button>
+
+        <button
+            class="btn btn-primary"
+            onclick="signOut()"
+            style="margin-left: 10px;">
+            Sign Out
+        </button>
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+<footer class="footer">
+
+    <div>
+
+        <strong>
+            🔧 WrenchLink
+        </strong>
+
+        <p>
+            Connecting drivers with mobile mechanics.
+        </p>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
+
+</footer>
+
+
+<script>
+
+function accountSettings() {
+
+    alert(
+        "Account settings will be connected when WrenchLink authentication is added."
+    );
+
+}
+
+
+function deleteAccount() {
+
+    const confirmation = confirm(
+        "Are you sure you want to delete your WrenchLink account?"
+    );
+
+    if (confirmation) {
+
+        alert(
+            "Account deletion will be connected to the WrenchLink account system."
+        );
+
+    }
+
+}
+
+
+function signOut() {
+
+    alert(
+        "Sign out will be connected when WrenchLink authentication is added."
+    );
+
+}
+
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,12 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>WrenchLink</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header>🔧 <b>WrenchLink</b><small> Mobile Mechanic Marketplace</small></header>
+<main>
+<section id="home" class="screen active"><p class="eyebrow">MOBILE MECHANICS ON DEMAND</p><h1>Get back on the <span>road.</span></h1><p>Find a mobile mechanic or pick up nearby repair jobs.</p><button onclick="show('customer')">🚗 I Need a Mechanic</button><button onclick="show('mechanic')">🧰 I'm a Mechanic</button></section>
+<section id="customer" class="screen"><button class="back" onclick="show('home')">← Home</button><div class="card"><h2>Request a Mechanic</h2><p class="muted">💵 Cash payment at launch.</p><input id="name" placeholder="Your name"><input id="phone" placeholder="Phone number"><input id="vehicle" placeholder="Vehicle — e.g. 2019 Kia Soul"><select id="service"><option>Diagnostics</option><option>Alternator</option><option>Starter</option><option>Brakes</option><option>Battery / Jump Start</option><option>Roadside Assistance</option><option>Other</option></select><textarea id="problem" placeholder="What's wrong?"></textarea><input id="location" placeholder="Service location"><button onclick="requestJob()">Request Mechanic</button><p id="msg"></p></div></section>
+<section id="mechanic" class="screen"><button class="back" onclick="show('home')">← Home</button><div class="card"><h2>Mechanic Job Feed</h2><button onclick="loadJobs()">Refresh Jobs</button><div id="jobs"></div></div></section>
+<section id="profile" class="screen"><div class="card"><h2>Profile & Settings</h2><p class="muted">Account controls.</p><button class="danger" onclick="deleteData()">Delete Account</button></div></section>
+</main>
+<nav><button onclick="show('home')">🏠<small>Home</small></button><button onclick="show('mechanic')">📋<small>Jobs</small></button><button onclick="alert('Messaging activates after a job is accepted.')">💬<small>Messages</small></button><button onclick="show('profile')">👤<small>Profile</small></button></nav>
+<script src="app.js"></script></body></html>

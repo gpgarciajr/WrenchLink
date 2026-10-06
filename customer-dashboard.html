@@ -105,35 +105,30 @@
 
         <div class="card">
 
-            <div id="profileInformation">
+            <p>
+                <strong>Name:</strong>
+                <span id="profileName">Not set</span>
+            </p>
 
-                <p>
-                    <strong>Name:</strong>
-                    <span id="profileName">Not set</span>
-                </p>
+            <p>
+                <strong>Email:</strong>
+                <span id="profileEmail">Not set</span>
+            </p>
 
-                <p>
-                    <strong>Email:</strong>
-                    <span id="profileEmail">Not set</span>
-                </p>
+            <p>
+                <strong>Phone:</strong>
+                <span id="profilePhone">Not set</span>
+            </p>
 
-                <p>
-                    <strong>Phone:</strong>
-                    <span id="profilePhone">Not set</span>
-                </p>
+            <p>
+                <strong>Location:</strong>
+                <span id="profileLocation">Not set</span>
+            </p>
 
-                <p>
-                    <strong>Location:</strong>
-                    <span id="profileLocation">Not set</span>
-                </p>
-
-                <p>
-                    <strong>Vehicle:</strong>
-                    <span id="profileVehicle">Not set</span>
-                </p>
-
-            </div>
-
+            <p>
+                <strong>Vehicle:</strong>
+                <span id="profileVehicle">Not set</span>
+            </p>
 
             <a href="customer-profile.html">
                 <button>Edit My Profile</button>
@@ -148,17 +143,21 @@
 
     <section>
 
-        <h2>Active Requests</h2>
+        <h2>My Service Requests</h2>
 
-        <div class="card">
+        <div id="jobList">
 
-            <p id="activeRequests">
-                You don't have any active service requests yet.
-            </p>
+            <div class="card">
 
-            <a href="post-job.html">
-                <button>Post a Job</button>
-            </a>
+                <p>
+                    You don't have any service requests yet.
+                </p>
+
+                <a href="post-job.html">
+                    <button>Post a Job</button>
+                </a>
+
+            </div>
 
         </div>
 
@@ -174,7 +173,7 @@
         <div class="card">
 
             <p>
-                Your completed services will appear here.
+                Completed services will appear here.
             </p>
 
         </div>
@@ -210,8 +209,7 @@
                 <h3>Delete Account</h3>
 
                 <p>
-                    Permanently remove your WrenchLink information
-                    from this browser.
+                    Remove your WrenchLink information from this browser.
                 </p>
 
                 <button onclick="deleteAccount()">
@@ -268,14 +266,20 @@
 function loadCustomerProfile() {
 
     const savedProfile =
-        localStorage.getItem("wrenchlinkCustomerProfile");
+        localStorage.getItem(
+            "wrenchlinkCustomerProfile"
+        );
+
 
     if (!savedProfile) {
 
-        document.getElementById("welcomeMessage").textContent =
+        document.getElementById(
+            "welcomeMessage"
+        ).textContent =
             "Welcome to WrenchLink. Set up your profile to get started.";
 
         return;
+
     }
 
 
@@ -283,75 +287,216 @@ function loadCustomerProfile() {
         JSON.parse(savedProfile);
 
 
-    /* Welcome message */
-
     if (profile.name) {
 
-        document.getElementById("welcomeMessage").textContent =
+        document.getElementById(
+            "welcomeMessage"
+        ).textContent =
             "Welcome back, " + profile.name + "!";
 
     }
 
 
-    /* Profile information */
-
-    document.getElementById("profileName").textContent =
+    document.getElementById(
+        "profileName"
+    ).textContent =
         profile.name || "Not set";
 
-    document.getElementById("profileEmail").textContent =
+
+    document.getElementById(
+        "profileEmail"
+    ).textContent =
         profile.email || "Not set";
 
-    document.getElementById("profilePhone").textContent =
+
+    document.getElementById(
+        "profilePhone"
+    ).textContent =
         profile.phone || "Not set";
 
 
-    /* Location */
-
     let locationText = "";
 
+
     if (profile.city) {
+
         locationText += profile.city;
+
     }
+
 
     if (profile.zip) {
 
         if (locationText) {
+
             locationText += ", ";
+
         }
 
         locationText += profile.zip;
+
     }
 
 
-    document.getElementById("profileLocation").textContent =
+    document.getElementById(
+        "profileLocation"
+    ).textContent =
         locationText || "Not set";
 
 
-    /* Vehicle */
-
-    document.getElementById("profileVehicle").textContent =
+    document.getElementById(
+        "profileVehicle"
+    ).textContent =
         profile.vehicle || "Not set";
+
 }
 
 
-/* Delete customer account */
+/* Load customer jobs */
+
+function loadJobs() {
+
+    const savedJobs =
+        localStorage.getItem(
+            "wrenchlinkJobs"
+        );
+
+
+    const jobList =
+        document.getElementById(
+            "jobList"
+        );
+
+
+    if (!savedJobs) {
+
+        return;
+
+    }
+
+
+    const jobs =
+        JSON.parse(savedJobs);
+
+
+    if (!jobs.length) {
+
+        return;
+
+    }
+
+
+    jobList.innerHTML = "";
+
+
+    jobs.forEach(function(job) {
+
+        const card =
+            document.createElement("div");
+
+
+        card.className =
+            "card";
+
+
+        let preferredTime =
+            "No preferred time selected";
+
+
+        if (job.preferredDateTime) {
+
+            const date =
+                new Date(
+                    job.preferredDateTime
+                );
+
+
+            preferredTime =
+                date.toLocaleString();
+
+        }
+
+
+        card.innerHTML = `
+
+            <h3>${escapeHTML(job.service)}</h3>
+
+            <p>
+                <strong>Vehicle:</strong>
+                ${escapeHTML(job.vehicle)}
+            </p>
+
+            <p>
+                <strong>Problem:</strong>
+                ${escapeHTML(job.description)}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                ${escapeHTML(job.location)}
+            </p>
+
+            <p>
+                <strong>Preferred Time:</strong>
+                ${escapeHTML(preferredTime)}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                <span>${escapeHTML(job.status)}</span>
+            </p>
+
+            <p>
+                <strong>Request ID:</strong>
+                ${job.id}
+            </p>
+
+        `;
+
+
+        jobList.appendChild(card);
+
+    });
+
+}
+
+
+/* Protect displayed text */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value == null ? "" : String(value);
+
+    return div.innerHTML;
+
+}
+
+
+/* Delete account data */
 
 function deleteAccount() {
 
     const confirmation =
         confirm(
-            "Are you sure you want to delete your WrenchLink account information from this browser?"
+            "Are you sure you want to delete your WrenchLink information from this browser?"
         );
 
 
     if (!confirmation) {
+
         return;
+
     }
 
 
     localStorage.removeItem(
         "wrenchlinkCustomerProfile"
     );
+
 
     localStorage.removeItem(
         "wrenchlinkJobs"
@@ -365,6 +510,7 @@ function deleteAccount() {
 
     window.location.href =
         "index.html";
+
 }
 
 
@@ -373,19 +519,21 @@ function deleteAccount() {
 function signOut() {
 
     alert(
-        "Sign-out will be connected to the WrenchLink account system when real authentication is added."
+        "Sign-out will be connected to the real WrenchLink account system when authentication is added."
     );
 
 }
 
 
-/* Load dashboard */
+/* Start dashboard */
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
         loadCustomerProfile();
+
+        loadJobs();
 
     }
 );

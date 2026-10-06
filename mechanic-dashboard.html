@@ -142,15 +142,30 @@
                 Service Area
             </h3>
 
-            <p>
-                Manage the locations where you provide mobile service.
+            <p id="serviceAreaStatus">
+                No service area saved yet.
             </p>
 
-            <button
-                class="btn btn-primary"
-                onclick="serviceArea()">
+            <div id="serviceAreaPreview"
+                 style="display: none; text-align: left; margin-top: 15px;">
+
+                <p>
+                    <strong>Location:</strong>
+                    <span id="areaLocation"></span>
+                </p>
+
+                <p>
+                    <strong>Service Radius:</strong>
+                    <span id="areaRadius"></span>
+                    miles
+                </p>
+
+            </div>
+
+            <a href="service-area.html"
+               class="btn btn-primary">
                 Manage Area
-            </button>
+            </a>
 
         </div>
 
@@ -385,14 +400,47 @@ function loadMechanicProfile() {
 
 
 /*
-    SERVICE AREA
+    LOAD SERVICE AREA
 */
 
-function serviceArea() {
+function loadServiceArea() {
 
-    alert(
-        "Service area management will be connected to location services."
-    );
+    const savedArea =
+        localStorage.getItem("wrenchlinkServiceArea");
+
+
+    if (!savedArea) {
+
+        return;
+
+    }
+
+
+    const area =
+        JSON.parse(savedArea);
+
+
+    document.getElementById("serviceAreaStatus")
+        .textContent =
+        "Your saved service area:";
+
+
+    document.getElementById("serviceAreaPreview")
+        .style.display = "block";
+
+
+    document.getElementById("areaLocation")
+        .textContent =
+        area.city +
+        ", " +
+        area.state +
+        " " +
+        area.zip;
+
+
+    document.getElementById("areaRadius")
+        .textContent =
+        area.radius || "0";
 
 }
 
@@ -415,9 +463,13 @@ function deleteAccount() {
             "wrenchlinkMechanicProfile"
         );
 
+        localStorage.removeItem(
+            "wrenchlinkServiceArea"
+        );
+
 
         alert(
-            "Your saved mechanic profile has been removed from this browser."
+            "Your saved mechanic information has been removed from this browser."
         );
 
 
@@ -442,7 +494,7 @@ function signOut() {
 
 
 /*
-    LOAD PROFILE WHEN DASHBOARD OPENS
+    LOAD DASHBOARD DATA
 */
 
 document.addEventListener(
@@ -450,6 +502,8 @@ document.addEventListener(
     function() {
 
         loadMechanicProfile();
+
+        loadServiceArea();
 
     }
 );

@@ -1,232 +1,260 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Customer Dashboard | WrenchLink</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
+<header>
+    <div class="container">
 
-    <div class="logo">
-        🔧 WrenchLink
+        <h1>
+            <a href="index.html">WrenchLink</a>
+        </h1>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="mechanics.html">Find a Mechanic</a>
+        </nav>
+
     </div>
-
-    <a href="index.html" class="btn btn-small">
-        WrenchLink Home
-    </a>
-
 </header>
 
 
-<main>
+<main class="container">
 
-<section class="services">
+    <section class="page-header">
 
-    <div class="section-heading">
+        <h2>Customer Dashboard</h2>
 
-        <p class="eyebrow">
-            CUSTOMER DASHBOARD
+        <p id="welcomeMessage">
+            Welcome to WrenchLink.
         </p>
 
-        <h1>
-            Welcome to WrenchLink
-        </h1>
-
-        <p>
-            Manage your mechanic requests, jobs, and account.
-        </p>
-
-    </div>
+    </section>
 
 
     <!-- QUICK ACTIONS -->
 
-    <div class="service-grid">
+    <section>
 
+        <h2>Quick Actions</h2>
 
-        <div class="service-card">
+        <div class="cards">
 
-            <div class="service-icon">
-                🔧
+            <div class="card">
+
+                <h3>Find a Mechanic</h3>
+
+                <p>
+                    Find a mobile mechanic for your vehicle.
+                </p>
+
+                <a href="mechanics.html">
+                    <button>Find a Mechanic</button>
+                </a>
+
             </div>
 
-            <h3>
-                Find a Mechanic
-            </h3>
 
-            <p>
-                Search for a mobile mechanic near you.
-            </p>
+            <div class="card">
 
-            <a href="mechanics.html"
-               class="btn btn-primary">
-                Find a Mechanic
+                <h3>Post a Job</h3>
+
+                <p>
+                    Tell mechanics what service you need.
+                </p>
+
+                <a href="post-job.html">
+                    <button>Post a Job</button>
+                </a>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Roadside Assistance</h3>
+
+                <p>
+                    Request help when you are stuck.
+                </p>
+
+                <a href="roadside.html">
+                    <button>Get Roadside Help</button>
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- CUSTOMER PROFILE -->
+
+    <section>
+
+        <h2>My Profile</h2>
+
+        <div class="card">
+
+            <div id="profileInformation">
+
+                <p>
+                    <strong>Name:</strong>
+                    <span id="profileName">Not set</span>
+                </p>
+
+                <p>
+                    <strong>Email:</strong>
+                    <span id="profileEmail">Not set</span>
+                </p>
+
+                <p>
+                    <strong>Phone:</strong>
+                    <span id="profilePhone">Not set</span>
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    <span id="profileLocation">Not set</span>
+                </p>
+
+                <p>
+                    <strong>Vehicle:</strong>
+                    <span id="profileVehicle">Not set</span>
+                </p>
+
+            </div>
+
+
+            <a href="customer-profile.html">
+                <button>Edit My Profile</button>
             </a>
 
         </div>
 
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                📋
-            </div>
-
-            <h3>
-                Post a Job
-            </h3>
-
-            <p>
-                Tell mechanics what vehicle service you need.
-            </p>
-
-            <a href="post-job.html"
-               class="btn btn-primary">
-                Post a Job
-            </a>
-
-        </div>
-
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                🚨
-            </div>
-
-            <h3>
-                Roadside Assistance
-            </h3>
-
-            <p>
-                Request immediate roadside assistance.
-            </p>
-
-            <a href="roadside.html"
-               class="btn btn-primary">
-                Get Help
-            </a>
-
-        </div>
-
-
-    </div>
+    </section>
 
 
     <!-- ACTIVE REQUESTS -->
 
-    <div class="service-card"
-         style="margin-top: 30px;">
+    <section>
 
-        <h2>
-            Active Requests
-        </h2>
+        <h2>Active Requests</h2>
 
-        <p id="activeRequests">
-            You currently have no active service requests.
-        </p>
+        <div class="card">
 
-        <div id="requestList"></div>
+            <p id="activeRequests">
+                You don't have any active service requests yet.
+            </p>
 
-    </div>
+            <a href="post-job.html">
+                <button>Post a Job</button>
+            </a>
+
+        </div>
+
+    </section>
 
 
-    <!-- JOB HISTORY -->
+    <!-- SERVICE HISTORY -->
 
-    <div class="service-card"
-         style="margin-top: 25px;">
+    <section>
 
-        <h2>
-            Service History
-        </h2>
+        <h2>Service History</h2>
 
-        <p id="jobHistory">
-            Your completed services will appear here.
-        </p>
+        <div class="card">
 
-    </div>
+            <p>
+                Your completed services will appear here.
+            </p>
+
+        </div>
+
+    </section>
 
 
     <!-- ACCOUNT -->
 
-    <div class="service-card"
-         style="margin-top: 25px;">
+    <section>
 
-        <h2>
-            Account
-        </h2>
+        <h2>Account</h2>
 
-        <p>
-            Manage your WrenchLink account.
-        </p>
+        <div class="cards">
 
-        <button
-            class="btn btn-primary"
-            onclick="accountSettings()">
-            Account Settings
-        </button>
+            <div class="card">
 
-        <button
-            class="btn btn-primary"
-            onclick="deleteAccount()"
-            style="margin-left: 10px;">
-            Delete Account
-        </button>
+                <h3>Account Settings</h3>
 
-        <button
-            class="btn btn-primary"
-            onclick="signOut()"
-            style="margin-left: 10px;">
-            Sign Out
-        </button>
+                <p>
+                    Manage your account information.
+                </p>
 
-    </div>
+                <a href="account-settings.html">
+                    <button>Account Settings</button>
+                </a>
+
+            </div>
 
 
-</section>
+            <div class="card">
+
+                <h3>Delete Account</h3>
+
+                <p>
+                    Permanently remove your WrenchLink information
+                    from this browser.
+                </p>
+
+                <button onclick="deleteAccount()">
+                    Delete Account
+                </button>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>Sign Out</h3>
+
+                <p>
+                    Sign out of your WrenchLink account.
+                </p>
+
+                <button onclick="signOut()">
+                    Sign Out
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
 
-<footer class="footer">
+<footer>
 
-    <div>
-
-        <strong>
-            🔧 WrenchLink
-        </strong>
+    <div class="container">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
-    </div>
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
+        <p>
+            <a href="privacy.html">Privacy</a> |
+            <a href="terms.html">Terms</a> |
+            <a href="contact.html">Contact</a>
+        </p>
 
     </div>
 
@@ -235,42 +263,134 @@
 
 <script>
 
-function accountSettings() {
+/* Load customer profile */
 
-    alert(
-        "Account settings will be connected when WrenchLink authentication is added."
-    );
+function loadCustomerProfile() {
 
-}
+    const savedProfile =
+        localStorage.getItem("wrenchlinkCustomerProfile");
+
+    if (!savedProfile) {
+
+        document.getElementById("welcomeMessage").textContent =
+            "Welcome to WrenchLink. Set up your profile to get started.";
+
+        return;
+    }
 
 
-function deleteAccount() {
+    const profile =
+        JSON.parse(savedProfile);
 
-    const confirmation = confirm(
-        "Are you sure you want to delete your WrenchLink account?"
-    );
 
-    if (confirmation) {
+    /* Welcome message */
 
-        alert(
-            "Account deletion will be connected to the WrenchLink account system."
-        );
+    if (profile.name) {
+
+        document.getElementById("welcomeMessage").textContent =
+            "Welcome back, " + profile.name + "!";
 
     }
 
+
+    /* Profile information */
+
+    document.getElementById("profileName").textContent =
+        profile.name || "Not set";
+
+    document.getElementById("profileEmail").textContent =
+        profile.email || "Not set";
+
+    document.getElementById("profilePhone").textContent =
+        profile.phone || "Not set";
+
+
+    /* Location */
+
+    let locationText = "";
+
+    if (profile.city) {
+        locationText += profile.city;
+    }
+
+    if (profile.zip) {
+
+        if (locationText) {
+            locationText += ", ";
+        }
+
+        locationText += profile.zip;
+    }
+
+
+    document.getElementById("profileLocation").textContent =
+        locationText || "Not set";
+
+
+    /* Vehicle */
+
+    document.getElementById("profileVehicle").textContent =
+        profile.vehicle || "Not set";
 }
 
+
+/* Delete customer account */
+
+function deleteAccount() {
+
+    const confirmation =
+        confirm(
+            "Are you sure you want to delete your WrenchLink account information from this browser?"
+        );
+
+
+    if (!confirmation) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "wrenchlinkCustomerProfile"
+    );
+
+    localStorage.removeItem(
+        "wrenchlinkJobs"
+    );
+
+
+    alert(
+        "Your WrenchLink customer information has been removed from this browser."
+    );
+
+
+    window.location.href =
+        "index.html";
+}
+
+
+/* Sign out */
 
 function signOut() {
 
     alert(
-        "Sign out will be connected when WrenchLink authentication is added."
+        "Sign-out will be connected to the WrenchLink account system when real authentication is added."
     );
 
 }
 
+
+/* Load dashboard */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadCustomerProfile();
+
+    }
+);
+
 </script>
 
 </body>
-
 </html>

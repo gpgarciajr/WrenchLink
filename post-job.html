@@ -1,56 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Post a Job | WrenchLink</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
+<header>
+    <div class="container">
 
-    <div class="logo">
-        🔧 WrenchLink
+        <h1>
+            <a href="index.html">WrenchLink</a>
+        </h1>
+
+        <nav>
+            <a href="customer-dashboard.html">Dashboard</a>
+            <a href="index.html">Home</a>
+        </nav>
+
     </div>
-
-    <a href="index.html" class="btn btn-small">
-        Back to WrenchLink
-    </a>
-
 </header>
 
 
-<main>
+<main class="container">
 
-<section class="services">
+    <section class="page-header">
 
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            WRENCHLINK
-        </p>
-
-        <h1>
-            Post a Job
-        </h1>
+        <h2>Post a Job</h2>
 
         <p>
-            Tell mobile mechanics what your vehicle needs.
+            Tell mobile mechanics what service you need.
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="service-card">
+    <section class="card">
 
         <form id="jobForm">
 
@@ -59,8 +49,8 @@
             </label>
 
             <input
-                id="vehicle"
                 type="text"
+                id="vehicle"
                 placeholder="Example: 2019 Kia Soul 1.6L"
                 required
             >
@@ -76,35 +66,39 @@
                     Select a service
                 </option>
 
-                <option value="brakes">
+                <option value="Brakes & Rotors">
                     Brakes & Rotors
                 </option>
 
-                <option value="battery">
+                <option value="Battery">
                     Battery
                 </option>
 
-                <option value="alternator">
+                <option value="Alternator">
                     Alternator
                 </option>
 
-                <option value="starter">
+                <option value="Starter">
                     Starter
                 </option>
 
-                <option value="diagnostics">
+                <option value="Diagnostics">
                     Diagnostics
                 </option>
 
-                <option value="oil-change">
+                <option value="Oil Change">
                     Oil Change
                 </option>
 
-                <option value="roadside">
+                <option value="Roadside Assistance">
                     Roadside Assistance
                 </option>
 
-                <option value="other">
+                <option value="Tire Assistance">
+                    Tire Assistance
+                </option>
+
+                <option value="Other">
                     Other
                 </option>
 
@@ -117,8 +111,8 @@
 
             <textarea
                 id="description"
-                rows="6"
-                placeholder="Tell the mechanic what is happening with your vehicle..."
+                rows="5"
+                placeholder="Describe what is happening with your vehicle..."
                 required
             ></textarea>
 
@@ -128,91 +122,70 @@
             </label>
 
             <input
-                id="location"
                 type="text"
-                placeholder="ZIP code or service address"
+                id="location"
+                placeholder="City, ZIP code, or service address"
                 required
             >
 
 
-            <label for="preferredTime">
-                Preferred Time
+            <label for="dateTime">
+                Preferred Date & Time
             </label>
 
             <input
-                id="preferredTime"
                 type="datetime-local"
+                id="dateTime"
             >
 
 
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-                📋 Post Job
+            <button type="submit">
+                Post Job
             </button>
 
         </form>
 
-    </div>
 
+        <div
+            id="successMessage"
+            style="display:none;"
+        >
 
-    <div
-        id="jobMessage"
-        class="service-card"
-        style="display: none; margin-top: 25px;"
-    >
+            <h3>Job Posted ✓</h3>
 
-        <div class="service-icon">
-            ✅
+            <p>
+                Your service request has been saved.
+            </p>
+
+            <p>
+                Mechanics will be able to see this request when the
+                WrenchLink marketplace backend is connected.
+            </p>
+
+            <a href="customer-dashboard.html">
+                Return to Dashboard
+            </a>
+
         </div>
 
-        <h3>
-            Job Ready
-        </h3>
-
-        <p>
-            Your job information has been received.
-        </p>
-
-        <p>
-            The next step will connect your job with
-            available mobile mechanics.
-        </p>
-
-    </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<footer class="footer">
+<footer>
 
-    <div>
-
-        <strong>🔧 WrenchLink</strong>
+    <div class="container">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
-    </div>
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
+        <p>
+            <a href="privacy.html">Privacy</a> |
+            <a href="terms.html">Terms</a> |
+            <a href="contact.html">Contact</a>
+        </p>
 
     </div>
 
@@ -221,26 +194,129 @@
 
 <script>
 
-document
-    .getElementById("jobForm")
-    .addEventListener("submit", function(event) {
+const jobForm =
+    document.getElementById("jobForm");
+
+const successMessage =
+    document.getElementById("successMessage");
+
+
+jobForm.addEventListener(
+    "submit",
+    function(event) {
 
         event.preventDefault();
 
-        document
-            .getElementById("jobMessage")
-            .style.display = "block";
 
-        document
-            .getElementById("jobMessage")
-            .scrollIntoView({
-                behavior: "smooth"
-            });
+        /* Get customer profile */
 
-    });
+        const savedProfile =
+            localStorage.getItem(
+                "wrenchlinkCustomerProfile"
+            );
+
+
+        let customer = {};
+
+        if (savedProfile) {
+
+            customer =
+                JSON.parse(savedProfile);
+
+        }
+
+
+        /* Get existing jobs */
+
+        const savedJobs =
+            localStorage.getItem(
+                "wrenchlinkJobs"
+            );
+
+
+        let jobs = [];
+
+
+        if (savedJobs) {
+
+            jobs =
+                JSON.parse(savedJobs);
+
+        }
+
+
+        /* Create new job */
+
+        const newJob = {
+
+            id:
+                Date.now(),
+
+            customerName:
+                customer.name || "Customer",
+
+            customerEmail:
+                customer.email || "",
+
+            customerPhone:
+                customer.phone || "",
+
+            vehicle:
+                document.getElementById("vehicle").value.trim(),
+
+            service:
+                document.getElementById("service").value,
+
+            description:
+                document.getElementById("description").value.trim(),
+
+            location:
+                document.getElementById("location").value.trim(),
+
+            preferredDateTime:
+                document.getElementById("dateTime").value,
+
+            status:
+                "Open",
+
+            createdAt:
+                new Date().toISOString()
+        };
+
+
+        /* Add job to beginning of list */
+
+        jobs.unshift(newJob);
+
+
+        /* Save jobs */
+
+        localStorage.setItem(
+            "wrenchlinkJobs",
+            JSON.stringify(jobs)
+        );
+
+
+        /* Hide form */
+
+        jobForm.style.display =
+            "none";
+
+
+        /* Show confirmation */
+
+        successMessage.style.display =
+            "block";
+
+
+        successMessage.scrollIntoView({
+            behavior: "smooth"
+        });
+
+    }
+);
 
 </script>
 
 </body>
-
 </html>

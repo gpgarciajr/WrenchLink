@@ -56,6 +56,8 @@
     <div class="service-grid">
 
 
+        <!-- AVAILABLE JOBS -->
+
         <div class="service-card">
 
             <div class="service-icon">
@@ -78,6 +80,8 @@
         </div>
 
 
+        <!-- MY PROFILE -->
+
         <div class="service-card">
 
             <div class="service-icon">
@@ -88,9 +92,35 @@
                 My Profile
             </h3>
 
-            <p>
-                Manage your mechanic profile and service information.
+            <p id="profileStatus">
+                No mechanic profile information saved yet.
             </p>
+
+            <div id="profilePreview"
+                 style="display: none; text-align: left; margin-top: 15px;">
+
+                <p>
+                    <strong>Name:</strong>
+                    <span id="profileName"></span>
+                </p>
+
+                <p>
+                    <strong>Service Area:</strong>
+                    <span id="profileArea"></span>
+                </p>
+
+                <p>
+                    <strong>Experience:</strong>
+                    <span id="profileExperience"></span>
+                    years
+                </p>
+
+                <p>
+                    <strong>Services:</strong>
+                    <span id="profileServices"></span>
+                </p>
+
+            </div>
 
             <a href="edit-mechanic-profile.html"
                class="btn btn-primary">
@@ -99,6 +129,8 @@
 
         </div>
 
+
+        <!-- SERVICE AREA -->
 
         <div class="service-card">
 
@@ -236,11 +268,10 @@
             Manage your WrenchLink mechanic account.
         </p>
 
-        <button
-            class="btn btn-primary"
-            onclick="accountSettings()">
+        <a href="account-settings.html"
+           class="btn btn-primary">
             Account Settings
-        </button>
+        </a>
 
         <button
             class="btn btn-primary"
@@ -300,14 +331,62 @@
 
 <script>
 
-function editProfile() {
 
-    alert(
-        "Mechanic profile editing will be connected to the WrenchLink account system."
-    );
+/*
+    LOAD MECHANIC PROFILE
+*/
+
+function loadMechanicProfile() {
+
+    const savedProfile =
+        localStorage.getItem("wrenchlinkMechanicProfile");
+
+
+    if (!savedProfile) {
+
+        return;
+
+    }
+
+
+    const profile =
+        JSON.parse(savedProfile);
+
+
+    document.getElementById("profileStatus")
+        .textContent =
+        "Your saved mechanic profile:";
+
+
+    document.getElementById("profilePreview")
+        .style.display = "block";
+
+
+    document.getElementById("profileName")
+        .textContent =
+        profile.name || "Not provided";
+
+
+    document.getElementById("profileArea")
+        .textContent =
+        profile.serviceArea || "Not provided";
+
+
+    document.getElementById("profileExperience")
+        .textContent =
+        profile.experience || "0";
+
+
+    document.getElementById("profileServices")
+        .textContent =
+        profile.services || "Not provided";
 
 }
 
+
+/*
+    SERVICE AREA
+*/
 
 function serviceArea() {
 
@@ -318,31 +397,40 @@ function serviceArea() {
 }
 
 
-function accountSettings() {
-
-    alert(
-        "Account settings will be connected when WrenchLink authentication is added."
-    );
-
-}
-
+/*
+    DELETE ACCOUNT
+*/
 
 function deleteAccount() {
 
-    const confirmation = confirm(
-        "Are you sure you want to delete your WrenchLink mechanic account?"
-    );
+    const confirmation =
+        confirm(
+            "Are you sure you want to delete your WrenchLink mechanic account?"
+        );
+
 
     if (confirmation) {
 
-        alert(
-            "Account deletion will be connected to the WrenchLink account system."
+        localStorage.removeItem(
+            "wrenchlinkMechanicProfile"
         );
+
+
+        alert(
+            "Your saved mechanic profile has been removed from this browser."
+        );
+
+
+        window.location.reload();
 
     }
 
 }
 
+
+/*
+    SIGN OUT
+*/
 
 function signOut() {
 
@@ -351,6 +439,20 @@ function signOut() {
     );
 
 }
+
+
+/*
+    LOAD PROFILE WHEN DASHBOARD OPENS
+*/
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadMechanicProfile();
+
+    }
+);
 
 </script>
 

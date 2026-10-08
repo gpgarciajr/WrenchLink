@@ -1,367 +1,802 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Account Settings | WrenchLink</title>
+```
+<meta charset="UTF-8">
 
-    <link rel="stylesheet" href="style.css">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Account Settings | WrenchLink</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
+
 </head>
 
 <body>
 
-<header>
-    <div class="container">
+<header class="site-header">
 
-        <h1>
-            <a href="index.html">🔧 WrenchLink</a>
-        </h1>
+```
+<div class="container nav-container">
 
-        <nav>
-            <a href="customer-dashboard.html">Dashboard</a>
-            <a href="index.html">Home</a>
-        </nav>
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🔧 WrenchLink
+    </a>
 
-    </div>
+    <nav>
+
+        <a href="customer-dashboard.html">
+            Dashboard
+        </a>
+
+        <a href="index.html">
+            Home
+        </a>
+
+    </nav>
+
+</div>
+```
+
 </header>
-
 
 <main class="container">
 
-    <section class="page-header">
+```
+<section class="page-header">
 
-        <h2>Account Settings</h2>
+    <h2>
+        Account Settings
+    </h2>
 
-        <p>
-            Manage your WrenchLink account information.
-        </p>
+    <p>
+        Manage your WrenchLink account information.
+    </p>
 
-    </section>
-
-
-    <!-- ACCOUNT INFORMATION -->
-
-    <section class="card">
-
-        <h3>Account Information</h3>
-
-        <form id="accountForm">
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                id="email"
-                type="email"
-                required
-            >
+</section>
 
 
-            <label for="phone">
-                Phone
-            </label>
+<!-- ACCOUNT INFORMATION -->
 
-            <input
-                id="phone"
-                type="tel"
-            >
+<section class="card">
 
+    <h3>
+        Account Information
+    </h3>
 
-            <button type="submit">
-                Save Changes
-            </button>
+    <form id="accountForm">
 
-        </form>
+        <label for="email">
+            Email
+        </label>
 
-        <p
-            id="accountMessage"
-            style="display:none;"
-        ></p>
-
-    </section>
-
-
-    <!-- PASSWORD -->
-
-    <section class="card">
-
-        <h3>Password</h3>
-
-        <p>
-            Password changes will be handled securely through
-            the WrenchLink authentication system when the backend
-            is connected.
-        </p>
-
-        <form id="passwordForm">
-
-            <label for="currentPassword">
-                Current Password
-            </label>
-
-            <input
-                id="currentPassword"
-                type="password"
-            >
-
-
-            <label for="newPassword">
-                New Password
-            </label>
-
-            <input
-                id="newPassword"
-                type="password"
-            >
-
-
-            <label for="confirmPassword">
-                Confirm New Password
-            </label>
-
-            <input
-                id="confirmPassword"
-                type="password"
-            >
-
-
-            <button type="submit">
-                Request Password Change
-            </button>
-
-        </form>
-
-        <p
-            id="passwordMessage"
-            style="display:none;"
-        ></p>
-
-    </section>
-
-
-    <!-- DELETE -->
-
-    <section class="card">
-
-        <h3>Delete Account</h3>
-
-        <p>
-            This removes the customer information and locally
-            saved job requests from this browser.
-        </p>
-
-        <button
-            type="button"
-            onclick="deleteAccount()"
+        <input
+            id="email"
+            type="email"
+            autocomplete="email"
+            required
         >
-            Delete My Account
+
+
+        <label for="phone">
+            Phone
+        </label>
+
+        <input
+            id="phone"
+            type="tel"
+            autocomplete="tel"
+        >
+
+
+        <button type="submit">
+            Save Changes
         </button>
 
-    </section>
+    </form>
+
+    <p
+        id="accountMessage"
+        style="display:none;"
+    ></p>
+
+</section>
+
+
+<!-- PASSWORD -->
+
+<section class="card">
+
+    <h3>
+        Password
+    </h3>
+
+    <p>
+        Your current browser version does not store new
+        passwords here. Secure password changes will be
+        connected when WrenchLink's real authentication
+        backend is added.
+    </p>
+
+    <form id="passwordForm">
+
+        <label for="currentPassword">
+            Current Password
+        </label>
+
+        <input
+            id="currentPassword"
+            type="password"
+            autocomplete="current-password"
+            required
+        >
+
+
+        <label for="newPassword">
+            New Password
+        </label>
+
+        <input
+            id="newPassword"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            required
+        >
+
+
+        <label for="confirmPassword">
+            Confirm New Password
+        </label>
+
+        <input
+            id="confirmPassword"
+            type="password"
+            autocomplete="new-password"
+            minlength="8"
+            required
+        >
+
+
+        <button type="submit">
+            Request Password Change
+        </button>
+
+    </form>
+
+    <p
+        id="passwordMessage"
+        style="display:none;"
+    ></p>
+
+</section>
+
+
+<!-- DELETE ACCOUNT -->
+
+<section class="card">
+
+    <h3>
+        Delete Account
+    </h3>
+
+    <p>
+        This permanently removes your account and your
+        customer information from this browser.
+    </p>
+
+    <button
+        type="button"
+        id="deleteAccountButton"
+    >
+        Delete My Account
+    </button>
+
+    <p
+        id="deleteMessage"
+        style="display:none;"
+    ></p>
+
+</section>
+```
 
 </main>
 
+<footer class="site-footer">
 
-<footer>
+```
+<div class="container">
 
-    <div class="container">
+    <p>
+        © 2026 WrenchLink. All rights reserved.
+    </p>
 
-        <p>
-            © 2026 WrenchLink. All rights reserved.
-        </p>
+    <p>
 
-        <p>
-            <a href="privacy.html">Privacy</a> |
-            <a href="terms.html">Terms</a> |
-            <a href="contact.html">Contact</a>
-        </p>
+        <a href="privacy.html">
+            Privacy
+        </a>
 
-    </div>
+        |
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        |
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </p>
+
+</div>
+```
 
 </footer>
 
+<script src="app.js"></script>
 
 <script>
 
-const profileKey =
-    "wrenchlinkCustomerProfile";
+let currentUser = null;
 
+
+/* =========================================
+   CHECK ACCESS
+========================================= */
+
+function checkAccountAccess() {
+
+    currentUser = getCurrentUser();
+
+    if (!currentUser) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+
+    }
+
+
+    if (currentUser.role === "mechanic") {
+
+        window.location.href =
+            "mechanic-dashboard.html";
+
+        return false;
+
+    }
+
+
+    if (currentUser.role === "admin") {
+
+        window.location.href =
+            "admin/index.html";
+
+        return false;
+
+    }
+
+
+    return true;
+
+}
+
+
+/* =========================================
+   LOAD ACCOUNT SETTINGS
+========================================= */
 
 function loadSettings() {
 
-    const saved =
-        localStorage.getItem(profileKey);
+    const profiles =
+        WrenchLinkStorage.get(
+            "wrenchlinkCustomerProfiles",
+            {}
+        );
 
-    if (!saved) return;
 
     const profile =
-        JSON.parse(saved);
+        profiles[currentUser.id] || {};
+
 
     document.getElementById("email").value =
-        profile.email || "";
+        profile.email ||
+        currentUser.email ||
+        "";
+
 
     document.getElementById("phone").value =
-        profile.phone || "";
+        profile.phone ||
+        currentUser.phone ||
+        "";
+
 }
 
 
-document.getElementById("accountForm").addEventListener(
-    "submit",
-    function(event) {
+/* =========================================
+   SAVE ACCOUNT INFORMATION
+========================================= */
 
-        event.preventDefault();
+document
+    .getElementById("accountForm")
+    .addEventListener(
+        "submit",
+        function(event) {
 
-        const saved =
-            localStorage.getItem(profileKey);
-
-        const profile =
-            saved
-                ? JSON.parse(saved)
-                : {};
-
-        profile.email =
-            document.getElementById("email").value.trim();
-
-        profile.phone =
-            document.getElementById("phone").value.trim();
-
-        localStorage.setItem(
-            profileKey,
-            JSON.stringify(profile)
-        );
-
-        const message =
-            document.getElementById("accountMessage");
-
-        message.textContent =
-            "Account information saved ✓";
-
-        message.style.display =
-            "block";
-
-    }
-);
+            event.preventDefault();
 
 
-document.getElementById("passwordForm").addEventListener(
-    "submit",
-    function(event) {
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase();
 
-        event.preventDefault();
 
-        const current =
-            document.getElementById(
-                "currentPassword"
-            ).value;
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
 
-        const newPassword =
-            document.getElementById(
-                "newPassword"
-            ).value;
 
-        const confirmPassword =
-            document.getElementById(
-                "confirmPassword"
-            ).value;
+            if (!email) {
 
-        const message =
-            document.getElementById(
-                "passwordMessage"
+                showMessage(
+                    "accountMessage",
+                    "Please enter a valid email address."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * Check whether another local account
+             * is already using this email.
+             */
+
+            const users =
+                WrenchLinkStorage.get(
+                    "wrenchlinkUsers",
+                    []
+                );
+
+
+            if (Array.isArray(users)) {
+
+                const emailTaken =
+                    users.some(function(user) {
+
+                        return (
+                            user.id !== currentUser.id &&
+                            String(user.email || "")
+                                .toLowerCase() === email
+                        );
+
+                    });
+
+
+                if (emailTaken) {
+
+                    showMessage(
+                        "accountMessage",
+                        "That email address is already being used by another account."
+                    );
+
+                    return;
+
+                }
+
+            }
+
+
+            /*
+             * Update customer profile.
+             */
+
+            const profiles =
+                WrenchLinkStorage.get(
+                    "wrenchlinkCustomerProfiles",
+                    {}
+                );
+
+
+            const existingProfile =
+                profiles[currentUser.id] || {};
+
+
+            profiles[currentUser.id] = {
+
+                ...existingProfile,
+
+                userId:
+                    currentUser.id,
+
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                updatedAt:
+                    new Date().toISOString()
+
+            };
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkCustomerProfiles",
+                profiles
             );
 
 
-        if (!current || !newPassword || !confirmPassword) {
+            /*
+             * Update the current logged-in user.
+             */
 
-            message.textContent =
-                "Please complete all password fields.";
+            const updatedUser = {
 
-            message.style.display =
-                "block";
+                ...currentUser,
 
-            return;
+                email:
+                    email,
+
+                phone:
+                    phone
+
+            };
+
+
+            setCurrentUser(
+                updatedUser
+            );
+
+
+            currentUser =
+                updatedUser;
+
+
+            /*
+             * Update stored user account.
+             */
+
+            if (Array.isArray(users)) {
+
+                const userIndex =
+                    users.findIndex(function(user) {
+
+                        return (
+                            user.id === currentUser.id
+                        );
+
+                    });
+
+
+                if (userIndex !== -1) {
+
+                    users[userIndex] = {
+
+                        ...users[userIndex],
+
+                        email:
+                            email,
+
+                        phone:
+                            phone
+
+                    };
+
+
+                    WrenchLinkStorage.set(
+                        "wrenchlinkUsers",
+                        users
+                    );
+
+                }
+
+            }
+
+
+            showMessage(
+                "accountMessage",
+                "Account information saved ✓"
+            );
+
         }
+    );
 
 
-        if (newPassword !== confirmPassword) {
+/* =========================================
+   PASSWORD FORM
+========================================= */
 
-            message.textContent =
-                "The new passwords do not match.";
+document
+    .getElementById("passwordForm")
+    .addEventListener(
+        "submit",
+        function(event) {
 
-            message.style.display =
-                "block";
+            event.preventDefault();
 
-            return;
+
+            const currentPassword =
+                document
+                    .getElementById("currentPassword")
+                    .value;
+
+
+            const newPassword =
+                document
+                    .getElementById("newPassword")
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
+
+
+            if (
+                !currentPassword ||
+                !newPassword ||
+                !confirmPassword
+            ) {
+
+                showMessage(
+                    "passwordMessage",
+                    "Please complete all password fields."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                newPassword.length < 8
+            ) {
+
+                showMessage(
+                    "passwordMessage",
+                    "Your new password must be at least 8 characters."
+                );
+
+                return;
+
+            }
+
+
+            if (
+                newPassword !==
+                confirmPassword
+            ) {
+
+                showMessage(
+                    "passwordMessage",
+                    "The new passwords do not match."
+                );
+
+                return;
+
+            }
+
+
+            /*
+             * We intentionally do NOT change or store
+             * passwords here.
+             *
+             * The current WrenchLink version uses
+             * browser storage for demonstration only.
+             *
+             * Production authentication will require
+             * a secure backend.
+             */
+
+            showMessage(
+                "passwordMessage",
+                "Your password request passed the checks. Secure password changes will be enabled when WrenchLink authentication is connected."
+            );
+
+
+            document
+                .getElementById("passwordForm")
+                .reset();
+
         }
+    );
 
 
-        if (newPassword.length < 8) {
+/* =========================================
+   DELETE ACCOUNT
+========================================= */
 
-            message.textContent =
-                "Your new password should be at least 8 characters.";
+document
+    .getElementById("deleteAccountButton")
+    .addEventListener(
+        "click",
+        function() {
 
-            message.style.display =
-                "block";
+            if (!currentUser) {
+                return;
+            }
 
-            return;
+
+            const confirmation =
+                confirm(
+                    "Are you sure you want to permanently delete your WrenchLink account from this browser?"
+                );
+
+
+            if (!confirmation) {
+                return;
+            }
+
+
+            /*
+             * Remove user from users.
+             */
+
+            const users =
+                WrenchLinkStorage.get(
+                    "wrenchlinkUsers",
+                    []
+                );
+
+
+            if (Array.isArray(users)) {
+
+                const remainingUsers =
+                    users.filter(function(user) {
+
+                        return (
+                            user.id !== currentUser.id
+                        );
+
+                    });
+
+
+                WrenchLinkStorage.set(
+                    "wrenchlinkUsers",
+                    remainingUsers
+                );
+
+            }
+
+
+            /*
+             * Remove customer profile ONLY
+             * for this customer.
+             */
+
+            const profiles =
+                WrenchLinkStorage.get(
+                    "wrenchlinkCustomerProfiles",
+                    {}
+                );
+
+
+            delete profiles[currentUser.id];
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkCustomerProfiles",
+                profiles
+            );
+
+
+            /*
+             * Remove ONLY this customer's jobs.
+             *
+             * Other customers' jobs remain intact.
+             */
+
+            const jobs =
+                WrenchLinkStorage.get(
+                    "wrenchlinkJobs",
+                    []
+                );
+
+
+            if (Array.isArray(jobs)) {
+
+                const remainingJobs =
+                    jobs.filter(function(job) {
+
+                        return (
+                            job.customerId !==
+                            currentUser.id
+                        );
+
+                    });
+
+
+                WrenchLinkStorage.set(
+                    "wrenchlinkJobs",
+                    remainingJobs
+                );
+
+            }
+
+
+            /*
+             * Log the customer out.
+             */
+
+            clearCurrentUser();
+
+
+            window.location.href =
+                "index.html";
+
         }
+    );
 
 
-        /*
-            We intentionally do NOT store passwords
-            in localStorage.
+/* =========================================
+   MESSAGE HELPER
+========================================= */
 
-            A real password change requires secure
-            backend authentication.
-        */
+function showMessage(
+    elementId,
+    message
+) {
 
-        message.textContent =
-            "Your password information passed the checks. Secure password changes will be enabled when WrenchLink authentication is connected.";
-
-        message.style.display =
-            "block";
-
+    const element =
         document.getElementById(
-            "passwordForm"
-        ).reset();
-
-    }
-);
-
-
-function deleteAccount() {
-
-    const confirmation =
-        confirm(
-            "Are you sure you want to delete your WrenchLink customer information from this browser?"
+            elementId
         );
 
-    if (!confirmation) return;
 
-    localStorage.removeItem(
-        "wrenchlinkCustomerProfile"
-    );
+    element.textContent =
+        message;
 
-    localStorage.removeItem(
-        "wrenchlinkJobs"
-    );
 
-    alert(
-        "Your customer information has been removed from this browser."
-    );
+    element.style.display =
+        "block";
 
-    window.location.href =
-        "index.html";
 }
 
 
+/* =========================================
+   START PAGE
+========================================= */
+
 document.addEventListener(
     "DOMContentLoaded",
-    loadSettings
+    function() {
+
+        if (!checkAccountAccess()) {
+            return;
+        }
+
+        loadSettings();
+
+    }
 );
 
 </script>
 
 </body>
+
 </html>

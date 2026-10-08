@@ -419,3 +419,79 @@ document.addEventListener("DOMContentLoaded", function () {
                 name.split(" ").slice(1).join(" "),
 
             email: email,
+
+            phone: phone,
+
+            role: "mechanic"
+        };
+
+
+        setCurrentUser(updatedUser);
+
+
+        /*
+         * Update the full user record too.
+         */
+
+        const users =
+            WrenchLinkStorage.get(
+                "wrenchlinkUsers",
+                []
+            );
+
+
+        const userIndex =
+            users.findIndex(function (user) {
+                return user.id === currentUser.id;
+            });
+
+
+        if (userIndex !== -1) {
+
+            users[userIndex] = {
+                ...users[userIndex,
+
+                name: name,
+
+                firstName:
+                    name.split(" ")[0],
+
+                lastName:
+                    name.split(" ").slice(1).join(" "),
+
+                email: email,
+
+                phone: phone,
+
+                role: "mechanic"
+            };
+
+            WrenchLinkStorage.set(
+                "wrenchlinkUsers",
+                users
+            );
+        }
+
+
+        /*
+         * Show confirmation.
+         */
+
+        message.style.display = "none";
+
+        successMessage.style.display =
+            "block";
+
+        successMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+
+    });
+
+});
+
+</script>
+
+</body>
+</html>

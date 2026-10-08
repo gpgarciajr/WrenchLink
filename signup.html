@@ -1,106 +1,168 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+```
+<meta charset="UTF-8">
 
-    <title>Create Account | WrenchLink</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <link rel="stylesheet" href="style.css">
+<title>Create Account | WrenchLink</title>
+
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
+
 </head>
 
 <body>
 
-<header class="header">
+<header class="site-header">
 
-    <div class="logo">
+```
+<div class="container nav-container">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
         🔧 WrenchLink
-    </div>
+    </a>
 
-    <a href="index.html" class="btn btn-small">
+
+    <a
+        href="index.html"
+        class="btn btn-small"
+    >
         Back to WrenchLink
     </a>
 
-</header>
+</div>
+```
 
+</header>
 
 <main>
 
-<section class="services">
+<section class="container section">
 
-    <div class="section-heading">
+```
+<div class="section-heading">
 
-        <p class="eyebrow">
-            WRENCHLINK
-        </p>
-
-        <h1>
-            Create Your Account
-        </h1>
-
-        <p>
-            Join WrenchLink and connect with mobile mechanics.
-        </p>
-
-    </div>
+    <p class="eyebrow">
+        WRENCHLINK ACCOUNT
+    </p>
 
 
-    <div class="service-card">
+    <h1>
+        Create Your Account
+    </h1>
 
-        <form id="signupForm">
+
+    <p>
+        Join WrenchLink and connect with
+        customers or mobile mechanics.
+    </p>
+
+</div>
+
+
+
+<div class="card form-card">
+
+
+    <form id="signupForm">
+
+
+        <div class="form-group">
 
             <label for="name">
                 Full Name
             </label>
 
+
             <input
                 id="name"
+                name="name"
                 type="text"
                 placeholder="Enter your full name"
+                autocomplete="name"
                 required
             >
 
+        </div>
+
+
+
+        <div class="form-group">
 
             <label for="email">
                 Email
             </label>
 
+
             <input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="Enter your email"
+                autocomplete="email"
                 required
             >
 
+        </div>
+
+
+
+        <div class="form-group">
 
             <label for="phone">
                 Phone Number
             </label>
 
+
             <input
                 id="phone"
+                name="phone"
                 type="tel"
                 placeholder="Enter your phone number"
+                autocomplete="tel"
                 required
             >
 
+        </div>
+
+
+
+        <div class="form-group">
 
             <label for="accountType">
-                I am a...
+                Account Type
             </label>
 
-            <select id="accountType" required>
+
+            <select
+                id="accountType"
+                name="accountType"
+                required
+            >
 
                 <option value="">
                     Select account type
                 </option>
 
+
                 <option value="customer">
                     Customer
                 </option>
+
 
                 <option value="mechanic">
                     Mobile Mechanic
@@ -108,64 +170,114 @@
 
             </select>
 
+        </div>
+
+
+
+        <div class="form-group">
 
             <label for="password">
                 Password
             </label>
 
+
             <input
                 id="password"
+                name="password"
                 type="password"
                 placeholder="Create a password"
+                autocomplete="new-password"
+                minlength="6"
                 required
             >
 
+        </div>
+
+
+
+        <div class="form-group">
 
             <label for="confirmPassword">
                 Confirm Password
             </label>
 
+
             <input
                 id="confirmPassword"
+                name="confirmPassword"
                 type="password"
                 placeholder="Confirm your password"
+                autocomplete="new-password"
+                minlength="6"
                 required
             >
 
-
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-                Create Account
-            </button>
-
-        </form>
+        </div>
 
 
-        <p style="margin-top: 20px;">
-            Already have an account?
-        </p>
 
-        <a
-            href="login.html"
-            class="btn"
+        <div
+            id="signupMessage"
+            role="alert"
+            aria-live="polite"
+        ></div>
+
+
+
+        <button
+            type="submit"
+            class="btn btn-primary"
         >
-            Sign In
-        </a>
+            Create Account
+        </button>
+
+
+    </form>
+
+
+
+    <div class="form-divider">
+
+        <span>
+            OR
+        </span>
 
     </div>
+
+
+
+    <p>
+        Already have a WrenchLink account?
+    </p>
+
+
+    <a
+        href="login.html"
+        class="btn btn-secondary"
+    >
+        Sign In
+    </a>
+
+
+</div>
+```
 
 </section>
 
 </main>
 
+<footer class="site-footer">
 
-<footer class="footer">
+```
+<div class="container footer-container">
 
-    <div>
 
-        <strong>🔧 WrenchLink</strong>
+    <div class="footer-brand">
+
+        <strong>
+            🔧 WrenchLink
+        </strong>
+
 
         <p>
             Connecting drivers with mobile mechanics.
@@ -174,15 +286,18 @@
     </div>
 
 
+
     <div class="footer-links">
 
         <a href="privacy.html">
             Privacy
         </a>
 
+
         <a href="terms.html">
             Terms
         </a>
+
 
         <a href="contact.html">
             Contact
@@ -190,31 +305,309 @@
 
     </div>
 
+
+</div>
+
+
+
+<div class="footer-bottom">
+
+    <p>
+        © 2026 WrenchLink. All rights reserved.
+    </p>
+
+</div>
+```
+
 </footer>
 
+<script src="app.js"></script>
 
 <script>
 
-document.getElementById("signupForm").addEventListener("submit", function(event) {
+document
+    .getElementById("signupForm")
+    .addEventListener(
+        "submit",
+        function(event) {
 
-    event.preventDefault();
+            event.preventDefault();
 
-    const password =
-        document.getElementById("password").value;
 
-    const confirmPassword =
-        document.getElementById("confirmPassword").value;
+            const name =
+                document
+                    .getElementById("name")
+                    .value
+                    .trim();
 
-    if (password !== confirmPassword) {
 
-        alert("Passwords do not match.");
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase();
 
-        return;
-    }
 
-    alert("Account setup received. We will connect this to real account authentication next.");
+            const phone =
+                document
+                    .getElementById("phone")
+                    .value
+                    .trim();
 
-});
+
+            const accountType =
+                document
+                    .getElementById("accountType")
+                    .value;
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const confirmPassword =
+                document
+                    .getElementById("confirmPassword")
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById("signupMessage");
+
+
+            message.textContent = "";
+            message.className = "";
+
+
+            /*
+                BASIC VALIDATION
+            */
+
+            if (
+                !name ||
+                !email ||
+                !phone ||
+                !accountType ||
+                !password ||
+                !confirmPassword
+            ) {
+
+                message.textContent =
+                    "Please complete every field.";
+
+                message.className =
+                    "form-message error";
+
+                return;
+
+            }
+
+
+            if (password.length < 6) {
+
+                message.textContent =
+                    "Password must be at least 6 characters.";
+
+                message.className =
+                    "form-message error";
+
+                return;
+
+            }
+
+
+            if (
+                password !==
+                confirmPassword
+            ) {
+
+                message.textContent =
+                    "Passwords do not match.";
+
+                message.className =
+                    "form-message error";
+
+                return;
+
+            }
+
+
+            /*
+                GET EXISTING ACCOUNTS
+            */
+
+            const users =
+                WrenchLinkStorage.get(
+                    "wrenchlinkUsers",
+                    []
+                );
+
+
+            /*
+                PREVENT DUPLICATE EMAILS
+            */
+
+            const existingUser =
+                users.find(
+                    function(user) {
+
+                        return (
+                            String(
+                                user.email || ""
+                            )
+                            .toLowerCase() ===
+                            email
+                        );
+
+                    }
+                );
+
+
+            if (existingUser) {
+
+                message.textContent =
+                    "An account with this email already exists.";
+
+                message.className =
+                    "form-message error";
+
+                return;
+
+            }
+
+
+            /*
+                CREATE USER
+            */
+
+            const userId =
+                "WL-" +
+                Date.now() +
+                "-" +
+                Math.floor(
+                    Math.random() * 10000
+                );
+
+
+            const user = {
+
+                id: userId,
+
+                name: name,
+
+                firstName:
+                    name.split(" ")[0],
+
+                lastName:
+                    name
+                        .split(" ")
+                        .slice(1)
+                        .join(" "),
+
+                email: email,
+
+                phone: phone,
+
+                password: password,
+
+                role: accountType,
+
+                createdAt:
+                    new Date().toISOString(),
+
+                mechanicId:
+                    accountType === "mechanic"
+                        ? userId
+                        : null
+
+            };
+
+
+            /*
+                SAVE ACCOUNT
+            */
+
+            users.push(user);
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkUsers",
+                users
+            );
+
+
+            /*
+                SIGN THE USER IN
+            */
+
+            setCurrentUser({
+
+                id: user.id,
+
+                name: user.name,
+
+                firstName:
+                    user.firstName,
+
+                lastName:
+                    user.lastName,
+
+                email:
+                    user.email,
+
+                role:
+                    user.role,
+
+                mechanicId:
+                    user.mechanicId
+
+            });
+
+
+            /*
+                SUCCESS MESSAGE
+            */
+
+            message.textContent =
+                "Account created successfully. Redirecting...";
+
+            message.className =
+                "form-message success";
+
+
+            /*
+                SEND USER TO CORRECT DASHBOARD
+            */
+
+            setTimeout(
+                function() {
+
+                    if (
+                        accountType ===
+                        "mechanic"
+                    ) {
+
+                        window.location.href =
+                            "mechanic-dashboard.html";
+
+                        return;
+
+                    }
+
+
+                    window.location.href =
+                        "customer-dashboard.html";
+
+                },
+                600
+            );
+
+        }
+    );
 
 </script>
 

@@ -1,60 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Service Area | WrenchLink</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
+<header>
 
-    <a href="index.html"
-       class="logo"
-       style="text-decoration: none; color: inherit;">
-        🔧 WrenchLink
-    </a>
+    <div class="container">
 
-    <a href="mechanic-dashboard.html"
-       class="btn btn-small">
-        ← Dashboard
-    </a>
+        <h1>
+            <a href="index.html">🔧 WrenchLink</a>
+        </h1>
+
+        <nav>
+            <a href="mechanic-dashboard.html">Dashboard</a>
+            <a href="index.html">Home</a>
+        </nav>
+
+    </div>
 
 </header>
 
 
-<main>
+<main class="container">
 
-<section class="services">
+    <section class="page-header">
 
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            MECHANIC ACCOUNT
-        </p>
-
-        <h1>
-            Service Area
-        </h1>
+        <h2>My Service Area</h2>
 
         <p>
-            Choose the areas where you provide mobile mechanic services.
+            Tell customers where you provide mobile mechanic service.
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="service-card"
-         style="max-width: 700px; margin: 0 auto; text-align: left;">
+    <section class="card">
 
         <form id="serviceAreaForm">
 
@@ -63,8 +54,8 @@
             </label>
 
             <input
-                type="text"
                 id="city"
+                type="text"
                 placeholder="Example: Chicago"
                 required
             >
@@ -75,9 +66,9 @@
             </label>
 
             <input
-                type="text"
                 id="state"
-                placeholder="Example: Illinois"
+                type="text"
+                value="IL"
                 required
             >
 
@@ -87,10 +78,8 @@
             </label>
 
             <input
-                type="text"
                 id="zip"
-                inputmode="numeric"
-                maxlength="5"
+                type="text"
                 placeholder="Example: 60601"
                 required
             >
@@ -101,10 +90,6 @@
             </label>
 
             <select id="radius" required>
-
-                <option value="">
-                    Select distance
-                </option>
 
                 <option value="5">
                     5 miles
@@ -137,66 +122,46 @@
             </select>
 
 
-            <button
-                type="submit"
-                class="btn btn-primary">
+            <button type="submit">
                 Save Service Area
             </button>
 
         </form>
 
 
-        <div id="savedArea"
-             style="display: none; margin-top: 25px;">
+        <div
+            id="savedMessage"
+            style="display:none;"
+        >
 
-            <h3>
-                ✅ Service Area Saved
-            </h3>
+            <h3>Service Area Saved ✓</h3>
 
-            <p id="areaDetails"></p>
+            <p id="savedAreaText"></p>
 
-            <a href="mechanic-dashboard.html"
-               class="btn btn-small">
+            <a href="mechanic-dashboard.html">
                 Return to Dashboard
             </a>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<footer class="footer">
+<footer>
 
-    <div>
-
-        <strong>
-            🔧 WrenchLink
-        </strong>
+    <div class="container">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
-    </div>
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
+        <p>
+            <a href="privacy.html">Privacy</a> |
+            <a href="terms.html">Terms</a> |
+            <a href="contact.html">Contact</a>
+        </p>
 
     </div>
 
@@ -205,105 +170,99 @@
 
 <script>
 
-const serviceAreaForm =
-    document.getElementById("serviceAreaForm");
+const areaKey =
+    "wrenchlinkServiceArea";
 
 
-function loadServiceArea() {
+function loadArea() {
 
-    const savedArea =
-        localStorage.getItem("wrenchlinkServiceArea");
+    const saved =
+        localStorage.getItem(areaKey);
 
-
-    if (!savedArea) {
-
-        return;
-
-    }
-
+    if (!saved) return;
 
     const area =
-        JSON.parse(savedArea);
-
+        JSON.parse(saved);
 
     document.getElementById("city").value =
         area.city || "";
 
-
     document.getElementById("state").value =
-        area.state || "";
-
+        area.state || "IL";
 
     document.getElementById("zip").value =
         area.zip || "";
 
-
     document.getElementById("radius").value =
-        area.radius || "";
-
+        area.radius || "10";
 }
 
 
-serviceAreaForm.addEventListener(
+document.getElementById(
+    "serviceAreaForm"
+).addEventListener(
     "submit",
     function(event) {
 
         event.preventDefault();
 
-
         const area = {
 
             city:
-                document.getElementById("city")
-                    .value
-                    .trim(),
+                document.getElementById("city").value.trim(),
 
             state:
-                document.getElementById("state")
-                    .value
-                    .trim(),
+                document.getElementById("state").value.trim(),
 
             zip:
-                document.getElementById("zip")
-                    .value
-                    .trim(),
+                document.getElementById("zip").value.trim(),
 
             radius:
-                document.getElementById("radius")
-                    .value
+                document.getElementById("radius").value
 
         };
 
 
         localStorage.setItem(
-            "wrenchlinkServiceArea",
+            areaKey,
             JSON.stringify(area)
         );
 
 
-        document.getElementById("areaDetails")
-            .textContent =
+        document.getElementById(
+            "savedAreaText"
+        ).textContent =
             area.city +
             ", " +
             area.state +
             " " +
             area.zip +
-            " — Service radius: " +
+            " — " +
             area.radius +
-            " miles";
+            " mile service radius.";
 
 
-        document.getElementById("savedArea")
-            .style.display = "block";
+        document.getElementById(
+            "savedMessage"
+        ).style.display = "block";
+
+
+        document.getElementById(
+            "savedMessage"
+        ).scrollIntoView({
+            behavior: "smooth"
+        });
 
     }
 );
 
 
-loadServiceArea();
+document.addEventListener(
+    "DOMContentLoaded",
+    loadArea
+);
 
 </script>
 
 </body>
-
 </html>

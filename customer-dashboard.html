@@ -15,7 +15,7 @@
     <div class="container">
 
         <h1>
-            <a href="index.html">WrenchLink</a>
+            <a href="index.html">🔧 WrenchLink</a>
         </h1>
 
         <nav>
@@ -25,7 +25,6 @@
 
     </div>
 </header>
-
 
 <main class="container">
 
@@ -49,47 +48,32 @@
         <div class="cards">
 
             <div class="card">
-
                 <h3>Find a Mechanic</h3>
-
-                <p>
-                    Find a mobile mechanic for your vehicle.
-                </p>
+                <p>Find a mobile mechanic for your vehicle.</p>
 
                 <a href="mechanics.html">
                     <button>Find a Mechanic</button>
                 </a>
-
             </div>
 
 
             <div class="card">
-
                 <h3>Post a Job</h3>
-
-                <p>
-                    Tell mechanics what service you need.
-                </p>
+                <p>Tell mechanics what service you need.</p>
 
                 <a href="post-job.html">
                     <button>Post a Job</button>
                 </a>
-
             </div>
 
 
             <div class="card">
-
                 <h3>Roadside Assistance</h3>
-
-                <p>
-                    Request help when you are stuck.
-                </p>
+                <p>Request help when you are stuck.</p>
 
                 <a href="roadside.html">
                     <button>Get Roadside Help</button>
                 </a>
-
             </div>
 
         </div>
@@ -97,7 +81,7 @@
     </section>
 
 
-    <!-- CUSTOMER PROFILE -->
+    <!-- PROFILE -->
 
     <section>
 
@@ -145,38 +129,7 @@
 
         <h2>My Service Requests</h2>
 
-        <div id="jobList">
-
-            <div class="card">
-
-                <p>
-                    You don't have any service requests yet.
-                </p>
-
-                <a href="post-job.html">
-                    <button>Post a Job</button>
-                </a>
-
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <!-- SERVICE HISTORY -->
-
-    <section>
-
-        <h2>Service History</h2>
-
-        <div class="card">
-
-            <p>
-                Completed services will appear here.
-            </p>
-
-        </div>
+        <div id="jobList"></div>
 
     </section>
 
@@ -193,9 +146,7 @@
 
                 <h3>Account Settings</h3>
 
-                <p>
-                    Manage your account information.
-                </p>
+                <p>Manage your account information.</p>
 
                 <a href="account-settings.html">
                     <button>Account Settings</button>
@@ -209,7 +160,7 @@
                 <h3>Delete Account</h3>
 
                 <p>
-                    Remove your WrenchLink information from this browser.
+                    Remove your customer information from this browser.
                 </p>
 
                 <button onclick="deleteAccount()">
@@ -224,7 +175,7 @@
                 <h3>Sign Out</h3>
 
                 <p>
-                    Sign out of your WrenchLink account.
+                    Sign out of WrenchLink.
                 </p>
 
                 <button onclick="signOut()">
@@ -239,14 +190,11 @@
 
 </main>
 
-
 <footer>
 
     <div class="container">
 
-        <p>
-            © 2026 WrenchLink. All rights reserved.
-        </p>
+        <p>© 2026 WrenchLink. All rights reserved.</p>
 
         <p>
             <a href="privacy.html">Privacy</a> |
@@ -258,164 +206,143 @@
 
 </footer>
 
-
 <script>
 
-/* Load customer profile */
-
-function loadCustomerProfile() {
-
-    const savedProfile =
-        localStorage.getItem(
-            "wrenchlinkCustomerProfile"
-        );
+const profileKey = "wrenchlinkCustomerProfile";
+const jobsKey = "wrenchlinkJobs";
 
 
-    if (!savedProfile) {
+function escapeHTML(value) {
 
-        document.getElementById(
-            "welcomeMessage"
-        ).textContent =
-            "Welcome to WrenchLink. Set up your profile to get started.";
+    const div =
+        document.createElement("div");
 
-        return;
+    div.textContent =
+        value == null ? "" : String(value);
 
-    }
-
-
-    const profile =
-        JSON.parse(savedProfile);
-
-
-    if (profile.name) {
-
-        document.getElementById(
-            "welcomeMessage"
-        ).textContent =
-            "Welcome back, " + profile.name + "!";
-
-    }
-
-
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        profile.name || "Not set";
-
-
-    document.getElementById(
-        "profileEmail"
-    ).textContent =
-        profile.email || "Not set";
-
-
-    document.getElementById(
-        "profilePhone"
-    ).textContent =
-        profile.phone || "Not set";
-
-
-    let locationText = "";
-
-
-    if (profile.city) {
-
-        locationText += profile.city;
-
-    }
-
-
-    if (profile.zip) {
-
-        if (locationText) {
-
-            locationText += ", ";
-
-        }
-
-        locationText += profile.zip;
-
-    }
-
-
-    document.getElementById(
-        "profileLocation"
-    ).textContent =
-        locationText || "Not set";
-
-
-    document.getElementById(
-        "profileVehicle"
-    ).textContent =
-        profile.vehicle || "Not set";
+    return div.innerHTML;
 
 }
 
 
-/* Load customer jobs */
+function loadProfile() {
+
+    const saved =
+        localStorage.getItem(profileKey);
+
+    if (!saved) {
+
+        document.getElementById("welcomeMessage").textContent =
+            "Welcome to WrenchLink. Set up your profile to get started.";
+
+        return;
+    }
+
+    const profile =
+        JSON.parse(saved);
+
+    document.getElementById("welcomeMessage").textContent =
+        profile.name
+            ? "Welcome back, " + profile.name + "!"
+            : "Welcome back!";
+
+    document.getElementById("profileName").textContent =
+        profile.name || "Not set";
+
+    document.getElementById("profileEmail").textContent =
+        profile.email || "Not set";
+
+    document.getElementById("profilePhone").textContent =
+        profile.phone || "Not set";
+
+    const location =
+        [profile.city, profile.state, profile.zip]
+            .filter(Boolean)
+            .join(", ");
+
+    document.getElementById("profileLocation").textContent =
+        location || "Not set";
+
+    document.getElementById("profileVehicle").textContent =
+        profile.vehicle || "Not set";
+}
+
 
 function loadJobs() {
 
-    const savedJobs =
-        localStorage.getItem(
-            "wrenchlinkJobs"
-        );
+    const container =
+        document.getElementById("jobList");
 
+    const saved =
+        localStorage.getItem(jobsKey);
 
-    const jobList =
-        document.getElementById(
-            "jobList"
-        );
+    if (!saved) {
 
-
-    if (!savedJobs) {
-
+        showNoJobs(container);
         return;
-
     }
 
-
     const jobs =
-        JSON.parse(savedJobs);
-
+        JSON.parse(saved);
 
     if (!jobs.length) {
 
+        showNoJobs(container);
         return;
-
     }
 
-
-    jobList.innerHTML = "";
-
+    container.innerHTML = "";
 
     jobs.forEach(function(job) {
 
         const card =
             document.createElement("div");
 
+        card.className = "card";
 
-        card.className =
-            "card";
-
-
-        let preferredTime =
+        let dateText =
             "No preferred time selected";
-
 
         if (job.preferredDateTime) {
 
-            const date =
+            dateText =
                 new Date(
                     job.preferredDateTime
-                );
-
-
-            preferredTime =
-                date.toLocaleString();
-
+                ).toLocaleString();
         }
 
+        const status =
+            job.status || "Open";
+
+        let actionHTML = "";
+
+        if (status === "Open") {
+
+            actionHTML = `
+                <button onclick="cancelJob(${job.id})">
+                    Cancel Request
+                </button>
+            `;
+        }
+
+        if (status === "Accepted") {
+
+            actionHTML = `
+                <p>
+                    <strong>Mechanic:</strong>
+                    ${escapeHTML(job.mechanicName || "Mechanic assigned")}
+                </p>
+            `;
+        }
+
+        if (status === "Completed") {
+
+            actionHTML = `
+                <p>
+                    Your service has been completed.
+                </p>
+            `;
+        }
 
         card.innerHTML = `
 
@@ -433,106 +360,122 @@ function loadJobs() {
 
             <p>
                 <strong>Location:</strong>
-                ${escapeHTML(job.location)}
+                ${escapeHTML(job.location)},
+                ${escapeHTML(job.city)}
+                ${escapeHTML(job.state)}
+                ${escapeHTML(job.zip)}
             </p>
 
             <p>
                 <strong>Preferred Time:</strong>
-                ${escapeHTML(preferredTime)}
+                ${escapeHTML(dateText)}
             </p>
 
             <p>
                 <strong>Status:</strong>
-                <span>${escapeHTML(job.status)}</span>
+                ${escapeHTML(status)}
             </p>
 
-            <p>
-                <strong>Request ID:</strong>
-                ${job.id}
-            </p>
+            ${actionHTML}
 
         `;
 
-
-        jobList.appendChild(card);
+        container.appendChild(card);
 
     });
-
 }
 
 
-/* Protect displayed text */
+function showNoJobs(container) {
 
-function escapeHTML(value) {
+    container.innerHTML = `
 
-    const div =
-        document.createElement("div");
+        <div class="card">
 
-    div.textContent =
-        value == null ? "" : String(value);
+            <h3>No Service Requests</h3>
 
-    return div.innerHTML;
+            <p>
+                You don't have any service requests yet.
+            </p>
 
+            <a href="post-job.html">
+                <button>Post a Job</button>
+            </a>
+
+        </div>
+
+    `;
 }
 
 
-/* Delete account data */
+function cancelJob(jobId) {
+
+    const confirmation =
+        confirm(
+            "Are you sure you want to cancel this service request?"
+        );
+
+    if (!confirmation) return;
+
+    const saved =
+        localStorage.getItem(jobsKey);
+
+    if (!saved) return;
+
+    const jobs =
+        JSON.parse(saved);
+
+    const job =
+        jobs.find(function(item) {
+            return item.id === jobId;
+        });
+
+    if (!job) return;
+
+    job.status = "Cancelled";
+
+    localStorage.setItem(
+        jobsKey,
+        JSON.stringify(jobs)
+    );
+
+    loadJobs();
+}
+
 
 function deleteAccount() {
 
     const confirmation =
         confirm(
-            "Are you sure you want to delete your WrenchLink information from this browser?"
+            "Delete your WrenchLink customer information from this browser?"
         );
 
+    if (!confirmation) return;
 
-    if (!confirmation) {
-
-        return;
-
-    }
-
-
-    localStorage.removeItem(
-        "wrenchlinkCustomerProfile"
-    );
-
-
-    localStorage.removeItem(
-        "wrenchlinkJobs"
-    );
-
+    localStorage.removeItem(profileKey);
+    localStorage.removeItem(jobsKey);
 
     alert(
-        "Your WrenchLink customer information has been removed from this browser."
+        "Your customer information has been removed from this browser."
     );
 
-
-    window.location.href =
-        "index.html";
-
+    window.location.href = "index.html";
 }
 
-
-/* Sign out */
 
 function signOut() {
 
     alert(
-        "Sign-out will be connected to the real WrenchLink account system when authentication is added."
+        "Real account sign-out will be connected when WrenchLink authentication is added."
     );
-
 }
 
-
-/* Start dashboard */
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        loadCustomerProfile();
-
+        loadProfile();
         loadJobs();
 
     }

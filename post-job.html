@@ -1,111 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Post a Job | WrenchLink</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
-<header>
-    <div class="container">
-        <h1><a href="index.html">🔧 WrenchLink</a></h1>
+<header class="site-header">
+
+    <div class="container nav-container">
+
+        <a href="index.html" class="logo">
+            🔧 WrenchLink
+        </a>
 
         <nav>
-            <a href="customer-dashboard.html">Dashboard</a>
-            <a href="index.html">Home</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="mechanics.html">
+                Find a Mechanic
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a
+                href="login.html"
+                class="btn btn-small"
+            >
+                Sign In
+            </a>
+
         </nav>
+
     </div>
+
 </header>
 
 <main class="container">
 
-    <section class="page-header">
-        <h2>Post a Job</h2>
-        <p>Tell mechanics what service you need.</p>
+    <section class="page-hero">
+
+        <p class="eyebrow">
+            WRENCHLINK SERVICE REQUEST
+        </p>
+
+        <h1>
+            Post a Job
+        </h1>
+
+        <p>
+            Tell us what your vehicle needs and
+            we'll connect the request with a mechanic.
+        </p>
+
+    </section>
+
+    <section
+        id="selectedMechanicBox"
+        class="card"
+        style="display:none;"
+    >
+
+        <p class="eyebrow">
+            SELECTED MECHANIC
+        </p>
+
+        <h2 id="selectedMechanicName"></h2>
+
+        <p id="selectedMechanicDetails"></p>
+
+        <button
+            type="button"
+            class="btn btn-secondary"
+            onclick="removeSelectedMechanic()"
+        >
+            Choose a Different Mechanic
+        </button>
+
     </section>
 
     <section class="card">
 
         <form id="jobForm">
 
-            <label for="vehicle">Vehicle</label>
-            <input
-                id="vehicle"
-                type="text"
-                placeholder="Example: 2019 Kia Soul 1.6L"
-                required
+            <div class="form-group">
+
+                <label for="vehicle">
+                    Vehicle
+                </label>
+
+                <input
+                    type="text"
+                    id="vehicle"
+                    placeholder="Example: 2019 Kia Soul 1.6L"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="service">
+                    Service Needed
+                </label>
+
+                <select id="service" required>
+
+                    <option value="">
+                        Select a service
+                    </option>
+
+                    <option value="Brakes & Rotors">
+                        Brakes & Rotors
+                    </option>
+
+                    <option value="Battery">
+                        Battery
+                    </option>
+
+                    <option value="Alternator">
+                        Alternator
+                    </option>
+
+                    <option value="Starter">
+                        Starter
+                    </option>
+
+                    <option value="Diagnostics">
+                        Diagnostics
+                    </option>
+
+                    <option value="Oil Change">
+                        Oil Change
+                    </option>
+
+                    <option value="Roadside Assistance">
+                        Roadside Assistance
+                    </option>
+
+                    <option value="Tire Assistance">
+                        Tire Assistance
+                    </option>
+
+                    <option value="Other Repairs">
+                        Other Repairs
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="problem">
+                    Describe the Problem
+                </label>
+
+                <textarea
+                    id="problem"
+                    rows="5"
+                    placeholder="Describe what is happening with the vehicle..."
+                    required
+                ></textarea>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="city">
+                    Service City
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    placeholder="Chicago"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="state">
+                    State
+                </label>
+
+                <input
+                    type="text"
+                    id="state"
+                    placeholder="IL"
+                    maxlength="2"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="zip">
+                    ZIP Code
+                </label>
+
+                <input
+                    type="text"
+                    id="zip"
+                    placeholder="60618"
+                    maxlength="10"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="address">
+                    Service Address
+                </label>
+
+                <input
+                    type="text"
+                    id="address"
+                    placeholder="Where the vehicle is located"
+                    required
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="preferredDateTime">
+                    Preferred Date & Time
+                </label>
+
+                <input
+                    type="datetime-local"
+                    id="preferredDateTime"
+                    required
+                >
+
+            </div>
+
+            <button
+                type="submit"
+                class="btn"
             >
-
-            <label for="service">Service Needed</label>
-
-            <select id="service" required>
-                <option value="">Select a service</option>
-                <option>Brakes & Rotors</option>
-                <option>Battery</option>
-                <option>Alternator</option>
-                <option>Starter</option>
-                <option>Diagnostics</option>
-                <option>Oil Change</option>
-                <option>Roadside Assistance</option>
-                <option>Tire Assistance</option>
-                <option>Other</option>
-            </select>
-
-            <label for="description">Describe the Problem</label>
-
-            <textarea
-                id="description"
-                rows="5"
-                placeholder="Describe what's happening..."
-                required
-            ></textarea>
-
-            <label for="city">Service City</label>
-            <input id="city" type="text" required>
-
-            <label for="state">State</label>
-            <input id="state" type="text" value="IL" required>
-
-            <label for="zip">ZIP Code</label>
-            <input id="zip" type="text" required>
-
-            <label for="location">
-                Service Address
-            </label>
-
-            <input
-                id="location"
-                type="text"
-                placeholder="Street address"
-                required
-            >
-
-            <label for="dateTime">
-                Preferred Date & Time
-            </label>
-
-            <input id="dateTime" type="datetime-local">
-
-            <button type="submit">
-                Post Job
+                Submit Service Request
             </button>
 
         </form>
 
-        <div id="successMessage" style="display:none;">
+        <div
+            id="successMessage"
+            class="card"
+            style="display:none;"
+        >
 
-            <h3>Job Posted ✓</h3>
+            <h2>
+                Request Submitted
+            </h2>
 
-            <p>
-                Your service request has been saved.
-            </p>
+            <p id="successText"></p>
 
-            <a href="customer-dashboard.html">
-                Return to Dashboard
-            </a>
+            <div class="button-row">
+
+                <a
+                    href="customer-dashboard.html"
+                    class="btn"
+                >
+                    View My Dashboard
+                </a>
+
+                <a
+                    href="mechanics.html"
+                    class="btn btn-secondary"
+                >
+                    Find Another Mechanic
+                </a>
+
+            </div>
 
         </div>
 
@@ -113,17 +306,29 @@
 
 </main>
 
-<footer>
+<footer class="site-footer">
 
     <div class="container">
 
-        <p>© 2026 WrenchLink. All rights reserved.</p>
-
         <p>
-            <a href="privacy.html">Privacy</a> |
-            <a href="terms.html">Terms</a> |
-            <a href="contact.html">Contact</a>
+            © 2026 WrenchLink. All rights reserved.
         </p>
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
 
     </div>
 
@@ -131,90 +336,333 @@
 
 <script>
 
-const jobsKey = "wrenchlinkJobs";
+const demoMechanics = [
 
-document.getElementById("jobForm").addEventListener(
-    "submit",
-    function(event) {
+    {
+        id: "mechanic-1",
+        name: "Mike's Mobile Auto",
+        city: "Chicago",
+        state: "IL"
+    },
 
-        event.preventDefault();
+    {
+        id: "mechanic-2",
+        name: "Southside Mobile Mechanics",
+        city: "Chicago",
+        state: "IL"
+    },
 
-        const savedProfile =
-            localStorage.getItem("wrenchlinkCustomerProfile");
+    {
+        id: "mechanic-3",
+        name: "Chicago Roadside Pro",
+        city: "Chicago",
+        state: "IL"
+    },
 
-        const profile =
-            savedProfile
-                ? JSON.parse(savedProfile)
-                : {};
+    {
+        id: "mechanic-4",
+        name: "Garcia Mobile Repair",
+        city: "Chicago",
+        state: "IL"
+    }
 
-        const savedJobs =
-            localStorage.getItem(jobsKey);
+];
 
-        const jobs =
-            savedJobs
-                ? JSON.parse(savedJobs)
-                : [];
+let selectedMechanic = null;
 
-        const newJob = {
+function loadSelectedMechanic() {
 
-            id: Date.now(),
-
-            customerName:
-                profile.name || "Customer",
-
-            customerEmail:
-                profile.email || "",
-
-            customerPhone:
-                profile.phone || "",
-
-            vehicle:
-                document.getElementById("vehicle").value.trim(),
-
-            service:
-                document.getElementById("service").value,
-
-            description:
-                document.getElementById("description").value.trim(),
-
-            city:
-                document.getElementById("city").value.trim(),
-
-            state:
-                document.getElementById("state").value.trim(),
-
-            zip:
-                document.getElementById("zip").value.trim(),
-
-            location:
-                document.getElementById("location").value.trim(),
-
-            preferredDateTime:
-                document.getElementById("dateTime").value,
-
-            status: "Open",
-
-            mechanicId: null,
-
-            mechanicName: null,
-
-            createdAt:
-                new Date().toISOString()
-
-        };
-
-        jobs.unshift(newJob);
-
-        localStorage.setItem(
-            jobsKey,
-            JSON.stringify(jobs)
+    const params =
+        new URLSearchParams(
+            window.location.search
         );
 
-        document.getElementById("jobForm").style.display =
-            "none";
+    const mechanicId =
+        params.get("mechanic");
 
-        document.getElementById("successMessage").style.display =
-            "block";
+    if (!mechanicId) {
+        return;
+    }
+
+    let mechanic =
+        demoMechanics.find(function(item) {
+
+            return item.id === mechanicId;
+
+        });
+
+    if (
+        mechanicId === "local-mechanic"
+    ) {
+
+        const profile =
+            JSON.parse(
+                localStorage.getItem(
+                    "wrenchlinkMechanicProfile"
+                )
+            );
+
+        const area =
+            JSON.parse(
+                localStorage.getItem(
+                    "wrenchlinkServiceArea"
+                )
+            );
+
+        if (profile) {
+
+            mechanic = {
+
+                id: "local-mechanic",
+
+                name:
+                    profile.name ||
+                    "WrenchLink Mechanic",
+
+                city:
+                    area?.city ||
+                    "Chicago",
+
+                state:
+                    area?.state ||
+                    "IL"
+
+            };
+
+        }
+
+    }
+
+    if (!mechanic) {
+        return;
+    }
+
+    selectedMechanic = mechanic;
+
+    document.getElementById(
+        "selectedMechanicBox"
+    ).style.display = "block";
+
+    document.getElementById(
+        "selectedMechanicName"
+    ).textContent =
+        mechanic.name;
+
+    document.getElementById(
+        "selectedMechanicDetails"
+    ).textContent =
+        mechanic.city +
+        ", " +
+        mechanic.state;
+
+}
+
+function removeSelectedMechanic() {
+
+    selectedMechanic = null;
+
+    document.getElementById(
+        "selectedMechanicBox"
+    ).style.display = "none";
+
+    window.history.replaceState(
+        {},
+        document.title,
+        "post-job.html"
+    );
+
+}
+
+function loadCustomerProfile() {
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem(
+                "wrenchlinkCustomerProfile"
+            )
+        ) || {};
+
+    if (profile.vehicle) {
+
+        document.getElementById(
+            "vehicle"
+        ).value =
+            profile.vehicle;
+
+    }
+
+    if (profile.city) {
+
+        document.getElementById(
+            "city"
+        ).value =
+            profile.city;
+
+    }
+
+    if (profile.state) {
+
+        document.getElementById(
+            "state"
+        ).value =
+            profile.state;
+
+    }
+
+    if (profile.zip) {
+
+        document.getElementById(
+            "zip"
+        ).value =
+            profile.zip;
+
+    }
+
+}
+
+document
+    .getElementById("jobForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            const profile =
+                JSON.parse(
+                    localStorage.getItem(
+                        "wrenchlinkCustomerProfile"
+                    )
+                ) || {};
+
+            const jobs =
+                JSON.parse(
+                    localStorage.getItem(
+                        "wrenchlinkJobs"
+                    )
+                ) || [];
+
+            const job = {
+
+                id: Date.now(),
+
+                customerName:
+                    profile.name ||
+                    "WrenchLink Customer",
+
+                customerEmail:
+                    profile.email ||
+                    "",
+
+                customerPhone:
+                    profile.phone ||
+                    "",
+
+                vehicle:
+                    document.getElementById(
+                        "vehicle"
+                    ).value.trim(),
+
+                service:
+                    document.getElementById(
+                        "service"
+                    ).value,
+
+                description:
+                    document.getElementById(
+                        "problem"
+                    ).value.trim(),
+
+                city:
+                    document.getElementById(
+                        "city"
+                    ).value.trim(),
+
+                state:
+                    document.getElementById(
+                        "state"
+                    ).value.trim()
+                    .toUpperCase(),
+
+                zip:
+                    document.getElementById(
+                        "zip"
+                    ).value.trim(),
+
+                location:
+                    document.getElementById(
+                        "address"
+                    ).value.trim(),
+
+                preferredDateTime:
+                    document.getElementById(
+                        "preferredDateTime"
+                    ).value,
+
+                status:
+                    selectedMechanic
+                        ? "Open"
+                        : "Open",
+
+                mechanicId:
+                    selectedMechanic
+                        ? selectedMechanic.id
+                        : null,
+
+                mechanicName:
+                    selectedMechanic
+                        ? selectedMechanic.name
+                        : null,
+
+                requestedMechanic:
+                    Boolean(selectedMechanic),
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+            jobs.unshift(job);
+
+            localStorage.setItem(
+                "wrenchlinkJobs",
+                JSON.stringify(jobs)
+            );
+
+            document.getElementById(
+                "jobForm"
+            ).style.display = "none";
+
+            document.getElementById(
+                "successMessage"
+            ).style.display = "block";
+
+            document.getElementById(
+                "successText"
+            ).textContent =
+                selectedMechanic
+
+                    ? "Your service request has been created for " +
+                      selectedMechanic.name +
+                      ". The request is currently open."
+
+                    : "Your service request has been created and is now open for mechanics to review.";
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        loadCustomerProfile();
+
+        loadSelectedMechanic();
 
     }
 );

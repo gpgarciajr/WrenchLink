@@ -1,360 +1,871 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Find a Mechanic | WrenchLink</title>
+    <title>Find a Mechanic | WrenchLink</title>
 
-<link rel="stylesheet" href="style.css">
-```
-
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header class="site-header">
 
-```
-<div class="container nav-container">
+    <div class="container nav-container">
 
-    <a href="index.html" class="logo">
-        🔧 WrenchLink
-    </a>
-
-    <nav>
-
-        <a href="index.html">Home</a>
-
-        <a href="mechanics.html">Find a Mechanic</a>
-
-        <a href="services.html">Services</a>
-
-        <a href="about.html">About</a>
-
-        <a href="login.html" class="btn btn-small">
-            Sign In
+        <a href="index.html" class="logo">
+            🔧 WrenchLink
         </a>
 
-    </nav>
+        <nav>
 
-</div>
-```
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="mechanics.html">
+                Find a Mechanic
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a href="login.html" class="btn btn-small">
+                Sign In
+            </a>
+
+        </nav>
+
+    </div>
 
 </header>
 
+
 <main>
 
-```
-<!-- PAGE HERO -->
+    <!-- PAGE HERO -->
 
-<section class="page-hero">
+    <section class="page-hero">
 
-    <div class="container">
-
-        <p class="eyebrow">
-            WRENCHLINK MARKETPLACE
-        </p>
-
-        <h1>
-            Find a Mechanic You Can Trust.
-        </h1>
-
-        <p>
-            Search mobile mechanics by location,
-            service, availability, and experience.
-        </p>
-
-    </div>
-
-</section>
-
-
-<!-- SEARCH -->
-
-<section class="container section">
-
-    <div class="card search-card">
-
-        <div class="section-heading">
+        <div class="container">
 
             <p class="eyebrow">
-                SEARCH
+                WRENCHLINK MARKETPLACE
             </p>
 
-            <h2>
-                Find Your Mechanic
-            </h2>
+            <h1>
+                Find a Mechanic You Can Trust.
+            </h1>
 
             <p>
-                Tell us what you need and we'll show
-                you mechanics that match.
+                Search mobile mechanics by location,
+                service, availability, and experience.
             </p>
 
         </div>
 
+    </section>
 
-        <form id="mechanicSearchForm">
 
-            <div class="form-grid">
+    <!-- SEARCH -->
 
-                <div class="form-group">
+    <section class="container section">
 
-                    <label for="location">
-                        Location
-                    </label>
+        <div class="card search-card">
 
-                    <input
-                        id="location"
-                        type="text"
-                        placeholder="City or ZIP code"
-                        autocomplete="postal-code"
+            <div class="section-heading">
+
+                <p class="eyebrow">
+                    SEARCH
+                </p>
+
+                <h2>
+                    Find Your Mechanic
+                </h2>
+
+                <p>
+                    Tell us what you need and we'll show
+                    you mechanics that match.
+                </p>
+
+            </div>
+
+
+            <form id="mechanicSearchForm">
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+
+                        <label for="location">
+                            Location
+                        </label>
+
+                        <input
+                            id="location"
+                            type="text"
+                            placeholder="City, State, or ZIP code"
+                            autocomplete="postal-code"
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="service">
+                            Service Needed
+                        </label>
+
+                        <select id="service">
+
+                            <option value="">
+                                All Services
+                            </option>
+
+                            <option value="Brakes & Rotors">
+                                Brakes & Rotors
+                            </option>
+
+                            <option value="Battery">
+                                Battery
+                            </option>
+
+                            <option value="Alternator">
+                                Alternator
+                            </option>
+
+                            <option value="Starter">
+                                Starter
+                            </option>
+
+                            <option value="Diagnostics">
+                                Diagnostics
+                            </option>
+
+                            <option value="Oil Change">
+                                Oil Change
+                            </option>
+
+                            <option value="Roadside Assistance">
+                                Roadside Assistance
+                            </option>
+
+                            <option value="Tire Assistance">
+                                Tire Assistance
+                            </option>
+
+                            <option value="Other Repairs">
+                                Other Repairs
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="availability">
+                            Availability
+                        </label>
+
+                        <select id="availability">
+
+                            <option value="">
+                                Any Availability
+                            </option>
+
+                            <option value="available">
+                                Available Now
+                            </option>
+
+                            <option value="unavailable">
+                                Currently Unavailable
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="button-row">
+
+                    <button
+                        type="submit"
+                        class="btn btn-primary"
                     >
+                        🔍 Find Mechanics
+                    </button>
+
+                    <button
+                        type="button"
+                        class="btn btn-secondary"
+                        id="clearSearch"
+                    >
+                        Clear Search
+                    </button>
 
                 </div>
 
-
-                <div class="form-group">
-
-                    <label for="service">
-                        Service Needed
-                    </label>
-
-                    <select id="service">
-
-                        <option value="">
-                            All Services
-                        </option>
-
-                        <option value="Brakes & Rotors">
-                            Brakes & Rotors
-                        </option>
-
-                        <option value="Battery">
-                            Battery
-                        </option>
-
-                        <option value="Alternator">
-                            Alternator
-                        </option>
-
-                        <option value="Starter">
-                            Starter
-                        </option>
-
-                        <option value="Diagnostics">
-                            Diagnostics
-                        </option>
-
-                        <option value="Oil Change">
-                            Oil Change
-                        </option>
-
-                        <option value="Roadside Assistance">
-                            Roadside Assistance
-                        </option>
-
-                        <option value="Tire Assistance">
-                            Tire Assistance
-                        </option>
-
-                        <option value="Other Repairs">
-                            Other Repairs
-                        </option>
-
-                    </select>
-
-                </div>
-
-
-                <div class="form-group">
-
-                    <label for="availability">
-                        Availability
-                    </label>
-
-                    <select id="availability">
-
-                        <option value="">
-                            Any Availability
-                        </option>
-
-                        <option value="available">
-                            Available Now
-                        </option>
-
-                        <option value="unavailable">
-                            Currently Unavailable
-                        </option>
-
-                    </select>
-
-                </div>
-
-            </div>
-
-
-            <div class="button-row">
-
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                >
-                    🔍 Find Mechanics
-                </button>
-
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    id="clearSearch"
-                >
-                    Clear Search
-                </button>
-
-            </div>
-
-        </form>
-
-    </div>
-
-</section>
-
-
-<!-- RESULTS -->
-
-<section class="container section">
-
-    <div class="section-heading results-heading">
-
-        <div>
-
-            <p class="eyebrow">
-                WRENCHLINK MECHANICS
-            </p>
-
-            <h2>
-                Available Mechanics
-            </h2>
+            </form>
 
         </div>
+
+    </section>
+
+
+    <!-- RESULTS -->
+
+    <section class="container section">
+
+        <div class="section-heading results-heading">
+
+            <div>
+
+                <p class="eyebrow">
+                    WRENCHLINK MECHANICS
+                </p>
+
+                <h2>
+                    Available Mechanics
+                </h2>
+
+            </div>
+
+            <div
+                id="resultCount"
+                class="result-count"
+            >
+                Loading...
+            </div>
+
+        </div>
+
 
         <div
-            id="resultCount"
-            class="result-count"
-        >
-            Loading...
+            id="mechanicResults"
+            class="mechanic-grid"
+        ></div>
+
+    </section>
+
+
+    <!-- MECHANIC CTA -->
+
+    <section class="container section">
+
+        <div class="mechanic-cta">
+
+            <div>
+
+                <p class="eyebrow">
+                    ARE YOU A MECHANIC?
+                </p>
+
+                <h2>
+                    Turn Your Skills Into More Jobs.
+                </h2>
+
+                <p>
+                    Join WrenchLink and connect with customers
+                    looking for mobile automotive services.
+                </p>
+
+            </div>
+
+            <a
+                href="become-mechanic.html"
+                class="btn btn-primary"
+            >
+                Become a Mechanic
+            </a>
+
         </div>
 
-    </div>
-
-
-    <div
-        id="mechanicResults"
-        class="mechanic-grid"
-    ></div>
-
-</section>
-
-
-<!-- MECHANIC CTA -->
-
-<section class="container section">
-
-    <div class="mechanic-cta">
-
-        <div>
-
-            <p class="eyebrow">
-                ARE YOU A MECHANIC?
-            </p>
-
-            <h2>
-                Turn Your Skills Into More Jobs.
-            </h2>
-
-            <p>
-                Join WrenchLink and connect with customers
-                looking for mobile automotive services.
-            </p>
-
-        </div>
-
-        <a
-            href="become-mechanic.html"
-            class="btn btn-primary"
-        >
-            Become a Mechanic
-        </a>
-
-    </div>
-
-</section>
-```
+    </section>
 
 </main>
 
+
 <footer class="site-footer">
 
-```
-<div class="container footer-container">
+    <div class="container footer-container">
 
-    <div class="footer-brand">
+        <div class="footer-brand">
 
-        <strong>
-            🔧 WrenchLink
-        </strong>
+            <strong>
+                🔧 WrenchLink
+            </strong>
+
+            <p>
+                Connecting drivers with mobile mechanics.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
     </div>
 
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
-
-    </div>
-
-</div>
-
-
-<div class="footer-bottom">
-
-    <p>
-        © 2026 WrenchLink. All rights reserved.
-    </p>
-
-</div>
-```
-
 </footer>
 
+
+<script src="app.js"></script>
 <script src="marketplace-data.js"></script>
 
+
 <script>
+
+/* =========================================================
+   WRENCHLINK DYNAMIC MARKETPLACE
+   ========================================================= */
+
+
+/*
+    Get localStorage safely.
+*/
+
+function getLocalStorageObject(key, fallback) {
+
+    try {
+
+        const value = localStorage.getItem(key);
+
+        if (!value) {
+            return fallback;
+        }
+
+        return JSON.parse(value);
+
+    } catch (error) {
+
+        console.error(
+            "WrenchLink storage error:",
+            key,
+            error
+        );
+
+        return fallback;
+
+    }
+
+}
+
+
+/*
+    Convert a value into a clean services array.
+*/
+
+function normalizeServices(services) {
+
+    if (Array.isArray(services)) {
+
+        return services
+            .map(function(service) {
+                return String(service).trim();
+            })
+            .filter(Boolean);
+
+    }
+
+    if (typeof services === "string") {
+
+        return services
+            .split(",")
+            .map(function(service) {
+                return service.trim();
+            })
+            .filter(Boolean);
+
+    }
+
+    return [];
+
+}
+
+
+/*
+    Normalize text for comparisons.
+*/
+
+function normalizeText(value) {
+
+    return String(value || "")
+        .trim()
+        .toLowerCase();
+
+}
+
+
+/*
+    Get all WrenchLink mechanics.
+
+    This combines:
+
+    1. Sample marketplace mechanics
+    2. Real mechanic accounts
+    3. Mechanic profiles
+    4. Service areas
+
+    This means a mechanic who signs up through
+    WrenchLink can immediately appear here.
+*/
+
+function getAllWrenchLinkMechanics() {
+
+    let sampleMechanics = [];
+
+    try {
+
+        if (
+            typeof getMarketplaceMechanics ===
+            "function"
+        ) {
+
+            sampleMechanics =
+                getMarketplaceMechanics();
+
+        }
+
+    } catch (error) {
+
+        console.error(
+            "Could not load sample mechanics:",
+            error
+        );
+
+    }
+
+
+    if (!Array.isArray(sampleMechanics)) {
+        sampleMechanics = [];
+    }
+
+
+    /*
+        Load real WrenchLink users.
+    */
+
+    const users =
+        getLocalStorageObject(
+            "wrenchlinkUsers",
+            []
+        );
+
+
+    /*
+        Load mechanic profiles.
+    */
+
+    const mechanicProfiles =
+        getLocalStorageObject(
+            "wrenchlinkMechanicProfiles",
+            {}
+        );
+
+
+    /*
+        Load service areas.
+    */
+
+    const serviceAreas =
+        getLocalStorageObject(
+            "wrenchlinkServiceAreas",
+            {}
+        );
+
+
+    /*
+        Start with sample mechanics.
+    */
+
+    const combined = [];
+
+
+    sampleMechanics.forEach(function(mechanic) {
+
+        combined.push({
+            ...mechanic,
+
+            id:
+                mechanic.id ||
+                (
+                    "sample-" +
+                    Math.random()
+                ),
+
+            services:
+                normalizeServices(
+                    mechanic.services
+                ),
+
+            distance:
+                Number(mechanic.distance || 0),
+
+            experience:
+                Number(
+                    mechanic.experience || 0
+                ),
+
+            available:
+                mechanic.available === true
+
+        });
+
+    });
+
+
+    /*
+        Add real mechanic accounts.
+    */
+
+    if (Array.isArray(users)) {
+
+        users
+            .filter(function(user) {
+
+                return (
+                    user &&
+                    user.role === "mechanic"
+                );
+
+            })
+            .forEach(function(user) {
+
+                const userId =
+                    String(user.id);
+
+
+                const profile =
+                    mechanicProfiles[userId] ||
+                    {};
+
+
+                const area =
+                    serviceAreas[userId] ||
+                    {};
+
+
+                /*
+                    Services can come from the
+                    mechanic profile.
+                */
+
+                const services =
+                    normalizeServices(
+                        profile.services
+                    );
+
+
+                /*
+                    If profile has no services,
+                    give the mechanic a general
+                    service so the listing isn't empty.
+                */
+
+                const finalServices =
+                    services.length
+                        ? services
+                        : [
+                            "General Automotive Repair"
+                        ];
+
+
+                /*
+                    Determine availability.
+
+                    If the profile specifically
+                    contains an availability value,
+                    respect it.
+
+                    Otherwise new mechanics are
+                    considered available.
+                */
+
+                let available = true;
+
+
+                if (
+                    typeof profile.available ===
+                    "boolean"
+                ) {
+
+                    available =
+                        profile.available;
+
+                }
+
+
+                /*
+                    Use the account/profile name.
+                */
+
+                const name =
+                    profile.name ||
+                    user.name ||
+                    (
+                        String(user.firstName || "") +
+                        " " +
+                        String(user.lastName || "")
+                    ).trim() ||
+                    "WrenchLink Mechanic";
+
+
+                /*
+                    Use profile location first,
+                    then service area.
+                */
+
+                const city =
+                    profile.city ||
+                    area.city ||
+                    "";
+
+
+                const state =
+                    profile.state ||
+                    area.state ||
+                    "";
+
+
+                const zip =
+                    profile.zip ||
+                    area.zip ||
+                    "";
+
+
+                /*
+                    Prevent duplicate real mechanics
+                    from appearing if an existing
+                    marketplace record uses the same ID.
+                */
+
+                const existingIndex =
+                    combined.findIndex(
+                        function(existing) {
+
+                            return String(
+                                existing.id
+                            ) === userId;
+
+                        }
+                    );
+
+
+                const realMechanic = {
+
+                    id: userId,
+
+                    userId: userId,
+
+                    name: name,
+
+                    email:
+                        profile.email ||
+                        user.email ||
+                        "",
+
+                    phone:
+                        profile.phone ||
+                        user.phone ||
+                        "",
+
+                    city: city,
+
+                    state: state,
+
+                    zip: zip,
+
+                    services:
+                        finalServices,
+
+                    experience:
+                        Number(
+                            profile.experience ||
+                            0
+                        ),
+
+                    about:
+                        profile.about ||
+                        "WrenchLink mobile mechanic.",
+
+                    available:
+                        available,
+
+                    /*
+                        Real distance calculation can
+                        be added when customer location
+                        services are connected.
+
+                        Until then we keep the value
+                        neutral rather than pretending
+                        a distance was calculated.
+                    */
+
+                    distance:
+                        Number(
+                            profile.distance ||
+                            0
+                        ),
+
+                    rating:
+                        Number(
+                            profile.rating ||
+                            0
+                        ),
+
+                    reviews:
+                        Number(
+                            profile.reviews ||
+                            0
+                        ),
+
+                    serviceRadius:
+                        Number(
+                            area.radius ||
+                            profile.serviceRadius ||
+                            0
+                        ),
+
+                    createdAt:
+                        profile.createdAt ||
+                        user.createdAt ||
+                        null
+
+                };
+
+
+                if (existingIndex >= 0) {
+
+                    /*
+                        Real account information wins
+                        over sample information.
+                    */
+
+                    combined[existingIndex] =
+                        realMechanic;
+
+                } else {
+
+                    combined.push(
+                        realMechanic
+                    );
+
+                }
+
+            });
+
+    }
+
+
+    return combined;
+
+}
+
+
+/*
+    Calculate distance text.
+
+    We do NOT claim a fake GPS distance.
+
+    If a real distance exists, show miles.
+
+    Otherwise show "Service area available"
+    or "Distance unavailable".
+*/
+
+function getDistanceDisplay(mechanic) {
+
+    const distance =
+        Number(mechanic.distance);
+
+
+    if (
+        Number.isFinite(distance) &&
+        distance > 0
+    ) {
+
+        return (
+            distance.toFixed(1) +
+            " miles"
+        );
+
+    }
+
+
+    if (
+        Number(mechanic.serviceRadius) >
+        0
+    ) {
+
+        return (
+            "Up to " +
+            Number(
+                mechanic.serviceRadius
+            ) +
+            " miles"
+        );
+
+    }
+
+
+    return "Distance unavailable";
+
+}
+
+
+/*
+    Render marketplace mechanics.
+*/
 
 function renderMechanics(mechanics) {
 
     const container =
-        document.getElementById("mechanicResults");
+        document.getElementById(
+            "mechanicResults"
+        );
+
 
     const count =
-        document.getElementById("resultCount");
+        document.getElementById(
+            "resultCount"
+        );
 
 
     count.textContent =
@@ -398,215 +909,304 @@ function renderMechanics(mechanics) {
         `;
 
         return;
+
     }
 
 
     container.innerHTML =
-        mechanics.map(function(mechanic) {
+        mechanics
+            .map(function(mechanic) {
 
-            const rating =
-                calculateMechanicRating(mechanic);
+                /*
+                    Calculate rating using the
+                    existing marketplace helper.
+                */
 
-
-            const ratingValue =
-                rating.rating
-                    ? rating.rating.toFixed(1)
-                    : "New";
-
-
-            const availabilityText =
-                mechanic.available
-                    ? "Available Now"
-                    : "Currently Unavailable";
+                let rating = {
+                    rating: 0,
+                    count: 0
+                };
 
 
-            const availabilityClass =
-                mechanic.available
-                    ? "available"
-                    : "unavailable";
+                try {
+
+                    if (
+                        typeof calculateMechanicRating ===
+                        "function"
+                    ) {
+
+                        rating =
+                            calculateMechanicRating(
+                                mechanic
+                            );
+
+                    }
+
+                } catch (error) {
+
+                    console.error(
+                        "Rating error:",
+                        error
+                    );
+
+                }
 
 
-            const services =
-                Array.isArray(mechanic.services)
-                    ? mechanic.services
-                        .slice(0, 5)
-                        .map(function(service) {
+                const ratingValue =
+                    rating.rating
+                        ? rating.rating.toFixed(1)
+                        : "New";
 
-                            return `
-                                <span class="service-tag">
-                                    ${escapeMarketplaceHTML(service)}
+
+                const availabilityText =
+                    mechanic.available
+                        ? "Available Now"
+                        : "Currently Unavailable";
+
+
+                const availabilityClass =
+                    mechanic.available
+                        ? "available"
+                        : "unavailable";
+
+
+                const services =
+                    normalizeServices(
+                        mechanic.services
+                    )
+                    .slice(0, 5)
+                    .map(function(service) {
+
+                        return `
+
+                            <span class="service-tag">
+
+                                ${escapeMarketplaceHTML(
+                                    service
+                                )}
+
+                            </span>
+
+                        `;
+
+                    })
+                    .join("");
+
+
+                const distanceDisplay =
+                    getDistanceDisplay(
+                        mechanic
+                    );
+
+
+                const mechanicId =
+                    encodeURIComponent(
+                        mechanic.id
+                    );
+
+
+                return `
+
+                    <article class="mechanic-card">
+
+                        <div class="mechanic-card-top">
+
+                            <div class="mechanic-avatar">
+                                🔧
+                            </div>
+
+                            <div class="mechanic-main-info">
+
+                                <h3>
+                                    ${escapeMarketplaceHTML(
+                                        mechanic.name
+                                    )}
+                                </h3>
+
+                                <p class="mechanic-location">
+
+                                    📍
+
+                                    ${
+                                        mechanic.city
+                                            ? escapeMarketplaceHTML(
+                                                mechanic.city
+                                            )
+                                            : "Mobile Service"
+                                    }
+
+                                    ${
+                                        mechanic.state
+                                            ? ", " +
+                                              escapeMarketplaceHTML(
+                                                  mechanic.state
+                                              )
+                                            : ""
+                                    }
+
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <div class="mechanic-rating">
+
+                            <span class="stars">
+
+                                ${
+                                    typeof renderMechanicStars ===
+                                    "function"
+                                        ? renderMechanicStars(
+                                            rating.rating
+                                        )
+                                        : "★★★★★"
+                                }
+
+                            </span>
+
+                            <strong>
+                                ${ratingValue}
+                            </strong>
+
+                            <span>
+                                (${rating.count} reviews)
+                            </span>
+
+                        </div>
+
+
+                        <div class="mechanic-details">
+
+                            <div class="mechanic-detail">
+
+                                <span>
+                                    📍 Distance
                                 </span>
-                            `;
 
-                        })
-                        .join("")
-                    : "";
+                                <strong>
+                                    ${distanceDisplay}
+                                </strong>
 
-
-            const distance =
-                Number(mechanic.distance || 0);
+                            </div>
 
 
-            return `
+                            <div class="mechanic-detail">
 
-                <article class="mechanic-card">
+                                <span>
+                                    🛠️ Experience
+                                </span>
 
-                    <div class="mechanic-card-top">
+                                <strong>
 
-                        <div class="mechanic-avatar">
-                            🔧
-                        </div>
+                                    ${Number(
+                                        mechanic.experience ||
+                                        0
+                                    )}
 
-                        <div class="mechanic-main-info">
+                                    years
 
-                            <h3>
-                                ${escapeMarketplaceHTML(
-                                    mechanic.name
-                                )}
-                            </h3>
+                                </strong>
 
-                            <p class="mechanic-location">
-
-                                📍
-                                ${escapeMarketplaceHTML(
-                                    mechanic.city
-                                )},
-                                ${escapeMarketplaceHTML(
-                                    mechanic.state
-                                )}
-
-                            </p>
-
-                        </div>
-
-                    </div>
+                            </div>
 
 
-                    <div class="mechanic-rating">
+                            <div class="mechanic-detail">
 
-                        <span class="stars">
-                            ${renderMechanicStars(
-                                rating.rating
-                            )}
-                        </span>
+                                <span>
+                                    ● Status
+                                </span>
 
-                        <strong>
-                            ${ratingValue}
-                        </strong>
+                                <strong
+                                    class="${availabilityClass}"
+                                >
+                                    ${availabilityText}
+                                </strong>
 
-                        <span>
-                            (${rating.count} reviews)
-                        </span>
-
-                    </div>
-
-
-                    <div class="mechanic-details">
-
-                        <div class="mechanic-detail">
-
-                            <span>
-                                📍 Distance
-                            </span>
-
-                            <strong>
-                                ${distance.toFixed(1)} miles
-                            </strong>
+                            </div>
 
                         </div>
 
 
-                        <div class="mechanic-detail">
+                        <div class="service-tags">
 
-                            <span>
-                                🛠️ Experience
-                            </span>
-
-                            <strong>
-                                ${Number(
-                                    mechanic.experience || 0
-                                )}
-                                years
-                            </strong>
+                            ${services}
 
                         </div>
 
 
-                        <div class="mechanic-detail">
+                        <div class="mechanic-card-actions">
 
-                            <span>
-                                ● Status
-                            </span>
-
-                            <strong
-                                class="${availabilityClass}"
+                            <a
+                                href="mechanic-profile.html?id=${mechanicId}"
+                                class="btn btn-secondary"
                             >
-                                ${availabilityText}
-                            </strong>
+                                View Profile
+                            </a>
+
+
+                            <a
+                                href="post-job.html?mechanic=${mechanicId}"
+                                class="btn btn-primary"
+                            >
+                                Request Mechanic
+                            </a>
 
                         </div>
 
-                    </div>
+                    </article>
 
+                `;
 
-                    <div class="service-tags">
-
-                        ${services}
-
-                    </div>
-
-
-                    <div class="mechanic-card-actions">
-
-                        <a
-                            href="mechanic-profile.html?id=${encodeURIComponent(
-                                mechanic.id
-                            )}"
-                            class="btn btn-secondary"
-                        >
-                            View Profile
-                        </a>
-
-                        <a
-                            href="post-job.html?mechanic=${encodeURIComponent(
-                                mechanic.id
-                            )}"
-                            class="btn btn-primary"
-                        >
-                            Request Mechanic
-                        </a>
-
-                    </div>
-
-                </article>
-
-            `;
-
-        }).join("");
+            })
+            .join("");
 
 }
 
 
+/*
+    SEARCH MECHANICS
+*/
+
 function searchMechanics() {
 
+    const locationInput =
+        document.getElementById(
+            "location"
+        );
+
+
+    const serviceInput =
+        document.getElementById(
+            "service"
+        );
+
+
+    const availabilityInput =
+        document.getElementById(
+            "availability"
+        );
+
+
     const location =
-        document
-            .getElementById("location")
-            .value
-            .trim()
-            .toLowerCase();
+        normalizeText(
+            locationInput.value
+        );
 
 
     const service =
-        document.getElementById("service").value;
+        normalizeText(
+            serviceInput.value
+        );
 
 
     const availability =
-        document.getElementById("availability").value;
+        availabilityInput.value;
 
 
     let mechanics =
-        getMarketplaceMechanics();
+        getAllWrenchLinkMechanics();
 
 
     /*
@@ -616,33 +1216,47 @@ function searchMechanics() {
     if (location) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
+            mechanics.filter(
+                function(mechanic) {
 
-                const city =
-                    String(
-                        mechanic.city || ""
-                    ).toLowerCase();
-
-
-                const state =
-                    String(
-                        mechanic.state || ""
-                    ).toLowerCase();
+                    const city =
+                        normalizeText(
+                            mechanic.city
+                        );
 
 
-                const zip =
-                    String(
-                        mechanic.zip || ""
-                    ).toLowerCase();
+                    const state =
+                        normalizeText(
+                            mechanic.state
+                        );
 
 
-                return (
-                    city.includes(location) ||
-                    state.includes(location) ||
-                    zip.includes(location)
-                );
+                    const zip =
+                        normalizeText(
+                            mechanic.zip
+                        );
 
-            });
+
+                    const name =
+                        normalizeText(
+                            mechanic.name
+                        );
+
+
+                    return (
+
+                        city.includes(location) ||
+
+                        state.includes(location) ||
+
+                        zip.includes(location) ||
+
+                        name.includes(location)
+
+                    );
+
+                }
+            );
 
     }
 
@@ -654,30 +1268,29 @@ function searchMechanics() {
     if (service) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
+            mechanics.filter(
+                function(mechanic) {
 
-                if (
-                    !Array.isArray(
-                        mechanic.services
-                    )
-                ) {
-                    return false;
-                }
+                    const services =
+                        normalizeServices(
+                            mechanic.services
+                        );
 
 
-                return mechanic.services.some(
-                    function(item) {
+                    return services.some(
+                        function(item) {
 
-                        return String(item)
-                            .toLowerCase()
-                            .includes(
-                                service.toLowerCase()
+                            return normalizeText(
+                                item
+                            ).includes(
+                                service
                             );
 
-                    }
-                );
+                        }
+                    );
 
-            });
+                }
+            );
 
     }
 
@@ -686,26 +1299,42 @@ function searchMechanics() {
         AVAILABILITY FILTER
     */
 
-    if (availability === "available") {
+    if (
+        availability ===
+        "available"
+    ) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
+            mechanics.filter(
+                function(mechanic) {
 
-                return mechanic.available === true;
+                    return (
+                        mechanic.available ===
+                        true
+                    );
 
-            });
+                }
+            );
 
     }
 
 
-    if (availability === "unavailable") {
+    if (
+        availability ===
+        "unavailable"
+    ) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
+            mechanics.filter(
+                function(mechanic) {
 
-                return mechanic.available !== true;
+                    return (
+                        mechanic.available !==
+                        true
+                    );
 
-            });
+                }
+            );
 
     }
 
@@ -713,52 +1342,118 @@ function searchMechanics() {
     /*
         SORTING
 
-        Available mechanics first.
-        Then highest-rated mechanics.
-        Then closest distance.
+        1. Available mechanics
+        2. Highest rating
+        3. Closest real distance
+        4. Most experience
     */
 
-    mechanics.sort(function(a, b) {
+    mechanics.sort(
+        function(a, b) {
 
-        if (
-            Boolean(a.available) !==
-            Boolean(b.available)
-        ) {
+            /*
+                Available first.
+            */
 
-            return a.available
-                ? -1
-                : 1;
+            if (
+                Boolean(a.available) !==
+                Boolean(b.available)
+            ) {
+
+                return a.available
+                    ? -1
+                    : 1;
+
+            }
+
+
+            /*
+                Highest rating first.
+            */
+
+            const ratingA =
+                Number(
+                    a.rating || 0
+                );
+
+
+            const ratingB =
+                Number(
+                    b.rating || 0
+                );
+
+
+            if (
+                ratingA !==
+                ratingB
+            ) {
+
+                return (
+                    ratingB -
+                    ratingA
+                );
+
+            }
+
+
+            /*
+                Closest distance first
+                when an actual distance
+                exists.
+            */
+
+            const distanceA =
+                Number(
+                    a.distance || 9999
+                );
+
+
+            const distanceB =
+                Number(
+                    b.distance || 9999
+                );
+
+
+            if (
+                distanceA !==
+                distanceB
+            ) {
+
+                return (
+                    distanceA -
+                    distanceB
+                );
+
+            }
+
+
+            /*
+                More experience first.
+            */
+
+            return (
+                Number(
+                    b.experience || 0
+                ) -
+                Number(
+                    a.experience || 0
+                )
+            );
 
         }
+    );
 
 
-        const ratingA =
-            Number(a.rating || 0);
-
-
-        const ratingB =
-            Number(b.rating || 0);
-
-
-        if (ratingA !== ratingB) {
-
-            return ratingB - ratingA;
-
-        }
-
-
-        return (
-            Number(a.distance || 9999) -
-            Number(b.distance || 9999)
-        );
-
-    });
-
-
-    renderMechanics(mechanics);
+    renderMechanics(
+        mechanics
+    );
 
 }
 
+
+/*
+    CLEAR SEARCH
+*/
 
 function clearMechanicSearch() {
 
@@ -782,8 +1477,14 @@ function clearMechanicSearch() {
 }
 
 
+/*
+    SEARCH FORM
+*/
+
 document
-    .getElementById("mechanicSearchForm")
+    .getElementById(
+        "mechanicSearchForm"
+    )
     .addEventListener(
         "submit",
         function(event) {
@@ -796,13 +1497,23 @@ document
     );
 
 
+/*
+    CLEAR BUTTON
+*/
+
 document
-    .getElementById("clearSearch")
+    .getElementById(
+        "clearSearch"
+    )
     .addEventListener(
         "click",
         clearMechanicSearch
     );
 
+
+/*
+    INITIAL LOAD
+*/
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -818,3 +1529,4 @@ document.addEventListener(
 </body>
 
 </html>
+```

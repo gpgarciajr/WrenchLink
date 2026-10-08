@@ -1,344 +1,761 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Customer Profile | WrenchLink</title>
+
     <link rel="stylesheet" href="style.css">
+
+    <script src="app.js" defer></script>
 </head>
 
 <body>
 
-<header class="site-header">
-    <div class="container nav-container">
+<header>
+    <div class="container">
 
-```
-    <a href="index.html" class="logo">🔧 WrenchLink</a>
+        <div class="header-content">
 
-    <nav>
-        <a href="customer-dashboard.html">Dashboard</a>
-        <a href="index.html">Home</a>
-    </nav>
+            <a href="index.html" class="logo">
+                🔧 WrenchLink
+            </a>
 
-</div>
-```
+            <nav>
+                <a href="customer-dashboard.html">
+                    Dashboard
+                </a>
 
+                <a href="mechanics.html">
+                    Find a Mechanic
+                </a>
+
+                <a href="account-settings.html">
+                    Account
+                </a>
+            </nav>
+
+        </div>
+
+    </div>
 </header>
+
 
 <main class="container">
 
-```
-<section class="page-header">
-    <h2>Customer Profile</h2>
-    <p>Keep your information ready for your next service request.</p>
-</section>
+    <section class="page-header">
 
-<section class="card">
+        <h1>My Customer Profile</h1>
 
-    <form id="profileForm">
-
-        <label for="name">Full Name</label>
-        <input
-            id="name"
-            type="text"
-            autocomplete="name"
-            required
-        >
-
-        <label for="email">Email</label>
-        <input
-            id="email"
-            type="email"
-            autocomplete="email"
-            required
-        >
-
-        <label for="phone">Phone</label>
-        <input
-            id="phone"
-            type="tel"
-            autocomplete="tel"
-        >
-
-        <label for="city">City</label>
-        <input
-            id="city"
-            type="text"
-            autocomplete="address-level2"
-        >
-
-        <label for="state">State</label>
-        <input
-            id="state"
-            type="text"
-            value="IL"
-            maxlength="2"
-            autocomplete="address-level1"
-        >
-
-        <label for="zip">ZIP Code</label>
-        <input
-            id="zip"
-            type="text"
-            inputmode="numeric"
-            autocomplete="postal-code"
-        >
-
-        <label for="vehicle">Primary Vehicle</label>
-        <input
-            id="vehicle"
-            type="text"
-            placeholder="Example: 2019 Kia Soul 1.6L"
-        >
-
-        <label for="notes">Additional Information</label>
-        <textarea
-            id="notes"
-            rows="5"
-            placeholder="Anything you'd like mechanics to know..."
-        ></textarea>
-
-        <button type="submit">Save Profile</button>
-
-    </form>
-
-    <div id="message" class="form-message" hidden>
-        <h3>Profile Saved ✓</h3>
-        <p>Your customer information has been saved.</p>
         <p>
-            <a href="customer-dashboard.html">Return to Dashboard</a>
+            Keep your contact, location, and vehicle information up to date.
         </p>
-    </div>
 
-</section>
-```
+    </section>
+
+
+    <section>
+
+        <div id="message"></div>
+
+
+        <form id="customerProfileForm">
+
+            <div>
+
+                <label for="name">
+                    Full Name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    maxlength="100"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="email">
+                    Email
+                </label>
+
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="phone">
+                    Phone
+                </label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    maxlength="30"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="city">
+                    City
+                </label>
+
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    maxlength="100"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="state">
+                    State
+                </label>
+
+                <input
+                    type="text"
+                    id="state"
+                    name="state"
+                    maxlength="2"
+                    placeholder="IL"
+                    style="text-transform: uppercase;"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="zip">
+                    ZIP Code
+                </label>
+
+                <input
+                    type="text"
+                    id="zip"
+                    name="zip"
+                    maxlength="10"
+                    inputmode="numeric"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="vehicle">
+                    Vehicle
+                </label>
+
+                <input
+                    type="text"
+                    id="vehicle"
+                    name="vehicle"
+                    maxlength="150"
+                    placeholder="Year Make Model"
+                >
+
+            </div>
+
+
+            <div>
+
+                <label for="notes">
+                    Vehicle / Service Notes
+                </label>
+
+                <textarea
+                    id="notes"
+                    name="notes"
+                    rows="5"
+                    maxlength="1000"
+                    placeholder="Anything your mechanic should know..."
+                ></textarea>
+
+            </div>
+
+
+            <div>
+
+                <button
+                    type="submit"
+                >
+                    Save Profile
+                </button>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='customer-dashboard.html'"
+                >
+                    Back to Dashboard
+                </button>
+
+            </div>
+
+        </form>
+
+    </section>
 
 </main>
 
-<footer class="site-footer">
-    <div class="container">
-
-```
-    <p>© 2026 WrenchLink. All rights reserved.</p>
-
-    <p>
-        <a href="privacy.html">Privacy</a> |
-        <a href="terms.html">Terms</a> |
-        <a href="contact.html">Contact</a>
-    </p>
-
-</div>
-```
-
-</footer>
-
-<script src="app.js"></script>
 
 <script>
 
-document.addEventListener("DOMContentLoaded", function () {
+let currentUser = null;
 
-    const currentUser = getCurrentUser();
 
-    /*
-     * Customer profile pages require a logged-in customer.
-     */
-    if (!currentUser) {
-        window.location.href = "login.html";
-        return;
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function getStorage(key, fallback) {
+
+    const value =
+        localStorage.getItem(key);
+
+    if (!value) {
+        return fallback;
     }
+
+    try {
+
+        return JSON.parse(value);
+
+    } catch (error) {
+
+        return fallback;
+
+    }
+}
+
+
+function setStorage(key, value) {
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+}
+
+
+/* =========================================================
+   ACCESS
+========================================================= */
+
+function checkAccess() {
+
+    currentUser =
+        getStorage(
+            "wrenchlinkCurrentUser",
+            null
+        );
+
+
+    if (!currentUser) {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
 
     if (currentUser.role === "mechanic") {
-        window.location.href = "mechanic-dashboard.html";
-        return;
+
+        window.location.href =
+            "mechanic-dashboard.html";
+
+        return false;
     }
+
 
     if (currentUser.role === "admin") {
-        window.location.href = "admin/index.html";
-        return;
+
+        window.location.href =
+            "admin/index.html";
+
+        return false;
     }
 
-    const profileForm = document.getElementById("profileForm");
-    const message = document.getElementById("message");
 
-    const nameInput = document.getElementById("name");
-    const emailInput = document.getElementById("email");
-    const phoneInput = document.getElementById("phone");
-    const cityInput = document.getElementById("city");
-    const stateInput = document.getElementById("state");
-    const zipInput = document.getElementById("zip");
-    const vehicleInput = document.getElementById("vehicle");
-    const notesInput = document.getElementById("notes");
+    if (currentUser.role !== "customer") {
 
-    /*
-     * Customer profiles are stored separately by user ID.
-     *
-     * Example:
-     * wrenchlinkCustomerProfiles = {
-     *     "WL-12345": {
-     *         name: "...",
-     *         email: "...",
-     *         ...
-     *     }
-     * }
-     */
-    let allProfiles = WrenchLinkStorage.get(
-        "wrenchlinkCustomerProfiles",
-        {}
-    );
+        window.location.href =
+            "login.html";
 
-    if (!allProfiles || typeof allProfiles !== "object") {
-        allProfiles = {};
+        return false;
     }
 
-    const savedProfile = allProfiles[currentUser.id] || {};
 
-    /*
-     * Load saved profile information.
-     */
-    nameInput.value =
-        savedProfile.name ||
+    return true;
+}
+
+
+/* =========================================================
+   LOAD PROFILE
+========================================================= */
+
+function loadProfile() {
+
+    const profiles =
+        getStorage(
+            "wrenchlinkCustomerProfiles",
+            {}
+        );
+
+
+    const profile =
+        profiles[currentUser.id] || {};
+
+
+    document.getElementById("name").value =
+        profile.name ||
         currentUser.name ||
         "";
 
-    emailInput.value =
-        savedProfile.email ||
+
+    document.getElementById("email").value =
+        profile.email ||
         currentUser.email ||
         "";
 
-    phoneInput.value =
-        savedProfile.phone ||
+
+    document.getElementById("phone").value =
+        profile.phone ||
         currentUser.phone ||
         "";
 
-    cityInput.value =
-        savedProfile.city ||
+
+    document.getElementById("city").value =
+        profile.city ||
         "";
 
-    stateInput.value =
-        savedProfile.state ||
-        "IL";
 
-    zipInput.value =
-        savedProfile.zip ||
+    document.getElementById("state").value =
+        profile.state ||
         "";
 
-    vehicleInput.value =
-        savedProfile.vehicle ||
+
+    document.getElementById("zip").value =
+        profile.zip ||
         "";
 
-    notesInput.value =
-        savedProfile.notes ||
+
+    document.getElementById("vehicle").value =
+        profile.vehicle ||
         "";
 
-    /*
-     * Save customer profile.
-     */
-    profileForm.addEventListener("submit", function (event) {
+
+    document.getElementById("notes").value =
+        profile.notes ||
+        "";
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(message, success = false) {
+
+    const element =
+        document.getElementById(
+            "message"
+        );
+
+
+    element.textContent =
+        message;
+
+
+    element.style.padding =
+        "10px";
+
+
+    element.style.marginBottom =
+        "15px";
+
+
+    element.style.border =
+        "1px solid";
+
+
+    element.style.borderColor =
+        success
+            ? "green"
+            : "red";
+}
+
+
+/* =========================================================
+   SAVE PROFILE
+========================================================= */
+
+document.getElementById(
+    "customerProfileForm"
+).addEventListener(
+    "submit",
+    function(event) {
 
         event.preventDefault();
 
-        const profile = {
-            userId: currentUser.id,
 
-            name: nameInput.value.trim(),
+        const name =
+            document.getElementById(
+                "name"
+            ).value.trim();
 
-            email: emailInput.value.trim(),
 
-            phone: phoneInput.value.trim(),
+        const email =
+            document.getElementById(
+                "email"
+            ).value.trim()
+            .toLowerCase();
 
-            city: cityInput.value.trim(),
 
-            state: stateInput.value.trim().toUpperCase(),
+        const phone =
+            document.getElementById(
+                "phone"
+            ).value.trim();
 
-            zip: zipInput.value.trim(),
 
-            vehicle: vehicleInput.value.trim(),
+        const city =
+            document.getElementById(
+                "city"
+            ).value.trim();
 
-            notes: notesInput.value.trim(),
 
-            updatedAt: new Date().toISOString()
+        const state =
+            document.getElementById(
+                "state"
+            ).value.trim()
+            .toUpperCase();
+
+
+        const zip =
+            document.getElementById(
+                "zip"
+            ).value.trim();
+
+
+        const vehicle =
+            document.getElementById(
+                "vehicle"
+            ).value.trim();
+
+
+        const notes =
+            document.getElementById(
+                "notes"
+            ).value.trim();
+
+
+        /* Required fields */
+
+        if (!name) {
+
+            showMessage(
+                "Please enter your name."
+            );
+
+            return;
+        }
+
+
+        if (!email) {
+
+            showMessage(
+                "Please enter your email."
+            );
+
+            return;
+        }
+
+
+        /* Email validation */
+
+        const emailPattern =
+            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+
+        if (
+            !emailPattern.test(email)
+        ) {
+
+            showMessage(
+                "Please enter a valid email address."
+            );
+
+            return;
+        }
+
+
+        /* State validation */
+
+        if (
+            state &&
+            !/^[A-Z]{2}$/.test(state)
+        ) {
+
+            showMessage(
+                "State must be a two-letter code, such as IL."
+            );
+
+            return;
+        }
+
+
+        /* ZIP validation */
+
+        if (
+            zip &&
+            !/^\d{5}(-\d{4})?$/.test(zip)
+        ) {
+
+            showMessage(
+                "Please enter a valid ZIP code."
+            );
+
+            return;
+        }
+
+
+        /* Load users */
+
+        const users =
+            getStorage(
+                "wrenchlinkUsers",
+                []
+            );
+
+
+        /* Prevent duplicate email */
+
+        const duplicateUser =
+            users.find(
+                function(user) {
+
+                    return (
+                        user.email &&
+                        user.email.toLowerCase() ===
+                        email &&
+                        user.id !==
+                        currentUser.id
+                    );
+
+                }
+            );
+
+
+        if (duplicateUser) {
+
+            showMessage(
+                "That email address is already being used by another account."
+            );
+
+            return;
+        }
+
+
+        /* Customer profile */
+
+        const profiles =
+            getStorage(
+                "wrenchlinkCustomerProfiles",
+                {}
+            );
+
+
+        profiles[currentUser.id] = {
+
+            userId:
+                currentUser.id,
+
+            name:
+                name,
+
+            email:
+                email,
+
+            phone:
+                phone,
+
+            city:
+                city,
+
+            state:
+                state,
+
+            zip:
+                zip,
+
+            vehicle:
+                vehicle,
+
+            notes:
+                notes,
+
+            updatedAt:
+                new Date().toISOString()
+
         };
 
-        /*
-         * Save this customer's profile under THEIR user ID.
-         */
-        allProfiles[currentUser.id] = profile;
 
-        WrenchLinkStorage.set(
+        setStorage(
             "wrenchlinkCustomerProfiles",
-            allProfiles
+            profiles
         );
 
-        /*
-         * Keep the current user's basic information
-         * synchronized with the profile.
-         */
-        const updatedUser = {
+
+        /* Update current session */
+
+        currentUser = {
+
             ...currentUser,
-            name: profile.name,
-            firstName: profile.name.split(" ")[0],
-            lastName: profile.name
-                .split(" ")
-                .slice(1)
-                .join(" "),
-            email: profile.email,
-            phone: profile.phone
+
+            name:
+                name,
+
+            firstName:
+                name.split(" ")[0],
+
+            lastName:
+                name
+                    .split(" ")
+                    .slice(1)
+                    .join(" "),
+
+            email:
+                email,
+
+            phone:
+                phone,
+
+            role:
+                "customer"
+
         };
 
-        setCurrentUser(updatedUser);
 
-        /*
-         * Also update the stored user record.
-         */
-        const users = WrenchLinkStorage.get(
-            "wrenchlinkUsers",
-            []
+        setStorage(
+            "wrenchlinkCurrentUser",
+            currentUser
         );
 
-        if (Array.isArray(users)) {
 
-            const userIndex = users.findIndex(function (user) {
-                return user.id === currentUser.id;
-            });
+        /* Update stored user */
 
-            if (userIndex !== -1) {
+        const userIndex =
+            users.findIndex(
+                function(user) {
 
-                users[userIndex] = {
-                    ...users[userIndex,
-                    name: profile.name,
-                    firstName: profile.name.split(" ")[0],
-                    lastName: profile.name
+                    return (
+                        user.id ===
+                        currentUser.id
+                    );
+
+                }
+            );
+
+
+        if (userIndex !== -1) {
+
+            users[userIndex] = {
+
+                ...users[userIndex],
+
+                name:
+                    name,
+
+                firstName:
+                    name.split(" ")[0],
+
+                lastName:
+                    name
                         .split(" ")
                         .slice(1)
                         .join(" "),
-                    email: profile.email,
-                    phone: profile.phone
-                };
 
-                WrenchLinkStorage.set(
-                    "wrenchlinkUsers",
-                    users
-                );
-            }
+                email:
+                    email,
+
+                phone:
+                    phone,
+
+                role:
+                    "customer"
+
+            };
+
+
+            setStorage(
+                "wrenchlinkUsers",
+                users
+            );
         }
 
-        /*
-         * Show confirmation.
-         */
-        message.hidden = false;
 
-        message.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
-        });
+        showMessage(
+            "Your customer profile has been saved successfully.",
+            true
+        );
 
-    });
 
-});
+        setTimeout(
+            function() {
+
+                window.location.href =
+                    "customer-dashboard.html";
+
+            },
+            700
+        );
+
+    }
+);
+
+
+/* =========================================================
+   START
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        if (!checkAccess()) {
+            return;
+        }
+
+        loadProfile();
+
+    }
+);
 
 </script>
 
 </body>
 </html>
+```

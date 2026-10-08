@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Mechanic Profile | WrenchLink</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+<header class="site-header">
+
+    <div class="container nav-container">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            🔧 WrenchLink
+        </a>
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="mechanics.html">
+                Find a Mechanic
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a
+                href="login.html"
+                class="btn btn-small"
+            >
+                Sign In
+            </a>
+
+        </nav>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <section
+        id="profileContainer"
+        class="section"
+    ></section>
+
+</main>
+
+
+<footer class="site-footer">
+
+    <div class="container">
+
+        <p>
+            © 2026 WrenchLink. All rights reserved.
+        </p>
+
+        <div>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<script src="marketplace-data.js"></script>
+
+
+<script>
+
+function renderProfile() {
+
+    const container =
+        document.getElementById(
+            "profileContainer"
+        );
+
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    const mechanicId =
+        params.get("id");
+
+
+    const mechanic =
+        getMechanicById(
+            mechanicId
+        );
+
+
+    if (!mechanic) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <h1>
+                    Mechanic Not Found
+                </h1>
+
+                <p>
+                    This mechanic profile
+                    could not be found.
+                </p>
+
+                <a
+                    href="mechanics.html"
+                    class="btn"
+                >
+                    Back to Mechanics
+                </a>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const rating =
+        calculateMechanicRating(
+            mechanic
+        );
+
+
+    const reviews =
+        getMechanicReviews(
+            mechanic.id
+        );
+
+
+    const services =
+        mechanic.services
+            .map(
+                function(service) {
+
+                    return `
+                        <span class="service-tag">
+                            ${escapeMarketplaceHTML(
+                                service
+                            )}
+                        </span>
+                    `;
+
+                }
+            )
+            .join("");
+
+
+    const availability =
+        mechanic.available
+            ? "Available Now"
+            : "Currently Unavailable";
+
+
+    container.innerHTML = `
+
+        <div class="page-hero">
+
+            <p class="eyebrow">
+                MECHANIC PROFILE
+            </p>
+
+            <h1>
+                ${escapeMarketplaceHTML(
+                    mechanic.name
+                )}
+            </h1>
+
+            <p>
+                ${escapeMarketplaceHTML(
+                    mechanic.city
+                )},
+                ${escapeMarketplaceHTML(
+                    mechanic.state
+                )}
+            </p>
+
+        </div>
+
+
+        <div class="card">
+
+            <div
+                style="
+                    display:flex;
+                    gap:18px;
+                    align-items:center;
+                    flex-wrap:wrap;
+                "
+            >
+
+                <div
+                    style="
+                        font-size:55px;
+                    "
+                >
+                    🔧
+                </div>
+
+                <div>
+
+                    <h2>
+                        ${escapeMarketplaceHTML(
+                            mechanic.name
+                        )}
+                    </h2>
+
+                    <p>
+
+                        <strong>
+                            ${renderMechanicStars(
+                                rating.rating
+                            )}
+                        </strong>
+
+                        ${
+                            rating.rating
+                                ? rating.rating.toFixed(1)
+                                : "New"
+                        }
+
+                        (${rating.count} reviews)
+
+                    </p>
+
+                    <p>
+                        <strong>
+                            ${availability}
+                        </strong>
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <hr>
+
+
+            <h3>
+                About
+            </h3>
+
+            <p>
+                ${escapeMarketplaceHTML(
+                    mechanic.about
+                )}
+            </p>
+
+
+            <h3>
+                Experience
+            </h3>
+
+            <p>
+                ${mechanic.experience}
+                years
+            </p>
+
+
+            <h3>
+                Service Area
+            </h3>
+
+            <p>
+
+                ${escapeMarketplaceHTML(
+                    mechanic.city
+                )},
+                ${escapeMarketplaceHTML(
+                    mechanic.state
+                )}
+
+                and surrounding areas within
+
+                <strong>
+                    ${mechanic.radius} miles
+                </strong>.
+
+            </p>
+
+
+            <h3>
+                Services
+            </h3>
+
+            <div class="service-tags">
+                ${services}
+            </div>
+
+
+            <div class="button-row">
+
+                <a
+                    href="
+                        post-job.html?mechanic=${encodeURIComponent(
+                            mechanic.id
+                        )}
+                    "
+                    class="btn"
+                >
+                    Request This Mechanic
+                </a>
+
+                <a
+                    href="mechanics.html"
+                    class="btn btn-secondary"
+                >
+                    Back to Mechanics
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <h2>
+                Customer Reviews
+            </h2>
+
+            <div id="reviews"></div>
+
+        </div>
+
+    `;
+
+
+    renderReviews(
+        reviews
+    );
+
+}
+
+
+function renderReviews(
+    reviews
+) {
+
+    const container =
+        document.getElementById(
+            "reviews"
+        );
+
+
+    if (!reviews.length) {
+
+        container.innerHTML = `
+
+            <p>
+                No additional WrenchLink
+                customer reviews yet.
+            </p>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        reviews
+            .map(
+                function(review) {
+
+                    return `
+
+                        <div
+                            style="
+                                padding:15px 0;
+                                border-bottom:1px solid #ddd;
+                            "
+                        >
+
+                            <p>
+                                <strong>
+                                    ${renderMechanicStars(
+                                        review.rating
+                                    )}
+                                </strong>
+                            </p>
+
+                            <p>
+                                ${escapeMarketplaceHTML(
+                                    review.comment ||
+                                    "Customer review."
+                                )}
+                            </p>
+
+                        </div>
+
+                    `;
+
+                }
+            )
+            .join("");
+
+}
+
+
+document.addEventListener(
+    "DOMContentLoaded",
+    renderProfile
+);
+
+</script>
+
+</body>
+
+</html>

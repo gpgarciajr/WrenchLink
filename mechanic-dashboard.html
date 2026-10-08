@@ -1,793 +1,814 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<meta charset="UTF-8">
+    <title>Mechanic Dashboard | WrenchLink</title>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <link rel="stylesheet" href="style.css">
 
-<title>Mechanic Dashboard | WrenchLink</title>
-
-<link
-    rel="stylesheet"
-    href="style.css"
->
-```
-
+    <script src="app.js" defer></script>
+    <script src="marketplace-data.js" defer></script>
 </head>
 
 <body>
 
-<header class="site-header">
+<header>
+    <div class="container">
 
-```
-<div class="container nav-container">
+        <div class="header-content">
 
-    <a
-        href="index.html"
-        class="logo"
-    >
-        🔧 WrenchLink
-    </a>
+            <a href="index.html" class="logo">
+                🔧 WrenchLink
+            </a>
 
-    <nav>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mechanics.html">Find Mechanics</a>
+                <a href="mechanic-profile.html" id="myProfileLink">
+                    My Profile
+                </a>
+            </nav>
 
-        <a href="index.html">
-            Home
-        </a>
+        </div>
 
-        <a href="mechanics.html">
-            Find Mechanics
-        </a>
-
-        <a href="edit-mechanic-profile.html">
-            My Profile
-        </a>
-
-    </nav>
-
-</div>
-```
-
+    </div>
 </header>
+
 
 <main class="container">
 
-```
-<!-- HEADER -->
+    <!-- PAGE HEADER -->
+    <section class="page-header">
 
-<section class="page-header">
+        <h1>Mechanic Dashboard</h1>
 
-    <h2>
-        Mechanic Dashboard
-    </h2>
+        <p id="welcomeMessage">
+            Manage your WrenchLink mechanic account.
+        </p>
 
-    <p id="welcomeMessage">
-        Welcome to WrenchLink.
-    </p>
-
-</section>
+    </section>
 
 
-<!-- QUICK ACTIONS -->
+    <!-- QUICK ACTIONS -->
+    <section>
 
-<section>
+        <div class="dashboard-grid">
 
-    <h2>
-        Quick Actions
-    </h2>
+            <div class="dashboard-card">
 
-    <div class="cards">
+                <h2>Available Jobs</h2>
 
-        <div class="card">
+                <p>
+                    Find service requests from customers in your area.
+                </p>
 
-            <h3>
-                Available Jobs
-            </h3>
-
-            <p>
-                Find customer service requests in your area.
-            </p>
-
-            <a href="#availableJobs">
-                <button type="button">
-                    View Jobs
+                <button
+                    type="button"
+                    onclick="scrollToSection('availableJobsSection')"
+                >
+                    View Available Jobs
                 </button>
-            </a>
 
-        </div>
+            </div>
 
 
-        <div class="card">
+            <div class="dashboard-card">
 
-            <h3>
-                My Profile
-            </h3>
+                <h2>My Profile</h2>
 
-            <p>
-                Manage your public mechanic profile.
-            </p>
+                <p>
+                    Update your mechanic profile and services.
+                </p>
 
-            <a href="edit-mechanic-profile.html">
-                <button type="button">
+                <button
+                    type="button"
+                    onclick="window.location.href='edit-mechanic-profile.html'"
+                >
                     Edit Profile
                 </button>
-            </a>
 
-        </div>
+            </div>
 
 
-        <div class="card">
+            <div class="dashboard-card">
 
-            <h3>
-                Service Area
-            </h3>
+                <h2>Service Area</h2>
 
-            <p>
-                Manage where you provide mobile service.
-            </p>
+                <p>
+                    Set where you provide mobile mechanic services.
+                </p>
 
-            <a href="service-area.html">
-                <button type="button">
-                    Service Area
+                <button
+                    type="button"
+                    onclick="window.location.href='service-area.html'"
+                >
+                    Edit Service Area
                 </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROFILE -->
+    <section id="profileSection">
+
+        <div class="section-header">
+
+            <h2>My Mechanic Profile</h2>
+
+            <a
+                href="edit-mechanic-profile.html"
+                class="btn"
+            >
+                Edit Profile
             </a>
 
         </div>
 
-    </div>
+        <div id="profileContainer">
+            Loading profile...
+        </div>
 
-</section>
-
-
-<!-- PROFILE -->
-
-<section>
-
-    <h2>
-        My Profile
-    </h2>
-
-    <div class="card">
-
-        <p>
-            <strong>Name:</strong>
-            <span id="profileName">
-                Not set
-            </span>
-        </p>
-
-        <p>
-            <strong>Email:</strong>
-            <span id="profileEmail">
-                Not set
-            </span>
-        </p>
-
-        <p>
-            <strong>Phone:</strong>
-            <span id="profilePhone">
-                Not set
-            </span>
-        </p>
-
-        <p>
-            <strong>Experience:</strong>
-            <span id="profileExperience">
-                Not set
-            </span>
-        </p>
-
-        <p>
-            <strong>Services:</strong>
-            <span id="profileServices">
-                Not set
-            </span>
-        </p>
-
-        <a href="edit-mechanic-profile.html">
-            <button type="button">
-                Edit Profile
-            </button>
-        </a>
-
-    </div>
-
-</section>
+    </section>
 
 
-<!-- SERVICE AREA -->
+    <!-- SERVICE AREA -->
+    <section id="serviceAreaSection">
 
-<section>
+        <div class="section-header">
 
-    <h2>
-        My Service Area
-    </h2>
+            <h2>My Service Area</h2>
 
-    <div class="card">
-
-        <p>
-            <strong>Location:</strong>
-            <span id="serviceAreaLocation">
-                Not set
-            </span>
-        </p>
-
-        <p>
-            <strong>Radius:</strong>
-            <span id="serviceAreaRadius">
-                Not set
-            </span>
-        </p>
-
-        <a href="service-area.html">
-            <button type="button">
+            <a
+                href="service-area.html"
+                class="btn"
+            >
                 Edit Service Area
-            </button>
-        </a>
-
-    </div>
-
-</section>
-
-
-<!-- AVAILABLE JOBS -->
-
-<section id="availableJobs">
-
-    <h2>
-        Available Jobs
-    </h2>
-
-    <div id="availableJobList"></div>
-
-</section>
-
-
-<!-- ACTIVE JOBS -->
-
-<section>
-
-    <h2>
-        My Active Jobs
-    </h2>
-
-    <div id="activeJobList"></div>
-
-</section>
-
-
-<!-- COMPLETED JOBS -->
-
-<section>
-
-    <h2>
-        Completed Jobs
-    </h2>
-
-    <div id="completedJobList"></div>
-
-</section>
-
-
-<!-- REVIEWS -->
-
-<section>
-
-    <h2>
-        Customer Reviews
-    </h2>
-
-    <div id="reviewList">
-
-        <div class="card">
-
-            <p>
-                No customer reviews yet.
-            </p>
+            </a>
 
         </div>
 
-    </div>
+        <div id="serviceAreaContainer">
+            Loading service area...
+        </div>
 
-</section>
+    </section>
 
 
-<!-- ACCOUNT -->
+    <!-- AVAILABLE JOBS -->
+    <section id="availableJobsSection">
 
-<section>
+        <div class="section-header">
 
-    <h2>
-        Account
-    </h2>
+            <h2>Available Jobs</h2>
 
-    <div class="cards">
+            <button
+                type="button"
+                onclick="loadAvailableJobs()"
+            >
+                Refresh
+            </button>
 
-        <div class="card">
+        </div>
 
-            <h3>
-                Account Settings
-            </h3>
+        <div id="availableJobsContainer">
+            Loading available jobs...
+        </div>
 
-            <p>
-                Manage your account information.
-            </p>
+    </section>
 
-            <a href="account-settings.html">
-                <button type="button">
+
+    <!-- ACTIVE JOBS -->
+    <section id="activeJobsSection">
+
+        <div class="section-header">
+
+            <h2>My Active Jobs</h2>
+
+            <button
+                type="button"
+                onclick="loadActiveJobs()"
+            >
+                Refresh
+            </button>
+
+        </div>
+
+        <div id="activeJobsContainer">
+            Loading active jobs...
+        </div>
+
+    </section>
+
+
+    <!-- COMPLETED JOBS -->
+    <section id="completedJobsSection">
+
+        <div class="section-header">
+
+            <h2>Completed Jobs</h2>
+
+        </div>
+
+        <div id="completedJobsContainer">
+            Loading completed jobs...
+        </div>
+
+    </section>
+
+
+    <!-- REVIEWS -->
+    <section id="reviewsSection">
+
+        <div class="section-header">
+
+            <h2>Customer Reviews</h2>
+
+        </div>
+
+        <div id="reviewsContainer">
+            Loading reviews...
+        </div>
+
+    </section>
+
+
+    <!-- ACCOUNT -->
+    <section id="accountSection">
+
+        <div class="section-header">
+
+            <h2>Account</h2>
+
+        </div>
+
+        <div class="dashboard-grid">
+
+            <div class="dashboard-card">
+
+                <h3>Account Settings</h3>
+
+                <p>
+                    Update your account information.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='account-settings.html'"
+                >
                     Account Settings
                 </button>
-            </a>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>View Public Profile</h3>
+
+                <p>
+                    See how customers view your mechanic profile.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="viewMyProfile()"
+                >
+                    View My Profile
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>Sign Out</h3>
+
+                <p>
+                    Sign out of your WrenchLink account.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="mechanicLogout()"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>Delete Account</h3>
+
+                <p>
+                    Permanently remove your mechanic account.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="deleteMechanicAccount()"
+                >
+                    Delete Account
+                </button>
+
+            </div>
 
         </div>
 
-
-        <div class="card">
-
-            <h3>
-                Delete Account
-            </h3>
-
-            <p>
-                Remove your mechanic account and profile
-                information from this browser.
-            </p>
-
-            <button
-                type="button"
-                id="deleteAccountButton"
-            >
-                Delete Account
-            </button>
-
-        </div>
-
-
-        <div class="card">
-
-            <h3>
-                Sign Out
-            </h3>
-
-            <p>
-                Sign out of WrenchLink.
-            </p>
-
-            <button
-                type="button"
-                id="signOutButton"
-            >
-                Sign Out
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-```
+    </section>
 
 </main>
 
-<footer class="site-footer">
-
-```
-<div class="container">
-
-    <p>
-        © 2026 WrenchLink. All rights reserved.
-    </p>
-
-    <p>
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        |
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        |
-
-        <a href="contact.html">
-            Contact
-        </a>
-
-    </p>
-
-</div>
-```
-
-</footer>
-
-<script src="app.js"></script>
-
-<script src="marketplace-data.js"></script>
 
 <script>
 
-/* =========================================
-   CURRENT MECHANIC
-========================================= */
-
 let currentUser = null;
 
-let mechanicProfile = {};
 
-let serviceArea = {};
+/* =========================================================
+   BASIC STORAGE
+========================================================= */
+
+function getStorage(key, fallback) {
+
+    const value = localStorage.getItem(key);
+
+    if (!value) {
+        return fallback;
+    }
+
+    try {
+        return JSON.parse(value);
+    } catch (error) {
+        return fallback;
+    }
+}
 
 
-/* =========================================
-   SECURITY
-========================================= */
+function setStorage(key, value) {
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+}
+
+
+/* =========================================================
+   HTML SECURITY
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "Not provided";
+    }
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return escapeHTML(value);
+    }
+
+    return date.toLocaleString();
+}
+
+
+/* =========================================================
+   GET JOBS
+========================================================= */
+
+function getJobs() {
+
+    return getStorage(
+        "wrenchlinkJobs",
+        []
+    );
+}
+
+
+/* =========================================================
+   GET MECHANIC PROFILE
+========================================================= */
+
+function getMechanicProfiles() {
+
+    return getStorage(
+        "wrenchlinkMechanicProfiles",
+        {}
+    );
+}
+
+
+function getMyMechanicProfile() {
+
+    const profiles = getMechanicProfiles();
+
+    return profiles[currentUser.id] || null;
+}
+
+
+/* =========================================================
+   GET SERVICE AREA
+========================================================= */
+
+function getServiceAreas() {
+
+    return getStorage(
+        "wrenchlinkServiceAreas",
+        {}
+    );
+}
+
+
+function getMyServiceArea() {
+
+    const areas = getServiceAreas();
+
+    if (areas[currentUser.id]) {
+        return areas[currentUser.id];
+    }
+
+    const legacyArea = getStorage(
+        "wrenchlinkServiceArea",
+        null
+    );
+
+    if (
+        legacyArea &&
+        (
+            !legacyArea.mechanicId ||
+            legacyArea.mechanicId === currentUser.id
+        )
+    ) {
+        return legacyArea;
+    }
+
+    return null;
+}
+
+
+/* =========================================================
+   CHECK ACCESS
+========================================================= */
 
 function checkMechanicAccess() {
 
-    currentUser =
-        getCurrentUser();
-
+    currentUser = getStorage(
+        "wrenchlinkCurrentUser",
+        null
+    );
 
     if (!currentUser) {
 
-        window.location.href =
-            "login.html";
-
+        window.location.href = "login.html";
         return false;
-
     }
 
 
     if (currentUser.role === "customer") {
 
-        window.location.href =
-            "customer-dashboard.html";
-
+        window.location.href = "customer-dashboard.html";
         return false;
-
     }
 
 
     if (currentUser.role === "admin") {
 
-        window.location.href =
-            "admin/index.html";
-
+        window.location.href = "admin/index.html";
         return false;
-
     }
 
 
     if (currentUser.role !== "mechanic") {
 
-        window.location.href =
-            "login.html";
-
+        window.location.href = "login.html";
         return false;
-
     }
 
 
     return true;
-
 }
 
 
-/* =========================================
-   PROFILE STORAGE
-========================================= */
+/* =========================================================
+   PROFILE
+========================================================= */
 
-function getMechanicProfiles() {
+function loadProfile() {
 
-    const profiles =
-        WrenchLinkStorage.get(
-            "wrenchlinkMechanicProfiles",
-            {}
+    const container =
+        document.getElementById(
+            "profileContainer"
         );
 
+    const profile =
+        getMyMechanicProfile();
 
-    if (
-        !profiles ||
-        typeof profiles !== "object"
-    ) {
 
-        return {};
+    if (!profile) {
 
+        container.innerHTML = `
+
+            <div class="dashboard-card">
+
+                <h3>Complete Your Mechanic Profile</h3>
+
+                <p>
+                    Your mechanic profile has not been completed yet.
+                </p>
+
+                <a
+                    href="edit-mechanic-profile.html"
+                    class="btn"
+                >
+                    Complete Profile
+                </a>
+
+            </div>
+
+        `;
+
+        return;
     }
 
 
-    return profiles;
+    const services = Array.isArray(profile.services)
+        ? profile.services
+        : profile.services
+            ? String(profile.services)
+                .split(",")
+                .map(service => service.trim())
+                .filter(Boolean)
+            : [];
 
+
+    container.innerHTML = `
+
+        <div class="dashboard-card">
+
+            <h3>
+                ${escapeHTML(
+                    profile.name ||
+                    currentUser.name ||
+                    "Mechanic"
+                )}
+            </h3>
+
+            <p>
+                <strong>Email:</strong>
+                ${escapeHTML(
+                    profile.email ||
+                    currentUser.email ||
+                    "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                ${escapeHTML(
+                    profile.phone ||
+                    currentUser.phone ||
+                    "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>Experience:</strong>
+                ${escapeHTML(
+                    profile.experience ||
+                    "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>Services:</strong>
+                ${
+                    services.length
+                        ? services
+                            .map(service =>
+                                escapeHTML(service)
+                            )
+                            .join(", ")
+                        : "No services listed"
+                }
+            </p>
+
+            <p>
+                <strong>About:</strong>
+                ${escapeHTML(
+                    profile.about ||
+                    "No description provided."
+                )}
+            </p>
+
+        </div>
+
+    `;
 }
 
 
-/* =========================================
-   LOAD MECHANIC PROFILE
-========================================= */
-
-function loadMechanicProfile() {
-
-    const profiles =
-        getMechanicProfiles();
-
-
-    mechanicProfile =
-        profiles[currentUser.id] || {};
-
-
-    const name =
-        mechanicProfile.name ||
-        currentUser.name ||
-        "WrenchLink Mechanic";
-
-
-    document.getElementById(
-        "welcomeMessage"
-    ).textContent =
-        "Welcome back, " +
-        name +
-        "!";
-
-
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        name;
-
-
-    document.getElementById(
-        "profileEmail"
-    ).textContent =
-        mechanicProfile.email ||
-        currentUser.email ||
-        "Not set";
-
-
-    document.getElementById(
-        "profilePhone"
-    ).textContent =
-        mechanicProfile.phone ||
-        currentUser.phone ||
-        "Not set";
-
-
-    document.getElementById(
-        "profileExperience"
-    ).textContent =
-        mechanicProfile.experience
-            ? mechanicProfile.experience +
-              " years"
-            : "Not set";
-
-
-    document.getElementById(
-        "profileServices"
-    ).textContent =
-        Array.isArray(
-            mechanicProfile.services
-        )
-            ? mechanicProfile.services.join(", ")
-            : (
-                mechanicProfile.services ||
-                "Not set"
-            );
-
-}
-
-
-/* =========================================
-   LOAD SERVICE AREA
-========================================= */
+/* =========================================================
+   SERVICE AREA
+========================================================= */
 
 function loadServiceArea() {
 
-    const allAreas =
-        WrenchLinkStorage.get(
-            "wrenchlinkServiceAreas",
-            {}
+    const container =
+        document.getElementById(
+            "serviceAreaContainer"
         );
 
+    const area =
+        getMyServiceArea();
 
-    if (
-        allAreas &&
-        typeof allAreas === "object" &&
-        allAreas[currentUser.id]
-    ) {
 
-        serviceArea =
-            allAreas[currentUser.id];
+    if (!area) {
 
-    } else {
+        container.innerHTML = `
 
-        /*
-         * Compatibility with the older single
-         * service-area storage key.
-         */
+            <div class="dashboard-card">
 
-        serviceArea =
-            WrenchLinkStorage.get(
-                "wrenchlinkServiceArea",
-                {}
-            );
+                <h3>Service Area Not Set</h3>
 
+                <p>
+                    Set your city, state, ZIP code,
+                    and service radius.
+                </p>
+
+                <a
+                    href="service-area.html"
+                    class="btn"
+                >
+                    Set Service Area
+                </a>
+
+            </div>
+
+        `;
+
+        return;
     }
 
 
-    const location =
-        [
-            serviceArea.city,
-            serviceArea.state,
-            serviceArea.zip
-        ]
-        .filter(Boolean)
+    container.innerHTML = `
+
+        <div class="dashboard-card">
+
+            <h3>
+                ${escapeHTML(
+                    area.city || "City"
+                )},
+                ${escapeHTML(
+                    area.state || ""
+                )}
+            </h3>
+
+            <p>
+                <strong>ZIP:</strong>
+                ${escapeHTML(
+                    area.zip || "Not provided"
+                )}
+            </p>
+
+            <p>
+                <strong>Service Radius:</strong>
+                ${escapeHTML(
+                    area.radius || "0"
+                )} miles
+            </p>
+
+        </div>
+
+    `;
+}
+
+
+/* =========================================================
+   JOB LOCATION
+========================================================= */
+
+function formatJobLocation(job) {
+
+    const parts = [];
+
+    if (job.location) {
+        parts.push(job.location);
+    }
+
+    if (job.city) {
+        parts.push(job.city);
+    }
+
+    if (job.state) {
+        parts.push(job.state);
+    }
+
+    if (job.zip) {
+        parts.push(job.zip);
+    }
+
+    if (!parts.length) {
+        return "Location not provided";
+    }
+
+    return parts
+        .map(part => escapeHTML(part))
         .join(", ");
-
-
-    document.getElementById(
-        "serviceAreaLocation"
-    ).textContent =
-        location ||
-        "Not set";
-
-
-    document.getElementById(
-        "serviceAreaRadius"
-    ).textContent =
-        serviceArea.radius
-            ? serviceArea.radius +
-              " miles"
-            : "Not set";
-
 }
 
 
-/* =========================================
-   GET JOBS
-========================================= */
+/* =========================================================
+   JOB TYPE
+========================================================= */
 
-function getJobs() {
+function getJobType(job) {
 
-    const jobs =
-        WrenchLinkStorage.get(
-            "wrenchlinkJobs",
-            []
-        );
-
-
-    return Array.isArray(jobs)
-        ? jobs
-        : [];
-
-}
-
-
-/* =========================================
-   ESCAPE HTML
-========================================= */
-
-function escapeHTML(value) {
-
-    const div =
-        document.createElement("div");
-
-
-    div.textContent =
-        value == null
-            ? ""
-            : String(value);
-
-
-    return div.innerHTML;
-
-}
-
-
-/* =========================================
-   FORMAT DATE
-========================================= */
-
-function formatDate(dateValue) {
-
-    if (!dateValue) {
-
-        return "No preferred time";
-
+    if (job.roadside) {
+        return "Roadside Assistance";
     }
 
-
-    const date =
-        new Date(dateValue);
-
-
-    if (
-        Number.isNaN(
-            date.getTime()
-        )
-    ) {
-
-        return "No preferred time";
-
-    }
-
-
-    return date.toLocaleString();
-
+    return "Repair / Service Request";
 }
 
 
-/* =========================================
+/* =========================================================
    AVAILABLE JOBS
-========================================= */
+========================================================= */
 
 function loadAvailableJobs() {
 
     const container =
         document.getElementById(
-            "availableJobList"
+            "availableJobsContainer"
         );
 
+    const jobs = getJobs();
 
-    const jobs =
-        getJobs();
+    const availableJobs = jobs.filter(function(job) {
 
-
-    /*
-     * Open jobs are available.
-     *
-     * Jobs specifically requested for another
-     * mechanic are NOT offered to everyone.
-     */
-
-    const available =
-        jobs.filter(function(job) {
-
-            if (
-                job.status !== "Open"
-            ) {
-
-                return false;
-
-            }
+        if (job.status !== "Open") {
+            return false;
+        }
 
 
-            if (
-                job.requestedMechanic &&
-                job.mechanicId &&
-                job.mechanicId !==
-                    currentUser.id
-            ) {
+        /*
+            Direct request:
+            Only the requested mechanic can see it.
+        */
 
-                return false;
-
-            }
-
-
-            return true;
-
-        });
+        if (
+            job.requestedMechanic &&
+            job.mechanicId &&
+            job.mechanicId !== currentUser.id
+        ) {
+            return false;
+        }
 
 
-    if (!available.length) {
+        return true;
+
+    });
+
+
+    if (!availableJobs.length) {
 
         container.innerHTML = `
 
-            <div class="card">
+            <div class="dashboard-card">
 
-                <h3>
-                    No Open Jobs
-                </h3>
+                <h3>No Available Jobs</h3>
 
                 <p>
-                    There are currently no open customer
-                    service requests available to you.
+                    There are currently no service
+                    requests available for you.
                 </p>
 
             </div>
@@ -795,310 +816,242 @@ function loadAvailableJobs() {
         `;
 
         return;
-
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML = availableJobs
+        .sort(function(a, b) {
+
+            return new Date(b.createdAt || 0)
+                - new Date(a.createdAt || 0);
+
+        })
+        .map(function(job) {
+
+            const directRequest =
+                job.requestedMechanic &&
+                job.mechanicId === currentUser.id;
 
 
-    available.forEach(function(job) {
+            return `
 
-        const card =
-            document.createElement("div");
+                <article class="dashboard-card job-card">
 
+                    <h3>
+                        ${escapeHTML(
+                            job.service ||
+                            "Service Request"
+                        )}
+                    </h3>
 
-        card.className =
-            "card";
-
-
-        const requestedLabel =
-            job.requestedMechanic &&
-            job.mechanicId ===
-                currentUser.id
-                ? `
                     <p>
-                        <strong>
-                            Direct Request:
-                        </strong>
-                        This customer requested you specifically.
+                        <strong>Type:</strong>
+                        ${escapeHTML(
+                            getJobType(job)
+                        )}
                     </p>
-                  `
-                : "";
 
+                    <p>
+                        <strong>Vehicle:</strong>
+                        ${escapeHTML(
+                            job.vehicle ||
+                            "Not provided"
+                        )}
+                    </p>
 
-        card.innerHTML = `
+                    <p>
+                        <strong>Customer:</strong>
+                        ${escapeHTML(
+                            job.customerName ||
+                            "Customer"
+                        )}
+                    </p>
 
-            <h3>
-                ${escapeHTML(
-                    job.service ||
-                    "Service Request"
-                )}
-            </h3>
+                    <p>
+                        <strong>Location:</strong>
+                        ${formatJobLocation(job)}
+                    </p>
 
-            ${requestedLabel}
+                    <p>
+                        <strong>Preferred Time:</strong>
+                        ${formatDate(
+                            job.preferredDateTime
+                        )}
+                    </p>
 
-            <p>
-                <strong>
-                    Vehicle:
-                </strong>
+                    <p>
+                        <strong>Details:</strong>
+                        ${escapeHTML(
+                            job.description ||
+                            "No additional details provided."
+                        )}
+                    </p>
 
-                ${escapeHTML(
-                    job.vehicle ||
-                    "Not provided"
-                )}
-            </p>
+                    ${
+                        directRequest
+                            ? `
+                                <p>
+                                    <strong>
+                                        Direct Request:
+                                    </strong>
+                                    This customer specifically
+                                    requested you.
+                                </p>
+                            `
+                            : ""
+                    }
 
-            <p>
-                <strong>
-                    Problem:
-                </strong>
+                    <button
+                        type="button"
+                        onclick="acceptJob('${escapeHTML(job.id)}')"
+                    >
+                        Accept Job
+                    </button>
 
-                ${escapeHTML(
-                    job.description ||
-                    "No description provided."
-                )}
-            </p>
+                </article>
 
-            <p>
-                <strong>
-                    Location:
-                </strong>
+            `;
 
-                ${escapeHTML(
-                    job.location ||
-                    ""
-                )}
-
-                ${
-                    job.city
-                        ? ", " +
-                          escapeHTML(
-                              job.city
-                          )
-                        : ""
-                }
-
-                ${
-                    job.state
-                        ? ", " +
-                          escapeHTML(
-                              job.state
-                          )
-                        : ""
-                }
-
-                ${
-                    job.zip
-                        ? " " +
-                          escapeHTML(
-                              job.zip
-                          )
-                        : ""
-                }
-
-            </p>
-
-            <p>
-                <strong>
-                    Preferred Time:
-                </strong>
-
-                ${escapeHTML(
-                    formatDate(
-                        job.preferredDateTime
-                    )
-                )}
-            </p>
-
-            <p>
-                <strong>
-                    Customer:
-                </strong>
-
-                ${escapeHTML(
-                    job.customerName ||
-                    "Customer"
-                )}
-            </p>
-
-            <button
-                type="button"
-                onclick="acceptJob('${encodeURIComponent(
-                    String(job.id)
-                )}')"
-            >
-                Accept Job
-            </button>
-
-        `;
-
-
-        container.appendChild(card);
-
-    });
-
+        })
+        .join("");
 }
 
 
-/* =========================================
+/* =========================================================
    ACCEPT JOB
-========================================= */
+========================================================= */
 
-function acceptJob(encodedJobId) {
+function acceptJob(jobId) {
 
-    const jobId =
-        decodeURIComponent(
-            encodedJobId
+    const jobs = getJobs();
+
+    const jobIndex =
+        jobs.findIndex(
+            job => job.id === jobId
         );
 
 
-    const jobs =
-        getJobs();
+    if (jobIndex === -1) {
 
-
-    const job =
-        jobs.find(function(item) {
-
-            return String(item.id) ===
-                String(jobId);
-
-        });
-
-
-    if (!job) {
-
-        alert(
-            "Job could not be found."
-        );
-
+        alert("Job could not be found.");
         return;
-
     }
 
 
-    if (
-        job.status !== "Open"
-    ) {
+    const job = jobs[jobIndex];
+
+
+    if (job.status !== "Open") {
 
         alert(
             "This job is no longer available."
         );
 
-        refreshDashboard();
-
+        loadAvailableJobs();
         return;
-
     }
 
-
-    /*
-     * If this was a direct request,
-     * make sure it is actually for
-     * this mechanic.
-     */
 
     if (
         job.requestedMechanic &&
         job.mechanicId &&
-        job.mechanicId !==
-            currentUser.id
+        job.mechanicId !== currentUser.id
     ) {
 
         alert(
-            "This job was requested for another mechanic."
+            "This job was requested by another mechanic."
         );
 
+        loadAvailableJobs();
         return;
-
     }
 
 
-    job.status =
-        "Accepted";
+    if (
+        !confirm(
+            "Accept this job?"
+        )
+    ) {
+        return;
+    }
 
 
-    job.mechanicId =
-        currentUser.id;
+    jobs[jobIndex] = {
+
+        ...job,
+
+        status: "Accepted",
+
+        mechanicId: currentUser.id,
+
+        mechanicName:
+            currentUser.name || "",
+
+        mechanicEmail:
+            currentUser.email || "",
+
+        mechanicPhone:
+            currentUser.phone || "",
+
+        acceptedAt:
+            new Date().toISOString()
+
+    };
 
 
-    job.mechanicName =
-        mechanicProfile.name ||
-        currentUser.name ||
-        "WrenchLink Mechanic";
-
-
-    job.mechanicEmail =
-        mechanicProfile.email ||
-        currentUser.email ||
-        "";
-
-
-    job.mechanicPhone =
-        mechanicProfile.phone ||
-        currentUser.phone ||
-        "";
-
-
-    job.acceptedAt =
-        new Date().toISOString();
-
-
-    WrenchLinkStorage.set(
+    setStorage(
         "wrenchlinkJobs",
         jobs
     );
 
 
     alert(
-        "Job accepted successfully!"
+        "Job accepted successfully."
     );
 
 
     refreshDashboard();
 
+    scrollToSection(
+        "activeJobsSection"
+    );
 }
 
 
-/* =========================================
+/* =========================================================
    ACTIVE JOBS
-========================================= */
+========================================================= */
 
 function loadActiveJobs() {
 
     const container =
         document.getElementById(
-            "activeJobList"
+            "activeJobsContainer"
         );
 
-
-    const jobs =
-        getJobs();
+    const jobs = getJobs();
 
 
-    const active =
-        jobs.filter(function(job) {
+    const activeJobs = jobs.filter(function(job) {
 
-            return (
-                job.status === "Accepted" &&
-                String(
-                    job.mechanicId
-                ) === String(
-                    currentUser.id
-                )
-            );
+        return (
+            job.status === "Accepted" &&
+            job.mechanicId === currentUser.id
+        );
 
-        });
+    });
 
 
-    if (!active.length) {
+    if (!activeJobs.length) {
 
         container.innerHTML = `
 
-            <div class="card">
+            <div class="dashboard-card">
+
+                <h3>No Active Jobs</h3>
 
                 <p>
-                    You don't have any active jobs.
+                    Jobs you accept will appear here.
                 </p>
 
             </div>
@@ -1106,42 +1059,827 @@ function loadActiveJobs() {
         `;
 
         return;
-
     }
 
 
-    container.innerHTML = "";
+    container.innerHTML = activeJobs
+        .sort(function(a, b) {
+
+            return new Date(b.acceptedAt || b.createdAt || 0)
+                - new Date(a.acceptedAt || a.createdAt || 0);
+
+        })
+        .map(function(job) {
+
+            return `
+
+                <article class="dashboard-card job-card">
+
+                    <h3>
+                        ${escapeHTML(
+                            job.service ||
+                            "Service Request"
+                        )}
+                    </h3>
+
+                    <p>
+                        <strong>Status:</strong>
+                        Accepted
+                    </p>
+
+                    <p>
+                        <strong>Customer:</strong>
+                        ${escapeHTML(
+                            job.customerName ||
+                            "Customer"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        ${
+                            job.customerPhone
+                                ? `
+                                    <a
+                                        href="tel:${escapeHTML(
+                                            job.customerPhone
+                                        )}"
+                                    >
+                                        ${escapeHTML(
+                                            job.customerPhone
+                                        )}
+                                    </a>
+                                `
+                                : "Not provided"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Email:</strong>
+                        ${
+                            job.customerEmail
+                                ? `
+                                    <a
+                                        href="mailto:${escapeHTML(
+                                            job.customerEmail
+                                        )}"
+                                    >
+                                        ${escapeHTML(
+                                            job.customerEmail
+                                        )}
+                                    </a>
+                                `
+                                : "Not provided"
+                        }
+                    </p>
+
+                    <p>
+                        <strong>Vehicle:</strong>
+                        ${escapeHTML(
+                            job.vehicle ||
+                            "Not provided"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Location:</strong>
+                        ${formatJobLocation(job)}
+                    </p>
+
+                    <p>
+                        <strong>Preferred Time:</strong>
+                        ${formatDate(
+                            job.preferredDateTime
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Details:</strong>
+                        ${escapeHTML(
+                            job.description ||
+                            "No additional details provided."
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Accepted:</strong>
+                        ${formatDate(
+                            job.acceptedAt
+                        )}
+                    </p>
+
+                    <button
+                        type="button"
+                        onclick="completeJob('${escapeHTML(job.id)}')"
+                    >
+                        Mark Job Completed
+                    </button>
+
+                </article>
+
+            `;
+
+        })
+        .join("");
+}
 
 
-    active.forEach(function(job) {
+/* =========================================================
+   COMPLETE JOB
+========================================================= */
 
-        const card =
-            document.createElement("div");
+function completeJob(jobId) {
+
+    const jobs = getJobs();
+
+    const jobIndex =
+        jobs.findIndex(
+            job => job.id === jobId
+        );
 
 
-        card.className =
-            "card";
+    if (jobIndex === -1) {
+
+        alert("Job could not be found.");
+        return;
+    }
 
 
-        card.innerHTML = `
+    const job = jobs[jobIndex];
+
+
+    if (job.mechanicId !== currentUser.id) {
+
+        alert(
+            "You are not assigned to this job."
+        );
+
+        return;
+    }
+
+
+    if (job.status !== "Accepted") {
+
+        alert(
+            "Only active jobs can be completed."
+        );
+
+        return;
+    }
+
+
+    if (
+        !confirm(
+            "Mark this job as completed?"
+        )
+    ) {
+        return;
+    }
+
+
+    jobs[jobIndex] = {
+
+        ...job,
+
+        status: "Completed",
+
+        completedAt:
+            new Date().toISOString()
+
+    };
+
+
+    setStorage(
+        "wrenchlinkJobs",
+        jobs
+    );
+
+
+    alert(
+        "Job marked as completed."
+    );
+
+
+    refreshDashboard();
+
+    scrollToSection(
+        "completedJobsSection"
+    );
+}
+
+
+/* =========================================================
+   COMPLETED JOBS
+========================================================= */
+
+function loadCompletedJobs() {
+
+    const container =
+        document.getElementById(
+            "completedJobsContainer"
+        );
+
+    const jobs = getJobs();
+
+
+    const completedJobs = jobs.filter(function(job) {
+
+        return (
+            job.status === "Completed" &&
+            job.mechanicId === currentUser.id
+        );
+
+    });
+
+
+    if (!completedJobs.length) {
+
+        container.innerHTML = `
+
+            <div class="dashboard-card">
+
+                <h3>No Completed Jobs</h3>
+
+                <p>
+                    Completed jobs will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const reviews =
+        getStorage(
+            "wrenchlinkReviews",
+            []
+        );
+
+
+    container.innerHTML = completedJobs
+        .sort(function(a, b) {
+
+            return new Date(b.completedAt || 0)
+                - new Date(a.completedAt || 0);
+
+        })
+        .map(function(job) {
+
+            const review =
+                reviews.find(
+                    review =>
+                        review.jobId === job.id
+                );
+
+
+            return `
+
+                <article class="dashboard-card job-card">
+
+                    <h3>
+                        ${escapeHTML(
+                            job.service ||
+                            "Completed Job"
+                        )}
+                    </h3>
+
+                    <p>
+                        <strong>Customer:</strong>
+                        ${escapeHTML(
+                            job.customerName ||
+                            "Customer"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Vehicle:</strong>
+                        ${escapeHTML(
+                            job.vehicle ||
+                            "Not provided"
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Completed:</strong>
+                        ${formatDate(
+                            job.completedAt
+                        )}
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        Completed
+                    </p>
+
+                    ${
+                        review
+                            ? `
+                                <p>
+                                    <strong>
+                                        Customer Rating:
+                                    </strong>
+                                    ${"★".repeat(
+                                        Number(review.rating) || 0
+                                    )}
+                                    ${"☆".repeat(
+                                        5 -
+                                        (Number(review.rating) || 0)
+                                    )}
+                                </p>
+
+                                <p>
+                                    ${escapeHTML(
+                                        review.comment ||
+                                        "No written review."
+                                    )}
+                                </p>
+                            `
+                            : `
+                                <p>
+                                    No customer review yet.
+                                </p>
+                            `
+                    }
+
+                </article>
+
+            `;
+
+        })
+        .join("");
+}
+
+
+/* =========================================================
+   REVIEWS
+========================================================= */
+
+function loadReviews() {
+
+    const container =
+        document.getElementById(
+            "reviewsContainer"
+        );
+
+    const reviews =
+        getStorage(
+            "wrenchlinkReviews",
+            []
+        );
+
+
+    const myReviews =
+        reviews.filter(function(review) {
+
+            return (
+                review.mechanicId ===
+                currentUser.id
+            );
+
+        });
+
+
+    if (!myReviews.length) {
+
+        container.innerHTML = `
+
+            <div class="dashboard-card">
+
+                <h3>No Reviews Yet</h3>
+
+                <p>
+                    Customer reviews will appear here
+                    after completed jobs.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const totalRating =
+        myReviews.reduce(
+            function(total, review) {
+
+                return total +
+                    Number(review.rating || 0);
+
+            },
+            0
+        );
+
+
+    const averageRating =
+        totalRating /
+        myReviews.length;
+
+
+    container.innerHTML = `
+
+        <div class="dashboard-card">
 
             <h3>
-                ${escapeHTML(
-                    job.service ||
-                    "Service Request"
-                )}
+                Average Rating:
+                ${averageRating.toFixed(1)} / 5
             </h3>
 
             <p>
-                <strong>
-                    Vehicle:
-                </strong>
-
-                ${escapeHTML(
-                    job.vehicle ||
-                    "Not provided"
+                ${"★".repeat(
+                    Math.round(averageRating)
+                )}
+                ${"☆".repeat(
+                    5 -
+                    Math.round(averageRating)
                 )}
             </p>
 
             <p>
-                <strong>
+                Based on
+                ${myReviews.length}
+                customer review${
+                    myReviews.length === 1
+                        ? ""
+                        : "s"
+                }.
+            </p>
+
+        </div>
+
+
+        ${myReviews
+            .sort(function(a, b) {
+
+                return new Date(
+                    b.createdAt || 0
+                ) -
+                new Date(
+                    a.createdAt || 0
+                );
+
+            })
+            .map(function(review) {
+
+                return `
+
+                    <article class="dashboard-card">
+
+                        <h3>
+                            ${escapeHTML(
+                                review.customerName ||
+                                "Customer"
+                            )}
+                        </h3>
+
+                        <p>
+                            <strong>Rating:</strong>
+                            ${"★".repeat(
+                                Number(review.rating) || 0
+                            )}
+                            ${"☆".repeat(
+                                5 -
+                                (Number(review.rating) || 0)
+                            )}
+                        </p>
+
+                        <p>
+                            ${escapeHTML(
+                                review.comment ||
+                                "No written review."
+                            )}
+                        </p>
+
+                        <small>
+                            ${formatDate(
+                                review.createdAt
+                            )}
+                        </small>
+
+                    </article>
+
+                `;
+
+            })
+            .join("")}
+
+    `;
+}
+
+
+/* =========================================================
+   VIEW MY PROFILE
+========================================================= */
+
+function viewMyProfile() {
+
+    const profile =
+        getMyMechanicProfile();
+
+
+    const profileId =
+        profile?.id ||
+        currentUser.id;
+
+
+    window.location.href =
+        "mechanic-profile.html?id=" +
+        encodeURIComponent(profileId);
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function mechanicLogout() {
+
+    if (
+        !confirm(
+            "Are you sure you want to sign out?"
+        )
+    ) {
+        return;
+    }
+
+
+    localStorage.removeItem(
+        "wrenchlinkCurrentUser"
+    );
+
+
+    window.location.href =
+        "index.html";
+}
+
+
+/* =========================================================
+   DELETE ACCOUNT
+========================================================= */
+
+function deleteMechanicAccount() {
+
+    const confirmation =
+        prompt(
+            "Type DELETE to permanently delete your mechanic account."
+        );
+
+
+    if (confirmation !== "DELETE") {
+
+        alert(
+            "Account deletion cancelled."
+        );
+
+        return;
+    }
+
+
+    let users =
+        getStorage(
+            "wrenchlinkUsers",
+            []
+        );
+
+
+    users =
+        users.filter(function(user) {
+
+            return user.id !== currentUser.id;
+
+        });
+
+
+    setStorage(
+        "wrenchlinkUsers",
+        users
+    );
+
+
+    /* Remove mechanic profile */
+
+    const profiles =
+        getMechanicProfiles();
+
+
+    delete profiles[currentUser.id];
+
+
+    setStorage(
+        "wrenchlinkMechanicProfiles",
+        profiles
+    );
+
+
+    /* Remove service area */
+
+    const areas =
+        getServiceAreas();
+
+
+    delete areas[currentUser.id];
+
+
+    setStorage(
+        "wrenchlinkServiceAreas",
+        areas
+    );
+
+
+    /* Remove legacy service area
+       only if it belongs to this mechanic */
+
+    const legacyArea =
+        getStorage(
+            "wrenchlinkServiceArea",
+            null
+        );
+
+
+    if (
+        legacyArea &&
+        (
+            !legacyArea.mechanicId ||
+            legacyArea.mechanicId === currentUser.id
+        )
+    ) {
+
+        localStorage.removeItem(
+            "wrenchlinkServiceArea"
+        );
+    }
+
+
+    /* Reset assigned jobs */
+
+    const jobs = getJobs();
+
+
+    const updatedJobs =
+        jobs.map(function(job) {
+
+            if (
+                job.mechanicId ===
+                currentUser.id
+            ) {
+
+                return {
+
+                    ...job,
+
+                    status: "Open",
+
+                    mechanicId: null,
+
+                    mechanicName: null,
+
+                    mechanicEmail: null,
+
+                    mechanicPhone: null,
+
+                    acceptedAt: null,
+
+                    completedAt: null
+
+                };
+
+            }
+
+
+            return job;
+
+        });
+
+
+    setStorage(
+        "wrenchlinkJobs",
+        updatedJobs
+    );
+
+
+    /* Remove current session */
+
+    localStorage.removeItem(
+        "wrenchlinkCurrentUser"
+    );
+
+
+    alert(
+        "Your WrenchLink mechanic account has been deleted."
+    );
+
+
+    window.location.href =
+        "index.html";
+}
+
+
+/* =========================================================
+   SCROLL
+========================================================= */
+
+function scrollToSection(sectionId) {
+
+    const section =
+        document.getElementById(
+            sectionId
+        );
+
+
+    if (!section) {
+        return;
+    }
+
+
+    section.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+    });
+}
+
+
+/* =========================================================
+   REFRESH DASHBOARD
+========================================================= */
+
+function refreshDashboard() {
+
+    loadProfile();
+
+    loadServiceArea();
+
+    loadAvailableJobs();
+
+    loadActiveJobs();
+
+    loadCompletedJobs();
+
+    loadReviews();
+
+}
+
+
+/* =========================================================
+   START DASHBOARD
+========================================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+
+        if (!checkMechanicAccess()) {
+            return;
+        }
+
+
+        const firstName =
+            currentUser.firstName ||
+            (
+                currentUser.name
+                    ? currentUser.name.split(" ")[0]
+                    : "Mechanic"
+            );
+
+
+        document.getElementById(
+            "welcomeMessage"
+        ).textContent =
+            "Welcome back, " +
+            firstName +
+            ". Manage your WrenchLink mechanic account and jobs here.";
+
+
+        const profile =
+            getMyMechanicProfile();
+
+
+        const profileId =
+            profile?.id ||
+            currentUser.id;
+
+
+        const myProfileLink =
+            document.getElementById(
+                "myProfileLink"
+            );
+
+
+        myProfileLink.href =
+            "mechanic-profile.html?id=" +
+            encodeURIComponent(profileId);
+
+
+        refreshDashboard();
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```

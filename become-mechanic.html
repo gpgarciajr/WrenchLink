@@ -1,16 +1,21 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>Become a Mechanic | WrenchLink</title>
+<title>Become a Mechanic | WrenchLink</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
 
 </head>
 
@@ -18,240 +23,910 @@
 
 <header class="header">
 
-    <div class="logo">
+```
+<div class="logo">
+    <a href="index.html">
         🔧 WrenchLink
-    </div>
-
-    <a href="index.html" class="btn btn-small">
-        Back to WrenchLink
     </a>
+</div>
+
+<a
+    href="index.html"
+    class="btn btn-small"
+>
+    Back to WrenchLink
+</a>
+```
 
 </header>
-
 
 <main>
 
 <section class="services">
 
-    <div class="section-heading">
+```
+<div class="section-heading">
 
-        <p class="eyebrow">
-            WRENCHLINK
-        </p>
+    <p class="eyebrow">
+        WRENCHLINK
+    </p>
 
-        <h1>
-            Become a Mechanic
-        </h1>
+    <h1>
+        Become a Mechanic
+    </h1>
 
-        <p>
-            Join WrenchLink and connect with customers
-            who need mobile automotive services.
-        </p>
+    <p>
+        Join WrenchLink and connect with customers
+        who need mobile automotive services.
+    </p>
 
-    </div>
-
-
-    <div class="service-card">
-
-        <form id="mechanicForm">
-
-            <label for="name">
-                Full Name
-            </label>
-
-            <input
-                id="name"
-                type="text"
-                placeholder="Your full name"
-                required
-            >
+</div>
 
 
-            <label for="email">
-                Email
-            </label>
+<div
+    id="loginNotice"
+    class="service-card"
+    style="display:none;"
+>
 
-            <input
-                id="email"
-                type="email"
-                placeholder="Your email"
-                required
-            >
+    <h3>
+        Create Your WrenchLink Account First
+    </h3>
 
+    <p>
+        You need a WrenchLink account before you can
+        create a mechanic profile.
+    </p>
 
-            <label for="phone">
-                Phone Number
-            </label>
-
-            <input
-                id="phone"
-                type="tel"
-                placeholder="Your phone number"
-                required
-            >
-
-
-            <label for="location">
-                Service Area
-            </label>
-
-            <input
-                id="location"
-                type="text"
-                placeholder="City, ZIP code, or service area"
-                required
-            >
-
-
-            <label for="experience">
-                Years of Experience
-            </label>
-
-            <select id="experience" required>
-
-                <option value="">
-                    Select experience
-                </option>
-
-                <option value="0-1">
-                    Less than 1 year
-                </option>
-
-                <option value="1-3">
-                    1–3 years
-                </option>
-
-                <option value="3-5">
-                    3–5 years
-                </option>
-
-                <option value="5-10">
-                    5–10 years
-                </option>
-
-                <option value="10+">
-                    10+ years
-                </option>
-
-            </select>
-
-
-            <label for="services">
-                Services You Provide
-            </label>
-
-            <textarea
-                id="services"
-                rows="5"
-                placeholder="Example: brakes, diagnostics, batteries, alternators, starters..."
-                required
-            ></textarea>
-
-
-            <label for="about">
-                Tell Customers About Yourself
-            </label>
-
-            <textarea
-                id="about"
-                rows="5"
-                placeholder="Describe your experience and the services you offer."
-            ></textarea>
-
-
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-                🧰 Apply to Become a Mechanic
-            </button>
-
-        </form>
-
-    </div>
-
-
-    <div
-        id="mechanicMessage"
-        class="service-card"
-        style="display: none; margin-top: 25px;"
+    <a
+        href="login.html"
+        class="btn btn-primary"
     >
+        Sign In
+    </a>
 
-        <div class="service-icon">
-            ✅
-        </div>
+    <a
+        href="signup.html"
+        class="btn"
+    >
+        Create Account
+    </a>
 
-        <h3>
-            Application Started
-        </h3>
+</div>
 
-        <p>
-            Your mechanic application information has been received.
-        </p>
 
-        <p>
-            The next step will connect this application to
-            WrenchLink's mechanic approval system.
-        </p>
+<div
+    id="alreadyMechanic"
+    class="service-card"
+    style="display:none;"
+>
 
+    <div class="service-icon">
+        🔧
     </div>
+
+    <h3>
+        You're Already a Mechanic
+    </h3>
+
+    <p>
+        Your mechanic account is already active.
+    </p>
+
+    <a
+        href="mechanic-dashboard.html"
+        class="btn btn-primary"
+    >
+        Go to Mechanic Dashboard
+    </a>
+
+</div>
+
+
+<div
+    id="mechanicApplication"
+    class="service-card"
+    style="display:none;"
+>
+
+    <form id="mechanicForm">
+
+
+        <label for="name">
+            Full Name
+        </label>
+
+        <input
+            id="name"
+            type="text"
+            placeholder="Your full name"
+            required
+        >
+
+
+        <label for="email">
+            Email
+        </label>
+
+        <input
+            id="email"
+            type="email"
+            placeholder="Your email"
+            required
+        >
+
+
+        <label for="phone">
+            Phone Number
+        </label>
+
+        <input
+            id="phone"
+            type="tel"
+            placeholder="Your phone number"
+            required
+        >
+
+
+        <label for="city">
+            Service Area City
+        </label>
+
+        <input
+            id="city"
+            type="text"
+            placeholder="Example: Chicago"
+            required
+        >
+
+
+        <label for="state">
+            State
+        </label>
+
+        <input
+            id="state"
+            type="text"
+            maxlength="2"
+            placeholder="Example: IL"
+            required
+        >
+
+
+        <label for="zip">
+            ZIP Code
+        </label>
+
+        <input
+            id="zip"
+            type="text"
+            inputmode="numeric"
+            maxlength="10"
+            placeholder="Example: 60601"
+            required
+        >
+
+
+        <label for="radius">
+            Service Radius
+        </label>
+
+        <select
+            id="radius"
+            required
+        >
+
+            <option value="">
+                Select service radius
+            </option>
+
+            <option value="5">
+                5 miles
+            </option>
+
+            <option value="10">
+                10 miles
+            </option>
+
+            <option value="15">
+                15 miles
+            </option>
+
+            <option value="20">
+                20 miles
+            </option>
+
+            <option value="25">
+                25 miles
+            </option>
+
+            <option value="30">
+                30 miles
+            </option>
+
+            <option value="50">
+                50 miles
+            </option>
+
+        </select>
+
+
+        <label for="experience">
+            Years of Experience
+        </label>
+
+        <select
+            id="experience"
+            required
+        >
+
+            <option value="">
+                Select experience
+            </option>
+
+            <option value="0-1">
+                Less than 1 year
+            </option>
+
+            <option value="1-3">
+                1–3 years
+            </option>
+
+            <option value="3-5">
+                3–5 years
+            </option>
+
+            <option value="5-10">
+                5–10 years
+            </option>
+
+            <option value="10+">
+                10+ years
+            </option>
+
+        </select>
+
+
+        <label for="services">
+            Services You Provide
+        </label>
+
+        <textarea
+            id="services"
+            rows="5"
+            placeholder="Example: brakes, diagnostics, batteries, alternators, starters..."
+            required
+        ></textarea>
+
+        <small>
+            Separate services with commas.
+        </small>
+
+
+        <label for="about">
+            Tell Customers About Yourself
+        </label>
+
+        <textarea
+            id="about"
+            rows="5"
+            placeholder="Describe your experience and the services you offer."
+        ></textarea>
+
+
+        <div
+            id="formMessage"
+            style="display:none;"
+        ></div>
+
+
+        <button
+            type="submit"
+            class="btn btn-primary"
+        >
+            🧰 Become a WrenchLink Mechanic
+        </button>
+
+    </form>
+
+</div>
+
+
+<div
+    id="successMessage"
+    class="service-card"
+    style="display:none; margin-top:25px;"
+>
+
+    <div class="service-icon">
+        ✅
+    </div>
+
+    <h3>
+        Welcome to WrenchLink!
+    </h3>
+
+    <p>
+        Your mechanic profile has been created successfully.
+    </p>
+
+    <p>
+        You can now manage your profile, service area,
+        jobs, customers, and mechanic account from your dashboard.
+    </p>
+
+    <a
+        href="mechanic-dashboard.html"
+        class="btn btn-primary"
+    >
+        Go to Mechanic Dashboard
+    </a>
+
+</div>
+```
 
 </section>
 
 </main>
 
-
 <footer class="footer">
 
-    <div>
+```
+<div>
 
-        <strong>🔧 WrenchLink</strong>
+    <strong>
+        🔧 WrenchLink
+    </strong>
 
-        <p>
-            Connecting drivers with mobile mechanics.
-        </p>
+    <p>
+        Connecting drivers with mobile mechanics.
+    </p>
 
-    </div>
+</div>
 
 
-    <div class="footer-links">
+<div class="footer-links">
 
-        <a href="privacy.html">
-            Privacy
-        </a>
+    <a href="privacy.html">
+        Privacy
+    </a>
 
-        <a href="terms.html">
-            Terms
-        </a>
+    <a href="terms.html">
+        Terms
+    </a>
 
-        <a href="contact.html">
-            Contact
-        </a>
+    <a href="contact.html">
+        Contact
+    </a>
 
-    </div>
+</div>
+```
 
 </footer>
 
+<script src="app.js"></script>
 
 <script>
 
-document
-    .getElementById("mechanicForm")
-    .addEventListener("submit", function(event) {
+document.addEventListener("DOMContentLoaded", function () {
 
-        event.preventDefault();
 
-        document
-            .getElementById("mechanicMessage")
-            .style.display = "block";
+    /*
+     * Get the currently logged-in WrenchLink user.
+     */
 
-        document
-            .getElementById("mechanicMessage")
-            .scrollIntoView({
-                behavior: "smooth"
+    const currentUser =
+        getCurrentUser();
+
+
+    const loginNotice =
+        document.getElementById("loginNotice");
+
+    const alreadyMechanic =
+        document.getElementById("alreadyMechanic");
+
+    const mechanicApplication =
+        document.getElementById("mechanicApplication");
+
+    const successMessage =
+        document.getElementById("successMessage");
+
+
+    /*
+     * User must have an account before becoming
+     * a mechanic.
+     */
+
+    if (!currentUser) {
+
+        loginNotice.style.display =
+            "block";
+
+        return;
+    }
+
+
+    /*
+     * Admin accounts should stay in the
+     * administration area.
+     */
+
+    if (currentUser.role === "admin") {
+
+        window.location.href =
+            "admin/index.html";
+
+        return;
+    }
+
+
+    /*
+     * If the user is already a mechanic,
+     * don't create a second mechanic profile.
+     */
+
+    if (currentUser.role === "mechanic") {
+
+        alreadyMechanic.style.display =
+            "block";
+
+        return;
+    }
+
+
+    /*
+     * Customer is allowed to become a mechanic.
+     */
+
+    mechanicApplication.style.display =
+        "block";
+
+
+    /*
+     * Prefill existing customer information.
+     */
+
+    document.getElementById("name").value =
+        currentUser.name || "";
+
+    document.getElementById("email").value =
+        currentUser.email || "";
+
+    document.getElementById("phone").value =
+        currentUser.phone || "";
+
+
+    /*
+     * Load any existing customer profile
+     * information if available.
+     */
+
+    const customerProfiles =
+        WrenchLinkStorage.get(
+            "wrenchlinkCustomerProfiles",
+            {}
+        );
+
+
+    const customerProfile =
+        customerProfiles[currentUser.id] || {};
+
+
+    if (customerProfile.name) {
+
+        document.getElementById("name").value =
+            customerProfile.name;
+    }
+
+
+    if (customerProfile.email) {
+
+        document.getElementById("email").value =
+            customerProfile.email;
+    }
+
+
+    if (customerProfile.phone) {
+
+        document.getElementById("phone").value =
+            customerProfile.phone;
+    }
+
+
+    if (customerProfile.city) {
+
+        document.getElementById("city").value =
+            customerProfile.city;
+    }
+
+
+    if (customerProfile.state) {
+
+        document.getElementById("state").value =
+            customerProfile.state;
+    }
+
+
+    if (customerProfile.zip) {
+
+        document.getElementById("zip").value =
+            customerProfile.zip;
+    }
+
+
+    /*
+     * Submit mechanic application.
+     */
+
+    document
+        .getElementById("mechanicForm")
+        .addEventListener("submit", function (event) {
+
+            event.preventDefault();
+
+
+            const name =
+                document.getElementById("name")
+                    .value
+                    .trim();
+
+            const email =
+                document.getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+            const phone =
+                document.getElementById("phone")
+                    .value
+                    .trim();
+
+            const city =
+                document.getElementById("city")
+                    .value
+                    .trim();
+
+            const state =
+                document.getElementById("state")
+                    .value
+                    .trim()
+                    .toUpperCase();
+
+            const zip =
+                document.getElementById("zip")
+                    .value
+                    .trim();
+
+            const radius =
+                document.getElementById("radius")
+                    .value;
+
+            const experience =
+                document.getElementById("experience")
+                    .value;
+
+            const servicesText =
+                document.getElementById("services")
+                    .value
+                    .trim();
+
+            const about =
+                document.getElementById("about")
+                    .value
+                    .trim();
+
+
+            const formMessage =
+                document.getElementById("formMessage");
+
+
+            /*
+             * Basic validation.
+             */
+
+            if (
+                !name ||
+                !email ||
+                !phone ||
+                !city ||
+                !state ||
+                !zip ||
+                !radius ||
+                !experience ||
+                !servicesText
+            ) {
+
+                formMessage.style.display =
+                    "block";
+
+                formMessage.textContent =
+                    "Please complete all required fields.";
+
+                return;
+            }
+
+
+            if (state.length !== 2) {
+
+                formMessage.style.display =
+                    "block";
+
+                formMessage.textContent =
+                    "Please enter a two-letter state abbreviation.";
+
+                return;
+            }
+
+
+            /*
+             * Convert services into an array.
+             */
+
+            const services =
+                servicesText
+                    .split(",")
+                    .map(function (service) {
+                        return service.trim();
+                    })
+                    .filter(function (service) {
+                        return service.length > 0;
+                    });
+
+
+            /*
+             * Get all existing users.
+             */
+
+            const users =
+                WrenchLinkStorage.get(
+                    "wrenchlinkUsers",
+                    []
+                );
+
+
+            /*
+             * Find the current user's account.
+             */
+
+            const userIndex =
+                users.findIndex(function (user) {
+                    return user.id === currentUser.id;
+                });
+
+
+            /*
+             * Make sure the account still exists.
+             */
+
+            if (userIndex === -1) {
+
+                formMessage.style.display =
+                    "block";
+
+                formMessage.textContent =
+                    "Your WrenchLink account could not be found. Please sign in again.";
+
+                return;
+            }
+
+
+            /*
+             * Convert the account to a mechanic.
+             */
+
+            const updatedUser = {
+
+                ...users[userIndex],
+
+                name: name,
+
+                firstName:
+                    name.split(" ")[0],
+
+                lastName:
+                    name.split(" ").slice(1).join(" "),
+
+                email: email,
+
+                phone: phone,
+
+                role: "mechanic",
+
+                mechanicId:
+                    currentUser.id,
+
+                mechanicSince:
+                    new Date().toISOString()
+
+            };
+
+
+            users[userIndex] =
+                updatedUser;
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkUsers",
+                users
+            );
+
+
+            /*
+             * Create the mechanic profile.
+             */
+
+            const mechanicProfiles =
+                WrenchLinkStorage.get(
+                    "wrenchlinkMechanicProfiles",
+                    {}
+                );
+
+
+            mechanicProfiles[currentUser.id] = {
+
+                id:
+                    currentUser.id,
+
+                userId:
+                    currentUser.id,
+
+                name: name,
+
+                email: email,
+
+                phone: phone,
+
+                experience: experience,
+
+                services: services,
+
+                about: about,
+
+                createdAt:
+                    new Date().toISOString(),
+
+                updatedAt:
+                    new Date().toISOString()
+
+            };
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkMechanicProfiles",
+                mechanicProfiles
+            );
+
+
+            /*
+             * Create the mechanic's service area.
+             */
+
+            const serviceAreas =
+                WrenchLinkStorage.get(
+                    "wrenchlinkServiceAreas",
+                    {}
+                );
+
+
+            serviceAreas[currentUser.id] = {
+
+                mechanicId:
+                    currentUser.id,
+
+                city: city,
+
+                state: state,
+
+                zip: zip,
+
+                radius: radius,
+
+                updatedAt:
+                    new Date().toISOString()
+
+            };
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkServiceAreas",
+                serviceAreas
+            );
+
+
+            /*
+             * Keep the legacy service-area key
+             * updated for compatibility.
+             */
+
+            WrenchLinkStorage.set(
+                "wrenchlinkServiceArea",
+                serviceAreas[currentUser.id]
+            );
+
+
+            /*
+             * Update the logged-in session.
+             */
+
+            setCurrentUser({
+
+                ...currentUser,
+
+                name: name,
+
+                firstName:
+                    name.split(" ")[0],
+
+                lastName:
+                    name.split(" ").slice(1).join(" "),
+
+                email: email,
+
+                phone: phone,
+
+                role: "mechanic",
+
+                mechanicId:
+                    currentUser.id
+
             });
 
-    });
+
+            /*
+             * Remove the old customer profile because
+             * this account is now operating as a mechanic.
+             *
+             * The account itself is NOT deleted.
+             */
+
+            const updatedCustomerProfiles =
+                WrenchLinkStorage.get(
+                    "wrenchlinkCustomerProfiles",
+                    {}
+                );
+
+
+            delete updatedCustomerProfiles[currentUser.id];
+
+
+            WrenchLinkStorage.set(
+                "wrenchlinkCustomerProfiles",
+                updatedCustomerProfiles
+            );
+
+
+            /*
+             * Hide the application and show success.
+             */
+
+            mechanicApplication.style.display =
+                "none";
+
+            successMessage.style.display =
+                "block";
+
+
+            successMessage.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+
+
+            /*
+             * Send the mechanic to their dashboard
+             * after a short confirmation.
+             */
+
+            setTimeout(function () {
+
+                window.location.href =
+                    "mechanic-dashboard.html";
+
+            }, 1500);
+
+        });
+
+});
 
 </script>
 

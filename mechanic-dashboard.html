@@ -7,7 +7,6 @@
     <title>Mechanic Dashboard | WrenchLink</title>
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <header>
@@ -15,1234 +14,620 @@
         <a href="index.html" class="logo">🔧 WrenchLink</a>
 
         <nav>
+            <a href="index.html">Home</a>
             <a href="mechanics.html">Find a Mechanic</a>
             <a href="services.html">Services</a>
-            <a href="mechanic-profile.html" id="profileLink">My Profile</a>
-            <a href="account-settings.html">Account</a>
-            <button type="button" class="btn btn-small" id="logoutButton">Sign Out</button>
+            <a href="mechanic-dashboard.html">Dashboard</a>
+            <button type="button" id="signOutButton" class="btn btn-small">
+                Sign Out
+            </button>
         </nav>
     </div>
 </header>
 
-
-<main>
+<main class="container">
 
     <section class="page-header">
-        <div class="container">
-            <p class="eyebrow">MECHANIC DASHBOARD</p>
-            <h1 id="welcomeTitle">Mechanic Dashboard</h1>
-            <p id="profileSummary">Loading your account...</p>
+        <h1 id="welcomeHeading">Mechanic Dashboard</h1>
+        <p>Manage your service requests, customers, availability, and mechanic profile.</p>
+    </section>
+
+    <section class="dashboard-actions">
+        <a href="edit-mechanic-profile.html" class="btn">Edit Profile</a>
+        <a href="service-area.html" class="btn">Service Area</a>
+        <a href="mechanics.html" class="btn">View Marketplace</a>
+        <a href="account-settings.html" class="btn btn-secondary">Account Settings</a>
+    </section>
+
+    <section class="card">
+        <h2>My Availability</h2>
+        <p>Turn availability off when you aren't accepting new jobs.</p>
+
+        <label class="checkbox-row" for="availabilityToggle">
+            <input type="checkbox" id="availabilityToggle">
+            <span id="availabilityLabel">Available for new jobs</span>
+        </label>
+
+        <p id="availabilityMessage" role="status"></p>
+    </section>
+
+    <section>
+        <h2>My Overview</h2>
+
+        <div class="dashboard-stats">
+            <div class="card">
+                <h3>Available Jobs</h3>
+                <p id="availableCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Active Jobs</h3>
+                <p id="activeCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Completed Jobs</h3>
+                <p id="completedCount">0</p>
+            </div>
+
+            <div class="card">
+                <h3>Average Rating</h3>
+                <p id="averageRating">No ratings</p>
+            </div>
         </div>
     </section>
 
+    <section>
+        <h2>Available Service Requests</h2>
+        <p>Accept an eligible request to assign it to yourself.</p>
+        <div id="availableJobs"></div>
+    </section>
 
     <section>
-        <div class="container">
+        <h2>My Active Jobs</h2>
+        <p>Manage requests that you have accepted.</p>
+        <div id="activeJobs"></div>
+    </section>
 
-            <div id="dashboardMessage"></div>
+    <section>
+        <h2>Completed Jobs</h2>
+        <div id="completedJobs"></div>
+    </section>
 
-            <div class="dashboard-grid">
+    <section>
+        <h2>Customer Reviews</h2>
+        <div id="reviewsContainer"></div>
+    </section>
 
-                <div class="dashboard-card">
-                    <h2>Available Jobs</h2>
-                    <strong id="availableCount">0</strong>
-                    <p>Jobs currently available in the marketplace.</p>
-                </div>
+    <section class="card">
+        <h2>Account Management</h2>
+        <p>Update your mechanic profile, service area, or account details.</p>
 
-                <div class="dashboard-card">
-                    <h2>Active Jobs</h2>
-                    <strong id="activeCount">0</strong>
-                    <p>Jobs you have accepted and are working on.</p>
-                </div>
-
-                <div class="dashboard-card">
-                    <h2>Completed</h2>
-                    <strong id="completedCount">0</strong>
-                    <p>Jobs you have completed.</p>
-                </div>
-
-                <div class="dashboard-card">
-                    <h2>Rating</h2>
-                    <strong id="ratingValue">—</strong>
-                    <p id="ratingReviews">No reviews yet.</p>
-                </div>
-
-            </div>
-
-
-            <div class="dashboard-card">
-                <h2>Service Area</h2>
-                <p id="serviceAreaText">Not set.</p>
-
-                <a href="service-area.html" class="btn">
-                    Edit Service Area
-                </a>
-            </div>
-
-
-            <div class="dashboard-card">
-                <h2>Available Jobs</h2>
-                <div id="availableJobs">
-                    Loading...
-                </div>
-            </div>
-
-
-            <div class="dashboard-card">
-                <h2>Active Jobs</h2>
-                <div id="activeJobs">
-                    Loading...
-                </div>
-            </div>
-
-
-            <div class="dashboard-card">
-                <h2>Completed Jobs</h2>
-                <div id="completedJobs">
-                    Loading...
-                </div>
-            </div>
-
-
-            <div class="dashboard-card">
-                <h2>Customer Reviews</h2>
-                <div id="reviewsList">
-                    Loading...
-                </div>
-            </div>
-
-
-            <div class="dashboard-card">
-                <h2>Account</h2>
-
-                <a href="edit-mechanic-profile.html" class="btn">
-                    Edit Profile
-                </a>
-
-                <a href="service-area.html" class="btn">
-                    Edit Service Area
-                </a>
-
-                <a href="account-settings.html" class="btn">
-                    Account Settings
-                </a>
-
-                <button
-                    type="button"
-                    class="btn"
-                    id="deleteAccountButton"
-                >
-                    Delete Account
-                </button>
-            </div>
-
-        </div>
+        <a href="edit-mechanic-profile.html" class="btn">Edit Mechanic Profile</a>
+        <a href="service-area.html" class="btn">Update Service Area</a>
+        <a href="account-settings.html" class="btn btn-secondary">Account Settings</a>
     </section>
 
 </main>
 
-
-<footer>
-    <div class="container">
-        <p>&copy; 2026 WrenchLink. All rights reserved.</p>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
-    </div>
-</footer>
-
-
 <script src="app.js"></script>
-<script src="marketplace-data.js"></script>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
-
-    "use strict";
-
-
-    function readStorage(key, fallback) {
-
-        try {
-
-            const value = localStorage.getItem(key);
-
-            if (!value) return fallback;
-
-            return JSON.parse(value);
-
-        } catch (error) {
-
-            return fallback;
-
-        }
-
-    }
-
-
-    function writeStorage(key, value) {
-
-        localStorage.setItem(
-            key,
-            JSON.stringify(value)
-        );
-
-    }
-
-
-    function escapeHTML(value) {
-
-        return String(value ?? "")
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
-
-    }
-
-
-    function getCurrentUser() {
-
-        return readStorage(
-            "wrenchlinkCurrentUser",
-            null
-        );
-
-    }
-
 
     const currentUser = getCurrentUser();
 
-
     if (!currentUser) {
-
-        window.location.href = "login.html";
+        location.href = "login.html";
         return;
-
     }
-
-
-    if (currentUser.role === "customer") {
-
-        window.location.href =
-            "customer-dashboard.html";
-
-        return;
-
-    }
-
 
     if (currentUser.role === "admin") {
-
-        window.location.href =
-            "admin/index.html";
-
+        location.href = "admin/index.html";
         return;
-
     }
-
 
     if (currentUser.role !== "mechanic") {
-
-        window.location.href = "login.html";
+        location.href = "customer-dashboard.html";
         return;
-
     }
-
 
     const mechanicId = currentUser.id;
 
+    const availableJobsElement = document.getElementById("availableJobs");
+    const activeJobsElement = document.getElementById("activeJobs");
+    const completedJobsElement = document.getElementById("completedJobs");
+    const reviewsElement = document.getElementById("reviewsContainer");
 
-    const profileStore =
-        readStorage(
-            "wrenchlinkMechanicProfiles",
-            {}
-        );
+    function read(key, fallback) {
+        return WrenchLinkStorage.get(key, fallback);
+    }
 
+    function save(key, value) {
+        WrenchLinkStorage.set(key, value);
+    }
 
-    const serviceAreaStore =
-        readStorage(
-            "wrenchlinkServiceAreas",
-            {}
-        );
+    function escapeHTML(value) {
+        return String(value ?? "").replace(/[&<>"']/g, function (character) {
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#39;"
+            }[character];
+        });
+    }
 
+    function formatDate(value) {
+        if (!value) return "Not specified";
 
-    const profile =
-        profileStore[mechanicId] || {};
+        const date = new Date(value);
 
+        if (Number.isNaN(date.getTime())) {
+            return "Not specified";
+        }
 
-    const serviceArea =
-        serviceAreaStore[mechanicId] || {};
+        return date.toLocaleString();
+    }
 
+    function getUsers() {
+        return read("wrenchlinkUsers", []);
+    }
 
-    const jobs =
-        readStorage(
-            "wrenchlinkJobs",
-            []
-        );
+    function getJobs() {
+        return read("wrenchlinkJobs", []);
+    }
 
+    function getReviews() {
+        return read("wrenchlinkReviews", []);
+    }
 
-    const reviews =
-        readStorage(
-            "wrenchlinkReviews",
-            []
-        );
+    function getProfile() {
+        const profiles = read("wrenchlinkMechanicProfiles", {});
+        return profiles[mechanicId] || {};
+    }
 
+    function getServiceArea() {
+        const areas = read("wrenchlinkServiceAreas", {});
+        const savedArea = areas[mechanicId];
 
-    const welcomeTitle =
-        document.getElementById("welcomeTitle");
+        if (savedArea) return savedArea;
 
+        const legacyArea = read("wrenchlinkServiceArea", null);
 
-    const profileSummary =
-        document.getElementById("profileSummary");
+        if (legacyArea && legacyArea.mechanicId === mechanicId) {
+            return legacyArea;
+        }
 
+        return {};
+    }
 
-    const name =
-        profile.name ||
-        currentUser.name ||
-        "Mechanic";
+    function getCustomer(job) {
+        const users = getUsers();
+        const customer = users.find(function (user) {
+            return user.id === job.customerId;
+        });
 
+        const profiles = read("wrenchlinkCustomerProfiles", {});
+        const profile = profiles[job.customerId] || {};
 
-    welcomeTitle.textContent =
-        "Welcome, " + name;
+        return {
+            name: profile.name || customer?.name || job.customerName || "Customer",
+            email: profile.email || customer?.email || job.customerEmail || "",
+            phone: profile.phone || customer?.phone || job.customerPhone || ""
+        };
+    }
 
+    function getCurrentAvailability() {
+        const profile = getProfile();
+        const users = getUsers();
 
-    profileSummary.textContent =
-        profile.about ||
-        "Manage your mechanic profile, service area, and jobs.";
+        const storedUser = users.find(function (user) {
+            return user.id === mechanicId;
+        });
 
+        if (profile.available !== undefined) {
+            return Boolean(profile.available);
+        }
 
-    document.getElementById(
-        "profileLink"
-    ).href =
-        "mechanic-profile.html?id=" +
-        encodeURIComponent(mechanicId);
+        if (storedUser?.available !== undefined) {
+            return Boolean(storedUser.available);
+        }
 
+        return currentUser.available !== false;
+    }
 
-    const availableJobsElement =
-        document.getElementById("availableJobs");
+    function setAvailability(isAvailable) {
+        const profiles = read("wrenchlinkMechanicProfiles", {});
+        const users = getUsers();
 
+        profiles[mechanicId] = {
+            ...profiles[mechanicId],
+            id: mechanicId,
+            userId: mechanicId,
+            available: isAvailable,
+            updatedAt: new Date().toISOString()
+        };
 
-    const activeJobsElement =
-        document.getElementById("activeJobs");
+        save("wrenchlinkMechanicProfiles", profiles);
 
+        const userIndex = users.findIndex(function (user) {
+            return user.id === mechanicId;
+        });
 
-    const completedJobsElement =
-        document.getElementById("completedJobs");
+        if (userIndex !== -1) {
+            users[userIndex] = {
+                ...users[userIndex],
+                available: isAvailable
+            };
 
+            save("wrenchlinkUsers", users);
+        }
 
-    const reviewsElement =
-        document.getElementById("reviewsList");
+        setCurrentUser({
+            ...getCurrentUser(),
+            available: isAvailable
+        });
 
+        document.getElementById("availabilityLabel").textContent =
+            isAvailable
+                ? "Available for new jobs"
+                : "Not accepting new jobs";
 
-    function formatLocation(job) {
+        document.getElementById("availabilityMessage").textContent =
+            isAvailable
+                ? "You can receive new service requests."
+                : "You will not be shown as available for new requests.";
 
-        const parts = [
+        renderDashboard();
+    }
+
+    function canAcceptJob(job) {
+        if (!job || job.status !== "Open") {
+            return false;
+        }
+
+        if (job.mechanicId) {
+            return job.mechanicId === mechanicId &&
+                   job.requestedMechanic === true;
+        }
+
+        return true;
+    }
+
+    function updateJob(jobId, updater) {
+        const jobs = getJobs();
+
+        const index = jobs.findIndex(function (job) {
+            return job.id === jobId;
+        });
+
+        if (index === -1) {
+            return {
+                success: false,
+                message: "This job no longer exists."
+            };
+        }
+
+        const updated = updater(jobs[index]);
+
+        if (!updated) {
+            return {
+                success: false,
+                message: "This job could not be updated."
+            };
+        }
+
+        jobs[index] = updated;
+        save("wrenchlinkJobs", jobs);
+
+        return {
+            success: true,
+            job: updated
+        };
+    }
+
+    function renderJobCard(job, mode) {
+        const customer = getCustomer(job);
+
+        const isRoadside = job.roadside === true ||
+            Boolean(job.roadsideService);
+
+        const serviceName = job.roadsideService ||
+            job.service ||
+            "Vehicle service";
+
+        const locationParts = [
+            job.location,
             job.city,
             job.state,
             job.zip
         ].filter(Boolean);
 
+        const locationText = [...new Set(locationParts)].join(", ");
 
-        if (parts.length) {
-            return parts.join(", ");
+        let actions = "";
+
+        if (mode === "available") {
+            actions = `
+                <button type="button" class="btn"
+                    data-action="accept"
+                    data-id="${escapeHTML(job.id)}">
+                    Accept Job
+                </button>
+            `;
         }
 
-
-        return job.location || "Location not provided";
-
-    }
-
-
-    function formatDate(value) {
-
-        if (!value) return "Not scheduled";
-
-
-        const date =
-            new Date(value);
-
-
-        if (Number.isNaN(date.getTime())) {
-            return "Not scheduled";
+        if (mode === "active") {
+            actions = `
+                ${customer.phone
+                    ? `<p><strong>Customer Phone:</strong>
+                        <a href="tel:${escapeHTML(customer.phone)}">${escapeHTML(customer.phone)}</a>
+                    </p>`
+                    : ""}
+                ${customer.email
+                    ? `<p><strong>Customer Email:</strong>
+                        <a href="mailto:${escapeHTML(customer.email)}">${escapeHTML(customer.email)}</a>
+                    </p>`
+                    : ""}
+                <button type="button" class="btn"
+                    data-action="complete"
+                    data-id="${escapeHTML(job.id)}">
+                    Mark Completed
+                </button>
+            `;
         }
 
+        if (mode === "completed") {
+            const jobReviews = getReviews().filter(function (review) {
+                return review.jobId === job.id &&
+                       review.mechanicId === mechanicId;
+            });
 
-        return date.toLocaleString();
-
-    }
-
-
-    function isDirectRequest(job) {
-
-        return (
-            job.mechanicId === mechanicId &&
-            job.requestedMechanic === true &&
-            job.status === "Open"
-        );
-
-    }
-
-
-    function isOpenForMechanic(job) {
-
-        if (job.status !== "Open") {
-            return false;
+            actions = jobReviews.length
+                ? "<p>Customer review received.</p>"
+                : "<p>No review submitted yet.</p>";
         }
-
-
-        if (job.requestedMechanic) {
-            return job.mechanicId === mechanicId;
-        }
-
-
-        return true;
-
-    }
-
-
-    function renderJob(job, actionHTML) {
-
-        const roadsideLabel =
-            job.roadside
-                ? "🚨 " +
-                  escapeHTML(
-                      job.roadsideService ||
-                      "Roadside Assistance"
-                  )
-                : escapeHTML(
-                      job.service ||
-                      "Service Request"
-                  );
-
 
         return `
-            <div class="job-card">
+            <article class="card job-card">
+                <h3>${escapeHTML(serviceName)}</h3>
 
-                <h3>${roadsideLabel}</h3>
-
-                <p>
-                    <strong>Job ID:</strong>
-                    ${escapeHTML(job.id)}
+                <p><strong>Request ID:</strong> ${escapeHTML(job.id)}</p>
+                <p><strong>Request Type:</strong>
+                    ${isRoadside ? "Roadside Assistance" : "Repair Job"}
+                </p>
+                <p><strong>Customer:</strong> ${escapeHTML(customer.name)}</p>
+                <p><strong>Vehicle:</strong> ${escapeHTML(job.vehicle || "Not specified")}</p>
+                <p><strong>Description:</strong>
+                    ${escapeHTML(job.description || job.vehicleDetails || "No description provided")}
+                </p>
+                <p><strong>Location:</strong>
+                    ${escapeHTML(locationText || "Not specified")}
+                </p>
+                <p><strong>Preferred Time:</strong>
+                    ${escapeHTML(formatDate(job.preferredDateTime))}
+                </p>
+                <p><strong>Status:</strong> ${escapeHTML(job.status)}</p>
+                <p><strong>Created:</strong>
+                    ${escapeHTML(formatDate(job.createdAt))}
                 </p>
 
-                <p>
-                    <strong>Customer:</strong>
-                    ${escapeHTML(
-                        job.customerName ||
-                        "Customer"
-                    )}
-                </p>
-
-                <p>
-                    <strong>Vehicle:</strong>
-                    ${escapeHTML(
-                        job.vehicle ||
-                        "Vehicle not provided"
-                    )}
-                </p>
-
-                <p>
-                    <strong>Location:</strong>
-                    ${escapeHTML(
-                        formatLocation(job)
-                    )}
-                </p>
-
-                <p>
-                    <strong>Preferred Time:</strong>
-                    ${escapeHTML(
-                        formatDate(
-                            job.preferredDateTime
-                        )
-                    )}
-                </p>
-
-                <p>
-                    <strong>Description:</strong>
-                    ${escapeHTML(
-                        job.description ||
-                        "No description provided."
-                    )}
-                </p>
-
-                <p>
-                    <strong>Status:</strong>
-                    ${escapeHTML(
-                        job.status
-                    )}
-                </p>
-
-                <div>
-                    ${actionHTML}
-                </div>
-
-            </div>
+                ${actions}
+            </article>
         `;
-
     }
 
+    function renderReviews() {
+        const reviews = getReviews().filter(function (review) {
+            return review.mechanicId === mechanicId;
+        });
+
+        if (reviews.length === 0) {
+            document.getElementById("averageRating").textContent = "No ratings";
+            reviewsElement.innerHTML = `
+                <div class="card">
+                    <p>You have not received any customer reviews yet.</p>
+                </div>
+            `;
+            return;
+        }
+
+        const totalRating = reviews.reduce(function (total, review) {
+            return total + Number(review.rating || 0);
+        }, 0);
+
+        const average = totalRating / reviews.length;
+
+        document.getElementById("averageRating").textContent =
+            average.toFixed(1) + " / 5 (" + reviews.length + ")";
+
+        reviewsElement.innerHTML = reviews
+            .slice()
+            .sort(function (a, b) {
+                return new Date(b.createdAt || 0) -
+                       new Date(a.createdAt || 0);
+            })
+            .map(function (review) {
+                return `
+                    <article class="card">
+                        <h3>${escapeHTML(review.customerName || "Customer")}</h3>
+                        <p><strong>Rating:</strong>
+                            ${escapeHTML(review.rating)} / 5
+                        </p>
+                        <p>${escapeHTML(review.comment || "No written comment.")}</p>
+                        <p><small>${escapeHTML(formatDate(review.createdAt))}</small></p>
+                    </article>
+                `;
+            }).join("");
+    }
 
     function renderDashboard() {
+        const jobs = getJobs();
 
-        const openJobs =
-            jobs.filter(
-                isOpenForMechanic
-            );
+        const availableJobs = jobs.filter(function (job) {
+            return canAcceptJob(job);
+        });
 
+        const activeJobs = jobs.filter(function (job) {
+            return job.mechanicId === mechanicId &&
+                   job.status === "Accepted";
+        });
 
-        const activeJobs =
-            jobs.filter(function (job) {
+        const completedJobs = jobs.filter(function (job) {
+            return job.mechanicId === mechanicId &&
+                   job.status === "Completed";
+        });
 
-                return (
-                    job.status === "Accepted" &&
-                    job.mechanicId === mechanicId
-                );
+        document.getElementById("availableCount").textContent =
+            availableJobs.length;
 
-            });
-
-
-        const completedJobs =
-            jobs.filter(function (job) {
-
-                return (
-                    job.status === "Completed" &&
-                    job.mechanicId === mechanicId
-                );
-
-            });
-
-
-        document.getElementById(
-            "availableCount"
-        ).textContent =
-            openJobs.length;
-
-
-        document.getElementById(
-            "activeCount"
-        ).textContent =
+        document.getElementById("activeCount").textContent =
             activeJobs.length;
 
-
-        document.getElementById(
-            "completedCount"
-        ).textContent =
+        document.getElementById("completedCount").textContent =
             completedJobs.length;
 
+        availableJobsElement.innerHTML = availableJobs.length
+            ? availableJobs.map(job => renderJobCard(job, "available")).join("")
+            : `<div class="card"><p>No eligible jobs are currently available.</p></div>`;
 
-        const myReviews =
-            reviews.filter(function (review) {
+        activeJobsElement.innerHTML = activeJobs.length
+            ? activeJobs.map(job => renderJobCard(job, "active")).join("")
+            : `<div class="card"><p>You have no active jobs.</p></div>`;
 
-                return review.mechanicId === mechanicId;
+        completedJobsElement.innerHTML = completedJobs.length
+            ? completedJobs.map(job => renderJobCard(job, "completed")).join("")
+            : `<div class="card"><p>Your completed jobs will appear here.</p></div>`;
 
+        renderReviews();
+    }
+
+    function handleJobAction(event) {
+        const button = event.target.closest("button[data-action]");
+
+        if (!button) return;
+
+        const action = button.dataset.action;
+        const jobId = button.dataset.id;
+
+        if (action === "accept") {
+            if (!getCurrentAvailability()) {
+                alert("Turn on your availability before accepting new jobs.");
+                return;
+            }
+
+            const result = updateJob(jobId, function (job) {
+                if (!canAcceptJob(job)) {
+                    return null;
+                }
+
+                return {
+                    ...job,
+                    mechanicId: mechanicId,
+                    mechanicName: currentUser.name || "",
+                    mechanicEmail: currentUser.email || "",
+                    mechanicPhone: currentUser.phone || "",
+                    status: "Accepted",
+                    acceptedAt: new Date().toISOString()
+                };
             });
 
+            if (!result.success) {
+                alert("This job is no longer available to accept.");
+                renderDashboard();
+                return;
+            }
 
-        let averageRating = 0;
-
-
-        if (myReviews.length) {
-
-            averageRating =
-                myReviews.reduce(
-                    function (sum, review) {
-
-                        return sum +
-                            (Number(review.rating) || 0);
-
-                    },
-                    0
-                ) / myReviews.length;
-
+            alert("Job accepted. You can now contact the customer.");
+            renderDashboard();
         }
 
+        if (action === "complete") {
+            const jobs = getJobs();
 
-        document.getElementById(
-            "ratingValue"
-        ).textContent =
-            myReviews.length
-                ? averageRating.toFixed(1) + " / 5"
-                : "—";
+            const job = jobs.find(function (item) {
+                return item.id === jobId;
+            });
 
+            if (!job ||
+                job.mechanicId !== mechanicId ||
+                job.status !== "Accepted") {
+                alert("You can only complete jobs assigned to you that are currently accepted.");
+                renderDashboard();
+                return;
+            }
 
-        document.getElementById(
-            "ratingReviews"
-        ).textContent =
-            myReviews.length +
-            " review" +
-            (myReviews.length === 1
-                ? ""
-                : "s");
+            if (!confirm("Mark this job as completed?")) {
+                return;
+            }
 
+            const result = updateJob(jobId, function (currentJob) {
+                if (currentJob.mechanicId !== mechanicId ||
+                    currentJob.status !== "Accepted") {
+                    return null;
+                }
 
-        const areaParts = [
-            serviceArea.city,
-            serviceArea.state,
-            serviceArea.zip
-        ].filter(Boolean);
+                return {
+                    ...currentJob,
+                    status: "Completed",
+                    completedAt: new Date().toISOString()
+                };
+            });
 
+            if (!result.success) {
+                alert("The job status changed or the job is no longer available.");
+                renderDashboard();
+                return;
+            }
 
-        document.getElementById(
-            "serviceAreaText"
-        ).textContent =
-            areaParts.length
-                ? areaParts.join(", ") +
-                  (
-                      serviceArea.radius
-                          ? " — " +
-                            serviceArea.radius +
-                            " mile radius"
-                          : ""
-                  )
-                : "Service area not set.";
-
-
-        if (!openJobs.length) {
-
-            availableJobsElement.innerHTML =
-                "<p>No jobs are currently available.</p>";
-
-        } else {
-
-            availableJobsElement.innerHTML =
-                openJobs.map(function (job) {
-
-                    const buttonText =
-                        isDirectRequest(job)
-                            ? "Accept Direct Request"
-                            : "Accept Job";
-
-
-                    return renderJob(
-                        job,
-                        `
-                            <button
-                                type="button"
-                                class="btn"
-                                data-accept-job="${escapeHTML(job.id)}"
-                            >
-                                ${buttonText}
-                            </button>
-                        `
-                    );
-
-                }).join("");
-
+            alert("Job marked as completed.");
+            renderDashboard();
         }
-
-
-        if (!activeJobs.length) {
-
-            activeJobsElement.innerHTML =
-                "<p>You have no active jobs.</p>";
-
-        } else {
-
-            activeJobsElement.innerHTML =
-                activeJobs.map(function (job) {
-
-                    return renderJob(
-                        job,
-                        `
-                            <a
-                                href="tel:${escapeHTML(
-                                    job.customerPhone || ""
-                                )}"
-                                class="btn"
-                                ${job.customerPhone
-                                    ? ""
-                                    : "hidden"}
-                            >
-                                Call Customer
-                            </a>
-
-                            <a
-                                href="mailto:${escapeHTML(
-                                    job.customerEmail || ""
-                                )}"
-                                class="btn"
-                                ${job.customerEmail
-                                    ? ""
-                                    : "hidden"}
-                            >
-                                Email Customer
-                            </a>
-
-                            <button
-                                type="button"
-                                class="btn"
-                                data-complete-job="${escapeHTML(job.id)}"
-                            >
-                                Mark Completed
-                            </button>
-                        `
-                    );
-
-                }).join("");
-
-        }
-
-
-        if (!completedJobs.length) {
-
-            completedJobsElement.innerHTML =
-                "<p>You have no completed jobs yet.</p>";
-
-        } else {
-
-            completedJobsElement.innerHTML =
-                completedJobs.map(function (job) {
-
-                    const review =
-                        reviews.find(function (item) {
-
-                            return item.jobId === job.id;
-
-                        });
-
-
-                    return `
-                        <div class="job-card">
-
-                            <h3>
-                                ${escapeHTML(
-                                    job.service ||
-                                    job.roadsideService ||
-                                    "Completed Job"
-                                )}
-                            </h3>
-
-                            <p>
-                                <strong>Customer:</strong>
-                                ${escapeHTML(
-                                    job.customerName
-                                )}
-                            </p>
-
-                            <p>
-                                <strong>Vehicle:</strong>
-                                ${escapeHTML(
-                                    job.vehicle
-                                )}
-                            </p>
-
-                            <p>
-                                <strong>Completed:</strong>
-                                ${escapeHTML(
-                                    formatDate(
-                                        job.completedAt
-                                    )
-                                )}
-                            </p>
-
-                            <p>
-                                <strong>Review:</strong>
-                                ${
-                                    review
-                                        ? escapeHTML(
-                                            Number(
-                                                review.rating
-                                            ) +
-                                            "/5"
-                                          )
-                                        : "Waiting for customer review."
-                                }
-                            </p>
-
-                        </div>
-                    `;
-
-                }).join("");
-
-        }
-
-
-        if (!myReviews.length) {
-
-            reviewsElement.innerHTML =
-                "<p>No customer reviews yet.</p>";
-
-        } else {
-
-            reviewsElement.innerHTML =
-                [...myReviews]
-                    .sort(function (a, b) {
-
-                        return new Date(
-                            b.createdAt || 0
-                        ) -
-                        new Date(
-                            a.createdAt || 0
-                        );
-
-                    })
-                    .map(function (review) {
-
-                        return `
-                            <div class="review-item">
-
-                                <strong>
-                                    ${escapeHTML(
-                                        review.customerName ||
-                                        "Customer"
-                                    )}
-                                </strong>
-
-                                <p>
-                                    ${"★".repeat(
-                                        Math.max(
-                                            0,
-                                            Math.min(
-                                                5,
-                                                Number(
-                                                    review.rating
-                                                ) || 0
-                                            )
-                                        )
-                                    )}
-                                </p>
-
-                                <p>
-                                    ${escapeHTML(
-                                        review.comment ||
-                                        "No written comment."
-                                    )}
-                                </p>
-
-                                <small>
-                                    ${escapeHTML(
-                                        formatDate(
-                                            review.createdAt
-                                        )
-                                    )}
-                                </small>
-
-                            </div>
-                        `;
-
-                    })
-                    .join("");
-
-        }
-
     }
 
+    availableJobsElement.addEventListener("click", handleJobAction);
+    activeJobsElement.addEventListener("click", handleJobAction);
 
-    function updateJob(jobId, updates) {
+    document.getElementById("availabilityToggle").checked =
+        getCurrentAvailability();
 
-        const currentJobs =
-            readStorage(
-                "wrenchlinkJobs",
-                []
-            );
+    document.getElementById("availabilityToggle").addEventListener("change", function () {
+        setAvailability(this.checked);
+    });
 
+    document.getElementById("signOutButton").addEventListener("click", function () {
+        logout();
+    });
 
-        const index =
-            currentJobs.findIndex(
-                function (job) {
+    const profile = getProfile();
+    const area = getServiceArea();
 
-                    return job.id === jobId;
+    document.getElementById("welcomeHeading").textContent =
+        "Welcome, " + (profile.name || currentUser.name || "Mechanic");
 
-                }
-            );
+    document.getElementById("availabilityLabel").textContent =
+        getCurrentAvailability()
+            ? "Available for new jobs"
+            : "Not accepting new jobs";
 
+    if (area.city && area.state) {
+        const radius = area.radius
+            ? " · " + escapeHTML(area.radius) + " miles"
+            : "";
 
-        if (index === -1) {
-            return false;
-        }
+        const areaNotice = document.createElement("p");
+        areaNotice.innerHTML =
+            "<strong>Service Area:</strong> " +
+            escapeHTML(area.city) + ", " +
+            escapeHTML(area.state) + radius;
 
-
-        currentJobs[index] = {
-            ...currentJobs[index],
-            ...updates
-        };
-
-
-        writeStorage(
-            "wrenchlinkJobs",
-            currentJobs
-        );
-
-
-        return true;
-
+        document.querySelector(".page-header").appendChild(areaNotice);
     }
-
-
-    document.addEventListener(
-        "click",
-        function (event) {
-
-            const acceptButton =
-                event.target.closest(
-                    "[data-accept-job]"
-                );
-
-
-            if (acceptButton) {
-
-                const jobId =
-                    acceptButton.dataset.acceptJob;
-
-
-                const currentJobs =
-                    readStorage(
-                        "wrenchlinkJobs",
-                        []
-                    );
-
-
-                const job =
-                    currentJobs.find(
-                        function (item) {
-
-                            return item.id === jobId;
-
-                        }
-                    );
-
-
-                if (!job) {
-                    return;
-                }
-
-
-                if (job.status !== "Open") {
-
-                    alert(
-                        "This job is no longer available."
-                    );
-
-                    renderDashboard();
-
-                    return;
-
-                }
-
-
-                if (
-                    job.requestedMechanic === true &&
-                    job.mechanicId !== mechanicId
-                ) {
-
-                    alert(
-                        "This job was requested by another mechanic."
-                    );
-
-                    renderDashboard();
-
-                    return;
-
-                }
-
-
-                const accepted =
-                    updateJob(
-                        jobId,
-                        {
-                            mechanicId,
-                            mechanicName:
-                                profile.name ||
-                                currentUser.name,
-                            mechanicEmail:
-                                profile.email ||
-                                currentUser.email ||
-                                null,
-                            mechanicPhone:
-                                profile.phone ||
-                                currentUser.phone ||
-                                null,
-                            status: "Accepted",
-                            acceptedAt:
-                                new Date().toISOString()
-                        }
-                    );
-
-
-                if (accepted) {
-
-                    alert(
-                        "Job accepted."
-                    );
-
-                    window.location.reload();
-
-                }
-
-                return;
-
-            }
-
-
-            const completeButton =
-                event.target.closest(
-                    "[data-complete-job]"
-                );
-
-
-            if (completeButton) {
-
-                const jobId =
-                    completeButton.dataset.completeJob;
-
-
-                const currentJobs =
-                    readStorage(
-                        "wrenchlinkJobs",
-                        []
-                    );
-
-
-                const job =
-                    currentJobs.find(
-                        function (item) {
-
-                            return item.id === jobId;
-
-                        }
-                    );
-
-
-                if (!job) return;
-
-
-                if (
-                    job.mechanicId !== mechanicId
-                ) {
-
-                    alert(
-                        "You are not assigned to this job."
-                    );
-
-                    return;
-
-                }
-
-
-                if (
-                    job.status !== "Accepted"
-                ) {
-
-                    alert(
-                        "Only accepted jobs can be completed."
-                    );
-
-                    return;
-
-                }
-
-
-                if (!confirm(
-                    "Mark this job as completed?"
-                )) {
-
-                    return;
-
-                }
-
-
-                updateJob(
-                    jobId,
-                    {
-                        status: "Completed",
-                        completedAt:
-                            new Date().toISOString()
-                    }
-                );
-
-
-                window.location.reload();
-
-            }
-
-        }
-    );
-
-
-    document.getElementById(
-        "logoutButton"
-    ).addEventListener(
-        "click",
-        function () {
-
-            localStorage.removeItem(
-                "wrenchlinkCurrentUser"
-            );
-
-            window.location.href =
-                "index.html";
-
-        }
-    );
-
-
-    document.getElementById(
-        "deleteAccountButton"
-    ).addEventListener(
-        "click",
-        function () {
-
-            if (!confirm(
-                "Delete your mechanic account? This cannot be undone."
-            )) {
-
-                return;
-
-            }
-
-
-            let users =
-                readStorage(
-                    "wrenchlinkUsers",
-                    []
-                );
-
-
-            users =
-                users.filter(
-                    function (user) {
-
-                        return user.id !== mechanicId;
-
-                    }
-                );
-
-
-            writeStorage(
-                "wrenchlinkUsers",
-                users
-            );
-
-
-            const profiles =
-                readStorage(
-                    "wrenchlinkMechanicProfiles",
-                    {}
-                );
-
-
-            delete profiles[mechanicId];
-
-
-            writeStorage(
-                "wrenchlinkMechanicProfiles",
-                profiles
-            );
-
-
-            const areas =
-                readStorage(
-                    "wrenchlinkServiceAreas",
-                    {}
-                );
-
-
-            delete areas[mechanicId];
-
-
-            writeStorage(
-                "wrenchlinkServiceAreas",
-                areas
-            );
-
-
-            let currentJobs =
-                readStorage(
-                    "wrenchlinkJobs",
-                    []
-                );
-
-
-            currentJobs =
-                currentJobs.map(
-                    function (job) {
-
-                        if (
-                            job.mechanicId !== mechanicId
-                        ) {
-
-                            return job;
-
-                        }
-
-
-                        if (
-                            job.status === "Completed"
-                        ) {
-
-                            return job;
-
-                        }
-
-
-                        return {
-                            ...job,
-                            mechanicId: null,
-                            mechanicName: null,
-                            mechanicEmail: null,
-                            mechanicPhone: null,
-                            requestedMechanic: false,
-                            status: "Open",
-                            acceptedAt: null
-                        };
-
-                    }
-                );
-
-
-            writeStorage(
-                "wrenchlinkJobs",
-                currentJobs
-            );
-
-
-            let currentReviews =
-                readStorage(
-                    "wrenchlinkReviews",
-                    []
-                );
-
-
-            currentReviews =
-                currentReviews.filter(
-                    function (review) {
-
-                        return review.mechanicId !== mechanicId;
-
-                    }
-                );
-
-
-            writeStorage(
-                "wrenchlinkReviews",
-                currentReviews
-            );
-
-
-            localStorage.removeItem(
-                "wrenchlinkCurrentUser"
-            );
-
-
-            alert(
-                "Your mechanic account has been deleted."
-            );
-
-
-            window.location.href =
-                "index.html";
-
-        }
-    );
-
 
     renderDashboard();
-
 });
-
 </script>
 
 </body>

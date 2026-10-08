@@ -4,159 +4,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#111315">
     <title>Sign In | WrenchLink</title>
     <link rel="stylesheet" href="style.css">
     <style>
-        body {
-            background: #111315;
-            color: #f5f5f5;
+        .login-page {
+            max-width: 540px;
+            margin: 40px auto;
+            padding: 24px;
         }
 
 ```
-    .login-page {
-        width: min(100% - 32px, 480px);
-        margin: 50px auto;
-    }
-
     .login-card {
-        background: #1b1e22;
-        border: 1px solid #393d43;
+        background: #191c20;
+        color: #f5f5f5;
+        border: 1px solid #34383e;
         border-radius: 14px;
         padding: 28px;
     }
 
     .login-card h1,
+    .login-card h2,
     .login-card p,
     .login-card label {
         color: #f5f5f5;
     }
 
+    .login-card label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
     .login-card input {
         display: block;
-        width: 100%;
         box-sizing: border-box;
-        margin: 8px 0 20px;
-        padding: 13px;
-        border: 1px solid #50555c;
-        border-radius: 7px;
-        background: #111315;
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 18px;
+        background: #101214;
         color: #ffffff;
-        font-size: 16px;
+        border: 1px solid #50545b;
+        border-radius: 7px;
     }
 
     .login-card input::placeholder {
-        color: #b9bec6;
+        color: #b7bbc2;
     }
 
-    .login-card input:focus {
-        outline: 2px solid #f4b942;
-        border-color: #f4b942;
-    }
-
-    .login-submit {
+    .login-card button,
+    .login-card .login-link {
+        display: inline-block;
+        box-sizing: border-box;
         width: 100%;
-        padding: 13px;
-        border: 0;
+        padding: 12px 16px;
+        border: 1px solid #f4b942;
         border-radius: 7px;
         background: #f4b942;
         color: #111315;
-        font-size: 16px;
-        font-weight: 700;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
         cursor: pointer;
     }
 
-    .login-submit:disabled {
-        opacity: 0.65;
-        cursor: wait;
+    .login-card .login-link {
+        margin-top: 12px;
+        background: transparent;
+        color: #f4b942;
     }
 
-    .login-message {
+    #loginMessage {
         display: none;
-        margin: 16px 0;
         padding: 12px;
+        margin: 12px 0 18px;
         border-radius: 7px;
-        line-height: 1.5;
         overflow-wrap: anywhere;
     }
 
-    .login-message.error {
+    #loginMessage.error {
         display: block;
-        background: #351b1b;
-        border: 1px solid #a94444;
-        color: #ffdada;
+        color: #ffffff;
+        background: #642c2c;
+        border: 1px solid #e07b7b;
     }
 
-    .login-message.success {
+    #loginMessage.success {
         display: block;
-        background: #173322;
-        border: 1px solid #378451;
-        color: #d7ffe3;
+        color: #ffffff;
+        background: #20472e;
+        border: 1px solid #65c785;
     }
 
-    .login-links {
-        margin-top: 22px;
-        text-align: center;
-    }
-
-    .login-links a {
-        color: #f4b942;
+    .login-divider {
+        margin: 24px 0 12px;
+        border-top: 1px solid #41454c;
     }
 </style>
 ```
 
 </head>
 <body>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">🔧 WrenchLink</a>
+            <a href="index.html" class="btn btn-small">Back to WrenchLink</a>
+        </div>
+    </header>
 
-<header class="site-header">
-    <div class="container nav-container">
-        <a href="index.html" class="logo">🔧 WrenchLink</a>
-        <a href="index.html" class="btn btn-small">Home</a>
-    </div>
-</header>
-
-<main class="login-page">
-    <section class="login-card">
-        <p style="color:#f4b942;font-weight:700;">YOUR WRENCHLINK ACCOUNT</p>
+```
+<main class="container section login-page">
+    <div class="section-heading">
+        <p class="eyebrow">WRENCHLINK ACCOUNT</p>
         <h1>Sign In</h1>
-        <p>Sign in to access your dashboard and manage your account.</p>
-
-```
-    <form id="loginForm" novalidate>
-        <label for="email">Email Address</label>
-        <input
-            id="email"
-            name="email"
-            type="email"
-            autocomplete="email"
-            placeholder="Enter your email address"
-            required
-        >
-
-        <label for="password">Password</label>
-        <input
-            id="password"
-            name="password"
-            type="password"
-            autocomplete="current-password"
-            placeholder="Enter your password"
-            required
-        >
-
-        <div id="loginMessage" class="login-message" role="alert" aria-live="polite"></div>
-
-        <button id="loginButton" class="login-submit" type="submit">
-            Sign In
-        </button>
-    </form>
-
-    <div class="login-links">
-        <p>Don't have an account?</p>
-        <a href="signup.html">Create a WrenchLink Account</a>
+        <p>Sign in to manage your jobs, profile, requests, and account.</p>
     </div>
-</section>
-```
 
+    <section class="login-card">
+        <form id="loginForm" novalidate>
+            <label for="email">Email</label>
+            <input
+                id="email"
+                name="email"
+                type="email"
+                placeholder="Enter your email"
+                autocomplete="email"
+                required
+            >
+
+            <label for="password">Password</label>
+            <input
+                id="password"
+                name="password"
+                type="password"
+                placeholder="Enter your password"
+                autocomplete="current-password"
+                required
+            >
+
+            <div id="loginMessage" role="alert" aria-live="polite"></div>
+
+            <button type="submit">Sign In</button>
+        </form>
+
+        <div class="login-divider"></div>
+
+        <p>Don't have a WrenchLink account?</p>
+        <a href="signup.html" class="login-link">Create Account</a>
+    </section>
 </main>
 
 <footer class="site-footer">
@@ -165,123 +158,125 @@
             <strong>🔧 WrenchLink</strong>
             <p>Connecting drivers with mobile mechanics.</p>
         </div>
+
         <div class="footer-links">
             <a href="privacy.html">Privacy</a>
             <a href="terms.html">Terms</a>
             <a href="contact.html">Contact</a>
         </div>
     </div>
+
     <div class="footer-bottom">
         <p>© 2026 WrenchLink. All rights reserved.</p>
     </div>
 </footer>
 
-<script src="app.js"></script>
-
 <script>
-(function () {
-    "use strict";
+    (function () {
+        const form = document.getElementById("loginForm");
+        const emailInput = document.getElementById("email");
+        const passwordInput = document.getElementById("password");
+        const message = document.getElementById("loginMessage");
 
-    const form = document.getElementById("loginForm");
-    const emailInput = document.getElementById("email");
-    const passwordInput = document.getElementById("password");
-    const message = document.getElementById("loginMessage");
-    const button = document.getElementById("loginButton");
-
-    function showMessage(text, type) {
-        message.textContent = text;
-        message.className = "login-message " + type;
-    }
-
-    form.addEventListener("submit", function (event) {
-        event.preventDefault();
-
-        const email = emailInput.value.trim().toLowerCase();
-        const password = passwordInput.value;
-
-        message.textContent = "";
-        message.className = "login-message";
-
-        if (!email || !password) {
-            showMessage("Please enter both your email address and password.", "error");
-            return;
+        function readStorage(key, fallback) {
+            try {
+                const stored = localStorage.getItem(key);
+                return stored === null ? fallback : JSON.parse(stored);
+            } catch (error) {
+                return fallback;
+            }
         }
 
-        let users;
-
-        try {
-            users = JSON.parse(localStorage.getItem("wrenchlinkUsers") || "[]");
-        } catch (error) {
-            showMessage("Your saved account data could not be read. Please refresh the page and try again.", "error");
-            return;
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = type;
         }
 
-        if (!Array.isArray(users)) {
-            showMessage("Your saved account data is invalid. Please contact support.", "error");
-            return;
-        }
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
 
-        const user = users.find(function (account) {
-            return account &&
-                String(account.email || "").trim().toLowerCase() === email;
-        });
+            const email = emailInput.value.trim().toLowerCase();
+            const password = passwordInput.value;
 
-        if (!user) {
-            showMessage(
-                "ACCOUNT DOES NOT EXIST. No WrenchLink account was found with that email address. Check the email or create an account.",
-                "error"
-            );
-            return;
-        }
+            message.textContent = "";
+            message.className = "";
 
-        if (String(user.password || "") !== password) {
-            showMessage("INCORRECT PASSWORD. That email is registered, but the password doesn't match.", "error");
-            passwordInput.value = "";
-            passwordInput.focus();
-            return;
-        }
+            if (!email || !password) {
+                showMessage("Please enter your email and password.", "error");
+                return;
+            }
 
-        const currentUser = {
-            id: user.id,
-            firstName: user.firstName || "",
-            lastName: user.lastName || "",
-            name: user.name || (
-                (user.firstName || "") + " " + (user.lastName || "")
-            ).trim(),
-            email: user.email,
-            role: user.role || "customer",
-            mechanicId: user.mechanicId || null
-        };
+            const users = readStorage("wrenchlinkUsers", []);
 
-        try {
-            if (typeof setCurrentUser === "function") {
-                setCurrentUser(currentUser);
-            } else {
+            if (!Array.isArray(users)) {
+                showMessage(
+                    "Your saved account data could not be read. Please refresh the page and try again.",
+                    "error"
+                );
+                return;
+            }
+
+            const user = users.find(function (account) {
+                return String(account.email || "").trim().toLowerCase() === email;
+            });
+
+            if (!user) {
+                showMessage(
+                    "ACCOUNT DOES NOT EXIST. No WrenchLink account was found with that email. Check the address or create an account.",
+                    "error"
+                );
+                return;
+            }
+
+            if (user.password !== password) {
+                showMessage(
+                    "INCORRECT PASSWORD. An account exists for this email, but the password does not match.",
+                    "error"
+                );
+                return;
+            }
+
+            const currentUser = {
+                id: user.id,
+                firstName: user.firstName || "",
+                lastName: user.lastName || "",
+                name: user.name || (
+                    (user.firstName || "") + " " + (user.lastName || "")
+                ).trim(),
+                email: user.email,
+                phone: user.phone || "",
+                role: user.role || "customer",
+                mechanicId: user.mechanicId || null
+            };
+
+            try {
                 localStorage.setItem(
                     "wrenchlinkCurrentUser",
                     JSON.stringify(currentUser)
                 );
+            } catch (error) {
+                showMessage(
+                    "Sign in failed because this browser could not save your session.",
+                    "error"
+                );
+                return;
             }
-        } catch (error) {
-            showMessage("We couldn't save your login session. Please try again.", "error");
-            return;
-        }
 
-        showMessage("Login successful! Opening your dashboard...", "success");
-        button.disabled = true;
+            showMessage("Sign in successful. Redirecting...", "success");
 
-        const role = String(user.role || "customer").toLowerCase();
-
-        if (role === "admin") {
-            window.location.href = "admin/index.html";
-        } else if (role === "mechanic") {
-            window.location.href = "mechanic-dashboard.html";
-        } else {
-            window.location.href = "customer-dashboard.html";
-        }
-    });
-})();
+            window.setTimeout(function () {
+                if (currentUser.role === "admin") {
+                    window.location.href = "admin/index.html";
+                } else if (currentUser.role === "mechanic") {
+                    window.location.href = "mechanic-dashboard.html";
+                } else {
+                    window.location.href = "customer-dashboard.html";
+                }
+            }, 500);
+        });
+    })();
 </script>
+```
 
 </body>
 </html>

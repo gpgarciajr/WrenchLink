@@ -1,708 +1,1002 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<meta charset="UTF-8">
+    <title>Customer Dashboard | WrenchLink</title>
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    <link rel="stylesheet" href="style.css">
 
-<title>Customer Dashboard | WrenchLink</title>
-
-<link
-    rel="stylesheet"
-    href="style.css"
->
-```
-
+    <script src="app.js" defer></script>
+    <script src="marketplace-data.js" defer></script>
 </head>
 
 <body>
 
-<header class="site-header">
+<header>
+    <div class="container">
 
-```
-<div class="container nav-container">
+        <div class="header-content">
 
-    <a
-        href="index.html"
-        class="logo"
-    >
-        🔧 WrenchLink
-    </a>
+            <a href="index.html" class="logo">
+                🔧 WrenchLink
+            </a>
 
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="mechanics.html">Find a Mechanic</a>
+                <a href="services.html">Services</a>
+                <a href="account-settings.html">Account</a>
+            </nav>
 
-    <nav>
+        </div>
 
-        <a href="index.html">
-            Home
-        </a>
-
-        <a href="mechanics.html">
-            Find a Mechanic
-        </a>
-
-        <a href="services.html">
-            Services
-        </a>
-
-        <a href="about.html">
-            About
-        </a>
-
-    </nav>
-
-
-    <button
-        type="button"
-        class="btn btn-small"
-        onclick="signOut()"
-    >
-        Sign Out
-    </button>
-
-</div>
-```
-
+    </div>
 </header>
 
-<main>
 
-<section class="container section">
+<main class="container">
 
-```
-<div class="page-hero">
+    <section class="page-header">
 
-    <p class="eyebrow">
-        CUSTOMER ACCOUNT
-    </p>
+        <h1>Customer Dashboard</h1>
 
-
-    <h1>
-        Customer Dashboard
-    </h1>
-
-
-    <p id="welcomeMessage">
-        Welcome to WrenchLink.
-    </p>
-
-</div>
-
-
-
-<!-- QUICK ACTIONS -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            QUICK ACTIONS
+        <p id="welcomeMessage">
+            Manage your WrenchLink account and service requests.
         </p>
 
-        <h2>
-            What Do You Need?
-        </h2>
-
-    </div>
+    </section>
 
 
-    <div class="card-grid">
+    <!-- QUICK ACTIONS -->
 
+    <section>
 
-        <div class="card">
+        <div class="dashboard-grid">
 
-            <div class="service-icon">
-                🔧
+            <div class="dashboard-card">
+
+                <h2>Find a Mechanic</h2>
+
+                <p>
+                    Browse mobile mechanics and find someone for your vehicle.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='mechanics.html'"
+                >
+                    Find a Mechanic
+                </button>
+
             </div>
 
-            <h3>
-                Find a Mechanic
-            </h3>
 
-            <p>
-                Search mobile mechanics by service,
-                location, availability, and rating.
-            </p>
+            <div class="dashboard-card">
 
-            <a
-                href="mechanics.html"
-                class="btn btn-primary"
-            >
-                Find a Mechanic
-            </a>
+                <h2>Post a Job</h2>
+
+                <p>
+                    Tell mechanics what service you need.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='post-job.html'"
+                >
+                    Post a Job
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h2>Roadside Assistance</h2>
+
+                <p>
+                    Request emergency roadside assistance.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='roadside.html'"
+                >
+                    Get Roadside Help
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h2>My Profile</h2>
+
+                <p>
+                    Update your customer information and vehicle.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='customer-profile.html'"
+                >
+                    Edit Profile
+                </button>
+
+            </div>
 
         </div>
 
+    </section>
 
 
-        <div class="card">
+    <!-- CUSTOMER INFORMATION -->
 
-            <div class="service-icon">
-                📋
-            </div>
+    <section>
 
-            <h3>
-                Post a Job
-            </h3>
+        <div class="section-header">
 
-            <p>
-                Tell mechanics what your vehicle needs
-                and receive service requests.
-            </p>
-
-            <a
-                href="post-job.html"
-                class="btn btn-primary"
-            >
-                Post a Job
-            </a>
-
-        </div>
-
-
-
-        <div class="card">
-
-            <div class="service-icon">
-                🚨
-            </div>
-
-            <h3>
-                Roadside Assistance
-            </h3>
-
-            <p>
-                Get help when your vehicle leaves
-                you stranded.
-            </p>
-
-            <a
-                href="roadside.html"
-                class="btn btn-primary"
-            >
-                Get Roadside Help
-            </a>
-
-        </div>
-
-
-    </div>
-
-</section>
-
-
-
-<!-- PROFILE -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            MY ACCOUNT
-        </p>
-
-        <h2>
-            My Profile
-        </h2>
-
-    </div>
-
-
-    <div class="card">
-
-
-        <p>
-
-            <strong>
-                Name:
-            </strong>
-
-            <span id="profileName">
-                Not set
-            </span>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Email:
-            </strong>
-
-            <span id="profileEmail">
-                Not set
-            </span>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Phone:
-            </strong>
-
-            <span id="profilePhone">
-                Not set
-            </span>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Location:
-            </strong>
-
-            <span id="profileLocation">
-                Not set
-            </span>
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Vehicle:
-            </strong>
-
-            <span id="profileVehicle">
-                Not set
-            </span>
-
-        </p>
-
-
-        <div class="button-row">
+            <h2>My Information</h2>
 
             <a
                 href="customer-profile.html"
-                class="btn btn-primary"
+                class="btn"
             >
-                Edit My Profile
-            </a>
-
-
-            <a
-                href="account-settings.html"
-                class="btn btn-secondary"
-            >
-                Account Settings
+                Edit Profile
             </a>
 
         </div>
 
-
-    </div>
-
-</section>
-
-
-
-<!-- SERVICE REQUESTS -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            MY REQUESTS
-        </p>
-
-        <h2>
-            Service Requests
-        </h2>
-
-        <p>
-            Track the jobs you've posted through WrenchLink.
-        </p>
-
-    </div>
-
-
-    <div id="jobList"></div>
-
-</section>
-
-
-
-<!-- ACCOUNT -->
-
-<section class="section">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            ACCOUNT
-        </p>
-
-        <h2>
-            Manage Account
-        </h2>
-
-    </div>
-
-
-    <div class="card-grid">
-
-
-        <div class="card">
-
-            <div class="service-icon">
-                ⚙️
-            </div>
-
-            <h3>
-                Account Settings
-            </h3>
-
-            <p>
-                Manage your account information
-                and preferences.
-            </p>
-
-            <a
-                href="account-settings.html"
-                class="btn btn-secondary"
-            >
-                Account Settings
-            </a>
-
+        <div id="profileContainer">
+            Loading profile...
         </div>
 
+    </section>
 
 
-        <div class="card">
+    <!-- MY JOBS -->
 
-            <div class="service-icon">
-                🚪
-            </div>
+    <section id="jobsSection">
 
-            <h3>
-                Sign Out
-            </h3>
+        <div class="section-header">
 
-            <p>
-                Sign out of your WrenchLink account
-                on this browser.
-            </p>
+            <h2>My Service Requests</h2>
 
             <button
                 type="button"
-                class="btn btn-secondary"
-                onclick="signOut()"
+                onclick="loadCustomerJobs()"
             >
-                Sign Out
+                Refresh
             </button>
 
         </div>
 
+        <div id="jobsContainer">
+            Loading jobs...
+        </div>
+
+    </section>
 
 
-        <div class="card">
+    <!-- ACCOUNT -->
 
-            <div class="service-icon">
-                ⚠️
-            </div>
+    <section>
 
-            <h3>
-                Delete Account
-            </h3>
+        <div class="section-header">
 
-            <p>
-                Permanently remove your local
-                WrenchLink account and information.
-            </p>
-
-            <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="deleteAccount()"
-            >
-                Delete Account
-            </button>
+            <h2>Account</h2>
 
         </div>
 
+        <div class="dashboard-grid">
 
-    </div>
+            <div class="dashboard-card">
 
-</section>
-```
+                <h3>Account Settings</h3>
 
-</section>
+                <p>
+                    Manage your account information and password settings.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='account-settings.html'"
+                >
+                    Account Settings
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>Sign Out</h3>
+
+                <p>
+                    Sign out of your WrenchLink account.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="logoutCustomer()"
+                >
+                    Sign Out
+                </button>
+
+            </div>
+
+
+            <div class="dashboard-card">
+
+                <h3>Delete Account</h3>
+
+                <p>
+                    Permanently delete your WrenchLink account.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="deleteCustomerAccount()"
+                >
+                    Delete Account
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
 
 </main>
 
-<footer class="site-footer">
-
-```
-<div class="container footer-container">
-
-
-    <div class="footer-brand">
-
-        <strong>
-            🔧 WrenchLink
-        </strong>
-
-        <p>
-            Connecting drivers with mobile mechanics.
-        </p>
-
-    </div>
-
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
-
-    </div>
-
-
-</div>
-
-
-
-<div class="footer-bottom">
-
-    <p>
-        © 2026 WrenchLink. All rights reserved.
-    </p>
-
-</div>
-```
-
-</footer>
-
-<script src="app.js"></script>
 
 <script>
-
-/* =========================================================
-   CUSTOMER DASHBOARD
-   ========================================================= */
-
-
-const jobsKey =
-    "wrenchlinkJobs";
-
 
 let currentUser = null;
 
 
 /* =========================================================
-   ESCAPE HTML
-   ========================================================= */
+   STORAGE
+========================================================= */
 
-function escapeHTML(value) {
+function getStorage(key, fallback) {
 
-    const div =
-        document.createElement("div");
+    const value = localStorage.getItem(key);
+
+    if (!value) {
+        return fallback;
+    }
+
+    try {
+        return JSON.parse(value);
+    } catch (error) {
+        return fallback;
+    }
+}
 
 
-    div.textContent =
-        value == null
-            ? ""
-            : String(value);
+function setStorage(key, value) {
 
-
-    return div.innerHTML;
-
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
 }
 
 
 /* =========================================================
-   LOAD CURRENT USER
-   ========================================================= */
+   SECURITY
+========================================================= */
 
-function loadCurrentCustomer() {
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   DATE
+========================================================= */
+
+function formatDate(value) {
+
+    if (!value) {
+        return "Not provided";
+    }
+
+    const date = new Date(value);
+
+    if (Number.isNaN(date.getTime())) {
+        return escapeHTML(value);
+    }
+
+    return date.toLocaleString();
+}
+
+
+/* =========================================================
+   ACCESS
+========================================================= */
+
+function checkCustomerAccess() {
 
     currentUser =
-        getCurrentUser();
+        getStorage(
+            "wrenchlinkCurrentUser",
+            null
+        );
 
 
     if (!currentUser) {
 
-        window.location.href =
-            "login.html";
-
+        window.location.href = "login.html";
         return false;
-
     }
 
 
-    /*
-        Prevent mechanics from manually opening
-        the customer dashboard.
-    */
-
-    if (
-        currentUser.role ===
-        "mechanic"
-    ) {
+    if (currentUser.role === "mechanic") {
 
         window.location.href =
             "mechanic-dashboard.html";
 
         return false;
-
     }
 
 
-    if (
-        currentUser.role ===
-        "admin"
-    ) {
+    if (currentUser.role === "admin") {
 
         window.location.href =
             "admin/index.html";
 
         return false;
+    }
 
+
+    if (currentUser.role !== "customer") {
+
+        window.location.href =
+            "login.html";
+
+        return false;
     }
 
 
     return true;
-
 }
 
 
 /* =========================================================
-   LOAD CUSTOMER PROFILE
-   ========================================================= */
+   PROFILE
+========================================================= */
 
-function loadProfile() {
+function loadCustomerProfile() {
 
-    if (!currentUser) {
-        return;
-    }
+    const container =
+        document.getElementById(
+            "profileContainer"
+        );
 
 
     const profiles =
-        WrenchLinkStorage.get(
+        getStorage(
             "wrenchlinkCustomerProfiles",
             {}
         );
 
 
     const profile =
-        profiles[currentUser.id] ||
-        {};
+        profiles[currentUser.id] || {};
 
 
-    const name =
-        profile.name ||
-        currentUser.name ||
-        "Customer";
+    container.innerHTML = `
 
+        <div class="dashboard-card">
 
-    document.getElementById(
-        "welcomeMessage"
-    ).textContent =
-        "Welcome back, " +
-        name +
-        "!";
+            <p>
+                <strong>Name:</strong>
+                ${escapeHTML(
+                    profile.name ||
+                    currentUser.name ||
+                    "Not provided"
+                )}
+            </p>
 
+            <p>
+                <strong>Email:</strong>
+                ${escapeHTML(
+                    profile.email ||
+                    currentUser.email ||
+                    "Not provided"
+                )}
+            </p>
 
-    document.getElementById(
-        "profileName"
-    ).textContent =
-        name;
+            <p>
+                <strong>Phone:</strong>
+                ${escapeHTML(
+                    profile.phone ||
+                    currentUser.phone ||
+                    "Not provided"
+                )}
+            </p>
 
+            <p>
+                <strong>Location:</strong>
+                ${
+                    profile.city ||
+                    profile.state ||
+                    profile.zip
+                        ? [
+                            profile.city,
+                            profile.state,
+                            profile.zip
+                        ]
+                            .filter(Boolean)
+                            .map(escapeHTML)
+                            .join(", ")
+                        : "Not provided"
+                }
+            </p>
 
-    document.getElementById(
-        "profileEmail"
-    ).textContent =
-        profile.email ||
-        currentUser.email ||
-        "Not set";
+            <p>
+                <strong>Vehicle:</strong>
+                ${escapeHTML(
+                    profile.vehicle ||
+                    "Not provided"
+                )}
+            </p>
 
+            ${
+                profile.notes
+                    ? `
+                        <p>
+                            <strong>Notes:</strong>
+                            ${escapeHTML(
+                                profile.notes
+                            )}
+                        </p>
+                    `
+                    : ""
+            }
 
-    document.getElementById(
-        "profilePhone"
-    ).textContent =
-        profile.phone ||
-        "Not set";
+        </div>
 
-
-    const location =
-        [
-            profile.city,
-            profile.state,
-            profile.zip
-        ]
-        .filter(Boolean)
-        .join(", ");
-
-
-    document.getElementById(
-        "profileLocation"
-    ).textContent =
-        location ||
-        "Not set";
-
-
-    document.getElementById(
-        "profileVehicle"
-    ).textContent =
-        profile.vehicle ||
-        "Not set";
-
+    `;
 }
 
 
 /* =========================================================
-   LOAD CUSTOMER JOBS
-   ========================================================= */
+   JOB LOCATION
+========================================================= */
 
-function loadJobs() {
+function formatJobLocation(job) {
 
-    const container =
-        document.getElementById(
-            "jobList"
-        );
+    const parts = [];
 
+    if (job.location) {
+        parts.push(job.location);
+    }
+
+    if (job.city) {
+        parts.push(job.city);
+    }
+
+    if (job.state) {
+        parts.push(job.state);
+    }
+
+    if (job.zip) {
+        parts.push(job.zip);
+    }
+
+    if (!parts.length) {
+        return "Location not provided";
+    }
+
+    return parts
+        .map(escapeHTML)
+        .join(", ");
+}
+
+
+/* =========================================================
+   JOB STATUS
+========================================================= */
+
+function getStatusText(status) {
+
+    switch (status) {
+
+        case "Open":
+            return "Open";
+
+        case "Accepted":
+            return "Accepted";
+
+        case "Completed":
+            return "Completed";
+
+        case "Cancelled":
+            return "Cancelled";
+
+        default:
+            return status || "Unknown";
+
+    }
+}
+
+
+/* =========================================================
+   GET JOBS
+========================================================= */
+
+function getCustomerJobs() {
 
     const jobs =
-        WrenchLinkStorage.get(
-            jobsKey,
+        getStorage(
+            "wrenchlinkJobs",
             []
         );
 
 
-    /*
-        Only show jobs belonging to
-        the signed-in customer.
-    */
+    return jobs.filter(function(job) {
 
-    const customerJobs =
-        jobs.filter(
+        return (
+            job.customerId ===
+            currentUser.id
+        );
+
+    });
+}
+
+
+/* =========================================================
+   LOAD JOBS
+========================================================= */
+
+function loadCustomerJobs() {
+
+    const container =
+        document.getElementById(
+            "jobsContainer"
+        );
+
+
+    const jobs =
+        getCustomerJobs();
+
+
+    if (!jobs.length) {
+
+        container.innerHTML = `
+
+            <div class="dashboard-card">
+
+                <h3>No Service Requests Yet</h3>
+
+                <p>
+                    When you post a job, it will appear here.
+                </p>
+
+                <button
+                    type="button"
+                    onclick="window.location.href='post-job.html'"
+                >
+                    Post Your First Job
+                </button>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    const reviews =
+        getStorage(
+            "wrenchlinkReviews",
+            []
+        );
+
+
+    container.innerHTML = jobs
+        .sort(function(a, b) {
+
+            return new Date(
+                b.createdAt || 0
+            ) -
+            new Date(
+                a.createdAt || 0
+            );
+
+        })
+        .map(function(job) {
+
+            const review =
+                reviews.find(
+                    function(item) {
+
+                        return (
+                            item.jobId ===
+                            job.id
+                        );
+
+                    }
+                );
+
+
+            const canReview =
+                job.status === "Completed" &&
+                job.mechanicId &&
+                !review;
+
+
+            return `
+
+                <article class="dashboard-card job-card">
+
+                    <h3>
+                        ${escapeHTML(
+                            job.service ||
+                            "Service Request"
+                        )}
+                    </h3>
+
+
+                    <p>
+                        <strong>Status:</strong>
+                        ${escapeHTML(
+                            getStatusText(
+                                job.status
+                            )
+                        )}
+                    </p>
+
+
+                    ${
+                        job.roadside
+                            ? `
+                                <p>
+                                    <strong>Type:</strong>
+                                    Roadside Assistance
+                                </p>
+                            `
+                            : ""
+                    }
+
+
+                    <p>
+                        <strong>Vehicle:</strong>
+                        ${escapeHTML(
+                            job.vehicle ||
+                            "Not provided"
+                        )}
+                    </p>
+
+
+                    <p>
+                        <strong>Location:</strong>
+                        ${formatJobLocation(job)}
+                    </p>
+
+
+                    <p>
+                        <strong>Preferred Time:</strong>
+                        ${formatDate(
+                            job.preferredDateTime
+                        )}
+                    </p>
+
+
+                    <p>
+                        <strong>Details:</strong>
+                        ${escapeHTML(
+                            job.description ||
+                            "No additional details provided."
+                        )}
+                    </p>
+
+
+                    ${
+                        job.mechanicId
+                            ? `
+                                <p>
+                                    <strong>Mechanic:</strong>
+                                    ${escapeHTML(
+                                        job.mechanicName ||
+                                        "Assigned Mechanic"
+                                    )}
+                                </p>
+
+                                <button
+                                    type="button"
+                                    onclick="viewMechanic('${escapeHTML(
+                                        job.mechanicId
+                                    )}')"
+                                >
+                                    View Mechanic
+                                </button>
+                            `
+                            : `
+                                <p>
+                                    <strong>Mechanic:</strong>
+                                    Waiting for a mechanic
+                                </p>
+                            `
+                    }
+
+
+                    ${
+                        job.status === "Accepted"
+                            ? `
+                                <p>
+                                    <strong>Accepted:</strong>
+                                    ${formatDate(
+                                        job.acceptedAt
+                                    )}
+                                </p>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        job.status === "Completed"
+                            ? `
+                                <p>
+                                    <strong>Completed:</strong>
+                                    ${formatDate(
+                                        job.completedAt
+                                    )}
+                                </p>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        job.status === "Cancelled"
+                            ? `
+                                <p>
+                                    <strong>Cancelled:</strong>
+                                    ${formatDate(
+                                        job.cancelledAt
+                                    )}
+                                </p>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        review
+                            ? `
+                                <div class="review-display">
+
+                                    <h4>
+                                        Your Review
+                                    </h4>
+
+                                    <p>
+                                        <strong>Rating:</strong>
+                                        ${"★".repeat(
+                                            Number(
+                                                review.rating
+                                            ) || 0
+                                        )}
+                                        ${"☆".repeat(
+                                            5 -
+                                            (
+                                                Number(
+                                                    review.rating
+                                                ) || 0
+                                            )
+                                        )}
+                                    </p>
+
+                                    <p>
+                                        ${escapeHTML(
+                                            review.comment ||
+                                            "No written review."
+                                        )}
+                                    </p>
+
+                                    <small>
+                                        ${formatDate(
+                                            review.createdAt
+                                        )}
+                                    </small>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        canReview
+                            ? `
+                                <button
+                                    type="button"
+                                    onclick="openReviewForm('${escapeHTML(
+                                        job.id
+                                    )}')"
+                                >
+                                    Rate This Mechanic
+                                </button>
+
+                                <div
+                                    id="reviewForm-${escapeHTML(
+                                        job.id
+                                    )}"
+                                    class="review-form"
+                                    hidden
+                                >
+
+                                    <h4>
+                                        Rate
+                                        ${escapeHTML(
+                                            job.mechanicName ||
+                                            "Your Mechanic"
+                                        )}
+                                    </h4>
+
+
+                                    <label>
+                                        Rating
+                                    </label>
+
+                                    <select
+                                        id="rating-${escapeHTML(
+                                            job.id
+                                        )}"
+                                    >
+                                        <option value="">
+                                            Select Rating
+                                        </option>
+
+                                        <option value="5">
+                                            5 - Excellent
+                                        </option>
+
+                                        <option value="4">
+                                            4 - Great
+                                        </option>
+
+                                        <option value="3">
+                                            3 - Good
+                                        </option>
+
+                                        <option value="2">
+                                            2 - Fair
+                                        </option>
+
+                                        <option value="1">
+                                            1 - Poor
+                                        </option>
+
+                                    </select>
+
+
+                                    <label>
+                                        Review
+                                    </label>
+
+                                    <textarea
+                                        id="comment-${escapeHTML(
+                                            job.id
+                                        )}"
+                                        rows="4"
+                                        maxlength="1000"
+                                        placeholder="Tell other customers about your experience."
+                                    ></textarea>
+
+
+                                    <button
+                                        type="button"
+                                        onclick="submitReview('${escapeHTML(
+                                            job.id
+                                        )}')"
+                                    >
+                                        Submit Review
+                                    </button>
+
+
+                                    <button
+                                        type="button"
+                                        onclick="closeReviewForm('${escapeHTML(
+                                            job.id
+                                        )}')"
+                                    >
+                                        Cancel
+                                    </button>
+
+                                    <p
+                                        id="reviewMessage-${escapeHTML(
+                                            job.id
+                                        )}"
+                                    ></p>
+
+                                </div>
+                            `
+                            : ""
+                    }
+
+
+                    ${
+                        job.status === "Open"
+                            ? `
+                                <button
+                                    type="button"
+                                    onclick="cancelJob('${escapeHTML(
+                                        job.id
+                                    )}')"
+                                >
+                                    Cancel Job
+                                </button>
+                            `
+                            : ""
+                    }
+
+                </article>
+
+            `;
+
+        })
+        .join("");
+}
+
+
+/* =========================================================
+   VIEW MECHANIC
+========================================================= */
+
+function viewMechanic(mechanicId) {
+
+    if (!mechanicId) {
+        return;
+    }
+
+
+    window.location.href =
+        "mechanic-profile.html?id=" +
+        encodeURIComponent(mechanicId);
+}
+
+
+/* =========================================================
+   CANCEL JOB
+========================================================= */
+
+function cancelJob(jobId) {
+
+    const jobs =
+        getStorage(
+            "wrenchlinkJobs",
+            []
+        );
+
+
+    const index =
+        jobs.findIndex(
             function(job) {
 
                 return (
+                    job.id === jobId &&
                     job.customerId ===
                     currentUser.id
                 );
@@ -711,336 +1005,100 @@ function loadJobs() {
         );
 
 
-    if (!customerJobs.length) {
+    if (index === -1) {
 
-        showNoJobs(
-            container
+        alert(
+            "Job could not be found."
         );
 
         return;
-
     }
-
-
-    container.innerHTML = "";
-
-
-    customerJobs
-        .slice()
-        .reverse()
-        .forEach(
-            function(job) {
-
-                renderJob(
-                    container,
-                    job
-                );
-
-            }
-        );
-
-}
-
-
-/* =========================================================
-   RENDER JOB
-   ========================================================= */
-
-function renderJob(
-    container,
-    job
-) {
-
-    const card =
-        document.createElement(
-            "div"
-        );
-
-
-    card.className =
-        "card";
-
-
-    let dateText =
-        "No preferred time selected";
 
 
     if (
-        job.preferredDateTime
+        jobs[index].status !== "Open"
     ) {
 
-        const date =
-            new Date(
-                job.preferredDateTime
-            );
+        alert(
+            "Only open jobs can be cancelled."
+        );
 
-
-        if (
-            !Number.isNaN(
-                date.getTime()
-            )
-        ) {
-
-            dateText =
-                date.toLocaleString();
-
-        }
-
+        return;
     }
-
-
-    const status =
-        job.status ||
-        "Open";
-
-
-    let actionHTML = "";
 
 
     if (
-        status ===
-        "Open"
+        !confirm(
+            "Are you sure you want to cancel this job?"
+        )
     ) {
-
-        actionHTML = `
-
-            <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="cancelJob('${escapeHTML(
-                    job.id
-                )}')"
-            >
-                Cancel Request
-            </button>
-
-        `;
-
+        return;
     }
 
 
-    else if (
-        status ===
-        "Accepted"
-    ) {
+    jobs[index] = {
 
-        actionHTML = `
+        ...jobs[index],
 
-            <p>
+        status: "Cancelled",
 
-                <strong>
-                    Mechanic:
-                </strong>
+        cancelledAt:
+            new Date().toISOString()
 
-                ${escapeHTML(
-                    job.mechanicName ||
-                    "Mechanic assigned"
-                )}
-
-            </p>
-
-        `;
-
-    }
+    };
 
 
-    else if (
-        status ===
-        "Completed"
-    ) {
-
-        actionHTML = `
-
-            <p>
-                Your service has been completed.
-            </p>
-
-        `;
-
-    }
-
-
-    else if (
-        status ===
-        "Cancelled"
-    ) {
-
-        actionHTML = `
-
-            <p>
-                This request has been cancelled.
-            </p>
-
-        `;
-
-    }
-
-
-    card.innerHTML = `
-
-        <h3>
-            ${escapeHTML(
-                job.service ||
-                "Service Request"
-            )}
-        </h3>
-
-
-        <p>
-
-            <strong>
-                Vehicle:
-            </strong>
-
-            ${escapeHTML(
-                job.vehicle ||
-                "Not provided"
-            )}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Problem:
-            </strong>
-
-            ${escapeHTML(
-                job.description ||
-                "No description provided"
-            )}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Location:
-            </strong>
-
-            ${escapeHTML(
-                job.location ||
-                ""
-            )}
-
-            ${escapeHTML(
-                job.city ||
-                ""
-            )}
-
-            ${escapeHTML(
-                job.state ||
-                ""
-            )}
-
-            ${escapeHTML(
-                job.zip ||
-                ""
-            )}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Preferred Time:
-            </strong>
-
-            ${escapeHTML(
-                dateText
-            )}
-
-        </p>
-
-
-        <p>
-
-            <strong>
-                Status:
-            </strong>
-
-            ${escapeHTML(
-                status
-            )}
-
-        </p>
-
-
-        ${actionHTML}
-
-    `;
-
-
-    container.appendChild(
-        card
+    setStorage(
+        "wrenchlinkJobs",
+        jobs
     );
 
+
+    loadCustomerJobs();
 }
 
 
 /* =========================================================
-   NO JOBS
-   ========================================================= */
+   REVIEW FORM
+========================================================= */
 
-function showNoJobs(
-    container
-) {
+function openReviewForm(jobId) {
 
-    container.innerHTML = `
-
-        <div class="card">
-
-            <div class="service-icon">
-                📋
-            </div>
-
-            <h3>
-                No Service Requests
-            </h3>
-
-            <p>
-                You haven't posted a service request yet.
-            </p>
-
-            <a
-                href="post-job.html"
-                class="btn btn-primary"
-            >
-                Post Your First Job
-            </a>
-
-        </div>
-
-    `;
-
-}
-
-
-/* =========================================================
-   CANCEL JOB
-   ========================================================= */
-
-function cancelJob(
-    jobId
-) {
-
-    const confirmation =
-        confirm(
-            "Are you sure you want to cancel this service request?"
+    const form =
+        document.getElementById(
+            "reviewForm-" + jobId
         );
 
 
-    if (!confirmation) {
-        return;
+    if (form) {
+        form.hidden = false;
     }
+}
 
+
+function closeReviewForm(jobId) {
+
+    const form =
+        document.getElementById(
+            "reviewForm-" + jobId
+        );
+
+
+    if (form) {
+        form.hidden = true;
+    }
+}
+
+
+/* =========================================================
+   SUBMIT REVIEW
+========================================================= */
+
+function submitReview(jobId) {
 
     const jobs =
-        WrenchLinkStorage.get(
-            jobsKey,
+        getStorage(
+            "wrenchlinkJobs",
             []
         );
 
@@ -1049,11 +1107,10 @@ function cancelJob(
         jobs.find(
             function(item) {
 
-                return String(
-                    item.id
-                ) ===
-                String(
-                    jobId
+                return (
+                    item.id === jobId &&
+                    item.customerId ===
+                    currentUser.id
                 );
 
             }
@@ -1063,107 +1120,241 @@ function cancelJob(
     if (!job) {
 
         alert(
-            "Service request could not be found."
+            "Job could not be found."
         );
 
         return;
-
     }
 
 
     if (
-        job.customerId !==
-        currentUser.id
+        job.status !== "Completed"
     ) {
 
         alert(
-            "You cannot modify this service request."
+            "You can only review a completed job."
         );
 
         return;
-
     }
 
 
-    job.status =
-        "Cancelled";
+    if (!job.mechanicId) {
+
+        alert(
+            "This job does not have an assigned mechanic."
+        );
+
+        return;
+    }
 
 
-    job.cancelledAt =
-        new Date().toISOString();
+    let reviews =
+        getStorage(
+            "wrenchlinkReviews",
+            []
+        );
 
 
-    WrenchLinkStorage.set(
-        jobsKey,
-        jobs
+    const existingReview =
+        reviews.find(
+            function(review) {
+
+                return (
+                    review.jobId ===
+                    job.id
+                );
+
+            }
+        );
+
+
+    if (existingReview) {
+
+        alert(
+            "You have already reviewed this job."
+        );
+
+        loadCustomerJobs();
+        return;
+    }
+
+
+    const ratingElement =
+        document.getElementById(
+            "rating-" + jobId
+        );
+
+
+    const commentElement =
+        document.getElementById(
+            "comment-" + jobId
+        );
+
+
+    const messageElement =
+        document.getElementById(
+            "reviewMessage-" + jobId
+        );
+
+
+    const rating =
+        Number(
+            ratingElement?.value
+        );
+
+
+    const comment =
+        commentElement?.value.trim() || "";
+
+
+    if (
+        !rating ||
+        rating < 1 ||
+        rating > 5
+    ) {
+
+        if (messageElement) {
+
+            messageElement.textContent =
+                "Please select a rating from 1 to 5.";
+
+        }
+
+        return;
+    }
+
+
+    if (comment.length > 1000) {
+
+        if (messageElement) {
+
+            messageElement.textContent =
+                "Your review is too long.";
+
+        }
+
+        return;
+    }
+
+
+    const review = {
+
+        id:
+            "REV-" +
+            Date.now() +
+            "-" +
+            Math.floor(
+                Math.random() * 10000
+            ),
+
+        jobId:
+            job.id,
+
+        customerId:
+            currentUser.id,
+
+        customerName:
+            currentUser.name ||
+            job.customerName ||
+            "Customer",
+
+        mechanicId:
+            job.mechanicId,
+
+        mechanicName:
+            job.mechanicName ||
+            "Mechanic",
+
+        rating:
+            rating,
+
+        comment:
+            comment,
+
+        createdAt:
+            new Date().toISOString()
+
+    };
+
+
+    reviews.push(review);
+
+
+    setStorage(
+        "wrenchlinkReviews",
+        reviews
     );
 
 
-    loadJobs();
+    alert(
+        "Thank you! Your review has been submitted."
+    );
 
+
+    loadCustomerJobs();
 }
 
 
 /* =========================================================
-   SIGN OUT
-   ========================================================= */
+   LOGOUT
+========================================================= */
 
-function signOut() {
+function logoutCustomer() {
 
-    const confirmation =
-        confirm(
+    if (
+        !confirm(
             "Are you sure you want to sign out?"
-        );
-
-
-    if (!confirmation) {
+        )
+    ) {
         return;
     }
 
 
-    clearCurrentUser();
+    localStorage.removeItem(
+        "wrenchlinkCurrentUser"
+    );
 
 
     window.location.href =
         "index.html";
-
 }
 
 
 /* =========================================================
    DELETE ACCOUNT
-   ========================================================= */
+========================================================= */
 
-function deleteAccount() {
-
-    if (!currentUser) {
-        return;
-    }
-
+function deleteCustomerAccount() {
 
     const confirmation =
-        confirm(
-            "Delete your WrenchLink account and customer information from this browser? This cannot be undone."
+        prompt(
+            "Type DELETE to permanently delete your customer account."
         );
 
 
-    if (!confirmation) {
+    if (
+        confirmation !== "DELETE"
+    ) {
+
+        alert(
+            "Account deletion cancelled."
+        );
+
         return;
     }
 
 
-    /*
-        Remove account from registered users.
-    */
+    /* Remove user */
 
-    const users =
-        WrenchLinkStorage.get(
+    let users =
+        getStorage(
             "wrenchlinkUsers",
             []
         );
 
 
-    const remainingUsers =
+    users =
         users.filter(
             function(user) {
 
@@ -1176,18 +1367,16 @@ function deleteAccount() {
         );
 
 
-    WrenchLinkStorage.set(
+    setStorage(
         "wrenchlinkUsers",
-        remainingUsers
+        users
     );
 
 
-    /*
-        Remove customer profile.
-    */
+    /* Remove customer profile */
 
     const profiles =
-        WrenchLinkStorage.get(
+        getStorage(
             "wrenchlinkCustomerProfiles",
             {}
         );
@@ -1198,24 +1387,22 @@ function deleteAccount() {
     ];
 
 
-    WrenchLinkStorage.set(
+    setStorage(
         "wrenchlinkCustomerProfiles",
         profiles
     );
 
 
-    /*
-        Remove this customer's jobs.
-    */
+    /* Remove customer's jobs */
 
-    const jobs =
-        WrenchLinkStorage.get(
-            jobsKey,
+    let jobs =
+        getStorage(
+            "wrenchlinkJobs",
             []
         );
 
 
-    const remainingJobs =
+    jobs =
         jobs.filter(
             function(job) {
 
@@ -1228,50 +1415,90 @@ function deleteAccount() {
         );
 
 
-    WrenchLinkStorage.set(
-        jobsKey,
-        remainingJobs
+    setStorage(
+        "wrenchlinkJobs",
+        jobs
     );
 
 
-    /*
-        Sign out.
-    */
+    /* Remove customer's reviews */
 
-    clearCurrentUser();
+    let reviews =
+        getStorage(
+            "wrenchlinkReviews",
+            []
+        );
+
+
+    reviews =
+        reviews.filter(
+            function(review) {
+
+                return (
+                    review.customerId !==
+                    currentUser.id
+                );
+
+            }
+        );
+
+
+    setStorage(
+        "wrenchlinkReviews",
+        reviews
+    );
+
+
+    /* Remove session */
+
+    localStorage.removeItem(
+        "wrenchlinkCurrentUser"
+    );
 
 
     alert(
-        "Your WrenchLink account has been removed from this browser."
+        "Your WrenchLink customer account has been deleted."
     );
 
 
     window.location.href =
         "index.html";
-
 }
 
 
 /* =========================================================
-   START DASHBOARD
-   ========================================================= */
+   START
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
     function() {
 
-        if (
-            !loadCurrentCustomer()
-        ) {
-
+        if (!checkCustomerAccess()) {
             return;
-
         }
 
 
-        loadProfile();
+        const firstName =
+            currentUser.firstName ||
+            (
+                currentUser.name
+                    ? currentUser.name.split(" ")[0]
+                    : "Customer"
+            );
 
-        loadJobs();
+
+        document.getElementById(
+            "welcomeMessage"
+        ).textContent =
+            "Welcome back, " +
+            firstName +
+            ". Manage your vehicles, service requests, and mechanics here.";
+
+
+        loadCustomerProfile();
+
+        loadCustomerJobs();
 
     }
 );
@@ -1279,5 +1506,5 @@ document.addEventListener(
 </script>
 
 </body>
-
 </html>
+```

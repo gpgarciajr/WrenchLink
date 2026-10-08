@@ -1,84 +1,70 @@
 /* =========================================================
-WRENCHLINK
-MAIN JAVASCRIPT
+WRENCHLINK - MAIN JAVASCRIPT
+Navigation, storage, sessions, and shared page helpers
 ========================================================= */
 
+"use strict";
+
 /* =========================================================
-WRENCHLINK NAVIGATION
+NAVIGATION
 ========================================================= */
 
 const WrenchLink = {
-
-```
 goTo: function (page) {
-    window.location.href = page;
+window.location.href = page;
 },
 
-
+```
 findMechanic: function () {
     this.goTo("mechanics.html");
 },
-
 
 becomeMechanic: function () {
     this.goTo("become-mechanic.html");
 },
 
-
 getHelp: function () {
     this.goTo("roadside.html");
 },
-
 
 browseMechanics: function () {
     this.goTo("mechanics.html");
 },
 
-
 learnMore: function () {
     this.goTo("about.html");
 },
-
 
 signIn: function () {
     this.goTo("login.html");
 },
 
-
 signUp: function () {
     this.goTo("signup.html");
 },
-
 
 postJob: function () {
     this.goTo("post-job.html");
 },
 
-
 customerDashboard: function () {
     this.goTo("customer-dashboard.html");
 },
-
 
 mechanicDashboard: function () {
     this.goTo("mechanic-dashboard.html");
 },
 
-
 accountSettings: function () {
     this.goTo("account-settings.html");
 },
 
-
 mechanicProfile: function (mechanicId) {
-
     if (mechanicId) {
-
         this.goTo(
             "mechanic-profile.html?id=" +
             encodeURIComponent(mechanicId)
         );
-
         return;
     }
 
@@ -89,8 +75,8 @@ mechanicProfile: function (mechanicId) {
 };
 
 /* =========================================================
-GLOBAL FUNCTIONS
-These keep older HTML onclick buttons working.
+GLOBAL NAVIGATION FUNCTIONS
+Supports existing HTML onclick attributes.
 ========================================================= */
 
 function findMechanic() {
@@ -126,317 +112,80 @@ WrenchLink.postJob();
 }
 
 /* =========================================================
-BUTTON AUTO-CONNECTION
-Handles older buttons that may not have onclick.
-========================================================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-function () {
-
-```
-    const buttons =
-        document.querySelectorAll(
-            "button"
-        );
-
-
-    buttons.forEach(
-        function (button) {
-
-            /*
-                Don't interfere with buttons that
-                already have their own functionality.
-            */
-
-            if (
-                button.dataset.wrenchlinkConnected ===
-                "true"
-            ) {
-                return;
-            }
-
-
-            const text =
-                button.textContent
-                    .trim()
-                    .toLowerCase();
-
-
-            if (
-                text.includes(
-                    "find a mechanic"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    findMechanic
-                );
-
-            }
-
-
-            else if (
-                text.includes(
-                    "become a mechanic"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    becomeMechanic
-                );
-
-            }
-
-
-            else if (
-                text.includes(
-                    "get help"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    getHelp
-                );
-
-            }
-
-
-            else if (
-                text.includes(
-                    "browse mechanics"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    browseMechanics
-                );
-
-            }
-
-
-            else if (
-                text.includes(
-                    "learn more"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    learnMore
-                );
-
-            }
-
-
-            else if (
-                text === "sign in" ||
-                text.includes("sign in")
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    signIn
-                );
-
-            }
-
-
-            else if (
-                text.includes(
-                    "create account"
-                ) ||
-                text.includes(
-                    "sign up"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    signUp
-                );
-
-            }
-
-
-            else if (
-                text.includes(
-                    "post a job"
-                )
-            ) {
-
-                button.addEventListener(
-                    "click",
-                    postJob
-                );
-
-            }
-
-
-            button.dataset.wrenchlinkConnected =
-                "true";
-
-        }
-    );
-
-}
-```
-
-);
-
-/* =========================================================
-ACTIVE NAVIGATION
-Highlights the current page when possible.
-========================================================= */
-
-document.addEventListener(
-"DOMContentLoaded",
-function () {
-
-```
-    const currentPage =
-        window.location.pathname
-            .split("/")
-            .pop()
-            .toLowerCase();
-
-
-    const navLinks =
-        document.querySelectorAll(
-            "nav a"
-        );
-
-
-    navLinks.forEach(
-        function (link) {
-
-            const linkPage =
-                link
-                    .getAttribute("href")
-                    ?.split("/")
-                    .pop()
-                    .split("?")[0]
-                    .toLowerCase();
-
-
-            if (
-                linkPage &&
-                linkPage === currentPage
-            ) {
-
-                link.classList.add(
-                    "active"
-                );
-
-            }
-
-        }
-    );
-
-}
-```
-
-);
-
-/* =========================================================
-WRENCHLINK STORAGE HELPERS
-Foundation for accounts, profiles, jobs,
-and dashboards.
+SHARED LOCAL STORAGE HELPERS
 ========================================================= */
 
 const WrenchLinkStorage = {
+set: function (key, value) {
+try {
+localStorage.setItem(key, JSON.stringify(value));
+return true;
+} catch (error) {
+console.error("WrenchLink could not save:", key, error);
+return false;
+}
+},
 
 ```
-set: function (key, value) {
-
-    localStorage.setItem(
-        key,
-        JSON.stringify(value)
-    );
-
-},
-
-
 get: function (key, fallback = null) {
-
-    const value =
-        localStorage.getItem(key);
-
-
-    if (!value) {
-        return fallback;
-    }
-
-
     try {
+        const value = localStorage.getItem(key);
+
+        if (value === null) {
+            return fallback;
+        }
 
         return JSON.parse(value);
-
-    }
-
-    catch (error) {
-
+    } catch (error) {
+        console.error("WrenchLink could not read:", key, error);
         return fallback;
-
     }
-
 },
-
 
 remove: function (key) {
-
-    localStorage.removeItem(key);
-
+    try {
+        localStorage.removeItem(key);
+        return true;
+    } catch (error) {
+        console.error("WrenchLink could not remove:", key, error);
+        return false;
+    }
 },
 
-
 clear: function () {
-
-    localStorage.clear();
-
+    try {
+        localStorage.clear();
+        return true;
+    } catch (error) {
+        console.error("WrenchLink could not clear local storage:", error);
+        return false;
+    }
 }
 ```
 
 };
 
 /* =========================================================
-CURRENT USER
+CURRENT USER SESSION
 ========================================================= */
 
 function getCurrentUser() {
-
-```
-return WrenchLinkStorage.get(
-    "wrenchlinkCurrentUser",
-    null
-);
-```
-
+return WrenchLinkStorage.get("wrenchlinkCurrentUser", null);
 }
 
 function setCurrentUser(user) {
+if (!user || typeof user !== "object") {
+return false;
+}
 
 ```
-WrenchLinkStorage.set(
-    "wrenchlinkCurrentUser",
-    user
-);
+return WrenchLinkStorage.set("wrenchlinkCurrentUser", user);
 ```
 
 }
 
 function clearCurrentUser() {
-
-```
-WrenchLinkStorage.remove(
-    "wrenchlinkCurrentUser"
-);
-```
-
+return WrenchLinkStorage.remove("wrenchlinkCurrentUser");
 }
 
 /* =========================================================
@@ -444,31 +193,20 @@ LOGIN STATE
 ========================================================= */
 
 function isLoggedIn() {
-
-```
 return getCurrentUser() !== null;
-```
-
 }
 
 /* =========================================================
 REQUIRE LOGIN
-Can be used by customer/mechanic pages.
 ========================================================= */
 
 function requireLogin() {
-
-```
 if (!isLoggedIn()) {
-
-    window.location.href =
-        "login.html";
-
-    return false;
-
+window.location.href = "login.html";
+return false;
 }
 
-
+```
 return true;
 ```
 
@@ -479,14 +217,8 @@ LOGOUT
 ========================================================= */
 
 function logout() {
-
-```
 clearCurrentUser();
-
-window.location.href =
-    "index.html";
-```
-
+window.location.href = "index.html";
 }
 
 /* =========================================================
@@ -494,26 +226,120 @@ PAGE REDIRECT HELPER
 ========================================================= */
 
 function goToPage(page) {
+if (typeof page === "string" && page.trim() !== "") {
+window.location.href = page;
+}
+}
+
+/* =========================================================
+BUTTON AUTO-CONNECTION
+Adds navigation only to buttons without existing handlers.
+========================================================= */
+
+function connectWrenchLinkButtons() {
+const buttons = document.querySelectorAll("button");
 
 ```
-window.location.href = page;
+buttons.forEach(function (button) {
+    if (button.dataset.wrenchlinkConnected === "true") {
+        return;
+    }
+
+    /*
+     * Preserve buttons that already have their own behavior.
+     */
+    if (
+        button.hasAttribute("onclick") ||
+        button.type === "submit" ||
+        button.closest("form")
+    ) {
+        return;
+    }
+
+    const text = button.textContent.trim().toLowerCase();
+
+    let action = null;
+
+    if (text.includes("find a mechanic")) {
+        action = findMechanic;
+    } else if (text.includes("become a mechanic")) {
+        action = becomeMechanic;
+    } else if (text.includes("get help")) {
+        action = getHelp;
+    } else if (text.includes("browse mechanics")) {
+        action = browseMechanics;
+    } else if (text.includes("learn more")) {
+        action = learnMore;
+    } else if (text === "sign in" || text === "sign in now") {
+        action = signIn;
+    } else if (
+        text.includes("create account") ||
+        text === "sign up"
+    ) {
+        action = signUp;
+    } else if (text.includes("post a job")) {
+        action = postJob;
+    }
+
+    if (action) {
+        button.addEventListener("click", action);
+        button.dataset.wrenchlinkConnected = "true";
+    }
+});
 ```
 
 }
 
 /* =========================================================
-WRENCHLINK VERSION
+ACTIVE NAVIGATION
 ========================================================= */
 
-const WRENCHLINK_VERSION =
-"3.0";
+function highlightActiveNavigation() {
+const currentPage = window.location.pathname
+.split("/")
+.pop()
+.toLowerCase();
+
+```
+const navLinks = document.querySelectorAll("nav a");
+
+navLinks.forEach(function (link) {
+    const href = link.getAttribute("href");
+
+    if (!href) {
+        return;
+    }
+
+    const linkPage = href
+        .split("/")
+        .pop()
+        .split("?")[0]
+        .toLowerCase();
+
+    if (linkPage && linkPage === currentPage) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+    } else {
+        link.removeAttribute("aria-current");
+    }
+});
+```
+
+}
 
 /* =========================================================
-DEBUG INFORMATION
+INITIALIZE SHARED PAGE FEATURES
 ========================================================= */
 
-console.log(
-"WrenchLink " +
-WRENCHLINK_VERSION +
-" loaded successfully."
-);
+document.addEventListener("DOMContentLoaded", function () {
+connectWrenchLinkButtons();
+highlightActiveNavigation();
+});
+
+/* =========================================================
+VERSION
+========================================================= */
+
+const WRENCHLINK_VERSION = "3.1";
+
+console.log("WrenchLink " + WRENCHLINK_VERSION + " loaded successfully.");

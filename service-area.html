@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -7,231 +8,428 @@
         content="width=device-width, initial-scale=1.0"
     >
 
-    <title>Service Area | WrenchLink</title>
+```
+<title>Service Area | WrenchLink</title>
 
-    <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
+```
+
 </head>
 
 <body>
 
 <header>
 
-    <div class="container">
+```
+<div class="container">
 
-        <h1>
-            <a href="index.html">🔧 WrenchLink</a>
-        </h1>
+    <h1>
+        <a href="index.html">🔧 WrenchLink</a>
+    </h1>
 
-        <nav>
-            <a href="mechanic-dashboard.html">Dashboard</a>
-            <a href="index.html">Home</a>
-        </nav>
+    <nav>
+        <a href="mechanic-dashboard.html">Dashboard</a>
+        <a href="index.html">Home</a>
+    </nav>
 
-    </div>
+</div>
+```
 
 </header>
 
-
 <main class="container">
 
-    <section class="page-header">
+```
+<section class="page-header">
 
-        <h2>My Service Area</h2>
+    <h2>My Service Area</h2>
 
-        <p>
-            Tell customers where you provide mobile mechanic service.
-        </p>
+    <p>
+        Tell customers where you provide mobile mechanic service.
+    </p>
 
-    </section>
-
-
-    <section class="card">
-
-        <form id="serviceAreaForm">
-
-            <label for="city">
-                City
-            </label>
-
-            <input
-                id="city"
-                type="text"
-                placeholder="Example: Chicago"
-                required
-            >
+</section>
 
 
-            <label for="state">
-                State
-            </label>
+<section class="card">
 
-            <input
-                id="state"
-                type="text"
-                value="IL"
-                required
-            >
+    <form id="serviceAreaForm">
 
+        <label for="city">
+            City
+        </label>
 
-            <label for="zip">
-                ZIP Code
-            </label>
-
-            <input
-                id="zip"
-                type="text"
-                placeholder="Example: 60601"
-                required
-            >
-
-
-            <label for="radius">
-                Service Radius
-            </label>
-
-            <select id="radius" required>
-
-                <option value="5">
-                    5 miles
-                </option>
-
-                <option value="10">
-                    10 miles
-                </option>
-
-                <option value="15">
-                    15 miles
-                </option>
-
-                <option value="20">
-                    20 miles
-                </option>
-
-                <option value="25">
-                    25 miles
-                </option>
-
-                <option value="30">
-                    30 miles
-                </option>
-
-                <option value="50">
-                    50 miles
-                </option>
-
-            </select>
-
-
-            <button type="submit">
-                Save Service Area
-            </button>
-
-        </form>
-
-
-        <div
-            id="savedMessage"
-            style="display:none;"
+        <input
+            id="city"
+            type="text"
+            placeholder="Example: Chicago"
+            required
         >
 
-            <h3>Service Area Saved ✓</h3>
 
-            <p id="savedAreaText"></p>
+        <label for="state">
+            State
+        </label>
 
-            <a href="mechanic-dashboard.html">
-                Return to Dashboard
-            </a>
+        <input
+            id="state"
+            type="text"
+            value="IL"
+            maxlength="2"
+            placeholder="Example: IL"
+            required
+        >
 
-        </div>
 
-    </section>
+        <label for="zip">
+            ZIP Code
+        </label>
 
-</main>
+        <input
+            id="zip"
+            type="text"
+            inputmode="numeric"
+            maxlength="10"
+            placeholder="Example: 60601"
+            required
+        >
 
 
-<footer>
+        <label for="radius">
+            Service Radius
+        </label>
 
-    <div class="container">
+        <select id="radius" required>
 
-        <p>
-            © 2026 WrenchLink. All rights reserved.
-        </p>
+            <option value="5">
+                5 miles
+            </option>
 
-        <p>
-            <a href="privacy.html">Privacy</a> |
-            <a href="terms.html">Terms</a> |
-            <a href="contact.html">Contact</a>
-        </p>
+            <option value="10">
+                10 miles
+            </option>
+
+            <option value="15">
+                15 miles
+            </option>
+
+            <option value="20">
+                20 miles
+            </option>
+
+            <option value="25">
+                25 miles
+            </option>
+
+            <option value="30">
+                30 miles
+            </option>
+
+            <option value="50">
+                50 miles
+            </option>
+
+        </select>
+
+
+        <button type="submit">
+            Save Service Area
+        </button>
+
+    </form>
+
+
+    <div
+        id="message"
+        style="display:none;"
+    ></div>
+
+
+    <div
+        id="savedMessage"
+        style="display:none;"
+    >
+
+        <h3>Service Area Saved ✓</h3>
+
+        <p id="savedAreaText"></p>
+
+        <a href="mechanic-dashboard.html">
+            Return to Dashboard
+        </a>
 
     </div>
 
+</section>
+```
+
+</main>
+
+<footer>
+
+```
+<div class="container">
+
+    <p>
+        © 2026 WrenchLink. All rights reserved.
+    </p>
+
+    <p>
+        <a href="privacy.html">Privacy</a> |
+        <a href="terms.html">Terms</a> |
+        <a href="contact.html">Contact</a>
+    </p>
+
+</div>
+```
+
 </footer>
 
+<script src="app.js"></script>
 
 <script>
 
-const areaKey =
-    "wrenchlinkServiceArea";
+document.addEventListener("DOMContentLoaded", function () {
+
+    const currentUser = getCurrentUser();
 
 
-function loadArea() {
+    /*
+     * Only mechanics can manage a mechanic
+     * service area.
+     */
 
-    const saved =
-        localStorage.getItem(areaKey);
-
-    if (!saved) return;
-
-    const area =
-        JSON.parse(saved);
-
-    document.getElementById("city").value =
-        area.city || "";
-
-    document.getElementById("state").value =
-        area.state || "IL";
-
-    document.getElementById("zip").value =
-        area.zip || "";
-
-    document.getElementById("radius").value =
-        area.radius || "10";
-}
+    if (!currentUser) {
+        window.location.href = "login.html";
+        return;
+    }
 
 
-document.getElementById(
-    "serviceAreaForm"
-).addEventListener(
-    "submit",
-    function(event) {
+    if (currentUser.role === "customer") {
+        window.location.href = "customer-dashboard.html";
+        return;
+    }
+
+
+    if (currentUser.role === "admin") {
+        window.location.href = "admin/index.html";
+        return;
+    }
+
+
+    if (currentUser.role !== "mechanic") {
+        window.location.href = "login.html";
+        return;
+    }
+
+
+    const form =
+        document.getElementById("serviceAreaForm");
+
+    const savedMessage =
+        document.getElementById("savedMessage");
+
+    const savedAreaText =
+        document.getElementById("savedAreaText");
+
+    const message =
+        document.getElementById("message");
+
+
+    /*
+     * Service areas are stored separately for every
+     * mechanic using their WrenchLink account ID.
+     *
+     * Structure:
+     *
+     * wrenchlinkServiceAreas = {
+     *     "WL-123": {
+     *         city: "Chicago",
+     *         state: "IL",
+     *         zip: "60601",
+     *         radius: "25"
+     *     }
+     * }
+     */
+
+    const allAreas =
+        WrenchLinkStorage.get(
+            "wrenchlinkServiceAreas",
+            {}
+        );
+
+
+    /*
+     * Load this mechanic's existing service area.
+     */
+
+    let savedArea =
+        allAreas[currentUser.id] || null;
+
+
+    /*
+     * Compatibility with the old single-profile
+     * service area storage.
+     *
+     * This lets an existing mechanic keep their
+     * previous information instead of losing it.
+     */
+
+    if (!savedArea) {
+
+        const oldArea =
+            WrenchLinkStorage.get(
+                "wrenchlinkServiceArea",
+                null
+            );
+
+        if (oldArea) {
+            savedArea = oldArea;
+        }
+    }
+
+
+    if (savedArea) {
+
+        document.getElementById("city").value =
+            savedArea.city || "";
+
+        document.getElementById("state").value =
+            savedArea.state || "IL";
+
+        document.getElementById("zip").value =
+            savedArea.zip || "";
+
+        document.getElementById("radius").value =
+            savedArea.radius || "10";
+    }
+
+
+    /*
+     * Save service area.
+     */
+
+    form.addEventListener("submit", function (event) {
 
         event.preventDefault();
 
+
+        const city =
+            document.getElementById("city")
+                .value
+                .trim();
+
+        const state =
+            document.getElementById("state")
+                .value
+                .trim()
+                .toUpperCase();
+
+        const zip =
+            document.getElementById("zip")
+                .value
+                .trim();
+
+        const radius =
+            document.getElementById("radius")
+                .value;
+
+
+        /*
+         * Basic validation.
+         */
+
+        if (!city || !state || !zip || !radius) {
+
+            message.style.display = "block";
+
+            message.textContent =
+                "Please complete all service area fields.";
+
+            return;
+        }
+
+
+        if (state.length !== 2) {
+
+            message.style.display = "block";
+
+            message.textContent =
+                "Please enter a two-letter state abbreviation.";
+
+            return;
+        }
+
+
+        /*
+         * Create the service area record.
+         */
+
         const area = {
 
-            city:
-                document.getElementById("city").value.trim(),
+            mechanicId:
+                currentUser.id,
 
-            state:
-                document.getElementById("state").value.trim(),
+            city: city,
 
-            zip:
-                document.getElementById("zip").value.trim(),
+            state: state,
 
-            radius:
-                document.getElementById("radius").value
+            zip: zip,
+
+            radius: radius,
+
+            updatedAt:
+                new Date().toISOString()
 
         };
 
 
-        localStorage.setItem(
-            areaKey,
-            JSON.stringify(area)
+        /*
+         * Save this mechanic's service area
+         * under their individual account ID.
+         */
+
+        const updatedAreas =
+            WrenchLinkStorage.get(
+                "wrenchlinkServiceAreas",
+                {}
+            );
+
+
+        updatedAreas[currentUser.id] =
+            area;
+
+
+        WrenchLinkStorage.set(
+            "wrenchlinkServiceAreas",
+            updatedAreas
         );
 
 
-        document.getElementById(
-            "savedAreaText"
-        ).textContent =
+        /*
+         * Also keep the old storage key updated
+         * for backward compatibility with older
+         * WrenchLink pages.
+         */
+
+        WrenchLinkStorage.set(
+            "wrenchlinkServiceArea",
+            area
+        );
+
+
+        /*
+         * Clear error message.
+         */
+
+        message.style.display = "none";
+
+
+        /*
+         * Show confirmation.
+         */
+
+        savedAreaText.textContent =
             area.city +
             ", " +
             area.state +
@@ -242,25 +440,18 @@ document.getElementById(
             " mile service radius.";
 
 
-        document.getElementById(
-            "savedMessage"
-        ).style.display = "block";
+        savedMessage.style.display =
+            "block";
 
 
-        document.getElementById(
-            "savedMessage"
-        ).scrollIntoView({
-            behavior: "smooth"
+        savedMessage.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
         });
 
-    }
-);
+    });
 
-
-document.addEventListener(
-    "DOMContentLoaded",
-    loadArea
-);
+});
 
 </script>
 

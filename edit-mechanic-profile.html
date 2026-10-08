@@ -1,108 +1,75 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Edit Mechanic Profile | WrenchLink</title>
 
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
+<header>
+    <div class="container">
 
-    <a href="index.html"
-       class="logo"
-       style="text-decoration: none; color: inherit;">
-        🔧 WrenchLink
-    </a>
+        <h1>
+            <a href="index.html">🔧 WrenchLink</a>
+        </h1>
 
-    <a href="mechanic-dashboard.html"
-       class="btn btn-small">
-        ← Dashboard
-    </a>
+        <nav>
+            <a href="mechanic-dashboard.html">Dashboard</a>
+            <a href="index.html">Home</a>
+        </nav>
 
+    </div>
 </header>
 
 
-<main>
+<main class="container">
 
-<section class="services">
+    <section class="page-header">
 
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            MECHANIC ACCOUNT
-        </p>
-
-        <h1>
-            Edit Your Profile
-        </h1>
+        <h2>Mechanic Profile</h2>
 
         <p>
-            Update the information customers see when
-            they view your mechanic profile.
+            Build your profile so customers know who they are hiring.
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="service-card"
-         style="max-width: 700px; margin: 0 auto; text-align: left;">
+    <section class="card">
 
         <form id="mechanicProfileForm">
 
-            <label for="name">
-                Full Name
-            </label>
+            <label for="name">Full Name</label>
 
             <input
-                type="text"
                 id="name"
-                placeholder="Enter your full name"
-                required
-            >
-
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                required
-            >
-
-
-            <label for="phone">
-                Phone
-            </label>
-
-            <input
-                type="tel"
-                id="phone"
-                placeholder="Enter your phone number"
-                required
-            >
-
-
-            <label for="serviceArea">
-                Service Area
-            </label>
-
-            <input
                 type="text"
-                id="serviceArea"
-                placeholder="Example: Chicago, IL"
+                placeholder="Your full name"
+                required
+            >
+
+
+            <label for="email">Email</label>
+
+            <input
+                id="email"
+                type="email"
+                placeholder="Your email"
+                required
+            >
+
+
+            <label for="phone">Phone</label>
+
+            <input
+                id="phone"
+                type="tel"
+                placeholder="Your phone number"
                 required
             >
 
@@ -112,11 +79,11 @@
             </label>
 
             <input
-                type="number"
                 id="experience"
+                type="number"
                 min="0"
+                max="70"
                 placeholder="Example: 10"
-                required
             >
 
 
@@ -127,8 +94,7 @@
             <textarea
                 id="services"
                 rows="5"
-                placeholder="Example: Brakes, diagnostics, batteries, alternators, starters..."
-                required
+                placeholder="Example: Brakes, diagnostics, alternators, starters, batteries..."
             ></textarea>
 
 
@@ -139,68 +105,52 @@
             <textarea
                 id="about"
                 rows="6"
-                placeholder="Tell customers about your experience and what makes your service different..."
+                placeholder="Tell customers about your experience and what makes your service different."
             ></textarea>
 
 
-            <button
-                type="submit"
-                class="btn btn-primary">
+            <button type="submit">
                 Save Profile
             </button>
 
         </form>
 
 
-        <div id="successMessage"
-             style="display: none; margin-top: 20px;">
+        <div
+            id="successMessage"
+            style="display:none;"
+        >
+
+            <h3>Profile Saved ✓</h3>
 
             <p>
-                ✅ Your mechanic profile has been saved.
+                Your mechanic profile has been updated.
             </p>
 
-            <a href="mechanic-dashboard.html"
-               class="btn btn-small">
+            <a href="mechanic-dashboard.html">
                 Return to Dashboard
             </a>
 
         </div>
 
-    </div>
-
-</section>
+    </section>
 
 </main>
 
 
-<footer class="footer">
+<footer>
 
-    <div>
-
-        <strong>
-            🔧 WrenchLink
-        </strong>
+    <div class="container">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
-    </div>
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
+        <p>
+            <a href="privacy.html">Privacy</a> |
+            <a href="terms.html">Terms</a> |
+            <a href="contact.html">Contact</a>
+        </p>
 
     </div>
 
@@ -209,69 +159,55 @@
 
 <script>
 
-const profileForm =
-    document.getElementById("mechanicProfileForm");
+const profileKey =
+    "wrenchlinkMechanicProfile";
 
-
-/*
-    LOAD SAVED PROFILE
-*/
 
 function loadProfile() {
 
-    const savedProfile =
-        localStorage.getItem("wrenchlinkMechanicProfile");
+    const saved =
+        localStorage.getItem(profileKey);
 
-
-    if (!savedProfile) {
-        return;
-    }
-
+    if (!saved) return;
 
     const profile =
-        JSON.parse(savedProfile);
-
+        JSON.parse(saved);
 
     document.getElementById("name").value =
         profile.name || "";
 
-
     document.getElementById("email").value =
         profile.email || "";
-
 
     document.getElementById("phone").value =
         profile.phone || "";
 
-
-    document.getElementById("serviceArea").value =
-        profile.serviceArea || "";
-
-
     document.getElementById("experience").value =
         profile.experience || "";
-
 
     document.getElementById("services").value =
         profile.services || "";
 
-
     document.getElementById("about").value =
         profile.about || "";
-
 }
 
 
-/*
-    SAVE PROFILE
-*/
-
-profileForm.addEventListener(
+document.getElementById(
+    "mechanicProfileForm"
+).addEventListener(
     "submit",
     function(event) {
 
         event.preventDefault();
 
+        const existing =
+            localStorage.getItem(profileKey);
+
+        const oldProfile =
+            existing
+                ? JSON.parse(existing)
+                : {};
 
         const profile = {
 
@@ -285,10 +221,10 @@ profileForm.addEventListener(
                 document.getElementById("phone").value.trim(),
 
             serviceArea:
-                document.getElementById("serviceArea").value.trim(),
+                oldProfile.serviceArea || "",
 
             experience:
-                document.getElementById("experience").value,
+                document.getElementById("experience").value.trim(),
 
             services:
                 document.getElementById("services").value.trim(),
@@ -300,17 +236,19 @@ profileForm.addEventListener(
 
 
         localStorage.setItem(
-            "wrenchlinkMechanicProfile",
+            profileKey,
             JSON.stringify(profile)
         );
 
 
-        document.getElementById("successMessage")
-            .style.display = "block";
+        document.getElementById(
+            "successMessage"
+        ).style.display = "block";
 
 
-        window.scrollTo({
-            top: document.body.scrollHeight,
+        document.getElementById(
+            "successMessage"
+        ).scrollIntoView({
             behavior: "smooth"
         });
 
@@ -318,14 +256,12 @@ profileForm.addEventListener(
 );
 
 
-/*
-    LOAD PROFILE WHEN PAGE OPENS
-*/
-
-loadProfile();
+document.addEventListener(
+    "DOMContentLoaded",
+    loadProfile
+);
 
 </script>
 
 </body>
-
 </html>

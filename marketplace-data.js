@@ -1,4 +1,3 @@
-```javascript
 /*
  * WRENCHLINK MARKETPLACE DATA
  *

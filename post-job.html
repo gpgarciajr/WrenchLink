@@ -1,659 +1,1097 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-```
-<title>Post a Job | WrenchLink</title>
+    <title>Post a Job | WrenchLink</title>
 
-<link rel="stylesheet" href="style.css">
-```
+    <link rel="stylesheet" href="style.css">
 
+    <script src="app.js" defer></script>
+    <script src="marketplace-data.js" defer></script>
 </head>
 
 <body>
 
-<header class="site-header">
+<header>
+    <div class="container">
 
-```
-<div class="container nav-container">
+        <div class="header-content">
 
-    <a href="index.html" class="logo">
-        🔧 WrenchLink
-    </a>
+            <a href="index.html" class="logo">
+                🔧 WrenchLink
+            </a>
 
-    <nav>
-        <a href="index.html">Home</a>
-        <a href="mechanics.html">Find a Mechanic</a>
-        <a href="services.html">Services</a>
-        <a href="about.html">About</a>
-        <a href="login.html" class="btn btn-small">Sign In</a>
-    </nav>
+            <nav>
+                <a href="customer-dashboard.html">Dashboard</a>
+                <a href="mechanics.html">Find a Mechanic</a>
+                <a href="services.html">Services</a>
+            </nav>
 
-</div>
-```
+        </div>
 
+    </div>
 </header>
+
 
 <main class="container">
 
-```
-<section class="page-hero">
+    <section class="page-header">
 
-    <p class="eyebrow">
-        WRENCHLINK SERVICE REQUEST
-    </p>
+        <h1>Post a Service Request</h1>
 
-    <h1>
-        Post a Job
-    </h1>
+        <p>
+            Tell WrenchLink what your vehicle needs and let mechanics respond.
+        </p>
 
-    <p>
-        Tell the mechanic what your vehicle needs.
-    </p>
+    </section>
 
-</section>
 
+    <section>
 
-<section
-    id="selectedMechanicBox"
-    class="card"
-    style="display:none;"
->
+        <div id="selectedMechanicContainer"></div>
 
-    <p class="eyebrow">
-        REQUESTING
-    </p>
+        <div id="message"></div>
 
-    <h2 id="selectedMechanicName"></h2>
 
-    <p id="selectedMechanicDetails"></p>
+        <form id="jobForm">
 
-    <button
-        type="button"
-        class="btn btn-secondary"
-        id="changeMechanic"
-    >
-        Choose a Different Mechanic
-    </button>
+            <div>
 
-</section>
+                <label for="vehicle">
+                    Vehicle
+                </label>
 
+                <input
+                    type="text"
+                    id="vehicle"
+                    required
+                    maxlength="150"
+                    placeholder="Year Make Model"
+                >
 
-<section class="card">
+            </div>
 
-    <form id="jobForm">
 
-        <div class="form-group">
+            <div>
 
-            <label for="vehicle">
-                Vehicle
-            </label>
+                <label for="service">
+                    Service Needed
+                </label>
 
-            <input
-                id="vehicle"
-                type="text"
-                placeholder="2019 Kia Soul 1.6L"
-                required
-            >
+                <select
+                    id="service"
+                    required
+                >
 
-        </div>
+                    <option value="">
+                        Select a service
+                    </option>
 
+                    <option value="Oil Change">
+                        Oil Change
+                    </option>
 
-        <div class="form-group">
+                    <option value="Brake Repair">
+                        Brake Repair
+                    </option>
 
-            <label for="service">
-                Service Needed
-            </label>
+                    <option value="Battery Replacement">
+                        Battery Replacement
+                    </option>
 
-            <select id="service" required>
+                    <option value="Alternator Replacement">
+                        Alternator Replacement
+                    </option>
 
-                <option value="">
-                    Select a service
-                </option>
+                    <option value="Starter Replacement">
+                        Starter Replacement
+                    </option>
 
-                <option value="Brakes & Rotors">
-                    Brakes & Rotors
-                </option>
+                    <option value="Belt Replacement">
+                        Belt Replacement
+                    </option>
 
-                <option value="Battery">
-                    Battery
-                </option>
+                    <option value="Diagnostic">
+                        Diagnostic
+                    </option>
 
-                <option value="Alternator">
-                    Alternator
-                </option>
+                    <option value="AC Repair">
+                        A/C Repair
+                    </option>
 
-                <option value="Starter">
-                    Starter
-                </option>
+                    <option value="Cooling System">
+                        Cooling System
+                    </option>
 
-                <option value="Diagnostics">
-                    Diagnostics
-                </option>
+                    <option value="Suspension Repair">
+                        Suspension Repair
+                    </option>
 
-                <option value="Oil Change">
-                    Oil Change
-                </option>
+                    <option value="Tire Service">
+                        Tire Service
+                    </option>
 
-                <option value="Roadside Assistance">
-                    Roadside Assistance
-                </option>
+                    <option value="Electrical Repair">
+                        Electrical Repair
+                    </option>
 
-                <option value="Tire Assistance">
-                    Tire Assistance
-                </option>
+                    <option value="Other">
+                        Other
+                    </option>
 
-                <option value="Other Repairs">
-                    Other Repairs
-                </option>
+                </select>
 
-            </select>
+            </div>
 
-        </div>
 
+            <div>
 
-        <div class="form-group">
+                <label for="description">
+                    Describe the Problem
+                </label>
 
-            <label for="problem">
-                Describe the Problem
-            </label>
+                <textarea
+                    id="description"
+                    rows="6"
+                    maxlength="2000"
+                    required
+                    placeholder="Describe the problem, symptoms, parts you already have, or anything else the mechanic should know."
+                ></textarea>
 
-            <textarea
-                id="problem"
-                rows="5"
-                placeholder="Describe what is happening with the vehicle..."
-                required
-            ></textarea>
+            </div>
 
-        </div>
 
+            <div>
 
-        <div class="form-group">
+                <label for="city">
+                    City
+                </label>
 
-            <label for="city">
-                Service City
-            </label>
+                <input
+                    type="text"
+                    id="city"
+                    required
+                    maxlength="100"
+                >
 
-            <input
-                id="city"
-                type="text"
-                placeholder="Chicago"
-                required
-            >
+            </div>
 
-        </div>
 
+            <div>
 
-        <div class="form-group">
+                <label for="state">
+                    State
+                </label>
 
-            <label for="state">
-                State
-            </label>
+                <input
+                    type="text"
+                    id="state"
+                    required
+                    maxlength="2"
+                    placeholder="IL"
+                    style="text-transform: uppercase;"
+                >
 
-            <input
-                id="state"
-                type="text"
-                maxlength="2"
-                placeholder="IL"
-                required
-            >
+            </div>
 
-        </div>
 
+            <div>
 
-        <div class="form-group">
+                <label for="zip">
+                    ZIP Code
+                </label>
 
-            <label for="zip">
-                ZIP Code
-            </label>
+                <input
+                    type="text"
+                    id="zip"
+                    required
+                    maxlength="10"
+                    inputmode="numeric"
+                    placeholder="60601"
+                >
 
-            <input
-                id="zip"
-                type="text"
-                inputmode="numeric"
-                placeholder="60618"
-                required
-            >
+            </div>
 
-        </div>
 
+            <div>
 
-        <div class="form-group">
+                <label for="location">
+                    Service Address
+                </label>
 
-            <label for="address">
-                Service Address
-            </label>
+                <input
+                    type="text"
+                    id="location"
+                    maxlength="200"
+                    placeholder="Street address or meeting location"
+                >
 
-            <input
-                id="address"
-                type="text"
-                placeholder="Where the vehicle is located"
-                required
-            >
+            </div>
 
-        </div>
 
+            <div>
 
-        <div class="form-group">
+                <label for="preferredDateTime">
+                    Preferred Date and Time
+                </label>
 
-            <label for="preferredDateTime">
-                Preferred Date & Time
-            </label>
+                <input
+                    type="datetime-local"
+                    id="preferredDateTime"
+                    required
+                >
 
-            <input
-                id="preferredDateTime"
-                type="datetime-local"
-                required
-            >
+            </div>
 
-        </div>
 
+            <div>
 
-        <button
-            type="submit"
-            class="btn"
-        >
-            Submit Service Request
-        </button>
+                <button
+                    type="submit"
+                >
+                    Post Job
+                </button>
 
-    </form>
+                <button
+                    type="button"
+                    onclick="window.location.href='customer-dashboard.html'"
+                >
+                    Cancel
+                </button>
 
+            </div>
 
-    <div
-        id="successMessage"
-        style="display:none;"
-    >
+        </form>
 
-        <h2>
-            Request Submitted ✓
-        </h2>
-
-        <p id="successText"></p>
-
-        <div class="button-row">
-
-            <a
-                href="customer-dashboard.html"
-                class="btn"
-            >
-                View Dashboard
-            </a>
-
-            <a
-                href="mechanics.html"
-                class="btn btn-secondary"
-            >
-                Find Another Mechanic
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-```
+    </section>
 
 </main>
 
-<footer class="site-footer">
-
-```
-<div class="container">
-
-    <p>
-        © 2026 WrenchLink. All rights reserved.
-    </p>
-
-    <div>
-        <a href="privacy.html">Privacy</a>
-        <a href="terms.html">Terms</a>
-        <a href="contact.html">Contact</a>
-    </div>
-
-</div>
-```
-
-</footer>
-
-<!-- WrenchLink core functions -->
-
-<script src="app.js"></script>
-
-<!-- Marketplace mechanic/job functions -->
-
-<script src="marketplace-data.js"></script>
 
 <script>
 
 let currentUser = null;
-let customerProfile = {};
 let selectedMechanic = null;
 
 
-/* =========================================
-   REQUIRE CUSTOMER LOGIN
-========================================= */
+/* =========================================================
+   STORAGE
+========================================================= */
+
+function getStorage(key, fallback) {
+
+    const value =
+        localStorage.getItem(key);
+
+    if (!value) {
+        return fallback;
+    }
+
+    try {
+        return JSON.parse(value);
+    } catch (error) {
+        return fallback;
+    }
+}
+
+
+function setStorage(key, value) {
+
+    localStorage.setItem(
+        key,
+        JSON.stringify(value)
+    );
+}
+
+
+/* =========================================================
+   SECURITY
+========================================================= */
+
+function escapeHTML(value) {
+
+    if (
+        value === null ||
+        value === undefined
+    ) {
+        return "";
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
+
+
+/* =========================================================
+   MESSAGE
+========================================================= */
+
+function showMessage(message, success = false) {
+
+    const element =
+        document.getElementById("message");
+
+    element.textContent =
+        message;
+
+    element.style.padding =
+        "10px";
+
+    element.style.marginBottom =
+        "15px";
+
+    element.style.border =
+        "1px solid";
+
+    element.style.borderColor =
+        success
+            ? "green"
+            : "red";
+}
+
+
+/* =========================================================
+   ACCESS
+========================================================= */
 
 function checkCustomerAccess() {
 
-    currentUser = getCurrentUser();
+    currentUser =
+        getStorage(
+            "wrenchlinkCurrentUser",
+            null
+        );
+
 
     if (!currentUser) {
-        window.location.href = "login.html";
+
+        window.location.href =
+            "login.html";
+
         return false;
     }
+
 
     if (currentUser.role === "mechanic") {
-        window.location.href = "mechanic-dashboard.html";
+
+        window.location.href =
+            "mechanic-dashboard.html";
+
         return false;
     }
 
+
     if (currentUser.role === "admin") {
-        window.location.href = "admin/index.html";
+
+        window.location.href =
+            "admin/index.html";
+
         return false;
     }
+
+
+    if (currentUser.role !== "customer") {
+
+        window.location.href =
+            "login.html";
+
+        return false;
+    }
+
 
     return true;
 }
 
 
-/* =========================================
-   LOAD CUSTOMER PROFILE
-========================================= */
+/* =========================================================
+   CUSTOMER PROFILE
+========================================================= */
 
 function loadCustomerProfile() {
 
-    const profiles = WrenchLinkStorage.get(
-        "wrenchlinkCustomerProfiles",
-        {}
-    );
-
-    customerProfile =
-        profiles[currentUser.id] || {};
+    const profiles =
+        getStorage(
+            "wrenchlinkCustomerProfiles",
+            {}
+        );
 
 
-    /*
-     * Vehicle
-     */
+    const profile =
+        profiles[currentUser.id];
 
-    if (customerProfile.vehicle) {
 
-        document.getElementById("vehicle").value =
-            customerProfile.vehicle;
-
+    if (!profile) {
+        return;
     }
 
 
-    /*
-     * City
-     */
+    if (profile.vehicle) {
 
-    if (customerProfile.city) {
-
-        document.getElementById("city").value =
-            customerProfile.city;
-
+        document.getElementById(
+            "vehicle"
+        ).value =
+            profile.vehicle;
     }
 
 
-    /*
-     * State
-     */
+    if (profile.city) {
 
-    if (customerProfile.state) {
-
-        document.getElementById("state").value =
-            customerProfile.state;
-
-    } else {
-
-        document.getElementById("state").value = "IL";
-
+        document.getElementById(
+            "city"
+        ).value =
+            profile.city;
     }
 
 
-    /*
-     * ZIP
-     */
+    if (profile.state) {
 
-    if (customerProfile.zip) {
-
-        document.getElementById("zip").value =
-            customerProfile.zip;
-
+        document.getElementById(
+            "state"
+        ).value =
+            profile.state.toUpperCase();
     }
 
+
+    if (profile.zip) {
+
+        document.getElementById(
+            "zip"
+        ).value =
+            profile.zip;
+    }
 }
 
 
-/* =========================================
-   LOAD MECHANIC FROM URL
-========================================= */
+/* =========================================================
+   FIND MECHANIC FROM URL
+========================================================= */
+
+function getRequestedMechanicId() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+
+    return params.get("mechanic");
+}
+
+
+/* =========================================================
+   GET REAL MECHANIC
+========================================================= */
+
+function findMechanicById(mechanicId) {
+
+    if (!mechanicId) {
+        return null;
+    }
+
+
+    const users =
+        getStorage(
+            "wrenchlinkUsers",
+            []
+        );
+
+
+    const mechanicUser =
+        users.find(function(user) {
+
+            return (
+                user.id === mechanicId &&
+                user.role === "mechanic"
+            );
+
+        });
+
+
+    if (!mechanicUser) {
+        return null;
+    }
+
+
+    const profiles =
+        getStorage(
+            "wrenchlinkMechanicProfiles",
+            {}
+        );
+
+
+    const areas =
+        getStorage(
+            "wrenchlinkServiceAreas",
+            {}
+        );
+
+
+    const profile =
+        profiles[mechanicUser.id] || {};
+
+
+    const area =
+        areas[mechanicUser.id] || {};
+
+
+    return {
+
+        id:
+            mechanicUser.id,
+
+        name:
+            profile.name ||
+            mechanicUser.name ||
+            "Mechanic",
+
+        email:
+            profile.email ||
+            mechanicUser.email ||
+            "",
+
+        phone:
+            profile.phone ||
+            mechanicUser.phone ||
+            "",
+
+        city:
+            profile.city ||
+            area.city ||
+            "",
+
+        state:
+            profile.state ||
+            area.state ||
+            "",
+
+        zip:
+            profile.zip ||
+            area.zip ||
+            "",
+
+        experience:
+            profile.experience ||
+            "",
+
+        services:
+            profile.services ||
+            []
+
+    };
+}
+
+
+/* =========================================================
+   SELECTED MECHANIC
+========================================================= */
 
 function loadSelectedMechanic() {
 
-    if (typeof getRequestedMechanicFromURL !== "function") {
+    const mechanicId =
+        getRequestedMechanicId();
+
+
+    if (!mechanicId) {
         return;
     }
 
-    const mechanic =
-        getRequestedMechanicFromURL();
 
-    if (!mechanic) {
+    selectedMechanic =
+        findMechanicById(
+            mechanicId
+        );
+
+
+    const container =
+        document.getElementById(
+            "selectedMechanicContainer"
+        );
+
+
+    if (!selectedMechanic) {
+
+        container.innerHTML = `
+
+            <div class="dashboard-card">
+
+                <h3>Mechanic Not Found</h3>
+
+                <p>
+                    The mechanic you selected is no longer available.
+                    You can still post your job for other mechanics.
+                </p>
+
+            </div>
+
+        `;
+
         return;
     }
 
-    selectedMechanic = mechanic;
 
-    document.getElementById(
-        "selectedMechanicBox"
-    ).style.display = "block";
+    container.innerHTML = `
 
+        <div class="dashboard-card">
 
-    document.getElementById(
-        "selectedMechanicName"
-    ).textContent =
-        mechanic.name;
+            <h2>
+                Requesting:
+                ${escapeHTML(
+                    selectedMechanic.name
+                )}
+            </h2>
 
+            <p>
+                <strong>Location:</strong>
+                ${[
+                    selectedMechanic.city,
+                    selectedMechanic.state
+                ]
+                    .filter(Boolean)
+                    .map(escapeHTML)
+                    .join(", ") ||
+                    "Not provided"
+                }
+            </p>
 
-    document.getElementById(
-        "selectedMechanicDetails"
-    ).textContent =
+            ${
+                selectedMechanic.experience
+                    ? `
+                        <p>
+                            <strong>Experience:</strong>
+                            ${escapeHTML(
+                                selectedMechanic.experience
+                            )}
+                        </p>
+                    `
+                    : ""
+            }
 
-        mechanic.city +
-        ", " +
-        mechanic.state +
-        " • " +
-        mechanic.experience +
-        " years experience";
+            <p>
+                Your request will be sent specifically to this mechanic.
+            </p>
 
+            <button
+                type="button"
+                onclick="clearSelectedMechanic()"
+            >
+                Choose Any Available Mechanic
+            </button>
+
+        </div>
+
+    `;
 }
 
 
-/* =========================================
-   CHANGE MECHANIC
-========================================= */
+/* =========================================================
+   CLEAR SELECTED MECHANIC
+========================================================= */
 
-document
-    .getElementById("changeMechanic")
-    .addEventListener("click", function () {
+function clearSelectedMechanic() {
 
-        window.location.href =
-            "mechanics.html";
+    selectedMechanic = null;
+
+    window.history.replaceState(
+        {},
+        document.title,
+        "post-job.html"
+    );
+
+
+    const container =
+        document.getElementById(
+            "selectedMechanicContainer"
+        );
+
+
+    container.innerHTML = "";
+}
+
+
+/* =========================================================
+   DATE VALIDATION
+========================================================= */
+
+function validatePreferredDateTime(value) {
+
+    if (!value) {
+        return false;
+    }
+
+
+    const selectedDate =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            selectedDate.getTime()
+        )
+    ) {
+        return false;
+    }
+
+
+    return (
+        selectedDate.getTime() >
+        Date.now()
+    );
+}
+
+
+/* =========================================================
+   JOB DUPLICATE PROTECTION
+========================================================= */
+
+function hasDuplicateJob(
+    vehicle,
+    service,
+    description,
+    preferredDateTime
+) {
+
+    const jobs =
+        getStorage(
+            "wrenchlinkJobs",
+            []
+        );
+
+
+    const recentLimit =
+        Date.now() -
+        (
+            5 *
+            60 *
+            1000
+        );
+
+
+    return jobs.some(function(job) {
+
+        return (
+
+            job.customerId ===
+            currentUser.id &&
+
+            job.status === "Open" &&
+
+            job.vehicle ===
+            vehicle &&
+
+            job.service ===
+            service &&
+
+            job.description ===
+            description &&
+
+            job.preferredDateTime ===
+            preferredDateTime &&
+
+            new Date(
+                job.createdAt || 0
+            ).getTime() >
+            recentLimit
+
+        );
 
     });
+}
 
 
-/* =========================================
+/* =========================================================
    SUBMIT JOB
-========================================= */
+========================================================= */
 
-document
-    .getElementById("jobForm")
-    .addEventListener("submit", function (event) {
+document.getElementById(
+    "jobForm"
+).addEventListener(
+    "submit",
+    function(event) {
 
         event.preventDefault();
 
 
-        /*
-         * Make absolutely sure the customer
-         * is still logged in.
-         */
-
-        if (!currentUser) {
-
-            window.location.href =
-                "login.html";
-
-            return;
-
-        }
-
-
         const vehicle =
-            document
-                .getElementById("vehicle")
-                .value
-                .trim();
+            document.getElementById(
+                "vehicle"
+            ).value.trim();
 
 
         const service =
-            document
-                .getElementById("service")
-                .value;
+            document.getElementById(
+                "service"
+            ).value.trim();
 
 
         const description =
-            document
-                .getElementById("problem")
-                .value
-                .trim();
+            document.getElementById(
+                "description"
+            ).value.trim();
 
 
         const city =
-            document
-                .getElementById("city")
-                .value
-                .trim();
+            document.getElementById(
+                "city"
+            ).value.trim();
 
 
         const state =
-            document
-                .getElementById("state")
-                .value
-                .trim()
-                .toUpperCase();
+            document.getElementById(
+                "state"
+            ).value.trim()
+            .toUpperCase();
 
 
         const zip =
-            document
-                .getElementById("zip")
-                .value
-                .trim();
+            document.getElementById(
+                "zip"
+            ).value.trim();
 
 
-        const address =
-            document
-                .getElementById("address")
-                .value
-                .trim();
+        const location =
+            document.getElementById(
+                "location"
+            ).value.trim();
 
 
         const preferredDateTime =
-            document
-                .getElementById("preferredDateTime")
-                .value;
+            document.getElementById(
+                "preferredDateTime"
+            ).value;
 
 
-        /*
-         * Create unique job ID.
-         */
+        /* Required fields */
+
+        if (!vehicle) {
+
+            showMessage(
+                "Please enter your vehicle."
+            );
+
+            return;
+        }
+
+
+        if (!service) {
+
+            showMessage(
+                "Please select a service."
+            );
+
+            return;
+        }
+
+
+        if (!description) {
+
+            showMessage(
+                "Please describe the problem."
+            );
+
+            return;
+        }
+
+
+        if (!city) {
+
+            showMessage(
+                "Please enter your city."
+            );
+
+            return;
+        }
+
+
+        if (
+            !/^[A-Z]{2}$/.test(state)
+        ) {
+
+            showMessage(
+                "Please enter a valid two-letter state code, such as IL."
+            );
+
+            return;
+        }
+
+
+        if (
+            !/^\d{5}(-\d{4})?$/.test(zip)
+        ) {
+
+            showMessage(
+                "Please enter a valid ZIP code."
+            );
+
+            return;
+        }
+
+
+        if (
+            !validatePreferredDateTime(
+                preferredDateTime
+            )
+        ) {
+
+            showMessage(
+                "Please select a future date and time."
+            );
+
+            return;
+        }
+
+
+        /* Verify selected mechanic */
+
+        if (selectedMechanic) {
+
+            const verifiedMechanic =
+                findMechanicById(
+                    selectedMechanic.id
+                );
+
+
+            if (!verifiedMechanic) {
+
+                showMessage(
+                    "The selected mechanic is no longer available. Please choose another mechanic."
+                );
+
+                selectedMechanic = null;
+
+                return;
+            }
+
+
+            selectedMechanic =
+                verifiedMechanic;
+        }
+
+
+        /* Duplicate protection */
+
+        if (
+            hasDuplicateJob(
+                vehicle,
+                service,
+                description,
+                preferredDateTime
+            )
+        ) {
+
+            showMessage(
+                "You already posted this same job recently."
+            );
+
+            return;
+        }
+
+
+        /* Create job */
+
+        const jobs =
+            getStorage(
+                "wrenchlinkJobs",
+                []
+            );
+
 
         const jobId =
             "JOB-" +
             Date.now() +
             "-" +
             Math.floor(
-                Math.random() * 10000
+                Math.random() *
+                10000
             );
 
 
-        /*
-         * Create the service request.
-         */
-
         const job = {
 
-            id: jobId,
+            id:
+                jobId,
 
             customerId:
                 currentUser.id,
 
             customerName:
-                customerProfile.name ||
                 currentUser.name ||
-                "WrenchLink Customer",
+                "",
 
             customerEmail:
-                customerProfile.email ||
                 currentUser.email ||
                 "",
 
             customerPhone:
-                customerProfile.phone ||
                 currentUser.phone ||
                 "",
 
+            vehicle:
+                vehicle,
 
-            vehicle: vehicle,
+            service:
+                service,
 
-            service: service,
+            description:
+                description,
 
-            description: description,
+            city:
+                city,
 
+            state:
+                state,
 
-            city: city,
+            zip:
+                zip,
 
-            state: state,
-
-            zip: zip,
-
-            location: address,
-
+            location:
+                location,
 
             preferredDateTime:
                 preferredDateTime,
 
-
-            status: "Open",
-
+            status:
+                "Open",
 
             mechanicId:
                 selectedMechanic
                     ? selectedMechanic.id
                     : null,
 
-
             mechanicName:
                 selectedMechanic
                     ? selectedMechanic.name
                     : null,
 
+            mechanicEmail:
+                selectedMechanic
+                    ? selectedMechanic.email
+                    : null,
+
+            mechanicPhone:
+                selectedMechanic
+                    ? selectedMechanic.phone
+                    : null,
 
             requestedMechanic:
-                Boolean(selectedMechanic),
+                Boolean(
+                    selectedMechanic
+                ),
 
+            acceptedAt:
+                null,
 
-            acceptedAt: null,
+            completedAt:
+                null,
 
-            completedAt: null,
-
-            cancelledAt: null,
-
+            cancelledAt:
+                null,
 
             createdAt:
                 new Date().toISOString()
@@ -661,124 +1099,51 @@ document
         };
 
 
-        /*
-         * Get existing jobs.
-         */
-
-        const jobs =
-            WrenchLinkStorage.get(
-                "wrenchlinkJobs",
-                []
-            );
-
-
-        /*
-         * Add this new job.
-         */
-
         jobs.push(job);
 
 
-        /*
-         * Save jobs.
-         */
-
-        WrenchLinkStorage.set(
+        setStorage(
             "wrenchlinkJobs",
             jobs
         );
 
 
-        /*
-         * If marketplace-data.js has the
-         * official save function, keep it
-         * synchronized as well.
-         *
-         * This is protected so the page
-         * still works even if that helper
-         * changes later.
-         */
-
-        if (
-            typeof saveWrenchLinkJob === "function"
-        ) {
-
-            /*
-             * The primary storage above already
-             * saved the job. The helper is therefore
-             * intentionally not called here to avoid
-             * creating a duplicate job.
-             */
-
-        }
+        showMessage(
+            selectedMechanic
+                ? "Your request has been sent to " +
+                  selectedMechanic.name +
+                  "."
+                : "Your job has been posted successfully.",
+            true
+        );
 
 
-        /*
-         * Hide form.
-         */
+        setTimeout(
+            function() {
 
-        document.getElementById(
-            "jobForm"
-        ).style.display = "none";
+                window.location.href =
+                    "customer-dashboard.html";
 
+            },
+            900
+        );
 
-        document.getElementById(
-            "selectedMechanicBox"
-        ).style.display = "none";
-
-
-        /*
-         * Show success message.
-         */
-
-        document.getElementById(
-            "successMessage"
-        ).style.display = "block";
+    }
+);
 
 
-        if (selectedMechanic) {
-
-            document.getElementById(
-                "successText"
-            ).textContent =
-
-                "Your request has been created for " +
-                selectedMechanic.name +
-                ". The request is currently open.";
-
-        } else {
-
-            document.getElementById(
-                "successText"
-            ).textContent =
-
-                "Your service request has been created and is now open for mechanics to review.";
-
-        }
-
-
-        window.scrollTo({
-
-            top: 0,
-
-            behavior: "smooth"
-
-        });
-
-    });
-
-
-/* =========================================
-   PAGE STARTUP
-========================================= */
+/* =========================================================
+   START
+========================================================= */
 
 document.addEventListener(
     "DOMContentLoaded",
-    function () {
+    function() {
 
         if (!checkCustomerAccess()) {
             return;
         }
+
 
         loadCustomerProfile();
 
@@ -790,5 +1155,5 @@ document.addEventListener(
 </script>
 
 </body>
-
 </html>
+```

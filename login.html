@@ -1,56 +1,80 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+```
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>Sign In | WrenchLink</title>
+<title>Sign In | WrenchLink</title>
 
-    <link rel="stylesheet" href="style.css">
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
+
 </head>
 
 <body>
 
-<header class="header">
+<header class="site-header">
 
-    <div class="logo">
+```
+<div class="container nav-container">
+
+    <a
+        href="index.html"
+        class="logo"
+    >
         🔧 WrenchLink
-    </div>
+    </a>
 
-    <a href="index.html" class="btn btn-small">
+    <a
+        href="index.html"
+        class="btn btn-small"
+    >
         Back to WrenchLink
     </a>
 
-</header>
+</div>
+```
 
+</header>
 
 <main>
 
-<section class="services">
+<section class="container section">
 
-    <div class="section-heading">
+```
+<div class="section-heading">
 
-        <p class="eyebrow">
-            WRENCHLINK
-        </p>
+    <p class="eyebrow">
+        WRENCHLINK ACCOUNT
+    </p>
 
-        <h1>
-            Sign In
-        </h1>
+    <h1>
+        Sign In
+    </h1>
 
-        <p>
-            Sign in to your WrenchLink account.
-        </p>
+    <p>
+        Sign in to manage your jobs, profile,
+        requests, and WrenchLink account.
+    </p>
 
-    </div>
+</div>
 
 
-    <div class="service-card">
+<div class="card form-card">
 
-        <form>
+    <form id="loginForm">
+
+        <div class="form-group">
 
             <label for="email">
                 Email
@@ -58,11 +82,17 @@
 
             <input
                 id="email"
+                name="email"
                 type="email"
                 placeholder="Enter your email"
+                autocomplete="email"
                 required
             >
 
+        </div>
+
+
+        <div class="form-group">
 
             <label for="password">
                 Password
@@ -70,48 +100,72 @@
 
             <input
                 id="password"
+                name="password"
                 type="password"
                 placeholder="Enter your password"
+                autocomplete="current-password"
                 required
             >
 
-
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-                Sign In
-            </button>
-
-        </form>
+        </div>
 
 
-        <p style="margin-top: 20px;">
-            Don't have an account?
-        </p>
+        <div
+            id="loginMessage"
+            role="alert"
+            aria-live="polite"
+        ></div>
 
-        <a
-            href="signup.html"
-            class="btn"
+
+        <button
+            type="submit"
+            class="btn btn-primary"
         >
-            Create Account
-        </a>
+            Sign In
+        </button>
 
+    </form>
+
+
+    <div class="form-divider">
+        <span>OR</span>
     </div>
+
+
+    <p>
+        Don't have a WrenchLink account?
+    </p>
+
+
+    <a
+        href="signup.html"
+        class="btn btn-secondary"
+    >
+        Create Account
+    </a>
+
+</div>
+```
 
 </section>
 
 </main>
 
+<footer class="site-footer">
 
-<footer class="footer">
+```
+<div class="container footer-container">
 
-    <div>
-        <strong>🔧 WrenchLink</strong>
+    <div class="footer-brand">
+
+        <strong>
+            🔧 WrenchLink
+        </strong>
 
         <p>
             Connecting drivers with mobile mechanics.
         </p>
+
     </div>
 
 
@@ -131,7 +185,204 @@
 
     </div>
 
+</div>
+
+
+<div class="footer-bottom">
+
+    <p>
+        © 2026 WrenchLink. All rights reserved.
+    </p>
+
+</div>
+```
+
 </footer>
+
+<script src="app.js"></script>
+
+<script>
+
+document
+    .getElementById("loginForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            const email =
+                document
+                    .getElementById("email")
+                    .value
+                    .trim()
+                    .toLowerCase();
+
+
+            const password =
+                document
+                    .getElementById("password")
+                    .value;
+
+
+            const message =
+                document
+                    .getElementById("loginMessage");
+
+
+            message.textContent = "";
+            message.className = "";
+
+
+            if (!email || !password) {
+
+                message.textContent =
+                    "Please enter your email and password.";
+
+                message.className =
+                    "form-message error";
+
+                return;
+
+            }
+
+
+            /*
+                Get registered WrenchLink accounts.
+
+                These accounts are stored locally for the
+                current front-end version of the site.
+            */
+
+            const users =
+                WrenchLinkStorage.get(
+                    "wrenchlinkUsers",
+                    []
+                );
+
+
+            const user =
+                users.find(
+                    function(account) {
+
+                        return (
+                            String(
+                                account.email || ""
+                            )
+                            .toLowerCase() === email
+                            &&
+                            account.password === password
+                        );
+
+                    }
+                );
+
+
+            if (!user) {
+
+                message.textContent =
+                    "Incorrect email or password.";
+
+                message.className =
+                    "form-message error";
+
+                return;
+
+            }
+
+
+            /*
+                Store the signed-in user.
+            */
+
+            const currentUser = {
+
+                id: user.id,
+
+                firstName:
+                    user.firstName || "",
+
+                lastName:
+                    user.lastName || "",
+
+                name:
+                    user.name ||
+                    (
+                        (user.firstName || "") +
+                        " " +
+                        (user.lastName || "")
+                    ).trim(),
+
+                email:
+                    user.email,
+
+                role:
+                    user.role || "customer",
+
+                mechanicId:
+                    user.mechanicId || null
+
+            };
+
+
+            setCurrentUser(
+                currentUser
+            );
+
+
+            message.textContent =
+                "Sign in successful. Redirecting...";
+
+            message.className =
+                "form-message success";
+
+
+            /*
+                Send each account type to the
+                correct dashboard.
+            */
+
+            setTimeout(
+                function() {
+
+                    if (
+                        user.role ===
+                        "admin"
+                    ) {
+
+                        window.location.href =
+                            "admin/index.html";
+
+                        return;
+
+                    }
+
+
+                    if (
+                        user.role ===
+                        "mechanic"
+                    ) {
+
+                        window.location.href =
+                            "mechanic-dashboard.html";
+
+                        return;
+
+                    }
+
+
+                    window.location.href =
+                        "customer-dashboard.html";
+
+                },
+                500
+            );
+
+        }
+    );
+
+</script>
 
 </body>
 

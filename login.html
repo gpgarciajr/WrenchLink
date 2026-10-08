@@ -12,7 +12,7 @@
 <header class="site-header">
     <div class="container nav-container">
         <a href="index.html" class="logo">🔧 WrenchLink</a>
-        <a href="index.html" class="btn btn-small">Back to WrenchLink</a>
+        <a href="index.html" class="btn btn-small">Home</a>
     </div>
 </header>
 
@@ -21,14 +21,14 @@
         <div class="section-heading">
             <p class="eyebrow">WRENCHLINK ACCOUNT</p>
             <h1>Sign In</h1>
-            <p>Sign in to manage your jobs, profile, requests, and account.</p>
+            <p>Sign in to manage your account, jobs, and mechanic requests.</p>
         </div>
 
 ```
     <div class="card form-card">
         <form id="loginForm" novalidate>
             <div class="form-group">
-                <label for="email">Email</label>
+                <label for="email">Email Address</label>
                 <input
                     id="email"
                     name="email"
@@ -53,12 +53,14 @@
 
             <div id="loginMessage" class="form-message" role="alert" aria-live="polite"></div>
 
-            <button type="submit" class="btn btn-primary">Sign In</button>
+            <button id="loginButton" type="submit" class="btn btn-primary">
+                Sign In
+            </button>
         </form>
 
         <div class="form-divider"><span>OR</span></div>
 
-        <p>Don't have a WrenchLink account?</p>
+        <p>Don't have an account yet?</p>
         <a href="signup.html" class="btn btn-secondary">Create Account</a>
     </div>
 </section>
@@ -96,7 +98,7 @@
     const emailInput = document.getElementById("email");
     const passwordInput = document.getElementById("password");
     const message = document.getElementById("loginMessage");
-    const submitButton = form.querySelector('button[type="submit"]');
+    const button = document.getElementById("loginButton");
 
     function showMessage(text, type) {
         message.textContent = text;
@@ -109,9 +111,6 @@
         const email = emailInput.value.trim().toLowerCase();
         const password = passwordInput.value;
 
-        message.textContent = "";
-        message.className = "form-message";
-
         if (!email || !password) {
             showMessage("Please enter your email and password.", "error");
             return;
@@ -120,14 +119,15 @@
         let users;
 
         try {
-            users = WrenchLinkStorage.get("wrenchlinkUsers", []);
+            users = JSON.parse(localStorage.getItem("wrenchlinkUsers") || "[]");
         } catch (error) {
-            showMessage("We couldn't access your saved accounts. Please refresh and try again.", "error");
+            showMessage("We couldn't read your saved accounts. Please refresh and try again.", "error");
             return;
         }
 
         if (!Array.isArray(users)) {
-            users = [];
+            showMessage("Your saved account data could not be read.", "error");
+            return;
         }
 
         const user = users.find(function (account) {
@@ -150,23 +150,25 @@
             id: user.id,
             firstName: user.firstName || "",
             lastName: user.lastName || "",
-            name: user.name || (
-                (user.firstName || "") + " " + (user.lastName || "")
-            ).trim(),
+            name: user.name || ((user.firstName || "") + " " + (user.lastName || "")).trim(),
             email: user.email,
             role: user.role || "customer",
             mechanicId: user.mechanicId || null
         };
 
         try {
-            setCurrentUser(currentUser);
+            if (typeof setCurrentUser === "function") {
+                setCurrentUser(currentUser);
+            } else {
+                localStorage.setItem("wrenchlinkCurrentUser", JSON.stringify(currentUser));
+            }
         } catch (error) {
-            showMessage("We couldn't sign you in. Please refresh and try again.", "error");
+            showMessage("We couldn't save your sign-in session. Please try again.", "error");
             return;
         }
 
         showMessage("Sign in successful! Redirecting...", "success");
-        submitButton.disabled = true;
+        button.disabled = true;
 
         if (user.role === "admin") {
             window.location.href = "admin/index.html";

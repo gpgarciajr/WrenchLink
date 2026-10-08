@@ -1,64 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>Find a Mechanic | WrenchLink</title>
-    <link rel="stylesheet" href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
 </head>
 
 <body>
 
 <header class="site-header">
+
     <div class="container nav-container">
-        <a href="index.html" class="logo">🔧 WrenchLink</a>
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            🔧 WrenchLink
+        </a>
 
         <nav>
-            <a href="index.html">Home</a>
-            <a href="mechanics.html">Find a Mechanic</a>
-            <a href="services.html">Services</a>
-            <a href="about.html">About</a>
-            <a href="login.html" class="btn btn-small">Sign In</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="mechanics.html">
+                Find a Mechanic
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a
+                href="login.html"
+                class="btn btn-small"
+            >
+                Sign In
+            </a>
+
         </nav>
+
     </div>
+
 </header>
+
 
 <main class="container">
 
     <section class="page-hero">
-        <p class="eyebrow">WRENCHLINK MARKETPLACE</p>
 
-        <h1>Find a Mechanic</h1>
+        <p class="eyebrow">
+            WRENCHLINK MARKETPLACE
+        </p>
+
+        <h1>
+            Find a Mechanic
+        </h1>
 
         <p>
-            Find a mobile mechanic near you by location,
-            service, rating, and availability.
+            Find a mobile mechanic based on
+            location, service, rating, and availability.
         </p>
+
     </section>
+
 
     <section class="card">
 
-        <h2>Search Mechanics</h2>
+        <h2>
+            Search Mechanics
+        </h2>
 
-        <form id="searchForm">
+        <form id="mechanicSearchForm">
 
             <div class="form-group">
-                <label for="location">City or ZIP Code</label>
+
+                <label for="location">
+                    City or ZIP Code
+                </label>
 
                 <input
-                    type="text"
                     id="location"
-                    placeholder="Example: Chicago or 60618"
+                    type="text"
+                    placeholder="Chicago or 60618"
                 >
+
             </div>
+
 
             <div class="form-group">
 
-                <label for="service">Service Needed</label>
+                <label for="service">
+                    Service
+                </label>
 
                 <select id="service">
 
-                    <option value="">All Services</option>
+                    <option value="">
+                        All Services
+                    </option>
 
                     <option value="Brakes & Rotors">
                         Brakes & Rotors
@@ -100,6 +159,7 @@
 
             </div>
 
+
             <div class="form-group">
 
                 <label for="availability">
@@ -124,42 +184,61 @@
 
             </div>
 
-            <button type="submit" class="btn">
-                Find Mechanics
-            </button>
 
-            <button
-                type="button"
-                class="btn btn-secondary"
-                onclick="clearFilters()"
-            >
-                Clear
-            </button>
+            <div class="button-row">
+
+                <button
+                    type="submit"
+                    class="btn"
+                >
+                    Find Mechanics
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="clearSearch"
+                >
+                    Clear
+                </button>
+
+            </div>
 
         </form>
 
     </section>
+
 
     <section class="section">
 
         <div class="section-heading">
 
             <div>
-                <p class="eyebrow">MECHANICS</p>
-                <h2 id="resultsTitle">
-                    Available Mechanics
+
+                <p class="eyebrow">
+                    RESULTS
+                </p>
+
+                <h2>
+                    Mechanics
                 </h2>
+
             </div>
 
             <span id="resultCount"></span>
 
         </div>
 
-        <div id="mechanicResults" class="card-grid"></div>
+
+        <div
+            id="mechanicResults"
+            class="card-grid"
+        ></div>
 
     </section>
 
 </main>
+
 
 <footer class="site-footer">
 
@@ -170,214 +249,36 @@
         </p>
 
         <div>
-            <a href="privacy.html">Privacy</a>
-            <a href="terms.html">Terms</a>
-            <a href="contact.html">Contact</a>
+
+            <a href="privacy.html">
+                Privacy
+            </a>
+
+            <a href="terms.html">
+                Terms
+            </a>
+
+            <a href="contact.html">
+                Contact
+            </a>
+
         </div>
 
     </div>
 
 </footer>
 
+
+<script src="marketplace-data.js"></script>
+
+
 <script>
 
-const demoMechanics = [
+function renderMechanics(
+    mechanics
+) {
 
-    {
-        id: "mechanic-1",
-        name: "Mike's Mobile Auto",
-        city: "Chicago",
-        state: "IL",
-        zip: "60618",
-        radius: 25,
-        services: [
-            "Brakes & Rotors",
-            "Battery",
-            "Alternator",
-            "Starter",
-            "Diagnostics"
-        ],
-        experience: 12,
-        rating: 4.9,
-        reviews: 47,
-        available: true,
-        distance: 3.2,
-        about:
-            "Experienced mobile mechanic providing dependable repairs at your location."
-    },
-
-    {
-        id: "mechanic-2",
-        name: "Southside Mobile Mechanics",
-        city: "Chicago",
-        state: "IL",
-        zip: "60620",
-        radius: 20,
-        services: [
-            "Battery",
-            "Alternator",
-            "Starter",
-            "Oil Change",
-            "Diagnostics"
-        ],
-        experience: 8,
-        rating: 4.8,
-        reviews: 31,
-        available: true,
-        distance: 7.6,
-        about:
-            "Mobile repair service focused on diagnostics and common mechanical repairs."
-    },
-
-    {
-        id: "mechanic-3",
-        name: "Chicago Roadside Pro",
-        city: "Chicago",
-        state: "IL",
-        zip: "60632",
-        radius: 30,
-        services: [
-            "Roadside Assistance",
-            "Battery",
-            "Tire Assistance",
-            "Lockout",
-            "Fuel Delivery"
-        ],
-        experience: 10,
-        rating: 4.7,
-        reviews: 28,
-        available: false,
-        distance: 10.4,
-        about:
-            "Roadside and mobile assistance throughout the Chicago area."
-    },
-
-    {
-        id: "mechanic-4",
-        name: "Garcia Mobile Repair",
-        city: "Chicago",
-        state: "IL",
-        zip: "60629",
-        radius: 25,
-        services: [
-            "Brakes & Rotors",
-            "Battery",
-            "Alternator",
-            "Starter",
-            "Diagnostics",
-            "Oil Change",
-            "Tire Assistance",
-            "Other Repairs"
-        ],
-        experience: 10,
-        rating: 5.0,
-        reviews: 19,
-        available: true,
-        distance: 5.1,
-        about:
-            "Professional mobile repair service focused on convenient repairs at the customer's location."
-    }
-
-];
-
-function getMechanics() {
-
-    const savedProfile =
-        JSON.parse(
-            localStorage.getItem(
-                "wrenchlinkMechanicProfile"
-            )
-        ) || null;
-
-    const savedArea =
-        JSON.parse(
-            localStorage.getItem(
-                "wrenchlinkServiceArea"
-            )
-        ) || null;
-
-    if (
-        savedProfile &&
-        savedProfile.name
-    ) {
-
-        let services = [];
-
-        if (savedProfile.services) {
-
-            services = savedProfile.services
-                .split(",")
-                .map(function(service) {
-                    return service.trim();
-                })
-                .filter(Boolean);
-
-        }
-
-        const personalMechanic = {
-
-            id: "local-mechanic",
-
-            name: savedProfile.name,
-
-            city:
-                savedArea?.city ||
-                savedProfile.serviceArea ||
-                "Chicago",
-
-            state:
-                savedArea?.state ||
-                "IL",
-
-            zip:
-                savedArea?.zip ||
-                "",
-
-            radius:
-                Number(savedArea?.radius) ||
-                25,
-
-            services:
-                services.length
-                    ? services
-                    : [
-                        "Diagnostics",
-                        "Battery",
-                        "Alternator",
-                        "Starter",
-                        "Other Repairs"
-                    ],
-
-            experience:
-                Number(savedProfile.experience) ||
-                0,
-
-            rating: 5.0,
-
-            reviews: 0,
-
-            available: true,
-
-            distance: 0,
-
-            about:
-                savedProfile.about ||
-                "WrenchLink mobile mechanic."
-
-        };
-
-        return [
-            personalMechanic,
-            ...demoMechanics
-        ];
-    }
-
-    return demoMechanics;
-}
-
-function renderMechanics(list) {
-
-    const results =
+    const container =
         document.getElementById(
             "mechanicResults"
         );
@@ -387,143 +288,203 @@ function renderMechanics(list) {
             "resultCount"
         );
 
-    results.innerHTML = "";
-
     count.textContent =
-        list.length +
-        (list.length === 1
-            ? " mechanic"
-            : " mechanics");
+        mechanics.length +
+        (
+            mechanics.length === 1
+                ? " mechanic"
+                : " mechanics"
+        );
 
-    if (!list.length) {
 
-        results.innerHTML = `
+    if (!mechanics.length) {
+
+        container.innerHTML = `
+
             <div class="card">
-                <h3>No mechanics found</h3>
+
+                <h3>
+                    No mechanics found
+                </h3>
 
                 <p>
-                    Try another location,
-                    service, or availability filter.
+                    Try changing your location,
+                    service, or availability.
                 </p>
+
             </div>
+
         `;
 
         return;
+
     }
 
-    list.forEach(function(mechanic) {
 
-        const stars =
-            "★".repeat(
-                Math.round(mechanic.rating)
-            );
+    container.innerHTML =
+        mechanics
+            .map(function(mechanic) {
 
-        const availabilityText =
-            mechanic.available
-                ? "Available Now"
-                : "Currently Unavailable";
+                const rating =
+                    calculateMechanicRating(
+                        mechanic
+                    );
 
-        const availabilityClass =
-            mechanic.available
-                ? "status-success"
-                : "status-muted";
+                const availability =
+                    mechanic.available
+                        ? "Available Now"
+                        : "Currently Unavailable";
 
-        const services =
-            mechanic.services
-                .slice(0, 4)
-                .map(function(service) {
-                    return `
-                        <span class="service-tag">
-                            ${escapeHTML(service)}
-                        </span>
-                    `;
-                })
-                .join("");
 
-        results.innerHTML += `
+                const services =
+                    mechanic.services
+                        .slice(0, 5)
+                        .map(
+                            function(service) {
 
-            <article class="card mechanic-card">
+                                return `
+                                    <span class="service-tag">
+                                        ${escapeMarketplaceHTML(service)}
+                                    </span>
+                                `;
 
-                <div class="mechanic-card-top">
+                            }
+                        )
+                        .join("");
 
-                    <div class="mechanic-avatar">
-                        🔧
-                    </div>
 
-                    <div>
+                return `
 
-                        <h3>
-                            ${escapeHTML(mechanic.name)}
-                        </h3>
+                    <article class="card">
+
+                        <div
+                            style="
+                                display:flex;
+                                gap:15px;
+                                align-items:center;
+                                margin-bottom:15px;
+                            "
+                        >
+
+                            <div
+                                style="
+                                    font-size:38px;
+                                "
+                            >
+                                🔧
+                            </div>
+
+                            <div>
+
+                                <h3>
+                                    ${escapeMarketplaceHTML(
+                                        mechanic.name
+                                    )}
+                                </h3>
+
+                                <p>
+                                    ${escapeMarketplaceHTML(
+                                        mechanic.city
+                                    )},
+                                    ${escapeMarketplaceHTML(
+                                        mechanic.state
+                                    )}
+                                </p>
+
+                            </div>
+
+                        </div>
+
 
                         <p>
-                            ${escapeHTML(mechanic.city)},
-                            ${escapeHTML(mechanic.state)}
+
+                            <strong>
+                                ${renderMechanicStars(
+                                    rating.rating
+                                )}
+                            </strong>
+
+                            ${rating.rating
+                                ? rating.rating.toFixed(1)
+                                : "New"}
+
+                            (${rating.count} reviews)
+
                         </p>
 
-                    </div>
 
-                </div>
+                        <p>
 
-                <p class="rating">
+                            <strong>
+                                ${Number(
+                                    mechanic.distance || 0
+                                ).toFixed(1)}
+                                miles
+                            </strong>
+                            away
 
-                    ${stars}
+                        </p>
 
-                    <strong>
-                        ${mechanic.rating.toFixed(1)}
-                    </strong>
 
-                    <span>
-                        (${mechanic.reviews} reviews)
-                    </span>
+                        <p>
 
-                </p>
+                            ${mechanic.experience}
+                            years experience
 
-                <p>
-                    <strong>
-                        ${mechanic.distance.toFixed(1)} miles
-                    </strong>
-                    away
-                </p>
+                        </p>
 
-                <p>
-                    ${mechanic.experience} years
-                    experience
-                </p>
 
-                <div class="service-tags">
-                    ${services}
-                </div>
+                        <div
+                            class="service-tags"
+                        >
+                            ${services}
+                        </div>
 
-                <p class="${availabilityClass}">
-                    ● ${availabilityText}
-                </p>
 
-                <div class="button-row">
+                        <p>
 
-                    <a
-                        class="btn btn-small"
-                        href="mechanic-profile.html?id=${encodeURIComponent(mechanic.id)}"
-                    >
-                        View Profile
-                    </a>
+                            <strong>
+                                ${availability}
+                            </strong>
 
-                    <a
-                        class="btn btn-small"
-                        href="post-job.html?mechanic=${encodeURIComponent(mechanic.id)}"
-                    >
-                        Request
-                    </a>
+                        </p>
 
-                </div>
 
-            </article>
+                        <div class="button-row">
 
-        `;
+                            <a
+                                href="
+                                    mechanic-profile.html?id=${encodeURIComponent(
+                                        mechanic.id
+                                    )}
+                                "
+                                class="btn btn-small"
+                            >
+                                View Profile
+                            </a>
 
-    });
+                            <a
+                                href="
+                                    post-job.html?mechanic=${encodeURIComponent(
+                                        mechanic.id
+                                    )}
+                                "
+                                class="btn btn-small"
+                            >
+                                Request
+                            </a>
+
+                        </div>
+
+                    </article>
+
+                `;
+
+            })
+            .join("");
 
 }
+
 
 function searchMechanics() {
 
@@ -534,126 +495,137 @@ function searchMechanics() {
             .trim()
             .toLowerCase();
 
+
     const service =
         document
             .getElementById("service")
             .value;
+
 
     const availability =
         document
             .getElementById("availability")
             .value;
 
+
     let mechanics =
-        getMechanics();
+        getMarketplaceMechanics();
+
 
     if (location) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
+            mechanics.filter(
+                function(mechanic) {
 
-                return (
+                    return (
 
-                    mechanic.city
-                        .toLowerCase()
-                        .includes(location)
+                        mechanic.city
+                            .toLowerCase()
+                            .includes(location)
 
-                    ||
+                        ||
 
-                    mechanic.zip
-                        .toLowerCase()
-                        .includes(location)
+                        mechanic.zip
+                            .toLowerCase()
+                            .includes(location)
 
-                );
+                    );
 
-            });
+                }
+            );
 
     }
+
 
     if (service) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
+            mechanics.filter(
+                function(mechanic) {
 
-                return mechanic.services.some(
-                    function(item) {
+                    return mechanic.services.some(
+                        function(item) {
 
-                        return item
-                            .toLowerCase()
-                            .includes(
-                                service.toLowerCase()
-                            );
+                            return item
+                                .toLowerCase()
+                                .includes(
+                                    service.toLowerCase()
+                                );
 
-                    }
-                );
+                        }
+                    );
 
-            });
+                }
+            );
 
     }
 
-    if (availability === "available") {
+
+    if (
+        availability ===
+        "available"
+    ) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
-                return mechanic.available;
-            });
+            mechanics.filter(
+                function(mechanic) {
+                    return mechanic.available;
+                }
+            );
 
     }
 
-    if (availability === "unavailable") {
+
+    if (
+        availability ===
+        "unavailable"
+    ) {
 
         mechanics =
-            mechanics.filter(function(mechanic) {
-                return !mechanic.available;
-            });
+            mechanics.filter(
+                function(mechanic) {
+                    return !mechanic.available;
+                }
+            );
 
     }
 
-    mechanics.sort(function(a, b) {
 
-        if (a.available !== b.available) {
-            return a.available ? -1 : 1;
+    mechanics.sort(
+        function(a, b) {
+
+            if (
+                a.available !==
+                b.available
+            ) {
+
+                return a.available
+                    ? -1
+                    : 1;
+
+            }
+
+            return (
+                b.rating -
+                a.rating
+            );
+
         }
+    );
 
-        return b.rating - a.rating;
 
-    });
-
-    renderMechanics(mechanics);
-
-}
-
-function clearFilters() {
-
-    document.getElementById(
-        "location"
-    ).value = "";
-
-    document.getElementById(
-        "service"
-    ).value = "";
-
-    document.getElementById(
-        "availability"
-    ).value = "";
-
-    searchMechanics();
+    renderMechanics(
+        mechanics
+    );
 
 }
 
-function escapeHTML(value) {
-
-    return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
-
-}
 
 document
-    .getElementById("searchForm")
+    .getElementById(
+        "mechanicSearchForm"
+    )
     .addEventListener(
         "submit",
         function(event) {
@@ -665,14 +637,44 @@ document
         }
     );
 
+
+document
+    .getElementById(
+        "clearSearch"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            document.getElementById(
+                "location"
+            ).value = "";
+
+            document.getElementById(
+                "service"
+            ).value = "";
+
+            document.getElementById(
+                "availability"
+            ).value = "";
+
+            searchMechanics();
+
+        }
+    );
+
+
 document.addEventListener(
     "DOMContentLoaded",
     function() {
+
         searchMechanics();
+
     }
 );
 
 </script>
 
 </body>
+
 </html>

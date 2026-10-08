@@ -5,312 +5,609 @@
 
     <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Roadside Assistance | WrenchLink</title>
 
-    <link rel="stylesheet" href="style.css">
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
 
 </head>
 
+
 <body>
 
-<header class="header">
 
-    <div class="logo">
-        🔧 WrenchLink
+<header class="site-header">
+
+    <div class="nav-container">
+
+        <a
+            href="index.html"
+            class="logo"
+        >
+            🔧 WrenchLink
+        </a>
+
+
+        <nav>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="mechanics.html">
+                Find a Mechanic
+            </a>
+
+            <a href="services.html">
+                Services
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
+            <a
+                href="login.html"
+                class="btn btn-small"
+            >
+                Sign In
+            </a>
+
+        </nav>
+
     </div>
-
-    <a href="index.html" class="btn btn-small">
-        Back to WrenchLink
-    </a>
 
 </header>
 
 
-<main>
 
-<section class="services">
+<main class="container">
 
-    <div class="section-heading">
+
+    <!-- PAGE INTRO -->
+
+    <section class="page-hero">
 
         <p class="eyebrow">
-            WRENCHLINK ROADSIDE
+            24/7 MOBILE HELP
         </p>
 
         <h1>
-            Need Roadside Help?
+            Roadside Assistance
         </h1>
 
         <p>
-            Get connected with a mobile mechanic
-            when your vehicle leaves you stranded.
+            Get mobile roadside help wherever
+            your vehicle is located.
         </p>
 
-    </div>
+    </section>
 
 
-    <div class="service-grid">
+
+    <!-- SERVICE SELECTOR -->
+
+    <section class="card">
+
+        <h2>
+            What do you need help with?
+        </h2>
+
+        <p>
+            Select the roadside service you need.
+        </p>
 
 
-        <!-- JUMP START -->
+        <div
+            class="service-grid"
+            style="
+                margin-top:25px;
+                max-width:none;
+            "
+        >
 
-        <div class="service-card">
-
-            <div class="service-icon">
-                🔋
-            </div>
-
-            <h3>
-                Jump Start
-            </h3>
-
-            <p>
-                Need help getting your vehicle started?
-            </p>
 
             <button
-                class="btn btn-primary"
-                onclick="requestHelp('Jump Start')"
+                type="button"
+                class="service-card roadside-service"
+                data-service="Jump Start"
             >
-                Get Help
+
+                <div class="service-icon">
+                    🔋
+                </div>
+
+                <h3>
+                    Jump Start
+                </h3>
+
+                <p>
+                    Dead battery? Request
+                    mobile jump-start assistance.
+                </p>
+
             </button>
+
+
+
+            <button
+                type="button"
+                class="service-card roadside-service"
+                data-service="Vehicle Lockout"
+            >
+
+                <div class="service-icon">
+                    🔐
+                </div>
+
+                <h3>
+                    Vehicle Lockout
+                </h3>
+
+                <p>
+                    Locked your keys inside?
+                    Request lockout assistance.
+                </p>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="service-card roadside-service"
+                data-service="Fuel Delivery"
+            >
+
+                <div class="service-icon">
+                    ⛽
+                </div>
+
+                <h3>
+                    Fuel Delivery
+                </h3>
+
+                <p>
+                    Out of fuel? Request
+                    mobile fuel delivery.
+                </p>
+
+            </button>
+
+
+
+            <button
+                type="button"
+                class="service-card roadside-service"
+                data-service="Tire Assistance"
+            >
+
+                <div class="service-icon">
+                    🛞
+                </div>
+
+                <h3>
+                    Tire Assistance
+                </h3>
+
+                <p>
+                    Flat tire or tire trouble?
+                    Request mobile assistance.
+                </p>
+
+            </button>
+
 
         </div>
 
+    </section>
 
-        <!-- LOCKOUT -->
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                🔑
-            </div>
-
-            <h3>
-                Vehicle Lockout
-            </h3>
-
-            <p>
-                Locked your keys inside your vehicle?
-            </p>
-
-            <button
-                class="btn btn-primary"
-                onclick="requestHelp('Vehicle Lockout')"
-            >
-                Get Help
-            </button>
-
-        </div>
-
-
-        <!-- GAS -->
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                ⛽
-            </div>
-
-            <h3>
-                Fuel Delivery
-            </h3>
-
-            <p>
-                Ran out of fuel? Request roadside assistance.
-            </p>
-
-            <button
-                class="btn btn-primary"
-                onclick="requestHelp('Fuel Delivery')"
-            >
-                Get Help
-            </button>
-
-        </div>
-
-
-        <!-- TIRE -->
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                🛞
-            </div>
-
-            <h3>
-                Tire Assistance
-            </h3>
-
-            <p>
-                Need help with a flat or damaged tire?
-            </p>
-
-            <button
-                class="btn btn-primary"
-                onclick="requestHelp('Tire Assistance')"
-            >
-                Get Help
-            </button>
-
-        </div>
-
-
-    </div>
 
 
     <!-- REQUEST FORM -->
 
-    <div
-        id="helpForm"
-        class="service-card"
-        style="display: none; margin-top: 30px;"
+    <section
+        id="requestSection"
+        class="card"
+        style="display:none;"
     >
 
-        <h2>
-            Request Roadside Assistance
-        </h2>
+        <div>
 
-        <p id="selectedService"></p>
+            <p class="eyebrow">
+                ROADSIDE REQUEST
+            </p>
+
+            <h2 id="selectedServiceTitle">
+                Request Assistance
+            </h2>
+
+            <p id="selectedServiceDescription">
+                Tell us where you are and what happened.
+            </p>
+
+        </div>
+
 
 
         <form id="roadsideForm">
 
-            <label for="customerName">
-                Name
-            </label>
 
-            <input
-                id="customerName"
-                type="text"
-                placeholder="Your name"
-                required
-            >
+            <!-- CUSTOMER -->
+
+            <h3>
+                Your Information
+            </h3>
 
 
-            <label for="customerPhone">
-                Phone Number
-            </label>
+            <div class="form-group">
 
-            <input
-                id="customerPhone"
-                type="tel"
-                placeholder="Your phone number"
-                required
-            >
+                <label for="customerName">
+                    Full Name
+                </label>
 
+                <input
+                    id="customerName"
+                    type="text"
+                    placeholder="Your full name"
+                    required
+                >
 
-            <label for="vehicle">
-                Vehicle
-            </label>
-
-            <input
-                id="vehicle"
-                type="text"
-                placeholder="Example: 2019 Kia Soul"
-                required
-            >
+            </div>
 
 
-            <label for="location">
-                Current Location
-            </label>
 
-            <input
-                id="location"
-                type="text"
-                placeholder="ZIP code, address, or location"
-                required
-            >
+            <div class="form-group">
 
+                <label for="customerPhone">
+                    Phone Number
+                </label>
 
-            <label for="details">
-                Additional Details
-            </label>
+                <input
+                    id="customerPhone"
+                    type="tel"
+                    placeholder="(555) 555-5555"
+                    required
+                >
 
-            <textarea
-                id="details"
-                rows="5"
-                placeholder="Tell the mechanic anything important about the situation."
-            ></textarea>
+            </div>
 
 
-            <button
-                type="submit"
-                class="btn btn-primary"
-            >
-                🚨 Request Assistance
-            </button>
+
+            <div class="form-group">
+
+                <label for="customerEmail">
+                    Email
+                </label>
+
+                <input
+                    id="customerEmail"
+                    type="email"
+                    placeholder="you@example.com"
+                >
+
+            </div>
+
+
+
+            <!-- VEHICLE -->
+
+            <hr>
+
+
+            <h3>
+                Vehicle Information
+            </h3>
+
+
+            <div class="form-group">
+
+                <label for="vehicle">
+                    Vehicle
+                </label>
+
+                <input
+                    id="vehicle"
+                    type="text"
+                    placeholder="Year, Make, Model"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="vehicleDetails">
+                    Additional Vehicle Details
+                </label>
+
+                <input
+                    id="vehicleDetails"
+                    type="text"
+                    placeholder="Color, license plate, etc."
+                >
+
+            </div>
+
+
+
+            <!-- LOCATION -->
+
+            <hr>
+
+
+            <h3>
+                Vehicle Location
+            </h3>
+
+
+            <div class="form-group">
+
+                <label for="city">
+                    City
+                </label>
+
+                <input
+                    id="city"
+                    type="text"
+                    placeholder="Chicago"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="state">
+                    State
+                </label>
+
+                <input
+                    id="state"
+                    type="text"
+                    maxlength="2"
+                    placeholder="IL"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="zip">
+                    ZIP Code
+                </label>
+
+                <input
+                    id="zip"
+                    type="text"
+                    placeholder="60618"
+                    required
+                >
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="location">
+                    Current Location / Address
+                </label>
+
+                <input
+                    id="location"
+                    type="text"
+                    placeholder="Street address or nearby landmark"
+                    required
+                >
+
+            </div>
+
+
+
+            <!-- DETAILS -->
+
+            <hr>
+
+
+            <h3>
+                Request Details
+            </h3>
+
+
+            <div class="form-group">
+
+                <label for="details">
+                    Tell the mechanic what happened
+                </label>
+
+                <textarea
+                    id="details"
+                    placeholder="Example: Vehicle won't start and dashboard lights are on."
+                    rows="5"
+                ></textarea>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <label for="preferredTime">
+                    When do you need help?
+                </label>
+
+                <select
+                    id="preferredTime"
+                    required
+                >
+
+                    <option value="">
+                        Select one
+                    </option>
+
+                    <option value="As Soon As Possible">
+                        As Soon As Possible
+                    </option>
+
+                    <option value="Within 1 Hour">
+                        Within 1 Hour
+                    </option>
+
+                    <option value="Today">
+                        Today
+                    </option>
+
+                    <option value="Schedule for Later">
+                        Schedule for Later
+                    </option>
+
+                </select>
+
+            </div>
+
+
+
+            <div class="button-row">
+
+                <button
+                    type="submit"
+                    class="btn btn-primary"
+                >
+                    Request Roadside Help
+                </button>
+
+                <button
+                    type="button"
+                    class="btn btn-secondary"
+                    id="cancelRequest"
+                >
+                    Cancel
+                </button>
+
+            </div>
+
 
         </form>
 
-    </div>
+    </section>
 
 
-    <!-- CONFIRMATION -->
 
-    <div
-        id="confirmation"
-        class="service-card"
-        style="display: none; margin-top: 25px;"
+    <!-- SUCCESS -->
+
+    <section
+        id="successSection"
+        class="card"
+        style="display:none;"
     >
 
-        <div class="service-icon">
-            ✅
+        <div
+            style="
+                text-align:center;
+                padding:20px 0;
+            "
+        >
+
+            <div
+                style="
+                    font-size:55px;
+                    margin-bottom:15px;
+                "
+            >
+                ✅
+            </div>
+
+
+            <p class="eyebrow">
+                REQUEST RECEIVED
+            </p>
+
+
+            <h2>
+                Your roadside request is open.
+            </h2>
+
+
+            <p id="successDetails">
+                Your request has been submitted.
+            </p>
+
+
+            <div class="button-row">
+
+                <a
+                    href="customer-dashboard.html"
+                    class="btn btn-primary"
+                >
+                    View My Request
+                </a>
+
+
+                <a
+                    href="index.html"
+                    class="btn btn-secondary"
+                >
+                    Back Home
+                </a>
+
+            </div>
+
         </div>
 
-        <h3>
-            Assistance Requested
-        </h3>
+    </section>
 
-        <p>
-            Your roadside assistance request has been received.
-        </p>
-
-        <p>
-            WrenchLink will use your request to connect you
-            with an available mobile mechanic.
-        </p>
-
-    </div>
-
-</section>
 
 </main>
 
 
-<footer class="footer">
 
-    <div>
+<footer class="site-footer">
 
-        <strong>🔧 WrenchLink</strong>
+    <div class="container">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
-    </div>
 
+        <div>
 
-    <div class="footer-links">
+            <a href="privacy.html">
+                Privacy
+            </a>
 
-        <a href="privacy.html">
-            Privacy
-        </a>
+            <a href="terms.html">
+                Terms
+            </a>
 
-        <a href="terms.html">
-            Terms
-        </a>
+            <a href="contact.html">
+                Contact
+            </a>
 
-        <a href="contact.html">
-            Contact
-        </a>
+        </div>
 
     </div>
 
 </footer>
+
+
+
+<script src="marketplace-data.js"></script>
 
 
 <script>
@@ -318,51 +615,406 @@
 let selectedService = "";
 
 
-function requestHelp(service) {
 
-    selectedService = service;
+const serviceDescriptions = {
 
-    document
-        .getElementById("helpForm")
-        .style.display = "block";
+    "Jump Start":
+        "Get help starting a vehicle with a dead or weak battery.",
 
-    document
-        .getElementById("selectedService")
-        .textContent =
-        "Service requested: " + service;
+    "Vehicle Lockout":
+        "Get mobile assistance if your keys are locked inside your vehicle.",
 
-    document
-        .getElementById("helpForm")
-        .scrollIntoView({
-            behavior: "smooth"
-        });
+    "Fuel Delivery":
+        "Request mobile fuel delivery when your vehicle has run out of fuel.",
+
+    "Tire Assistance":
+        "Get mobile assistance with a flat or damaged tire."
+
+};
+
+
+
+/* =========================================
+   SELECT SERVICE
+   ========================================= */
+
+document
+    .querySelectorAll(".roadside-service")
+    .forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                selectedService =
+                    button.dataset.service;
+
+
+                document.getElementById(
+                    "selectedServiceTitle"
+                ).textContent =
+                    selectedService;
+
+
+                document.getElementById(
+                    "selectedServiceDescription"
+                ).textContent =
+                    serviceDescriptions[
+                        selectedService
+                    ] ||
+                    "Tell us where you are and what happened.";
+
+
+                document.getElementById(
+                    "requestSection"
+                ).style.display =
+                    "block";
+
+
+                document.getElementById(
+                    "requestSection"
+                ).scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+
+                loadCustomerProfile();
+
+            }
+        );
+
+    });
+
+
+
+/* =========================================
+   CUSTOMER PROFILE
+   ========================================= */
+
+function loadCustomerProfile() {
+
+    const profile =
+        JSON.parse(
+            localStorage.getItem(
+                "wrenchlinkCustomerProfile"
+            )
+        ) || {};
+
+
+    if (profile.name) {
+
+        document.getElementById(
+            "customerName"
+        ).value =
+            profile.name;
+
+    }
+
+
+    if (profile.email) {
+
+        document.getElementById(
+            "customerEmail"
+        ).value =
+            profile.email;
+
+    }
+
+
+    if (profile.phone) {
+
+        document.getElementById(
+            "customerPhone"
+        ).value =
+            profile.phone;
+
+    }
+
+
+    if (profile.city) {
+
+        document.getElementById(
+            "city"
+        ).value =
+            profile.city;
+
+    }
+
+
+    if (profile.state) {
+
+        document.getElementById(
+            "state"
+        ).value =
+            profile.state;
+
+    }
+
+
+    if (profile.zip) {
+
+        document.getElementById(
+            "zip"
+        ).value =
+            profile.zip;
+
+    }
+
+
+    if (profile.vehicle) {
+
+        document.getElementById(
+            "vehicle"
+        ).value =
+            profile.vehicle;
+
+    }
 
 }
 
 
+
+/* =========================================
+   CANCEL
+   ========================================= */
+
 document
-    .getElementById("roadsideForm")
-    .addEventListener("submit", function(event) {
+    .getElementById(
+        "cancelRequest"
+    )
+    .addEventListener(
+        "click",
+        function() {
 
-        event.preventDefault();
+            selectedService = "";
 
-        document
-            .getElementById("helpForm")
-            .style.display = "none";
 
-        document
-            .getElementById("confirmation")
-            .style.display = "block";
+            document.getElementById(
+                "requestSection"
+            ).style.display =
+                "none";
 
-        document
-            .getElementById("confirmation")
-            .scrollIntoView({
+
+            window.scrollTo({
+
+                top: 0,
+
                 behavior: "smooth"
+
             });
 
-    });
+        }
+    );
+
+
+
+/* =========================================
+   SUBMIT REQUEST
+   ========================================= */
+
+document
+    .getElementById(
+        "roadsideForm"
+    )
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+
+            if (!selectedService) {
+
+                alert(
+                    "Please select a roadside service."
+                );
+
+                return;
+
+            }
+
+
+            const job = {
+
+                id:
+                    Date.now(),
+
+                customerName:
+                    document
+                        .getElementById(
+                            "customerName"
+                        )
+                        .value
+                        .trim(),
+
+                customerEmail:
+                    document
+                        .getElementById(
+                            "customerEmail"
+                        )
+                        .value
+                        .trim(),
+
+                customerPhone:
+                    document
+                        .getElementById(
+                            "customerPhone"
+                        )
+                        .value
+                        .trim(),
+
+                vehicle:
+                    document
+                        .getElementById(
+                            "vehicle"
+                        )
+                        .value
+                        .trim(),
+
+                vehicleDetails:
+                    document
+                        .getElementById(
+                            "vehicleDetails"
+                        )
+                        .value
+                        .trim(),
+
+                service:
+                    selectedService,
+
+                description:
+                    document
+                        .getElementById(
+                            "details"
+                        )
+                        .value
+                        .trim(),
+
+                city:
+                    document
+                        .getElementById(
+                            "city"
+                        )
+                        .value
+                        .trim(),
+
+                state:
+                    document
+                        .getElementById(
+                            "state"
+                        )
+                        .value
+                        .trim()
+                        .toUpperCase(),
+
+                zip:
+                    document
+                        .getElementById(
+                            "zip"
+                        )
+                        .value
+                        .trim(),
+
+                location:
+                    document
+                        .getElementById(
+                            "location"
+                        )
+                        .value
+                        .trim(),
+
+                preferredDateTime:
+                    document
+                        .getElementById(
+                            "preferredTime"
+                        )
+                        .value,
+
+                status:
+                    "Open",
+
+                mechanicId:
+                    null,
+
+                mechanicName:
+                    null,
+
+                requestedMechanic:
+                    false,
+
+                roadside:
+                    true,
+
+                roadsideService:
+                    selectedService,
+
+                vehicleDetails:
+                    document
+                        .getElementById(
+                            "vehicleDetails"
+                        )
+                        .value
+                        .trim(),
+
+                acceptedAt:
+                    null,
+
+                completedAt:
+                    null,
+
+                createdAt:
+                    new Date().toISOString()
+
+            };
+
+
+            const jobs =
+                getWrenchLinkJobs();
+
+
+            jobs.unshift(job);
+
+
+            localStorage.setItem(
+                "wrenchlinkJobs",
+                JSON.stringify(jobs)
+            );
+
+
+            document.getElementById(
+                "requestSection"
+            ).style.display =
+                "none";
+
+
+            document.getElementById(
+                "successSection"
+            ).style.display =
+                "block";
+
+
+            document.getElementById(
+                "successDetails"
+            ).textContent =
+
+                selectedService +
+                " request submitted successfully. Your request is now open for a WrenchLink mechanic to accept.";
+
+
+            window.scrollTo({
+
+                top: 0,
+
+                behavior: "smooth"
+
+            });
+
+        }
+    );
 
 </script>
+
 
 </body>
 

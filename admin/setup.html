@@ -1,0 +1,219 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Development Admin Setup | WrenchLink</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+<main class="container">
+    <section class="page-header">
+        <h1>WrenchLink Admin Setup</h1>
+        <p>Development-only administrator account creation.</p>
+    </section>
+
+    <section class="form-section">
+        <div id="environmentMessage" role="status"></div>
+
+        <form id="setupForm" hidden>
+            <label for="name">Administrator Name</label>
+            <input id="name" type="text" required autocomplete="name">
+
+            <label for="email">Administrator Email</label>
+            <input id="email" type="email" required autocomplete="email">
+
+            <label for="password">Administrator Password</label>
+            <input id="password" type="password"
+                   minlength="12" required
+                   autocomplete="new-password">
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" type="password"
+                   minlength="12" required
+                   autocomplete="new-password">
+
+            <button type="submit" class="btn">
+                Create Development Admin
+            </button>
+        </form>
+
+        <p id="resultMessage" role="status"></p>
+
+        <p>
+            This setup is for local testing only. Do not deploy this page
+            as a way to create production administrator accounts.
+        </p>
+
+        <a href="../index.html" class="btn btn-secondary">
+            Return to WrenchLink
+        </a>
+    </section>
+</main>
+
+<script>
+(function () {
+    const message = document.getElementById("environmentMessage");
+    const form = document.getElementById("setupForm");
+    const result = document.getElementById("resultMessage");
+
+    // Only allow local development, never a public deployed hostname.
+    const hostname = window.location.hostname;
+
+    const isLocal =
+        hostname === "localhost" ||
+        hostname === "127.0.0.1" ||
+        hostname === "::1" ||
+        window.location.protocol === "file:";
+
+    if (!isLocal) {
+        message.textContent =
+            "Setup disabled: administrator creation is only available in a local development environment.";
+        return;
+    }
+
+    let users = [];
+
+    try {
+        users = JSON.parse(
+            localStorage.getItem("wrenchlinkUsers") || "[]"
+        );
+    } catch (error) {
+        message.textContent =
+            "Unable to read local development accounts. Check your browser storage.";
+        return;
+    }
+
+    if (!Array.isArray(users)) {
+        message.textContent =
+            "Account storage has an unexpected format. Setup was stopped.";
+        return;
+    }
+
+    if (users.some(user => user && user.role === "admin")) {
+        message.textContent =
+            "An administrator account already exists in this browser. Setup is locked.";
+        return;
+    }
+
+    message.textContent =
+        "Local development mode confirmed. Create an administrator for this browser.";
+
+    form.hidden = false;
+
+    form.addEventListener("submit", function (event) {
+        event.preventDefault();
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim().toLowerCase();
+        const password = document.getElementById("password").value;
+        const confirmPassword =
+            document.getElementById("confirmPassword").value;
+
+        if (!name || !email) {
+            result.textContent = "Complete all fields.";
+            return;
+        }
+
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            result.textContent = "Enter a valid email address.";
+            return;
+        }
+
+        if (password.length < 12) {
+            result.textContent =
+                "Use a password with at least 12 characters.";
+            return;
+        }
+
+        if (password !== confirmPassword) {
+            result.textContent = "The passwords do not match.";
+            return;
+        }
+
+        // Recheck immediately before writing.
+        try {
+            const latestUsers = JSON.parse(
+                localStorage.getItem("wrenchlinkUsers") || "[]"
+            );
+
+            if (!Array.isArray(latestUsers)) {
+                result.textContent = "Account storage is invalid.";
+                return;
+            }
+
+            if (latestUsers.some(user => user && user.role === "admin")) {
+                result.textContent =
+                    "An administrator already exists. Setup is locked.";
+                form.hidden = true;
+                return;
+            }
+
+            if (latestUsers.some(user =>
+                user.email &&
+                user.email.toLowerCase() === email
+            )) {
+                result.textContent =
+                    "That email is already registered. Use a different email.";
+                return;
+            }
+
+            /*
+             * DEVELOPMENT ONLY:
+             * This follows the existing prototype's password-storage format.
+             * It is NOT safe for production authentication.
+             */
+            const admin = {
+                id: "WL-ADMIN-" + Date.now(),
+                name: name,
+                firstName: name.split(" ")[0],
+                lastName: name.split(" ").slice(1).join(" "),
+                email: email,
+                phone: "",
+                password: password,
+                role: "admin",
+                createdAt: new Date().toISOString()
+            };
+
+            latestUsers.push(admin);
+
+            localStorage.setItem(
+                "wrenchlinkUsers",
+                JSON.stringify(latestUsers)
+            );
+
+            localStorage.setItem(
+                "wrenchlinkCurrentUser",
+                JSON.stringify({
+                    id: admin.id,
+                    name: admin.name,
+                    firstName: admin.firstName,
+                    lastName: admin.lastName,
+                    email: admin.email,
+                    role: "admin"
+                })
+            );
+
+            result.textContent =
+                "Development admin created. Opening the admin dashboard.";
+
+            form.hidden = true;
+
+            setTimeout(function () {
+                window.location.href = "index.html";
+            }, 700);
+
+        } catch (error) {
+            result.textContent =
+                "Unable to save the development admin account.";
+        }
+    });
+})();
+</script>
+
+</body>
+</html>
+```

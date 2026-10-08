@@ -13,7 +13,6 @@
             padding: 24px;
         }
 
-```
     .login-card {
         background: #191c20;
         color: #f5f5f5;
@@ -35,8 +34,8 @@
     }
 
     .login-card input {
-        display: block;
         box-sizing: border-box;
+        display: block;
         width: 100%;
         padding: 12px;
         margin-bottom: 18px;
@@ -52,8 +51,8 @@
 
     .login-card button,
     .login-card .login-link {
-        display: inline-block;
         box-sizing: border-box;
+        display: block;
         width: 100%;
         padding: 12px 16px;
         border: 1px solid #f4b942;
@@ -99,7 +98,6 @@
         border-top: 1px solid #41454c;
     }
 </style>
-```
 
 </head>
 <body>
@@ -110,7 +108,6 @@
         </div>
     </header>
 
-```
 <main class="container section login-page">
     <div class="section-heading">
         <p class="eyebrow">WRENCHLINK ACCOUNT</p>
@@ -178,18 +175,24 @@
         const passwordInput = document.getElementById("password");
         const message = document.getElementById("loginMessage");
 
-        function readStorage(key, fallback) {
-            try {
-                const stored = localStorage.getItem(key);
-                return stored === null ? fallback : JSON.parse(stored);
-            } catch (error) {
-                return fallback;
-            }
-        }
-
         function showMessage(text, type) {
             message.textContent = text;
             message.className = type;
+        }
+
+        function getUsers() {
+            try {
+                const stored = localStorage.getItem("wrenchlinkUsers");
+
+                if (stored === null) {
+                    return [];
+                }
+
+                const users = JSON.parse(stored);
+                return Array.isArray(users) ? users : null;
+            } catch (error) {
+                return null;
+            }
         }
 
         form.addEventListener("submit", function (event) {
@@ -202,22 +205,27 @@
             message.className = "";
 
             if (!email || !password) {
-                showMessage("Please enter your email and password.", "error");
+                showMessage(
+                    "Please enter your email and password.",
+                    "error"
+                );
                 return;
             }
 
-            const users = readStorage("wrenchlinkUsers", []);
+            const users = getUsers();
 
-            if (!Array.isArray(users)) {
+            if (users === null) {
                 showMessage(
-                    "Your saved account data could not be read. Please refresh the page and try again.",
+                    "We couldn't read your saved account data. Refresh the page and try again.",
                     "error"
                 );
                 return;
             }
 
             const user = users.find(function (account) {
-                return String(account.email || "").trim().toLowerCase() === email;
+                return String(account.email || "")
+                    .trim()
+                    .toLowerCase() === email;
             });
 
             if (!user) {
@@ -256,7 +264,7 @@
                 );
             } catch (error) {
                 showMessage(
-                    "Sign in failed because this browser could not save your session.",
+                    "We couldn't save your sign-in session. Check your browser storage settings.",
                     "error"
                 );
                 return;
@@ -276,7 +284,6 @@
         });
     })();
 </script>
-```
 
 </body>
 </html>

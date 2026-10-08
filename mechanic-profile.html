@@ -1,21 +1,24 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>Mechanic Profile | WrenchLink</title>
+<title>Mechanic Profile | WrenchLink</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
 
 </head>
 
@@ -23,90 +26,501 @@
 
 <header class="site-header">
 
-    <div class="container nav-container">
+```
+<div class="container nav-container">
 
-        <a
-            href="index.html"
-            class="logo"
-        >
-            🔧 WrenchLink
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🔧 WrenchLink
+    </a>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
         </a>
 
-        <nav>
+        <a href="mechanics.html">
+            Find a Mechanic
+        </a>
 
-            <a href="index.html">
-                Home
-            </a>
+        <a href="services.html">
+            Services
+        </a>
 
-            <a href="mechanics.html">
-                Find a Mechanic
-            </a>
+        <a href="about.html">
+            About
+        </a>
 
-            <a href="services.html">
-                Services
-            </a>
+        <a
+            href="login.html"
+            class="btn btn-small"
+            id="accountLink"
+        >
+            Sign In
+        </a>
 
-            <a href="about.html">
-                About
-            </a>
+    </nav>
 
-            <a
-                href="login.html"
-                class="btn btn-small"
-            >
-                Sign In
-            </a>
-
-        </nav>
-
-    </div>
+</div>
+```
 
 </header>
 
-
 <main class="container">
 
-    <section
-        id="profileContainer"
-        class="section"
-    ></section>
+```
+<section
+    id="profileContainer"
+    class="section"
+></section>
+```
 
 </main>
 
-
 <footer class="site-footer">
 
-    <div class="container">
+```
+<div class="container">
 
-        <p>
-            © 2026 WrenchLink. All rights reserved.
-        </p>
+    <p>
+        © 2026 WrenchLink. All rights reserved.
+    </p>
 
-        <div>
+    <div>
 
-            <a href="privacy.html">
-                Privacy
-            </a>
+        <a href="privacy.html">
+            Privacy
+        </a>
 
-            <a href="terms.html">
-                Terms
-            </a>
+        <a href="terms.html">
+            Terms
+        </a>
 
-            <a href="contact.html">
-                Contact
-            </a>
-
-        </div>
+        <a href="contact.html">
+            Contact
+        </a>
 
     </div>
 
+</div>
+```
+
 </footer>
 
+<script src="app.js"></script>
 
 <script src="marketplace-data.js"></script>
 
-
 <script>
+
+
+/*
+ * WRENCHLINK PUBLIC MECHANIC PROFILE
+ *
+ * This page can display:
+ *
+ * 1. Existing marketplace mechanics
+ * 2. Mechanics created through WrenchLink accounts
+ * 3. Saved mechanic profiles
+ * 4. Saved service areas
+ * 5. Customer reviews
+ *
+ */
+
+
+function getMechanicIdFromURL() {
+
+    const params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    return params.get("id");
+}
+
+
+/*
+ * Find a mechanic account in the
+ * WrenchLink user database.
+ */
+
+function getMechanicUser(mechanicId) {
+
+    const users =
+        WrenchLinkStorage.get(
+            "wrenchlinkUsers",
+            []
+        );
+
+
+    return users.find(function (user) {
+
+        return (
+            user.id === mechanicId &&
+            user.role === "mechanic"
+        );
+
+    }) || null;
+
+}
+
+
+/*
+ * Get the saved mechanic profile.
+ */
+
+function getSavedMechanicProfile(mechanicId) {
+
+    const profiles =
+        WrenchLinkStorage.get(
+            "wrenchlinkMechanicProfiles",
+            {}
+        );
+
+
+    return profiles[mechanicId] || null;
+
+}
+
+
+/*
+ * Get the mechanic's saved service area.
+ */
+
+function getSavedServiceArea(mechanicId) {
+
+    const areas =
+        WrenchLinkStorage.get(
+            "wrenchlinkServiceAreas",
+            {}
+        );
+
+
+    return areas[mechanicId] || null;
+
+}
+
+
+/*
+ * Convert services into a clean array.
+ */
+
+function normalizeServices(services) {
+
+    if (Array.isArray(services)) {
+
+        return services
+            .map(function (service) {
+                return String(service).trim();
+            })
+            .filter(function (service) {
+                return service.length > 0;
+            });
+
+    }
+
+
+    if (typeof services === "string") {
+
+        return services
+            .split(",")
+            .map(function (service) {
+                return service.trim();
+            })
+            .filter(function (service) {
+                return service.length > 0;
+            });
+
+    }
+
+
+    return [];
+
+}
+
+
+/*
+ * Combine marketplace data with the
+ * mechanic's actual saved account profile.
+ */
+
+function buildMechanicProfile(mechanicId) {
+
+    let marketplaceMechanic = null;
+
+
+    /*
+     * First try the existing marketplace database.
+     */
+
+    if (
+        typeof getMechanicById === "function"
+    ) {
+
+        marketplaceMechanic =
+            getMechanicById(mechanicId);
+
+    }
+
+
+    /*
+     * Then get the real WrenchLink account.
+     */
+
+    const user =
+        getMechanicUser(mechanicId);
+
+
+    const savedProfile =
+        getSavedMechanicProfile(mechanicId);
+
+
+    const serviceArea =
+        getSavedServiceArea(mechanicId);
+
+
+    /*
+     * If we don't have either marketplace data
+     * or an actual mechanic account, the profile
+     * doesn't exist.
+     */
+
+    if (
+        !marketplaceMechanic &&
+        !user &&
+        !savedProfile
+    ) {
+
+        return null;
+
+    }
+
+
+    const base =
+        marketplaceMechanic || {};
+
+
+    /*
+     * Prefer the saved account/profile information.
+     */
+
+    const name =
+        savedProfile?.name ||
+        user?.name ||
+        base.name ||
+        "WrenchLink Mechanic";
+
+
+    const email =
+        savedProfile?.email ||
+        user?.email ||
+        base.email ||
+        "";
+
+
+    const phone =
+        savedProfile?.phone ||
+        user?.phone ||
+        base.phone ||
+        "";
+
+
+    const about =
+        savedProfile?.about ||
+        base.about ||
+        "Experienced mobile mechanic serving WrenchLink customers.";
+
+
+    const experience =
+        savedProfile?.experience ||
+        base.experience ||
+        "Not listed";
+
+
+    const services =
+        normalizeServices(
+            savedProfile?.services ||
+            base.services ||
+            []
+        );
+
+
+    const city =
+        serviceArea?.city ||
+        base.city ||
+        "";
+
+
+    const state =
+        serviceArea?.state ||
+        base.state ||
+        "";
+
+
+    const zip =
+        serviceArea?.zip ||
+        base.zip ||
+        "";
+
+
+    const radius =
+        serviceArea?.radius ||
+        base.radius ||
+        "10";
+
+
+    const available =
+        typeof base.available === "boolean"
+            ? base.available
+            : true;
+
+
+    return {
+
+        id: mechanicId,
+
+        name: name,
+
+        email: email,
+
+        phone: phone,
+
+        about: about,
+
+        experience: experience,
+
+        services: services,
+
+        city: city,
+
+        state: state,
+
+        zip: zip,
+
+        radius: radius,
+
+        available: available,
+
+        user: user,
+
+        savedProfile: savedProfile,
+
+        serviceArea: serviceArea,
+
+        marketplaceData: marketplaceMechanic
+
+    };
+
+}
+
+
+/*
+ * Get reviews for this mechanic.
+ */
+
+function getReviewsForMechanic(mechanicId) {
+
+    const reviews =
+        WrenchLinkStorage.get(
+            "wrenchlinkReviews",
+            []
+        );
+
+
+    if (!Array.isArray(reviews)) {
+        return [];
+    }
+
+
+    return reviews.filter(function (review) {
+
+        return (
+            review.mechanicId === mechanicId
+        );
+
+    });
+
+}
+
+
+/*
+ * Calculate rating from actual saved reviews.
+ */
+
+function calculateSavedRating(reviews) {
+
+    if (!reviews.length) {
+
+        return {
+            rating: 0,
+            count: 0
+        };
+
+    }
+
+
+    const total =
+        reviews.reduce(
+            function (sum, review) {
+
+                return (
+                    sum +
+                    Number(review.rating || 0)
+                );
+
+            },
+            0
+        );
+
+
+    return {
+
+        rating:
+            total / reviews.length,
+
+        count:
+            reviews.length
+
+    };
+
+}
+
+
+/*
+ * Safely escape text before displaying it.
+ */
+
+function safeText(value) {
+
+    if (
+        typeof escapeMarketplaceHTML ===
+        "function"
+    ) {
+
+        return escapeMarketplaceHTML(
+            String(value ?? "")
+        );
+
+    }
+
+
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+/*
+ * Render the public mechanic profile.
+ */
 
 function renderProfile() {
 
@@ -116,87 +530,207 @@ function renderProfile() {
         );
 
 
-    const params =
-        new URLSearchParams(
-            window.location.search
-        );
-
-
     const mechanicId =
-        params.get("id");
+        getMechanicIdFromURL();
 
 
-    const mechanic =
-        getMechanicById(
-            mechanicId
+    if (!mechanicId) {
+
+        showNotFound(
+            "No mechanic was selected."
         );
-
-
-    if (!mechanic) {
-
-        container.innerHTML = `
-
-            <div class="card">
-
-                <h1>
-                    Mechanic Not Found
-                </h1>
-
-                <p>
-                    This mechanic profile
-                    could not be found.
-                </p>
-
-                <a
-                    href="mechanics.html"
-                    class="btn"
-                >
-                    Back to Mechanics
-                </a>
-
-            </div>
-
-        `;
 
         return;
 
     }
 
 
-    const rating =
-        calculateMechanicRating(
-            mechanic
+    const mechanic =
+        buildMechanicProfile(
+            mechanicId
         );
 
 
+    if (!mechanic) {
+
+        showNotFound(
+            "This mechanic profile could not be found."
+        );
+
+        return;
+
+    }
+
+
     const reviews =
-        getMechanicReviews(
+        getReviewsForMechanic(
             mechanic.id
         );
 
 
-    const services =
-        mechanic.services
-            .map(
-                function(service) {
+    let rating;
 
-                    return `
-                        <span class="service-tag">
-                            ${escapeMarketplaceHTML(
-                                service
-                            )}
-                        </span>
-                    `;
 
-                }
+    /*
+     * Use saved WrenchLink reviews first.
+     */
+
+    if (reviews.length) {
+
+        rating =
+            calculateSavedRating(
+                reviews
+            );
+
+    } else if (
+        mechanic.marketplaceData &&
+        typeof calculateMechanicRating ===
+        "function"
+    ) {
+
+        rating =
+            calculateMechanicRating(
+                mechanic.marketplaceData
+            );
+
+    } else {
+
+        rating = {
+            rating: 0,
+            count: 0
+        };
+
+    }
+
+
+    const stars =
+        rating.rating
+            ? (
+                typeof renderMechanicStars ===
+                "function"
+                    ? renderMechanicStars(
+                        rating.rating
+                    )
+                    : "★★★★★"
             )
-            .join("");
+            : "New";
 
 
     const availability =
         mechanic.available
             ? "Available Now"
             : "Currently Unavailable";
+
+
+    const servicesHTML =
+        mechanic.services.length
+
+            ? mechanic.services
+                .map(function (service) {
+
+                    return `
+                        <span class="service-tag">
+                            ${safeText(service)}
+                        </span>
+                    `;
+
+                })
+                .join("")
+
+            : `
+                <p>
+                    Services have not been listed yet.
+                </p>
+            `;
+
+
+    const locationText =
+        mechanic.city
+            ? `${safeText(mechanic.city)}, ${safeText(mechanic.state)}`
+            : "Service area not listed";
+
+
+    const zipText =
+        mechanic.zip
+            ? ` ${safeText(mechanic.zip)}`
+            : "";
+
+
+    const currentUser =
+        typeof getCurrentUser === "function"
+            ? getCurrentUser()
+            : null;
+
+
+    const isOwnProfile =
+        currentUser &&
+        currentUser.id === mechanic.id &&
+        currentUser.role === "mechanic";
+
+
+    let actionButtons = "";
+
+
+    /*
+     * Mechanics viewing their own profile
+     * get an Edit Profile button.
+     */
+
+    if (isOwnProfile) {
+
+        actionButtons = `
+
+            <a
+                href="edit-mechanic-profile.html"
+                class="btn"
+            >
+                Edit My Profile
+            </a>
+
+            <a
+                href="service-area.html"
+                class="btn btn-secondary"
+            >
+                Edit Service Area
+            </a>
+
+            <a
+                href="mechanic-dashboard.html"
+                class="btn btn-secondary"
+            >
+                Dashboard
+            </a>
+
+        `;
+
+    } else {
+
+        /*
+         * Customers and visitors can request
+         * this mechanic.
+         */
+
+        actionButtons = `
+
+            <a
+                href="post-job.html?mechanic=${encodeURIComponent(
+                    mechanic.id
+                )}"
+                class="btn"
+            >
+                Request This Mechanic
+            </a>
+
+            <a
+                href="mechanics.html"
+                class="btn btn-secondary"
+            >
+                Back to Mechanics
+            </a>
+
+        `;
+
+    }
 
 
     container.innerHTML = `
@@ -208,18 +742,11 @@ function renderProfile() {
             </p>
 
             <h1>
-                ${escapeMarketplaceHTML(
-                    mechanic.name
-                )}
+                ${safeText(mechanic.name)}
             </h1>
 
             <p>
-                ${escapeMarketplaceHTML(
-                    mechanic.city
-                )},
-                ${escapeMarketplaceHTML(
-                    mechanic.state
-                )}
+                ${locationText}
             </p>
 
         </div>
@@ -244,20 +771,18 @@ function renderProfile() {
                     🔧
                 </div>
 
+
                 <div>
 
                     <h2>
-                        ${escapeMarketplaceHTML(
-                            mechanic.name
-                        )}
+                        ${safeText(mechanic.name)}
                     </h2>
+
 
                     <p>
 
                         <strong>
-                            ${renderMechanicStars(
-                                rating.rating
-                            )}
+                            ${stars}
                         </strong>
 
                         ${
@@ -270,10 +795,13 @@ function renderProfile() {
 
                     </p>
 
+
                     <p>
+
                         <strong>
                             ${availability}
                         </strong>
+
                     </p>
 
                 </div>
@@ -289,9 +817,7 @@ function renderProfile() {
             </h3>
 
             <p>
-                ${escapeMarketplaceHTML(
-                    mechanic.about
-                )}
+                ${safeText(mechanic.about)}
             </p>
 
 
@@ -300,8 +826,15 @@ function renderProfile() {
             </h3>
 
             <p>
-                ${mechanic.experience}
-                years
+                ${safeText(mechanic.experience)}
+                ${
+                    mechanic.experience &&
+                    !String(
+                        mechanic.experience
+                    ).includes("year")
+                        ? " years"
+                        : ""
+                }
             </p>
 
 
@@ -311,18 +844,21 @@ function renderProfile() {
 
             <p>
 
-                ${escapeMarketplaceHTML(
+                ${
                     mechanic.city
-                )},
-                ${escapeMarketplaceHTML(
-                    mechanic.state
-                )}
-
-                and surrounding areas within
-
-                <strong>
-                    ${mechanic.radius} miles
-                </strong>.
+                        ? `
+                            ${safeText(mechanic.city)},
+                            ${safeText(mechanic.state)}
+                            ${zipText}
+                            and surrounding areas within
+                            <strong>
+                                ${safeText(mechanic.radius)} miles
+                            </strong>.
+                        `
+                        : `
+                            Service area has not been listed yet.
+                        `
+                }
 
             </p>
 
@@ -331,30 +867,32 @@ function renderProfile() {
                 Services
             </h3>
 
+
             <div class="service-tags">
-                ${services}
+
+                ${servicesHTML}
+
             </div>
+
+
+            ${
+                mechanic.phone
+                    ? `
+                        <h3>
+                            Contact
+                        </h3>
+
+                        <p>
+                            ${safeText(mechanic.phone)}
+                        </p>
+                    `
+                    : ""
+            }
 
 
             <div class="button-row">
 
-                <a
-                    href="
-                        post-job.html?mechanic=${encodeURIComponent(
-                            mechanic.id
-                        )}
-                    "
-                    class="btn"
-                >
-                    Request This Mechanic
-                </a>
-
-                <a
-                    href="mechanics.html"
-                    class="btn btn-secondary"
-                >
-                    Back to Mechanics
-                </a>
+                ${actionButtons}
 
             </div>
 
@@ -367,7 +905,9 @@ function renderProfile() {
                 Customer Reviews
             </h2>
 
-            <div id="reviews"></div>
+            <div id="reviews">
+
+            </div>
 
         </div>
 
@@ -378,12 +918,55 @@ function renderProfile() {
         reviews
     );
 
+
+    updateAccountLink();
+
 }
 
 
-function renderReviews(
-    reviews
-) {
+/*
+ * Display profile-not-found message.
+ */
+
+function showNotFound(message) {
+
+    const container =
+        document.getElementById(
+            "profileContainer"
+        );
+
+
+    container.innerHTML = `
+
+        <div class="card">
+
+            <h1>
+                Mechanic Not Found
+            </h1>
+
+            <p>
+                ${safeText(message)}
+            </p>
+
+            <a
+                href="mechanics.html"
+                class="btn"
+            >
+                Back to Mechanics
+            </a>
+
+        </div>
+
+    `;
+
+}
+
+
+/*
+ * Render customer reviews.
+ */
+
+function renderReviews(reviews) {
 
     const container =
         document.getElementById(
@@ -391,13 +974,17 @@ function renderReviews(
         );
 
 
+    if (!container) {
+        return;
+    }
+
+
     if (!reviews.length) {
 
         container.innerHTML = `
 
             <p>
-                No additional WrenchLink
-                customer reviews yet.
+                No customer reviews yet.
             </p>
 
         `;
@@ -409,43 +996,145 @@ function renderReviews(
 
     container.innerHTML =
         reviews
-            .map(
-                function(review) {
+            .map(function (review) {
 
-                    return `
+                const rating =
+                    Number(
+                        review.rating || 0
+                    );
 
-                        <div
-                            style="
-                                padding:15px 0;
-                                border-bottom:1px solid #ddd;
-                            "
-                        >
 
-                            <p>
-                                <strong>
-                                    ${renderMechanicStars(
-                                        review.rating
-                                    )}
-                                </strong>
-                            </p>
+                const stars =
+                    typeof renderMechanicStars ===
+                    "function"
 
-                            <p>
-                                ${escapeMarketplaceHTML(
-                                    review.comment ||
-                                    "Customer review."
-                                )}
-                            </p>
+                        ? renderMechanicStars(
+                            rating
+                        )
 
-                        </div>
+                        : "★★★★★";
 
-                    `;
 
-                }
-            )
+                return `
+
+                    <div
+                        style="
+                            padding:15px 0;
+                            border-bottom:1px solid #ddd;
+                        "
+                    >
+
+                        <p>
+
+                            <strong>
+                                ${stars}
+                            </strong>
+
+                            ${
+                                review.customerName
+                                    ? safeText(
+                                        review.customerName
+                                    )
+                                    : "WrenchLink Customer"
+                            }
+
+                        </p>
+
+
+                        <p>
+
+                            ${safeText(
+                                review.comment ||
+                                "Customer review."
+                            )}
+
+                        </p>
+
+                    </div>
+
+                `;
+
+            })
             .join("");
 
 }
 
+
+/*
+ * Update the header button depending
+ * on whether someone is logged in.
+ */
+
+function updateAccountLink() {
+
+    const link =
+        document.getElementById(
+            "accountLink"
+        );
+
+
+    if (!link) {
+        return;
+    }
+
+
+    const user =
+        typeof getCurrentUser === "function"
+            ? getCurrentUser()
+            : null;
+
+
+    if (!user) {
+
+        link.textContent =
+            "Sign In";
+
+        link.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    if (user.role === "mechanic") {
+
+        link.textContent =
+            "Dashboard";
+
+        link.href =
+            "mechanic-dashboard.html";
+
+        return;
+
+    }
+
+
+    if (user.role === "admin") {
+
+        link.textContent =
+            "Admin";
+
+        link.href =
+            "admin/index.html";
+
+        return;
+
+    }
+
+
+    link.textContent =
+        "Dashboard";
+
+    link.href =
+        "customer-dashboard.html";
+
+}
+
+
+/*
+ * Start page.
+ */
 
 document.addEventListener(
     "DOMContentLoaded",

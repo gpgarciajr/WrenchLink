@@ -2,7 +2,11 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
 
     <title>Mechanic Dashboard | WrenchLink</title>
 
@@ -12,10 +16,11 @@
 <body>
 
 <header>
+
     <div class="container">
 
         <h1>
-            <a href="index.html">WrenchLink</a>
+            <a href="index.html">🔧 WrenchLink</a>
         </h1>
 
         <nav>
@@ -24,6 +29,7 @@
         </nav>
 
     </div>
+
 </header>
 
 
@@ -53,11 +59,13 @@
                 <h3>Available Jobs</h3>
 
                 <p>
-                    View service requests from customers.
+                    Find customer service requests.
                 </p>
 
                 <a href="#availableJobs">
-                    <button>View Jobs</button>
+                    <button>
+                        View Jobs
+                    </button>
                 </a>
 
             </div>
@@ -68,11 +76,13 @@
                 <h3>My Profile</h3>
 
                 <p>
-                    Update your mechanic information.
+                    Manage your mechanic profile.
                 </p>
 
                 <a href="edit-mechanic-profile.html">
-                    <button>My Profile</button>
+                    <button>
+                        Edit Profile
+                    </button>
                 </a>
 
             </div>
@@ -83,11 +93,13 @@
                 <h3>Service Area</h3>
 
                 <p>
-                    Manage where you provide mobile service.
+                    Manage where you provide service.
                 </p>
 
                 <a href="service-area.html">
-                    <button>Service Area</button>
+                    <button>
+                        Service Area
+                    </button>
                 </a>
 
             </div>
@@ -97,7 +109,7 @@
     </section>
 
 
-    <!-- MECHANIC PROFILE -->
+    <!-- PROFILE -->
 
     <section>
 
@@ -107,26 +119,43 @@
 
             <p>
                 <strong>Name:</strong>
-                <span id="profileName">Not set</span>
+                <span id="profileName">
+                    Not set
+                </span>
             </p>
 
             <p>
-                <strong>Service Area:</strong>
-                <span id="profileArea">Not set</span>
+                <strong>Email:</strong>
+                <span id="profileEmail">
+                    Not set
+                </span>
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                <span id="profilePhone">
+                    Not set
+                </span>
             </p>
 
             <p>
                 <strong>Experience:</strong>
-                <span id="profileExperience">Not set</span>
+                <span id="profileExperience">
+                    Not set
+                </span>
             </p>
 
             <p>
                 <strong>Services:</strong>
-                <span id="profileServices">Not set</span>
+                <span id="profileServices">
+                    Not set
+                </span>
             </p>
 
             <a href="edit-mechanic-profile.html">
-                <button>Edit Profile</button>
+                <button>
+                    Edit Profile
+                </button>
             </a>
 
         </div>
@@ -144,16 +173,22 @@
 
             <p>
                 <strong>Location:</strong>
-                <span id="serviceAreaLocation">Not set</span>
+                <span id="serviceAreaLocation">
+                    Not set
+                </span>
             </p>
 
             <p>
                 <strong>Radius:</strong>
-                <span id="serviceAreaRadius">Not set</span>
+                <span id="serviceAreaRadius">
+                    Not set
+                </span>
             </p>
 
             <a href="service-area.html">
-                <button>Edit Service Area</button>
+                <button>
+                    Edit Service Area
+                </button>
             </a>
 
         </div>
@@ -165,19 +200,9 @@
 
     <section id="availableJobs">
 
-        <h2>Available Customer Jobs</h2>
+        <h2>Available Jobs</h2>
 
-        <div id="jobList">
-
-            <div class="card">
-
-                <p>
-                    No open customer jobs right now.
-                </p>
-
-            </div>
-
-        </div>
+        <div id="availableJobList"></div>
 
     </section>
 
@@ -186,19 +211,9 @@
 
     <section>
 
-        <h2>Active Jobs</h2>
+        <h2>My Active Jobs</h2>
 
-        <div id="activeJobs">
-
-            <div class="card">
-
-                <p>
-                    You don't have any accepted jobs yet.
-                </p>
-
-            </div>
-
-        </div>
+        <div id="activeJobList"></div>
 
     </section>
 
@@ -209,13 +224,7 @@
 
         <h2>Completed Jobs</h2>
 
-        <div class="card">
-
-            <p>
-                Completed jobs will appear here.
-            </p>
-
-        </div>
+        <div id="completedJobList"></div>
 
     </section>
 
@@ -226,11 +235,15 @@
 
         <h2>Customer Reviews</h2>
 
-        <div class="card">
+        <div id="reviewList">
 
-            <p>
-                Customer reviews will appear here after completed jobs.
-            </p>
+            <div class="card">
+
+                <p>
+                    No customer reviews yet.
+                </p>
+
+            </div>
 
         </div>
 
@@ -254,7 +267,9 @@
                 </p>
 
                 <a href="account-settings.html">
-                    <button>Account Settings</button>
+                    <button>
+                        Account Settings
+                    </button>
                 </a>
 
             </div>
@@ -265,7 +280,8 @@
                 <h3>Delete Account</h3>
 
                 <p>
-                    Remove your mechanic information from this browser.
+                    Remove your mechanic information
+                    from this browser.
                 </p>
 
                 <button onclick="deleteAccount()">
@@ -280,7 +296,7 @@
                 <h3>Sign Out</h3>
 
                 <p>
-                    Sign out of your WrenchLink account.
+                    Sign out of WrenchLink.
                 </p>
 
                 <button onclick="signOut()">
@@ -317,40 +333,59 @@
 
 <script>
 
-/* Load mechanic profile */
+const jobsKey =
+    "wrenchlinkJobs";
+
+const profileKey =
+    "wrenchlinkMechanicProfile";
+
+
+/* -----------------------------
+   SECURITY
+----------------------------- */
+
+function escapeHTML(value) {
+
+    const div =
+        document.createElement("div");
+
+    div.textContent =
+        value == null
+            ? ""
+            : String(value);
+
+    return div.innerHTML;
+}
+
+
+/* -----------------------------
+   MECHANIC PROFILE
+----------------------------- */
 
 function loadMechanicProfile() {
 
-    const savedProfile =
-        localStorage.getItem(
-            "wrenchlinkMechanicProfile"
-        );
+    const saved =
+        localStorage.getItem(profileKey);
 
-
-    if (!savedProfile) {
+    if (!saved) {
 
         document.getElementById(
             "welcomeMessage"
         ).textContent =
-            "Welcome to WrenchLink. Set up your mechanic profile to get started.";
+            "Welcome to WrenchLink. Complete your mechanic profile to get started.";
 
         return;
-
     }
-
 
     const profile =
-        JSON.parse(savedProfile);
+        JSON.parse(saved);
 
-
-    if (profile.name) {
-
-        document.getElementById(
-            "welcomeMessage"
-        ).textContent =
-            "Welcome back, " + profile.name + "!";
-
-    }
+    document.getElementById(
+        "welcomeMessage"
+    ).textContent =
+        profile.name
+            ? "Welcome back, " + profile.name + "!"
+            : "Welcome back!";
 
 
     document.getElementById(
@@ -360,9 +395,15 @@ function loadMechanicProfile() {
 
 
     document.getElementById(
-        "profileArea"
+        "profileEmail"
     ).textContent =
-        profile.serviceArea || "Not set";
+        profile.email || "Not set";
+
+
+    document.getElementById(
+        "profilePhone"
+    ).textContent =
+        profile.phone || "Not set";
 
 
     document.getElementById(
@@ -377,71 +418,39 @@ function loadMechanicProfile() {
         "profileServices"
     ).textContent =
         profile.services || "Not set";
-
 }
 
 
-/* Load service area */
+/* -----------------------------
+   SERVICE AREA
+----------------------------- */
 
 function loadServiceArea() {
 
-    const savedArea =
+    const saved =
         localStorage.getItem(
             "wrenchlinkServiceArea"
         );
 
-
-    if (!savedArea) {
-
-        return;
-
-    }
-
+    if (!saved) return;
 
     const area =
-        JSON.parse(savedArea);
+        JSON.parse(saved);
 
-
-    let locationText = "";
-
-
-    if (area.city) {
-
-        locationText += area.city;
-
-    }
-
-
-    if (area.state) {
-
-        if (locationText) {
-
-            locationText += ", ";
-
-        }
-
-        locationText += area.state;
-
-    }
-
-
-    if (area.zip) {
-
-        if (locationText) {
-
-            locationText += " ";
-
-        }
-
-        locationText += area.zip;
-
-    }
+    const location =
+        [
+            area.city,
+            area.state,
+            area.zip
+        ]
+        .filter(Boolean)
+        .join(", ");
 
 
     document.getElementById(
         "serviceAreaLocation"
     ).textContent =
-        locationText || "Not set";
+        location || "Not set";
 
 
     document.getElementById(
@@ -450,38 +459,48 @@ function loadServiceArea() {
         area.radius
             ? area.radius + " miles"
             : "Not set";
-
 }
 
 
-/* Load available customer jobs */
+/* -----------------------------
+   GET JOBS
+----------------------------- */
+
+function getJobs() {
+
+    const saved =
+        localStorage.getItem(jobsKey);
+
+    if (!saved) return [];
+
+    try {
+
+        return JSON.parse(saved);
+
+    } catch {
+
+        return [];
+
+    }
+}
+
+
+/* -----------------------------
+   AVAILABLE JOBS
+----------------------------- */
 
 function loadAvailableJobs() {
 
-    const savedJobs =
-        localStorage.getItem(
-            "wrenchlinkJobs"
-        );
-
-
-    const jobList =
+    const container =
         document.getElementById(
-            "jobList"
+            "availableJobList"
         );
-
-
-    if (!savedJobs) {
-
-        return;
-
-    }
-
 
     const jobs =
-        JSON.parse(savedJobs);
+        getJobs();
 
 
-    const openJobs =
+    const available =
         jobs.filter(function(job) {
 
             return job.status === "Open";
@@ -489,47 +508,51 @@ function loadAvailableJobs() {
         });
 
 
-    if (!openJobs.length) {
+    if (!available.length) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <h3>No Open Jobs</h3>
+
+                <p>
+                    There are currently no open customer
+                    service requests.
+                </p>
+
+            </div>
+
+        `;
 
         return;
-
     }
 
 
-    jobList.innerHTML = "";
+    container.innerHTML = "";
 
 
-    openJobs.forEach(function(job) {
+    available.forEach(function(job) {
 
         const card =
             document.createElement("div");
 
-
-        card.className =
-            "card";
+        card.className = "card";
 
 
-        let preferredTime =
-            "No preferred time selected";
-
-
-        if (job.preferredDateTime) {
-
-            const date =
-                new Date(
+        const date =
+            job.preferredDateTime
+                ? new Date(
                     job.preferredDateTime
-                );
-
-
-            preferredTime =
-                date.toLocaleString();
-
-        }
+                  ).toLocaleString()
+                : "No preferred time";
 
 
         card.innerHTML = `
 
-            <h3>${escapeHTML(job.service)}</h3>
+            <h3>
+                ${escapeHTML(job.service)}
+            </h3>
 
             <p>
                 <strong>Vehicle:</strong>
@@ -544,21 +567,27 @@ function loadAvailableJobs() {
             <p>
                 <strong>Location:</strong>
                 ${escapeHTML(job.location)}
+                ${job.city
+                    ? ", " + escapeHTML(job.city)
+                    : ""}
+                ${job.state
+                    ? ", " + escapeHTML(job.state)
+                    : ""}
+                ${job.zip
+                    ? " " + escapeHTML(job.zip)
+                    : ""}
             </p>
 
             <p>
                 <strong>Preferred Time:</strong>
-                ${escapeHTML(preferredTime)}
+                ${escapeHTML(date)}
             </p>
 
             <p>
                 <strong>Customer:</strong>
-                ${escapeHTML(job.customerName)}
-            </p>
-
-            <p>
-                <strong>Status:</strong>
-                ${escapeHTML(job.status)}
+                ${escapeHTML(
+                    job.customerName || "Customer"
+                )}
             </p>
 
             <button onclick="acceptJob(${job.id})">
@@ -568,32 +597,20 @@ function loadAvailableJobs() {
         `;
 
 
-        jobList.appendChild(card);
+        container.appendChild(card);
 
     });
-
 }
 
 
-/* Accept job */
+/* -----------------------------
+   ACCEPT JOB
+----------------------------- */
 
 function acceptJob(jobId) {
 
-    const savedJobs =
-        localStorage.getItem(
-            "wrenchlinkJobs"
-        );
-
-
-    if (!savedJobs) {
-
-        return;
-
-    }
-
-
     const jobs =
-        JSON.parse(savedJobs);
+        getJobs();
 
 
     const job =
@@ -606,100 +623,114 @@ function acceptJob(jobId) {
 
     if (!job) {
 
+        alert("Job could not be found.");
         return;
 
     }
+
+
+    const savedProfile =
+        localStorage.getItem(profileKey);
+
+
+    const profile =
+        savedProfile
+            ? JSON.parse(savedProfile)
+            : {};
 
 
     job.status =
         "Accepted";
 
+    job.mechanicId =
+        "local-mechanic";
+
+    job.mechanicName =
+        profile.name || "WrenchLink Mechanic";
+
+    job.acceptedAt =
+        new Date().toISOString();
+
 
     localStorage.setItem(
-        "wrenchlinkJobs",
+        jobsKey,
         JSON.stringify(jobs)
     );
 
 
     alert(
-        "Job accepted!"
+        "Job accepted successfully!"
     );
 
 
-    loadAvailableJobs();
-
-    loadActiveJobs();
-
+    refreshDashboard();
 }
 
 
-/* Load accepted jobs */
+/* -----------------------------
+   ACTIVE JOBS
+----------------------------- */
 
 function loadActiveJobs() {
 
-    const savedJobs =
-        localStorage.getItem(
-            "wrenchlinkJobs"
-        );
-
-
-    const activeJobs =
+    const container =
         document.getElementById(
-            "activeJobs"
+            "activeJobList"
         );
-
-
-    if (!savedJobs) {
-
-        return;
-
-    }
-
 
     const jobs =
-        JSON.parse(savedJobs);
+        getJobs();
 
 
-    const acceptedJobs =
+    const active =
         jobs.filter(function(job) {
 
-            return job.status === "Accepted";
+            return (
+                job.status === "Accepted" &&
+                job.mechanicId === "local-mechanic"
+            );
 
         });
 
 
-    if (!acceptedJobs.length) {
+    if (!active.length) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <p>
+                    You don't have any active jobs.
+                </p>
+
+            </div>
+
+        `;
 
         return;
-
     }
 
 
-    activeJobs.innerHTML = "";
+    container.innerHTML = "";
 
 
-    acceptedJobs.forEach(function(job) {
+    active.forEach(function(job) {
 
         const card =
             document.createElement("div");
 
-
-        card.className =
-            "card";
+        card.className = "card";
 
 
         card.innerHTML = `
 
-            <h3>${escapeHTML(job.service)}</h3>
+            <h3>
+                ${escapeHTML(job.service)}
+            </h3>
 
             <p>
                 <strong>Vehicle:</strong>
                 ${escapeHTML(job.vehicle)}
-            </p>
-
-            <p>
-                <strong>Location:</strong>
-                ${escapeHTML(job.location)}
             </p>
 
             <p>
@@ -708,43 +739,50 @@ function loadActiveJobs() {
             </p>
 
             <p>
+                <strong>Phone:</strong>
+                ${escapeHTML(job.customerPhone)}
+            </p>
+
+            <p>
+                <strong>Location:</strong>
+                ${escapeHTML(job.location)}
+            </p>
+
+            <p>
                 <strong>Status:</strong>
-                ${escapeHTML(job.status)}
+                Accepted
             </p>
 
             <button onclick="completeJob(${job.id})">
-                Mark Completed
+                Mark Job Completed
             </button>
 
         `;
 
 
-        activeJobs.appendChild(card);
+        container.appendChild(card);
 
     });
-
 }
 
 
-/* Complete job */
+/* -----------------------------
+   COMPLETE JOB
+----------------------------- */
 
 function completeJob(jobId) {
 
-    const savedJobs =
-        localStorage.getItem(
-            "wrenchlinkJobs"
+    const confirmation =
+        confirm(
+            "Mark this job as completed?"
         );
 
 
-    if (!savedJobs) {
-
-        return;
-
-    }
+    if (!confirmation) return;
 
 
     const jobs =
-        JSON.parse(savedJobs);
+        getJobs();
 
 
     const job =
@@ -755,19 +793,18 @@ function completeJob(jobId) {
         });
 
 
-    if (!job) {
-
-        return;
-
-    }
+    if (!job) return;
 
 
     job.status =
         "Completed";
 
+    job.completedAt =
+        new Date().toISOString();
+
 
     localStorage.setItem(
-        "wrenchlinkJobs",
+        jobsKey,
         JSON.stringify(jobs)
     );
 
@@ -777,51 +814,216 @@ function completeJob(jobId) {
     );
 
 
-    loadActiveJobs();
-
-    loadAvailableJobs();
-
+    refreshDashboard();
 }
 
 
-/* Protect displayed text */
+/* -----------------------------
+   COMPLETED JOBS
+----------------------------- */
 
-function escapeHTML(value) {
+function loadCompletedJobs() {
 
-    const div =
-        document.createElement("div");
+    const container =
+        document.getElementById(
+            "completedJobList"
+        );
 
-    div.textContent =
-        value == null
-            ? ""
-            : String(value);
+    const jobs =
+        getJobs();
 
-    return div.innerHTML;
 
+    const completed =
+        jobs.filter(function(job) {
+
+            return (
+                job.status === "Completed" &&
+                job.mechanicId === "local-mechanic"
+            );
+
+        });
+
+
+    if (!completed.length) {
+
+        container.innerHTML = `
+
+            <div class="card">
+
+                <p>
+                    No completed jobs yet.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML = "";
+
+
+    completed.forEach(function(job) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <h3>
+                ${escapeHTML(job.service)}
+            </h3>
+
+            <p>
+                <strong>Vehicle:</strong>
+                ${escapeHTML(job.vehicle)}
+            </p>
+
+            <p>
+                <strong>Customer:</strong>
+                ${escapeHTML(job.customerName)}
+            </p>
+
+            <p>
+                <strong>Status:</strong>
+                Completed ✓
+            </p>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
 }
 
 
-/* Delete mechanic information */
+/* -----------------------------
+   REVIEWS
+----------------------------- */
 
-function deleteAccount() {
+function loadReviews() {
 
-    const confirmation =
-        confirm(
-            "Are you sure you want to delete your mechanic information from this browser?"
+    const container =
+        document.getElementById(
+            "reviewList"
+        );
+
+    const saved =
+        localStorage.getItem(
+            "wrenchlinkReviews"
         );
 
 
-    if (!confirmation) {
+    if (!saved) {
 
         return;
 
     }
 
 
+    let reviews = [];
+
+    try {
+
+        reviews =
+            JSON.parse(saved);
+
+    } catch {
+
+        return;
+
+    }
+
+
+    const mechanicReviews =
+        reviews.filter(function(review) {
+
+            return (
+                review.mechanicId ===
+                "local-mechanic"
+            );
+
+        });
+
+
+    if (!mechanicReviews.length) {
+
+        return;
+
+    }
+
+
+    container.innerHTML = "";
+
+
+    mechanicReviews.forEach(function(review) {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "card";
+
+
+        card.innerHTML = `
+
+            <h3>
+                ${"★".repeat(
+                    Math.max(
+                        1,
+                        Math.min(
+                            5,
+                            Number(review.rating) || 5
+                        )
+                    )
+                )}
+            </h3>
+
+            <p>
+                ${escapeHTML(review.comment)}
+            </p>
+
+            <p>
+                <strong>
+                    ${escapeHTML(
+                        review.customerName ||
+                        "Customer"
+                    )}
+                </strong>
+            </p>
+
+        `;
+
+
+        container.appendChild(card);
+
+    });
+}
+
+
+/* -----------------------------
+   DELETE ACCOUNT
+----------------------------- */
+
+function deleteAccount() {
+
+    const confirmation =
+        confirm(
+            "Delete your mechanic profile and service-area information from this browser?"
+        );
+
+
+    if (!confirmation) return;
+
+
     localStorage.removeItem(
         "wrenchlinkMechanicProfile"
     );
-
 
     localStorage.removeItem(
         "wrenchlinkServiceArea"
@@ -835,22 +1037,40 @@ function deleteAccount() {
 
     window.location.href =
         "index.html";
-
 }
 
 
-/* Sign out */
+/* -----------------------------
+   SIGN OUT
+----------------------------- */
 
 function signOut() {
 
     alert(
-        "Sign-out will be connected to the real WrenchLink account system when authentication is added."
+        "Secure sign-out will be connected when WrenchLink authentication is added."
     );
-
 }
 
 
-/* Start dashboard */
+/* -----------------------------
+   REFRESH EVERYTHING
+----------------------------- */
+
+function refreshDashboard() {
+
+    loadAvailableJobs();
+
+    loadActiveJobs();
+
+    loadCompletedJobs();
+
+    loadReviews();
+}
+
+
+/* -----------------------------
+   START
+----------------------------- */
 
 document.addEventListener(
     "DOMContentLoaded",
@@ -860,9 +1080,7 @@ document.addEventListener(
 
         loadServiceArea();
 
-        loadAvailableJobs();
-
-        loadActiveJobs();
+        refreshDashboard();
 
     }
 );

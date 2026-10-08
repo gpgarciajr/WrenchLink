@@ -1,245 +1,678 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-
     <meta charset="UTF-8">
-
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find a Mechanic | WrenchLink</title>
-
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-<header class="header">
+<header class="site-header">
+    <div class="container nav-container">
+        <a href="index.html" class="logo">🔧 WrenchLink</a>
 
-    <div class="logo">
-        🔧 WrenchLink
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="mechanics.html">Find a Mechanic</a>
+            <a href="services.html">Services</a>
+            <a href="about.html">About</a>
+            <a href="login.html" class="btn btn-small">Sign In</a>
+        </nav>
     </div>
-
-    <a href="index.html" class="btn btn-small">
-        Back to WrenchLink
-    </a>
-
 </header>
 
+<main class="container">
 
-<main>
+    <section class="page-hero">
+        <p class="eyebrow">WRENCHLINK MARKETPLACE</p>
 
-<section class="services">
-
-    <div class="section-heading">
-
-        <p class="eyebrow">
-            WRENCHLINK
-        </p>
-
-        <h1>
-            Find a Mechanic
-        </h1>
+        <h1>Find a Mechanic</h1>
 
         <p>
-            Find mobile mechanics near you.
+            Find a mobile mechanic near you by location,
+            service, rating, and availability.
         </p>
+    </section>
 
-    </div>
+    <section class="card">
 
+        <h2>Search Mechanics</h2>
 
-    <!-- SEARCH -->
+        <form id="searchForm">
 
-    <div class="service-card">
+            <div class="form-group">
+                <label for="location">City or ZIP Code</label>
 
-        <h2>
-            Search Mechanics
-        </h2>
+                <input
+                    type="text"
+                    id="location"
+                    placeholder="Example: Chicago or 60618"
+                >
+            </div>
 
-        <form id="mechanicSearch">
+            <div class="form-group">
 
-            <label for="location">
-                Your Location
-            </label>
+                <label for="service">Service Needed</label>
 
-            <input
-                id="location"
-                type="text"
-                placeholder="Enter ZIP code or city"
-                required
-            >
+                <select id="service">
 
+                    <option value="">All Services</option>
 
-            <label for="service">
-                Service Needed
-            </label>
+                    <option value="Brakes & Rotors">
+                        Brakes & Rotors
+                    </option>
 
-            <select id="service">
+                    <option value="Battery">
+                        Battery
+                    </option>
 
-                <option value="">
-                    Select a service
-                </option>
+                    <option value="Alternator">
+                        Alternator
+                    </option>
 
-                <option value="brakes">
-                    Brakes & Rotors
-                </option>
+                    <option value="Starter">
+                        Starter
+                    </option>
 
-                <option value="battery">
-                    Battery
-                </option>
+                    <option value="Diagnostics">
+                        Diagnostics
+                    </option>
 
-                <option value="alternator">
-                    Alternator
-                </option>
+                    <option value="Oil Change">
+                        Oil Change
+                    </option>
 
-                <option value="starter">
-                    Starter
-                </option>
+                    <option value="Roadside Assistance">
+                        Roadside Assistance
+                    </option>
 
-                <option value="diagnostics">
-                    Diagnostics
-                </option>
+                    <option value="Tire Assistance">
+                        Tire Assistance
+                    </option>
 
-                <option value="oil">
-                    Oil Change
-                </option>
+                    <option value="Other Repairs">
+                        Other Repairs
+                    </option>
 
-                <option value="roadside">
-                    Roadside Assistance
-                </option>
+                </select>
 
-                <option value="other">
-                    Other
-                </option>
+            </div>
 
-            </select>
+            <div class="form-group">
 
+                <label for="availability">
+                    Availability
+                </label>
+
+                <select id="availability">
+
+                    <option value="">
+                        Any Availability
+                    </option>
+
+                    <option value="available">
+                        Available Now
+                    </option>
+
+                    <option value="unavailable">
+                        Currently Unavailable
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit" class="btn">
+                Find Mechanics
+            </button>
 
             <button
-                type="submit"
-                class="btn btn-primary"
+                type="button"
+                class="btn btn-secondary"
+                onclick="clearFilters()"
             >
-                🔍 Search Mechanics
+                Clear
             </button>
 
         </form>
 
-    </div>
+    </section>
 
+    <section class="section">
 
-    <!-- RESULTS -->
+        <div class="section-heading">
 
-    <div
-        id="mechanicResults"
-        class="service-grid"
-        style="margin-top: 30px;"
-    >
-
-        <div class="service-card">
-
-            <div class="service-icon">
-                👨‍🔧
+            <div>
+                <p class="eyebrow">MECHANICS</p>
+                <h2 id="resultsTitle">
+                    Available Mechanics
+                </h2>
             </div>
 
-            <h3>
-                Mobile Mechanics
-            </h3>
-
-            <p>
-                Search by location and service to find
-                mechanics available in your area.
-            </p>
+            <span id="resultCount"></span>
 
         </div>
 
-    </div>
+        <div id="mechanicResults" class="card-grid"></div>
 
-</section>
+    </section>
 
 </main>
 
+<footer class="site-footer">
 
-<footer class="footer">
-
-    <div>
-
-        <strong>🔧 WrenchLink</strong>
+    <div class="container">
 
         <p>
-            Connecting drivers with mobile mechanics.
+            © 2026 WrenchLink. All rights reserved.
         </p>
 
-    </div>
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-        <a href="contact.html">
-            Contact
-        </a>
+        <div>
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="contact.html">Contact</a>
+        </div>
 
     </div>
 
 </footer>
 
-
 <script>
 
-document
-    .getElementById("mechanicSearch")
-    .addEventListener("submit", function(event) {
+const demoMechanics = [
 
-        event.preventDefault();
+    {
+        id: "mechanic-1",
+        name: "Mike's Mobile Auto",
+        city: "Chicago",
+        state: "IL",
+        zip: "60618",
+        radius: 25,
+        services: [
+            "Brakes & Rotors",
+            "Battery",
+            "Alternator",
+            "Starter",
+            "Diagnostics"
+        ],
+        experience: 12,
+        rating: 4.9,
+        reviews: 47,
+        available: true,
+        distance: 3.2,
+        about:
+            "Experienced mobile mechanic providing dependable repairs at your location."
+    },
 
-        const location =
-            document.getElementById("location").value;
+    {
+        id: "mechanic-2",
+        name: "Southside Mobile Mechanics",
+        city: "Chicago",
+        state: "IL",
+        zip: "60620",
+        radius: 20,
+        services: [
+            "Battery",
+            "Alternator",
+            "Starter",
+            "Oil Change",
+            "Diagnostics"
+        ],
+        experience: 8,
+        rating: 4.8,
+        reviews: 31,
+        available: true,
+        distance: 7.6,
+        about:
+            "Mobile repair service focused on diagnostics and common mechanical repairs."
+    },
 
-        const service =
-            document.getElementById("service").value;
+    {
+        id: "mechanic-3",
+        name: "Chicago Roadside Pro",
+        city: "Chicago",
+        state: "IL",
+        zip: "60632",
+        radius: 30,
+        services: [
+            "Roadside Assistance",
+            "Battery",
+            "Tire Assistance",
+            "Lockout",
+            "Fuel Delivery"
+        ],
+        experience: 10,
+        rating: 4.7,
+        reviews: 28,
+        available: false,
+        distance: 10.4,
+        about:
+            "Roadside and mobile assistance throughout the Chicago area."
+    },
 
-        const results =
-            document.getElementById("mechanicResults");
+    {
+        id: "mechanic-4",
+        name: "Garcia Mobile Repair",
+        city: "Chicago",
+        state: "IL",
+        zip: "60629",
+        radius: 25,
+        services: [
+            "Brakes & Rotors",
+            "Battery",
+            "Alternator",
+            "Starter",
+            "Diagnostics",
+            "Oil Change",
+            "Tire Assistance",
+            "Other Repairs"
+        ],
+        experience: 10,
+        rating: 5.0,
+        reviews: 19,
+        available: true,
+        distance: 5.1,
+        about:
+            "Professional mobile repair service focused on convenient repairs at the customer's location."
+    }
+
+];
+
+function getMechanics() {
+
+    const savedProfile =
+        JSON.parse(
+            localStorage.getItem(
+                "wrenchlinkMechanicProfile"
+            )
+        ) || null;
+
+    const savedArea =
+        JSON.parse(
+            localStorage.getItem(
+                "wrenchlinkServiceArea"
+            )
+        ) || null;
+
+    if (
+        savedProfile &&
+        savedProfile.name
+    ) {
+
+        let services = [];
+
+        if (savedProfile.services) {
+
+            services = savedProfile.services
+                .split(",")
+                .map(function(service) {
+                    return service.trim();
+                })
+                .filter(Boolean);
+
+        }
+
+        const personalMechanic = {
+
+            id: "local-mechanic",
+
+            name: savedProfile.name,
+
+            city:
+                savedArea?.city ||
+                savedProfile.serviceArea ||
+                "Chicago",
+
+            state:
+                savedArea?.state ||
+                "IL",
+
+            zip:
+                savedArea?.zip ||
+                "",
+
+            radius:
+                Number(savedArea?.radius) ||
+                25,
+
+            services:
+                services.length
+                    ? services
+                    : [
+                        "Diagnostics",
+                        "Battery",
+                        "Alternator",
+                        "Starter",
+                        "Other Repairs"
+                    ],
+
+            experience:
+                Number(savedProfile.experience) ||
+                0,
+
+            rating: 5.0,
+
+            reviews: 0,
+
+            available: true,
+
+            distance: 0,
+
+            about:
+                savedProfile.about ||
+                "WrenchLink mobile mechanic."
+
+        };
+
+        return [
+            personalMechanic,
+            ...demoMechanics
+        ];
+    }
+
+    return demoMechanics;
+}
+
+function renderMechanics(list) {
+
+    const results =
+        document.getElementById(
+            "mechanicResults"
+        );
+
+    const count =
+        document.getElementById(
+            "resultCount"
+        );
+
+    results.innerHTML = "";
+
+    count.textContent =
+        list.length +
+        (list.length === 1
+            ? " mechanic"
+            : " mechanics");
+
+    if (!list.length) {
 
         results.innerHTML = `
+            <div class="card">
+                <h3>No mechanics found</h3>
 
-            <div class="service-card">
+                <p>
+                    Try another location,
+                    service, or availability filter.
+                </p>
+            </div>
+        `;
 
-                <div class="service-icon">
-                    🔍
+        return;
+    }
+
+    list.forEach(function(mechanic) {
+
+        const stars =
+            "★".repeat(
+                Math.round(mechanic.rating)
+            );
+
+        const availabilityText =
+            mechanic.available
+                ? "Available Now"
+                : "Currently Unavailable";
+
+        const availabilityClass =
+            mechanic.available
+                ? "status-success"
+                : "status-muted";
+
+        const services =
+            mechanic.services
+                .slice(0, 4)
+                .map(function(service) {
+                    return `
+                        <span class="service-tag">
+                            ${escapeHTML(service)}
+                        </span>
+                    `;
+                })
+                .join("");
+
+        results.innerHTML += `
+
+            <article class="card mechanic-card">
+
+                <div class="mechanic-card-top">
+
+                    <div class="mechanic-avatar">
+                        🔧
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            ${escapeHTML(mechanic.name)}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(mechanic.city)},
+                            ${escapeHTML(mechanic.state)}
+                        </p>
+
+                    </div>
+
                 </div>
 
-                <h3>
-                    Searching...
-                </h3>
+                <p class="rating">
 
-                <p>
-                    Looking for mobile mechanics near
-                    ${location}.
+                    ${stars}
+
+                    <strong>
+                        ${mechanic.rating.toFixed(1)}
+                    </strong>
+
+                    <span>
+                        (${mechanic.reviews} reviews)
+                    </span>
+
                 </p>
 
                 <p>
-                    Service requested:
-                    ${service || "Any service"}
+                    <strong>
+                        ${mechanic.distance.toFixed(1)} miles
+                    </strong>
+                    away
                 </p>
 
-            </div>
+                <p>
+                    ${mechanic.experience} years
+                    experience
+                </p>
+
+                <div class="service-tags">
+                    ${services}
+                </div>
+
+                <p class="${availabilityClass}">
+                    ● ${availabilityText}
+                </p>
+
+                <div class="button-row">
+
+                    <a
+                        class="btn btn-small"
+                        href="mechanic-profile.html?id=${encodeURIComponent(mechanic.id)}"
+                    >
+                        View Profile
+                    </a>
+
+                    <a
+                        class="btn btn-small"
+                        href="post-job.html?mechanic=${encodeURIComponent(mechanic.id)}"
+                    >
+                        Request
+                    </a>
+
+                </div>
+
+            </article>
 
         `;
 
     });
 
+}
+
+function searchMechanics() {
+
+    const location =
+        document
+            .getElementById("location")
+            .value
+            .trim()
+            .toLowerCase();
+
+    const service =
+        document
+            .getElementById("service")
+            .value;
+
+    const availability =
+        document
+            .getElementById("availability")
+            .value;
+
+    let mechanics =
+        getMechanics();
+
+    if (location) {
+
+        mechanics =
+            mechanics.filter(function(mechanic) {
+
+                return (
+
+                    mechanic.city
+                        .toLowerCase()
+                        .includes(location)
+
+                    ||
+
+                    mechanic.zip
+                        .toLowerCase()
+                        .includes(location)
+
+                );
+
+            });
+
+    }
+
+    if (service) {
+
+        mechanics =
+            mechanics.filter(function(mechanic) {
+
+                return mechanic.services.some(
+                    function(item) {
+
+                        return item
+                            .toLowerCase()
+                            .includes(
+                                service.toLowerCase()
+                            );
+
+                    }
+                );
+
+            });
+
+    }
+
+    if (availability === "available") {
+
+        mechanics =
+            mechanics.filter(function(mechanic) {
+                return mechanic.available;
+            });
+
+    }
+
+    if (availability === "unavailable") {
+
+        mechanics =
+            mechanics.filter(function(mechanic) {
+                return !mechanic.available;
+            });
+
+    }
+
+    mechanics.sort(function(a, b) {
+
+        if (a.available !== b.available) {
+            return a.available ? -1 : 1;
+        }
+
+        return b.rating - a.rating;
+
+    });
+
+    renderMechanics(mechanics);
+
+}
+
+function clearFilters() {
+
+    document.getElementById(
+        "location"
+    ).value = "";
+
+    document.getElementById(
+        "service"
+    ).value = "";
+
+    document.getElementById(
+        "availability"
+    ).value = "";
+
+    searchMechanics();
+
+}
+
+function escapeHTML(value) {
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+document
+    .getElementById("searchForm")
+    .addEventListener(
+        "submit",
+        function(event) {
+
+            event.preventDefault();
+
+            searchMechanics();
+
+        }
+    );
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function() {
+        searchMechanics();
+    }
+);
+
 </script>
 
 </body>
-
 </html>

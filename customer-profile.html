@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Customer Profile | WrenchLink</title>
-
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -13,260 +11,133 @@
 
 <header>
     <div class="container">
-
-        <h1>
-            <a href="index.html">WrenchLink</a>
-        </h1>
+        <h1><a href="index.html">🔧 WrenchLink</a></h1>
 
         <nav>
             <a href="customer-dashboard.html">Dashboard</a>
             <a href="index.html">Home</a>
         </nav>
-
     </div>
 </header>
-
 
 <main class="container">
 
     <section class="page-header">
         <h2>Customer Profile</h2>
-
-        <p>
-            Save your information so you can request mobile mechanic services faster.
-        </p>
+        <p>Keep your information ready for your next service request.</p>
     </section>
-
 
     <section class="card">
 
-        <form id="customerProfileForm">
+        <form id="profileForm">
 
-            <label for="name">
-                Full Name
-            </label>
+            <label for="name">Full Name</label>
+            <input id="name" type="text" required>
 
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
+
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel">
+
+            <label for="city">City</label>
+            <input id="city" type="text">
+
+            <label for="state">State</label>
+            <input id="state" type="text" value="IL">
+
+            <label for="zip">ZIP Code</label>
+            <input id="zip" type="text">
+
+            <label for="vehicle">Primary Vehicle</label>
             <input
-                type="text"
-                id="name"
-                placeholder="Enter your full name"
-                required
-            >
-
-
-            <label for="email">
-                Email
-            </label>
-
-            <input
-                type="email"
-                id="email"
-                placeholder="Enter your email"
-                required
-            >
-
-
-            <label for="phone">
-                Phone
-            </label>
-
-            <input
-                type="tel"
-                id="phone"
-                placeholder="Enter your phone number"
-            >
-
-
-            <label for="city">
-                City
-            </label>
-
-            <input
-                type="text"
-                id="city"
-                placeholder="Chicago"
-            >
-
-
-            <label for="zip">
-                ZIP Code
-            </label>
-
-            <input
-                type="text"
-                id="zip"
-                placeholder="Enter ZIP code"
-            >
-
-
-            <label for="vehicle">
-                Default Vehicle
-            </label>
-
-            <input
-                type="text"
                 id="vehicle"
+                type="text"
                 placeholder="Example: 2019 Kia Soul 1.6L"
             >
 
-
-            <label for="about">
-                Additional Information
-            </label>
-
+            <label for="notes">Additional Information</label>
             <textarea
-                id="about"
+                id="notes"
                 rows="5"
-                placeholder="Anything you want mechanics to know..."
+                placeholder="Anything you'd like mechanics to know..."
             ></textarea>
 
-
-            <button type="submit">
-                Save Profile
-            </button>
+            <button type="submit">Save Profile</button>
 
         </form>
 
-
-        <div id="successMessage" style="display:none;">
-
+        <div id="message" style="display:none;">
             <h3>Profile Saved ✓</h3>
-
-            <p>
-                Your customer profile has been saved.
-            </p>
-
-            <a href="customer-dashboard.html">
-                Return to Dashboard
-            </a>
-
+            <p>Your customer information has been saved.</p>
         </div>
 
     </section>
 
 </main>
 
-
 <footer>
-
     <div class="container">
-
-        <p>
-            © 2026 WrenchLink. All rights reserved.
-        </p>
+        <p>© 2026 WrenchLink. All rights reserved.</p>
 
         <p>
             <a href="privacy.html">Privacy</a> |
             <a href="terms.html">Terms</a> |
             <a href="contact.html">Contact</a>
         </p>
-
     </div>
-
 </footer>
-
 
 <script>
 
-const profileForm =
-    document.getElementById("customerProfileForm");
+const profileKey = "wrenchlinkCustomerProfile";
 
-const successMessage =
-    document.getElementById("successMessage");
+function loadProfile() {
 
+    const saved = localStorage.getItem(profileKey);
 
-/* Load saved customer profile */
+    if (!saved) return;
 
-function loadCustomerProfile() {
+    const profile = JSON.parse(saved);
 
-    const savedProfile =
-        localStorage.getItem("wrenchlinkCustomerProfile");
-
-    if (!savedProfile) {
-        return;
-    }
-
-    const profile =
-        JSON.parse(savedProfile);
-
-    document.getElementById("name").value =
-        profile.name || "";
-
-    document.getElementById("email").value =
-        profile.email || "";
-
-    document.getElementById("phone").value =
-        profile.phone || "";
-
-    document.getElementById("city").value =
-        profile.city || "";
-
-    document.getElementById("zip").value =
-        profile.zip || "";
-
-    document.getElementById("vehicle").value =
-        profile.vehicle || "";
-
-    document.getElementById("about").value =
-        profile.about || "";
+    document.getElementById("name").value = profile.name || "";
+    document.getElementById("email").value = profile.email || "";
+    document.getElementById("phone").value = profile.phone || "";
+    document.getElementById("city").value = profile.city || "";
+    document.getElementById("state").value = profile.state || "IL";
+    document.getElementById("zip").value = profile.zip || "";
+    document.getElementById("vehicle").value = profile.vehicle || "";
+    document.getElementById("notes").value = profile.notes || "";
 }
 
+document.getElementById("profileForm").addEventListener("submit", function(event) {
 
-/* Save customer profile */
+    event.preventDefault();
 
-profileForm.addEventListener(
-    "submit",
-    function(event) {
+    const profile = {
+        name: document.getElementById("name").value.trim(),
+        email: document.getElementById("email").value.trim(),
+        phone: document.getElementById("phone").value.trim(),
+        city: document.getElementById("city").value.trim(),
+        state: document.getElementById("state").value.trim(),
+        zip: document.getElementById("zip").value.trim(),
+        vehicle: document.getElementById("vehicle").value.trim(),
+        notes: document.getElementById("notes").value.trim()
+    };
 
-        event.preventDefault();
+    localStorage.setItem(
+        profileKey,
+        JSON.stringify(profile)
+    );
 
-        const customerProfile = {
+    document.getElementById("message").style.display = "block";
 
-            name:
-                document.getElementById("name").value.trim(),
+    document.getElementById("message").scrollIntoView({
+        behavior: "smooth"
+    });
+});
 
-            email:
-                document.getElementById("email").value.trim(),
-
-            phone:
-                document.getElementById("phone").value.trim(),
-
-            city:
-                document.getElementById("city").value.trim(),
-
-            zip:
-                document.getElementById("zip").value.trim(),
-
-            vehicle:
-                document.getElementById("vehicle").value.trim(),
-
-            about:
-                document.getElementById("about").value.trim()
-        };
-
-
-        localStorage.setItem(
-            "wrenchlinkCustomerProfile",
-            JSON.stringify(customerProfile)
-        );
-
-
-        successMessage.style.display = "block";
-
-        successMessage.scrollIntoView({
-            behavior: "smooth"
-        });
-
-    }
-);
-
-
-/* Load profile when page opens */
-
-document.addEventListener(
-    "DOMContentLoaded",
-    loadCustomerProfile
-);
+document.addEventListener("DOMContentLoaded", loadProfile);
 
 </script>
 

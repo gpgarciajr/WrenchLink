@@ -1,619 +1,668 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
 
-    <meta charset="UTF-8">
+```
+<meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <title>Roadside Assistance | WrenchLink</title>
+<title>Roadside Assistance | WrenchLink</title>
 
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+<link
+    rel="stylesheet"
+    href="style.css"
+>
+```
 
 </head>
 
-
 <body>
-
 
 <header class="site-header">
 
-    <div class="nav-container">
+```
+<div class="container nav-container">
 
-        <a
-            href="index.html"
-            class="logo"
-        >
-            🔧 WrenchLink
+    <a
+        href="index.html"
+        class="logo"
+    >
+        🔧 WrenchLink
+    </a>
+
+
+    <nav>
+
+        <a href="index.html">
+            Home
         </a>
 
+        <a href="mechanics.html">
+            Find a Mechanic
+        </a>
 
-        <nav>
+        <a href="services.html">
+            Services
+        </a>
 
-            <a href="index.html">
-                Home
-            </a>
+        <a href="about.html">
+            About
+        </a>
 
-            <a href="mechanics.html">
-                Find a Mechanic
-            </a>
+        <a
+            href="login.html"
+            class="btn btn-small"
+            id="accountLink"
+        >
+            Sign In
+        </a>
 
-            <a href="services.html">
-                Services
-            </a>
+    </nav>
 
-            <a href="about.html">
-                About
-            </a>
-
-            <a
-                href="login.html"
-                class="btn btn-small"
-            >
-                Sign In
-            </a>
-
-        </nav>
-
-    </div>
+</div>
+```
 
 </header>
 
-
-
 <main class="container">
 
+```
+<!-- PAGE INTRO -->
 
-    <!-- PAGE INTRO -->
+<section class="page-hero">
 
-    <section class="page-hero">
+    <p class="eyebrow">
+        24/7 MOBILE HELP
+    </p>
+
+    <h1>
+        Roadside Assistance
+    </h1>
+
+    <p>
+        Get mobile roadside help wherever
+        your vehicle is located.
+    </p>
+
+</section>
+
+
+
+<!-- LOGIN NOTICE -->
+
+<section
+    id="loginNotice"
+    class="card"
+    style="display:none;"
+>
+
+    <h2>
+        Sign In Required
+    </h2>
+
+    <p>
+        Please sign in to your WrenchLink customer
+        account before requesting roadside assistance.
+    </p>
+
+    <div class="button-row">
+
+        <a
+            href="login.html"
+            class="btn btn-primary"
+        >
+            Sign In
+        </a>
+
+        <a
+            href="signup.html"
+            class="btn btn-secondary"
+        >
+            Create Account
+        </a>
+
+    </div>
+
+</section>
+
+
+
+<!-- SERVICE SELECTOR -->
+
+<section
+    id="serviceSelector"
+    class="card"
+    style="display:none;"
+>
+
+    <h2>
+        What do you need help with?
+    </h2>
+
+    <p>
+        Select the roadside service you need.
+    </p>
+
+
+    <div
+        class="service-grid"
+        style="
+            margin-top:25px;
+            max-width:none;
+        "
+    >
+
+
+        <button
+            type="button"
+            class="service-card roadside-service"
+            data-service="Jump Start"
+        >
+
+            <div class="service-icon">
+                🔋
+            </div>
+
+            <h3>
+                Jump Start
+            </h3>
+
+            <p>
+                Dead battery? Request
+                mobile jump-start assistance.
+            </p>
+
+        </button>
+
+
+
+        <button
+            type="button"
+            class="service-card roadside-service"
+            data-service="Vehicle Lockout"
+        >
+
+            <div class="service-icon">
+                🔐
+            </div>
+
+            <h3>
+                Vehicle Lockout
+            </h3>
+
+            <p>
+                Locked your keys inside?
+                Request lockout assistance.
+            </p>
+
+        </button>
+
+
+
+        <button
+            type="button"
+            class="service-card roadside-service"
+            data-service="Fuel Delivery"
+        >
+
+            <div class="service-icon">
+                ⛽
+            </div>
+
+            <h3>
+                Fuel Delivery
+            </h3>
+
+            <p>
+                Out of fuel? Request
+                mobile fuel delivery.
+            </p>
+
+        </button>
+
+
+
+        <button
+            type="button"
+            class="service-card roadside-service"
+            data-service="Tire Assistance"
+        >
+
+            <div class="service-icon">
+                🛞
+            </div>
+
+            <h3>
+                Tire Assistance
+            </h3>
+
+            <p>
+                Flat tire or tire trouble?
+                Request mobile assistance.
+            </p>
+
+        </button>
+
+
+    </div>
+
+</section>
+
+
+
+<!-- REQUEST FORM -->
+
+<section
+    id="requestSection"
+    class="card"
+    style="display:none;"
+>
+
+    <div>
 
         <p class="eyebrow">
-            24/7 MOBILE HELP
+            ROADSIDE REQUEST
         </p>
 
-        <h1>
-            Roadside Assistance
-        </h1>
-
-        <p>
-            Get mobile roadside help wherever
-            your vehicle is located.
-        </p>
-
-    </section>
-
-
-
-    <!-- SERVICE SELECTOR -->
-
-    <section class="card">
-
-        <h2>
-            What do you need help with?
+        <h2 id="selectedServiceTitle">
+            Request Assistance
         </h2>
 
-        <p>
-            Select the roadside service you need.
+        <p id="selectedServiceDescription">
+            Tell us where you are and what happened.
         </p>
+
+    </div>
+
+
+
+    <form id="roadsideForm">
+
+
+        <!-- CUSTOMER -->
+
+        <h3>
+            Your Information
+        </h3>
+
+
+        <div class="form-group">
+
+            <label for="customerName">
+                Full Name
+            </label>
+
+            <input
+                id="customerName"
+                type="text"
+                placeholder="Your full name"
+                required
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="customerPhone">
+                Phone Number
+            </label>
+
+            <input
+                id="customerPhone"
+                type="tel"
+                placeholder="(555) 555-5555"
+                required
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="customerEmail">
+                Email
+            </label>
+
+            <input
+                id="customerEmail"
+                type="email"
+                placeholder="you@example.com"
+                required
+            >
+
+        </div>
+
+
+
+        <!-- VEHICLE -->
+
+        <hr>
+
+
+        <h3>
+            Vehicle Information
+        </h3>
+
+
+        <div class="form-group">
+
+            <label for="vehicle">
+                Vehicle
+            </label>
+
+            <input
+                id="vehicle"
+                type="text"
+                placeholder="Year, Make, Model"
+                required
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="vehicleDetails">
+                Additional Vehicle Details
+            </label>
+
+            <input
+                id="vehicleDetails"
+                type="text"
+                placeholder="Color, license plate, etc."
+            >
+
+        </div>
+
+
+
+        <!-- LOCATION -->
+
+        <hr>
+
+
+        <h3>
+            Vehicle Location
+        </h3>
+
+
+        <div class="form-group">
+
+            <label for="city">
+                City
+            </label>
+
+            <input
+                id="city"
+                type="text"
+                placeholder="Chicago"
+                required
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="state">
+                State
+            </label>
+
+            <input
+                id="state"
+                type="text"
+                maxlength="2"
+                placeholder="IL"
+                required
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="zip">
+                ZIP Code
+            </label>
+
+            <input
+                id="zip"
+                type="text"
+                inputmode="numeric"
+                maxlength="10"
+                placeholder="60618"
+                required
+            >
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="location">
+                Current Location / Address
+            </label>
+
+            <input
+                id="location"
+                type="text"
+                placeholder="Street address or nearby landmark"
+                required
+            >
+
+        </div>
+
+
+
+        <!-- DETAILS -->
+
+        <hr>
+
+
+        <h3>
+            Request Details
+        </h3>
+
+
+        <div class="form-group">
+
+            <label for="details">
+                Tell the mechanic what happened
+            </label>
+
+            <textarea
+                id="details"
+                placeholder="Example: Vehicle won't start and dashboard lights are on."
+                rows="5"
+            ></textarea>
+
+        </div>
+
+
+
+        <div class="form-group">
+
+            <label for="preferredTime">
+                When do you need help?
+            </label>
+
+            <select
+                id="preferredTime"
+                required
+            >
+
+                <option value="">
+                    Select one
+                </option>
+
+                <option value="As Soon As Possible">
+                    As Soon As Possible
+                </option>
+
+                <option value="Within 1 Hour">
+                    Within 1 Hour
+                </option>
+
+                <option value="Today">
+                    Today
+                </option>
+
+                <option value="Schedule for Later">
+                    Schedule for Later
+                </option>
+
+            </select>
+
+        </div>
+
 
 
         <div
-            class="service-grid"
-            style="
-                margin-top:25px;
-                max-width:none;
-            "
-        >
+            id="formMessage"
+            style="display:none;"
+        ></div>
 
+
+
+        <div class="button-row">
+
+            <button
+                type="submit"
+                class="btn btn-primary"
+            >
+                Request Roadside Help
+            </button>
 
             <button
                 type="button"
-                class="service-card roadside-service"
-                data-service="Jump Start"
+                class="btn btn-secondary"
+                id="cancelRequest"
             >
-
-                <div class="service-icon">
-                    🔋
-                </div>
-
-                <h3>
-                    Jump Start
-                </h3>
-
-                <p>
-                    Dead battery? Request
-                    mobile jump-start assistance.
-                </p>
-
+                Cancel
             </button>
-
-
-
-            <button
-                type="button"
-                class="service-card roadside-service"
-                data-service="Vehicle Lockout"
-            >
-
-                <div class="service-icon">
-                    🔐
-                </div>
-
-                <h3>
-                    Vehicle Lockout
-                </h3>
-
-                <p>
-                    Locked your keys inside?
-                    Request lockout assistance.
-                </p>
-
-            </button>
-
-
-
-            <button
-                type="button"
-                class="service-card roadside-service"
-                data-service="Fuel Delivery"
-            >
-
-                <div class="service-icon">
-                    ⛽
-                </div>
-
-                <h3>
-                    Fuel Delivery
-                </h3>
-
-                <p>
-                    Out of fuel? Request
-                    mobile fuel delivery.
-                </p>
-
-            </button>
-
-
-
-            <button
-                type="button"
-                class="service-card roadside-service"
-                data-service="Tire Assistance"
-            >
-
-                <div class="service-icon">
-                    🛞
-                </div>
-
-                <h3>
-                    Tire Assistance
-                </h3>
-
-                <p>
-                    Flat tire or tire trouble?
-                    Request mobile assistance.
-                </p>
-
-            </button>
-
-
-        </div>
-
-    </section>
-
-
-
-    <!-- REQUEST FORM -->
-
-    <section
-        id="requestSection"
-        class="card"
-        style="display:none;"
-    >
-
-        <div>
-
-            <p class="eyebrow">
-                ROADSIDE REQUEST
-            </p>
-
-            <h2 id="selectedServiceTitle">
-                Request Assistance
-            </h2>
-
-            <p id="selectedServiceDescription">
-                Tell us where you are and what happened.
-            </p>
 
         </div>
 
 
+    </form>
 
-        <form id="roadsideForm">
+</section>
 
 
-            <!-- CUSTOMER -->
 
-            <h3>
-                Your Information
-            </h3>
+<!-- SUCCESS -->
 
+<section
+    id="successSection"
+    class="card"
+    style="display:none;"
+>
 
-            <div class="form-group">
-
-                <label for="customerName">
-                    Full Name
-                </label>
-
-                <input
-                    id="customerName"
-                    type="text"
-                    placeholder="Your full name"
-                    required
-                >
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="customerPhone">
-                    Phone Number
-                </label>
-
-                <input
-                    id="customerPhone"
-                    type="tel"
-                    placeholder="(555) 555-5555"
-                    required
-                >
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="customerEmail">
-                    Email
-                </label>
-
-                <input
-                    id="customerEmail"
-                    type="email"
-                    placeholder="you@example.com"
-                >
-
-            </div>
-
-
-
-            <!-- VEHICLE -->
-
-            <hr>
-
-
-            <h3>
-                Vehicle Information
-            </h3>
-
-
-            <div class="form-group">
-
-                <label for="vehicle">
-                    Vehicle
-                </label>
-
-                <input
-                    id="vehicle"
-                    type="text"
-                    placeholder="Year, Make, Model"
-                    required
-                >
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="vehicleDetails">
-                    Additional Vehicle Details
-                </label>
-
-                <input
-                    id="vehicleDetails"
-                    type="text"
-                    placeholder="Color, license plate, etc."
-                >
-
-            </div>
-
-
-
-            <!-- LOCATION -->
-
-            <hr>
-
-
-            <h3>
-                Vehicle Location
-            </h3>
-
-
-            <div class="form-group">
-
-                <label for="city">
-                    City
-                </label>
-
-                <input
-                    id="city"
-                    type="text"
-                    placeholder="Chicago"
-                    required
-                >
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="state">
-                    State
-                </label>
-
-                <input
-                    id="state"
-                    type="text"
-                    maxlength="2"
-                    placeholder="IL"
-                    required
-                >
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="zip">
-                    ZIP Code
-                </label>
-
-                <input
-                    id="zip"
-                    type="text"
-                    placeholder="60618"
-                    required
-                >
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="location">
-                    Current Location / Address
-                </label>
-
-                <input
-                    id="location"
-                    type="text"
-                    placeholder="Street address or nearby landmark"
-                    required
-                >
-
-            </div>
-
-
-
-            <!-- DETAILS -->
-
-            <hr>
-
-
-            <h3>
-                Request Details
-            </h3>
-
-
-            <div class="form-group">
-
-                <label for="details">
-                    Tell the mechanic what happened
-                </label>
-
-                <textarea
-                    id="details"
-                    placeholder="Example: Vehicle won't start and dashboard lights are on."
-                    rows="5"
-                ></textarea>
-
-            </div>
-
-
-
-            <div class="form-group">
-
-                <label for="preferredTime">
-                    When do you need help?
-                </label>
-
-                <select
-                    id="preferredTime"
-                    required
-                >
-
-                    <option value="">
-                        Select one
-                    </option>
-
-                    <option value="As Soon As Possible">
-                        As Soon As Possible
-                    </option>
-
-                    <option value="Within 1 Hour">
-                        Within 1 Hour
-                    </option>
-
-                    <option value="Today">
-                        Today
-                    </option>
-
-                    <option value="Schedule for Later">
-                        Schedule for Later
-                    </option>
-
-                </select>
-
-            </div>
-
-
-
-            <div class="button-row">
-
-                <button
-                    type="submit"
-                    class="btn btn-primary"
-                >
-                    Request Roadside Help
-                </button>
-
-                <button
-                    type="button"
-                    class="btn btn-secondary"
-                    id="cancelRequest"
-                >
-                    Cancel
-                </button>
-
-            </div>
-
-
-        </form>
-
-    </section>
-
-
-
-    <!-- SUCCESS -->
-
-    <section
-        id="successSection"
-        class="card"
-        style="display:none;"
+    <div
+        style="
+            text-align:center;
+            padding:20px 0;
+        "
     >
 
         <div
             style="
-                text-align:center;
-                padding:20px 0;
+                font-size:55px;
+                margin-bottom:15px;
             "
         >
-
-            <div
-                style="
-                    font-size:55px;
-                    margin-bottom:15px;
-                "
-            >
-                ✅
-            </div>
-
-
-            <p class="eyebrow">
-                REQUEST RECEIVED
-            </p>
-
-
-            <h2>
-                Your roadside request is open.
-            </h2>
-
-
-            <p id="successDetails">
-                Your request has been submitted.
-            </p>
-
-
-            <div class="button-row">
-
-                <a
-                    href="customer-dashboard.html"
-                    class="btn btn-primary"
-                >
-                    View My Request
-                </a>
-
-
-                <a
-                    href="index.html"
-                    class="btn btn-secondary"
-                >
-                    Back Home
-                </a>
-
-            </div>
-
+            ✅
         </div>
 
-    </section>
 
-
-</main>
-
-
-
-<footer class="site-footer">
-
-    <div class="container">
-
-        <p>
-            © 2026 WrenchLink. All rights reserved.
+        <p class="eyebrow">
+            REQUEST RECEIVED
         </p>
 
 
-        <div>
+        <h2>
+            Your roadside request is open.
+        </h2>
 
-            <a href="privacy.html">
-                Privacy
+
+        <p id="successDetails">
+            Your request has been submitted.
+        </p>
+
+
+        <div class="button-row">
+
+            <a
+                href="customer-dashboard.html"
+                class="btn btn-primary"
+            >
+                View My Request
             </a>
 
-            <a href="terms.html">
-                Terms
-            </a>
 
-            <a href="contact.html">
-                Contact
+            <a
+                href="index.html"
+                class="btn btn-secondary"
+            >
+                Back Home
             </a>
 
         </div>
 
     </div>
 
+</section>
+```
+
+</main>
+
+<footer class="site-footer">
+
+```
+<div class="container">
+
+    <p>
+        © 2026 WrenchLink. All rights reserved.
+    </p>
+
+
+    <div>
+
+        <a href="privacy.html">
+            Privacy
+        </a>
+
+        <a href="terms.html">
+            Terms
+        </a>
+
+        <a href="contact.html">
+            Contact
+        </a>
+
+    </div>
+
+</div>
+```
+
 </footer>
 
-
-
-<script src="marketplace-data.js"></script>
-
+<script src="app.js"></script>
 
 <script>
-
-let selectedService = "";
-
 
 
 const serviceDescriptions = {
@@ -633,6 +682,144 @@ const serviceDescriptions = {
 };
 
 
+let currentUser = null;
+
+let selectedService = "";
+
+
+/* =========================================
+   PAGE STARTUP
+   ========================================= */
+
+document.addEventListener(
+    "DOMContentLoaded",
+    function () {
+
+        currentUser =
+            getCurrentUser();
+
+
+        updateAccountLink();
+
+
+        /*
+         * Roadside assistance is tied to a
+         * customer account.
+         */
+
+        if (!currentUser) {
+
+            document.getElementById(
+                "loginNotice"
+            ).style.display = "block";
+
+            return;
+
+        }
+
+
+        /*
+         * Mechanics go to their dashboard.
+         */
+
+        if (currentUser.role === "mechanic") {
+
+            window.location.href =
+                "mechanic-dashboard.html";
+
+            return;
+
+        }
+
+
+        /*
+         * Admin goes to admin.
+         */
+
+        if (currentUser.role === "admin") {
+
+            window.location.href =
+                "admin/index.html";
+
+            return;
+
+        }
+
+
+        /*
+         * Customer can request roadside assistance.
+         */
+
+        document.getElementById(
+            "serviceSelector"
+        ).style.display = "block";
+
+
+        loadCustomerProfile();
+
+    }
+);
+
+
+/* =========================================
+   ACCOUNT LINK
+   ========================================= */
+
+function updateAccountLink() {
+
+    const link =
+        document.getElementById(
+            "accountLink"
+        );
+
+
+    if (!currentUser) {
+
+        link.textContent =
+            "Sign In";
+
+        link.href =
+            "login.html";
+
+        return;
+
+    }
+
+
+    if (currentUser.role === "mechanic") {
+
+        link.textContent =
+            "Dashboard";
+
+        link.href =
+            "mechanic-dashboard.html";
+
+        return;
+
+    }
+
+
+    if (currentUser.role === "admin") {
+
+        link.textContent =
+            "Admin";
+
+        link.href =
+            "admin/index.html";
+
+        return;
+
+    }
+
+
+    link.textContent =
+        "Dashboard";
+
+    link.href =
+        "customer-dashboard.html";
+
+}
+
 
 /* =========================================
    SELECT SERVICE
@@ -640,11 +827,11 @@ const serviceDescriptions = {
 
 document
     .querySelectorAll(".roadside-service")
-    .forEach(function(button) {
+    .forEach(function (button) {
 
         button.addEventListener(
             "click",
-            function() {
+            function () {
 
                 selectedService =
                     button.dataset.service;
@@ -678,105 +865,90 @@ document
                     block: "start"
                 });
 
-
-                loadCustomerProfile();
-
             }
         );
 
     });
 
 
-
 /* =========================================
-   CUSTOMER PROFILE
+   LOAD CUSTOMER PROFILE
    ========================================= */
 
 function loadCustomerProfile() {
 
+    if (!currentUser) {
+        return;
+    }
+
+
+    const profiles =
+        WrenchLinkStorage.get(
+            "wrenchlinkCustomerProfiles",
+            {}
+        );
+
+
     const profile =
-        JSON.parse(
-            localStorage.getItem(
-                "wrenchlinkCustomerProfile"
-            )
-        ) || {};
+        profiles[currentUser.id] || {};
 
 
-    if (profile.name) {
-
-        document.getElementById(
-            "customerName"
-        ).value =
-            profile.name;
-
-    }
+    document.getElementById(
+        "customerName"
+    ).value =
+        profile.name ||
+        currentUser.name ||
+        "";
 
 
-    if (profile.email) {
-
-        document.getElementById(
-            "customerEmail"
-        ).value =
-            profile.email;
-
-    }
+    document.getElementById(
+        "customerEmail"
+    ).value =
+        profile.email ||
+        currentUser.email ||
+        "";
 
 
-    if (profile.phone) {
-
-        document.getElementById(
-            "customerPhone"
-        ).value =
-            profile.phone;
-
-    }
+    document.getElementById(
+        "customerPhone"
+    ).value =
+        profile.phone ||
+        currentUser.phone ||
+        "";
 
 
-    if (profile.city) {
-
-        document.getElementById(
-            "city"
-        ).value =
-            profile.city;
-
-    }
+    document.getElementById(
+        "city"
+    ).value =
+        profile.city ||
+        "";
 
 
-    if (profile.state) {
-
-        document.getElementById(
-            "state"
-        ).value =
-            profile.state;
-
-    }
+    document.getElementById(
+        "state"
+    ).value =
+        profile.state ||
+        "";
 
 
-    if (profile.zip) {
-
-        document.getElementById(
-            "zip"
-        ).value =
-            profile.zip;
-
-    }
+    document.getElementById(
+        "zip"
+    ).value =
+        profile.zip ||
+        "";
 
 
-    if (profile.vehicle) {
-
-        document.getElementById(
-            "vehicle"
-        ).value =
-            profile.vehicle;
-
-    }
+    document.getElementById(
+        "vehicle"
+    ).value =
+        profile.vehicle ||
+        "";
 
 }
 
 
-
 /* =========================================
-   CANCEL
+   CANCEL REQUEST
    ========================================= */
 
 document
@@ -785,7 +957,7 @@ document
     )
     .addEventListener(
         "click",
-        function() {
+        function () {
 
             selectedService = "";
 
@@ -794,6 +966,14 @@ document
                 "requestSection"
             ).style.display =
                 "none";
+
+
+            document.getElementById(
+                "roadsideForm"
+            ).reset();
+
+
+            loadCustomerProfile();
 
 
             window.scrollTo({
@@ -808,7 +988,6 @@ document
     );
 
 
-
 /* =========================================
    SUBMIT REQUEST
    ========================================= */
@@ -819,9 +998,19 @@ document
     )
     .addEventListener(
         "submit",
-        function(event) {
+        function (event) {
 
             event.preventDefault();
+
+
+            if (!currentUser) {
+
+                window.location.href =
+                    "login.html";
+
+                return;
+
+            }
 
 
             if (!selectedService) {
@@ -835,133 +1024,252 @@ document
             }
 
 
+            const formMessage =
+                document.getElementById(
+                    "formMessage"
+                );
+
+
+            const customerName =
+                document.getElementById(
+                    "customerName"
+                )
+                .value
+                .trim();
+
+
+            const customerPhone =
+                document.getElementById(
+                    "customerPhone"
+                )
+                .value
+                .trim();
+
+
+            const customerEmail =
+                document.getElementById(
+                    "customerEmail"
+                )
+                .value
+                .trim()
+                .toLowerCase();
+
+
+            const vehicle =
+                document.getElementById(
+                    "vehicle"
+                )
+                .value
+                .trim();
+
+
+            const vehicleDetails =
+                document.getElementById(
+                    "vehicleDetails"
+                )
+                .value
+                .trim();
+
+
+            const city =
+                document.getElementById(
+                    "city"
+                )
+                .value
+                .trim();
+
+
+            const state =
+                document.getElementById(
+                    "state"
+                )
+                .value
+                .trim()
+                .toUpperCase();
+
+
+            const zip =
+                document.getElementById(
+                    "zip"
+                )
+                .value
+                .trim();
+
+
+            const location =
+                document.getElementById(
+                    "location"
+                )
+                .value
+                .trim();
+
+
+            const details =
+                document.getElementById(
+                    "details"
+                )
+                .value
+                .trim();
+
+
+            const preferredDateTime =
+                document.getElementById(
+                    "preferredTime"
+                )
+                .value;
+
+
+            /*
+             * Validate required information.
+             */
+
+            if (
+                !customerName ||
+                !customerPhone ||
+                !customerEmail ||
+                !vehicle ||
+                !city ||
+                !state ||
+                !zip ||
+                !location ||
+                !preferredDateTime
+            ) {
+
+                formMessage.style.display =
+                    "block";
+
+                formMessage.textContent =
+                    "Please complete all required fields.";
+
+                return;
+
+            }
+
+
+            if (state.length !== 2) {
+
+                formMessage.style.display =
+                    "block";
+
+                formMessage.textContent =
+                    "Please enter a two-letter state abbreviation.";
+
+                return;
+
+            }
+
+
+            /*
+             * Create the roadside job using the
+             * SAME job structure as Post a Job.
+             */
+
             const job = {
 
                 id:
-                    Date.now(),
+                    "ROAD-" +
+                    Date.now() +
+                    "-" +
+                    Math.floor(
+                        Math.random() * 10000
+                    ),
+
+
+                customerId:
+                    currentUser.id,
+
 
                 customerName:
-                    document
-                        .getElementById(
-                            "customerName"
-                        )
-                        .value
-                        .trim(),
+                    customerName,
+
 
                 customerEmail:
-                    document
-                        .getElementById(
-                            "customerEmail"
-                        )
-                        .value
-                        .trim(),
+                    customerEmail,
+
 
                 customerPhone:
-                    document
-                        .getElementById(
-                            "customerPhone"
-                        )
-                        .value
-                        .trim(),
+                    customerPhone,
+
 
                 vehicle:
-                    document
-                        .getElementById(
-                            "vehicle"
-                        )
-                        .value
-                        .trim(),
+                    vehicle,
+
 
                 vehicleDetails:
-                    document
-                        .getElementById(
-                            "vehicleDetails"
-                        )
-                        .value
-                        .trim(),
+                    vehicleDetails,
+
 
                 service:
                     selectedService,
 
+
                 description:
-                    document
-                        .getElementById(
-                            "details"
-                        )
-                        .value
-                        .trim(),
+                    details,
+
 
                 city:
-                    document
-                        .getElementById(
-                            "city"
-                        )
-                        .value
-                        .trim(),
+                    city,
+
 
                 state:
-                    document
-                        .getElementById(
-                            "state"
-                        )
-                        .value
-                        .trim()
-                        .toUpperCase(),
+                    state,
+
 
                 zip:
-                    document
-                        .getElementById(
-                            "zip"
-                        )
-                        .value
-                        .trim(),
+                    zip,
+
 
                 location:
-                    document
-                        .getElementById(
-                            "location"
-                        )
-                        .value
-                        .trim(),
+                    location,
+
 
                 preferredDateTime:
-                    document
-                        .getElementById(
-                            "preferredTime"
-                        )
-                        .value,
+                    preferredDateTime,
+
 
                 status:
                     "Open",
 
+
                 mechanicId:
                     null,
+
 
                 mechanicName:
                     null,
 
+
+                mechanicEmail:
+                    null,
+
+
+                mechanicPhone:
+                    null,
+
+
                 requestedMechanic:
                     false,
+
 
                 roadside:
                     true,
 
+
                 roadsideService:
                     selectedService,
 
-                vehicleDetails:
-                    document
-                        .getElementById(
-                            "vehicleDetails"
-                        )
-                        .value
-                        .trim(),
 
                 acceptedAt:
                     null,
 
+
                 completedAt:
                     null,
+
+
+                cancelledAt:
+                    null,
+
 
                 createdAt:
                     new Date().toISOString()
@@ -969,24 +1277,48 @@ document
             };
 
 
-            const jobs =
-                getWrenchLinkJobs();
+            /*
+             * Get the existing WrenchLink jobs.
+             */
 
+            const jobs =
+                WrenchLinkStorage.get(
+                    "wrenchlinkJobs",
+                    []
+                );
+
+
+            /*
+             * Add the new roadside job.
+             */
 
             jobs.unshift(job);
 
 
-            localStorage.setItem(
+            /*
+             * Save it into the same database used
+             * by customer and mechanic dashboards.
+             */
+
+            WrenchLinkStorage.set(
                 "wrenchlinkJobs",
-                JSON.stringify(jobs)
+                jobs
             );
 
+
+            /*
+             * Hide form.
+             */
 
             document.getElementById(
                 "requestSection"
             ).style.display =
                 "none";
 
+
+            /*
+             * Show success.
+             */
 
             document.getElementById(
                 "successSection"
@@ -1014,7 +1346,6 @@ document
     );
 
 </script>
-
 
 </body>
 

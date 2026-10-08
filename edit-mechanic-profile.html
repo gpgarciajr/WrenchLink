@@ -1,199 +1,157 @@
+```html
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-```
-<title>Edit Mechanic Profile | WrenchLink</title>
-
-<link rel="stylesheet" href="style.css">
-```
-
+    <title>Edit Mechanic Profile | WrenchLink</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
 <header>
     <div class="container">
+        <a href="mechanic-dashboard.html" class="logo">🔧 WrenchLink</a>
 
-```
-    <h1>
-        <a href="index.html">🔧 WrenchLink</a>
-    </h1>
-
-    <nav>
-        <a href="mechanic-dashboard.html">Dashboard</a>
-        <a href="index.html">Home</a>
-    </nav>
-
-</div>
-```
-
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="mechanics.html">Find a Mechanic</a>
+            <a href="services.html">Services</a>
+            <a href="mechanic-dashboard.html">Dashboard</a>
+        </nav>
+    </div>
 </header>
 
 <main class="container">
 
-```
-<section class="page-header">
+    <section class="page-header">
+        <h1>Edit Mechanic Profile</h1>
+        <p>Keep your mechanic profile accurate so customers know who they are hiring.</p>
+    </section>
 
-    <h2>Edit Mechanic Profile</h2>
+    <section class="form-section">
 
-    <p>
-        Build your profile so customers know who they are hiring.
-    </p>
+        <form id="mechanicProfileForm">
 
-</section>
+            <h2>Basic Information</h2>
 
+            <label for="name">Full Name</label>
+            <input id="name" type="text" required>
 
-<section class="card">
+            <label for="email">Email</label>
+            <input id="email" type="email" required>
 
-    <form id="mechanicProfileForm">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" required>
 
-        <label for="name">Full Name</label>
+            <label for="experience">Years of Experience</label>
+            <input id="experience" type="number" min="0" max="100" required>
 
-        <input
-            id="name"
-            type="text"
-            placeholder="Your full name"
-            required
-        >
+            <label class="checkbox-row">
+                <input id="available" type="checkbox">
+                <span>Available for new jobs</span>
+            </label>
 
+            <h2>Services</h2>
 
-        <label for="email">Email</label>
+            <p>Select the services you provide.</p>
 
-        <input
-            id="email"
-            type="email"
-            placeholder="Your email"
-            required
-        >
+            <div class="checkbox-grid">
 
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Oil Change">
+                    <span>Oil Change</span>
+                </label>
 
-        <label for="phone">Phone</label>
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Brake Repair">
+                    <span>Brake Repair</span>
+                </label>
 
-        <input
-            id="phone"
-            type="tel"
-            placeholder="Your phone number"
-            required
-        >
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Battery">
+                    <span>Battery</span>
+                </label>
 
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Alternator">
+                    <span>Alternator</span>
+                </label>
 
-        <label for="experience">
-            Years of Experience
-        </label>
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Starter">
+                    <span>Starter</span>
+                </label>
 
-        <input
-            id="experience"
-            type="number"
-            min="0"
-            max="70"
-            placeholder="Example: 10"
-        >
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Diagnostics">
+                    <span>Diagnostics</span>
+                </label>
 
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Tire Service">
+                    <span>Tire Service</span>
+                </label>
 
-        <label for="services">
-            Services You Provide
-        </label>
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Suspension">
+                    <span>Suspension</span>
+                </label>
 
-        <textarea
-            id="services"
-            rows="5"
-            placeholder="Example: Brakes, diagnostics, alternators, starters, batteries..."
-        ></textarea>
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="AC Repair">
+                    <span>AC Repair</span>
+                </label>
 
-        <small>
-            Separate services with commas.
-        </small>
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="Roadside Assistance">
+                    <span>Roadside Assistance</span>
+                </label>
 
+                <label class="checkbox-row">
+                    <input type="checkbox" name="service" value="General Repair">
+                    <span>General Repair</span>
+                </label>
 
-        <label for="about">
-            About You
-        </label>
+            </div>
 
-        <textarea
-            id="about"
-            rows="6"
-            placeholder="Tell customers about your experience and what makes your service different."
-        ></textarea>
+            <label for="about">About You</label>
+            <textarea
+                id="about"
+                rows="6"
+                placeholder="Tell customers about your experience, specialties, and what makes your service different."
+            ></textarea>
 
+            <div id="message"></div>
 
-        <button type="submit">
-            Save Profile
-        </button>
+            <button type="submit" class="btn">
+                Save Profile
+            </button>
 
-    </form>
+            <button
+                type="button"
+                class="btn btn-secondary"
+                onclick="window.location.href='mechanic-dashboard.html'"
+            >
+                Cancel
+            </button>
 
+        </form>
 
-    <div
-        id="message"
-        style="display:none;"
-    ></div>
-
-
-    <div
-        id="successMessage"
-        style="display:none;"
-    >
-
-        <h3>Profile Saved ✓</h3>
-
-        <p>
-            Your mechanic profile has been updated successfully.
-        </p>
-
-        <a href="mechanic-dashboard.html">
-            Return to Dashboard
-        </a>
-
-    </div>
-
-</section>
-```
+    </section>
 
 </main>
-
-<footer>
-
-```
-<div class="container">
-
-    <p>
-        © 2026 WrenchLink. All rights reserved.
-    </p>
-
-    <p>
-        <a href="privacy.html">Privacy</a> |
-        <a href="terms.html">Terms</a> |
-        <a href="contact.html">Contact</a>
-    </p>
-
-</div>
-```
-
-</footer>
 
 <script src="app.js"></script>
 
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
 
     const currentUser = getCurrentUser();
 
-    /*
-     * Only logged-in mechanics can edit a mechanic profile.
-     */
-
     if (!currentUser) {
         window.location.href = "login.html";
-        return;
-    }
-
-    if (currentUser.role === "customer") {
-        window.location.href = "customer-dashboard.html";
         return;
     }
 
@@ -203,295 +161,177 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (currentUser.role !== "mechanic") {
-        window.location.href = "login.html";
+        window.location.href = "customer-dashboard.html";
         return;
     }
 
+    const users = WrenchLinkStorage.get("wrenchlinkUsers", []);
+    const profiles = WrenchLinkStorage.get("wrenchlinkMechanicProfiles", {});
 
-    const form =
-        document.getElementById("mechanicProfileForm");
+    const storedUser = users.find(function (user) {
+        return user.id === currentUser.id;
+    });
 
-    const successMessage =
-        document.getElementById("successMessage");
-
-    const message =
-        document.getElementById("message");
-
-
-    /*
-     * All mechanic profiles are stored by the
-     * mechanic's WrenchLink user ID.
-     *
-     * This prevents one mechanic from overwriting
-     * another mechanic's profile.
-     */
-
-    const allProfiles =
-        WrenchLinkStorage.get(
-            "wrenchlinkMechanicProfiles",
-            {}
-        );
-
-
-    /*
-     * Load this mechanic's saved profile.
-     */
-
-    const savedProfile =
-        allProfiles[currentUser.id] || {};
-
+    const profile = profiles[currentUser.id] || {};
 
     document.getElementById("name").value =
-        savedProfile.name ||
+        profile.name ||
+        storedUser?.name ||
         currentUser.name ||
         "";
 
     document.getElementById("email").value =
-        savedProfile.email ||
+        profile.email ||
+        storedUser?.email ||
         currentUser.email ||
         "";
 
     document.getElementById("phone").value =
-        savedProfile.phone ||
+        profile.phone ||
+        storedUser?.phone ||
         currentUser.phone ||
         "";
 
     document.getElementById("experience").value =
-        savedProfile.experience ||
-        "";
+        profile.experience ?? 0;
 
     document.getElementById("about").value =
-        savedProfile.about ||
-        "";
+        profile.about || "";
 
+    document.getElementById("available").checked =
+        profile.available !== undefined
+            ? Boolean(profile.available)
+            : storedUser?.available !== undefined
+                ? Boolean(storedUser.available)
+                : true;
 
-    /*
-     * Services are stored as an array.
-     *
-     * Example:
-     * ["Brakes", "Diagnostics", "Alternators"]
-     *
-     * Older profiles using a string are also supported.
-     */
+    let existingServices = profile.services || [];
 
-    if (Array.isArray(savedProfile.services)) {
-
-        document.getElementById("services").value =
-            savedProfile.services.join(", ");
-
-    } else {
-
-        document.getElementById("services").value =
-            savedProfile.services ||
-            "";
+    if (typeof existingServices === "string") {
+        existingServices = existingServices
+            .split(",")
+            .map(function (service) {
+                return service.trim();
+            })
+            .filter(Boolean);
     }
 
+    document.querySelectorAll('input[name="service"]').forEach(function (checkbox) {
+        checkbox.checked = existingServices.includes(checkbox.value);
+    });
 
-    /*
-     * Save profile.
-     */
-
-    form.addEventListener("submit", function (event) {
+    document.getElementById("mechanicProfileForm").addEventListener("submit", function (event) {
 
         event.preventDefault();
 
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim().toLowerCase();
+        const phone = document.getElementById("phone").value.trim();
+        const experience = Number(document.getElementById("experience").value);
+        const available = document.getElementById("available").checked;
+        const about = document.getElementById("about").value.trim();
 
-        const name =
-            document.getElementById("name")
-                .value
-                .trim();
+        const services = Array.from(
+            document.querySelectorAll('input[name="service"]:checked')
+        ).map(function (checkbox) {
+            return checkbox.value;
+        });
 
-        const email =
-            document.getElementById("email")
-                .value
-                .trim()
-                .toLowerCase();
-
-        const phone =
-            document.getElementById("phone")
-                .value
-                .trim();
-
-        const experience =
-            document.getElementById("experience")
-                .value
-                .trim();
-
-        const servicesText =
-            document.getElementById("services")
-                .value
-                .trim();
-
-        const about =
-            document.getElementById("about")
-                .value
-                .trim();
-
+        const message = document.getElementById("message");
 
         if (!name || !email || !phone) {
-
-            message.style.display = "block";
-
-            message.textContent =
-                "Please complete your name, email, and phone number.";
-
+            message.textContent = "Please complete all required fields.";
             return;
         }
 
+        if (!email.includes("@")) {
+            message.textContent = "Please enter a valid email address.";
+            return;
+        }
 
-        /*
-         * Turn the services text into a clean array.
-         */
+        if (!Number.isFinite(experience) || experience < 0) {
+            message.textContent = "Please enter a valid number of years.";
+            return;
+        }
 
-        const services =
-            servicesText
-                .split(",")
-                .map(function (service) {
-                    return service.trim();
-                })
-                .filter(function (service) {
-                    return service.length > 0;
-                });
+        if (services.length === 0) {
+            message.textContent = "Select at least one service.";
+            return;
+        }
 
+        const duplicateEmail = users.some(function (user) {
+            return user.id !== currentUser.id &&
+                   user.email &&
+                   user.email.toLowerCase() === email;
+        });
 
-        /*
-         * Create the mechanic profile.
-         */
+        if (duplicateEmail) {
+            message.textContent = "That email address is already being used.";
+            return;
+        }
 
-        const profile = {
-
+        const updatedProfile = {
             id: currentUser.id,
-
             userId: currentUser.id,
-
             name: name,
-
             email: email,
-
             phone: phone,
-
             experience: experience,
-
+            available: available,
             services: services,
-
             about: about,
-
-            updatedAt:
-                new Date().toISOString()
-
+            updatedAt: new Date().toISOString()
         };
 
-
-        /*
-         * Save profile under this mechanic's
-         * individual account ID.
-         */
-
-        const updatedProfiles =
-            WrenchLinkStorage.get(
-                "wrenchlinkMechanicProfiles",
-                {}
-            );
-
-        updatedProfiles[currentUser.id] =
-            profile;
+        profiles[currentUser.id] = updatedProfile;
 
         WrenchLinkStorage.set(
             "wrenchlinkMechanicProfiles",
-            updatedProfiles
+            profiles
         );
 
-
-        /*
-         * Keep the main account information
-         * synchronized with the mechanic profile.
-         */
-
-        const updatedUser = {
-            ...currentUser,
-
-            name: name,
-
-            firstName:
-                name.split(" ")[0],
-
-            lastName:
-                name.split(" ").slice(1).join(" "),
-
-            email: email,
-
-            phone: phone,
-
-            role: "mechanic"
-        };
-
-
-        setCurrentUser(updatedUser);
-
-
-        /*
-         * Update the full user record too.
-         */
-
-        const users =
-            WrenchLinkStorage.get(
-                "wrenchlinkUsers",
-                []
-            );
-
-
-        const userIndex =
-            users.findIndex(function (user) {
-                return user.id === currentUser.id;
-            });
-
+        const userIndex = users.findIndex(function (user) {
+            return user.id === currentUser.id;
+        });
 
         if (userIndex !== -1) {
 
             users[userIndex] = {
-                ...users[userIndex,
-
+                ...users[userIndex],
                 name: name,
-
-                firstName:
-                    name.split(" ")[0],
-
-                lastName:
-                    name.split(" ").slice(1).join(" "),
-
+                firstName: name.split(" ")[0],
+                lastName: name.split(" ").slice(1).join(" "),
                 email: email,
-
                 phone: phone,
-
-                role: "mechanic"
+                role: "mechanic",
+                mechanicId: currentUser.id,
+                available: available
             };
 
-            WrenchLinkStorage.set(
-                "wrenchlinkUsers",
-                users
-            );
+            WrenchLinkStorage.set("wrenchlinkUsers", users);
         }
 
-
-        /*
-         * Show confirmation.
-         */
-
-        message.style.display = "none";
-
-        successMessage.style.display =
-            "block";
-
-        successMessage.scrollIntoView({
-            behavior: "smooth",
-            block: "center"
+        setCurrentUser({
+            ...currentUser,
+            name: name,
+            firstName: name.split(" ")[0],
+            lastName: name.split(" ").slice(1).join(" "),
+            email: email,
+            phone: phone,
+            role: "mechanic",
+            mechanicId: currentUser.id,
+            available: available
         });
 
+        message.textContent = "Profile saved successfully.";
+
+        setTimeout(function () {
+            window.location.href = "mechanic-dashboard.html";
+        }, 700);
     });
-
 });
-
 </script>
 
 </body>
 </html>
+```

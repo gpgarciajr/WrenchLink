@@ -1,322 +1,2119 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
+```
+<meta charset="UTF-8">
 
-    <title>WrenchLink Admin</title>
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
 
-    <link rel="stylesheet" href="admin.css">
+<title>WrenchLink Admin</title>
+
+<link
+    rel="stylesheet"
+    href="admin.css"
+>
+```
+
 </head>
 
 <body>
 
-    <!-- ADMIN HEADER -->
-    <header class="admin-header">
+<!-- =========================================
+     ADMIN HEADER
+========================================= -->
 
-        <div class="admin-logo">
-            🔧 WrenchLink
-            <span>ADMIN</span>
+<header class="admin-header">
+
+```
+<div class="admin-logo">
+
+    🔧 WrenchLink
+
+    <span>
+        ADMIN
+    </span>
+
+</div>
+
+
+<div class="admin-header-actions">
+
+    <a
+        href="../index.html"
+        class="admin-home-btn"
+    >
+        View Site
+    </a>
+
+
+    <button
+        id="logoutBtn"
+        class="logout-btn"
+    >
+        Logout
+    </button>
+
+</div>
+```
+
+</header>
+
+<!-- =========================================
+     ADMIN LAYOUT
+========================================= -->
+
+<div class="admin-layout">
+
+```
+<!-- SIDEBAR -->
+
+<aside class="sidebar">
+
+
+    <button
+        class="nav-button active"
+        data-section="dashboard"
+    >
+        📊 Dashboard
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-section="users"
+    >
+        👥 Users
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-section="mechanics"
+    >
+        🧑‍🔧 Mechanics
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-section="requests"
+    >
+        📋 Service Requests
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-section="reviews"
+    >
+        ⭐ Reviews
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-section="reports"
+    >
+        🚩 Reports
+    </button>
+
+
+    <button
+        class="nav-button"
+        data-section="settings"
+    >
+        ⚙️ Settings
+    </button>
+
+
+</aside>
+
+
+
+<!-- =====================================
+     MAIN CONTENT
+====================================== -->
+
+<main class="admin-main">
+
+
+    <!-- =================================
+         DASHBOARD
+    ================================== -->
+
+    <section
+        id="dashboard"
+        class="admin-section active"
+    >
+
+        <div class="page-title">
+
+            <p>
+                ADMINISTRATION
+            </p>
+
+            <h1>
+                Dashboard
+            </h1>
+
+            <span id="adminWelcome">
+                Welcome to WrenchLink Admin.
+            </span>
+
         </div>
 
-        <button id="logoutBtn" class="logout-btn">
-            Logout
-        </button>
-
-    </header>
 
 
-    <!-- ADMIN LAYOUT -->
-    <div class="admin-layout">
-
-        <!-- SIDEBAR -->
-        <aside class="sidebar">
-
-            <button class="nav-button active"
-                    data-section="dashboard">
-                📊 Dashboard
-            </button>
-
-            <button class="nav-button"
-                    data-section="users">
-                👥 Users
-            </button>
-
-            <button class="nav-button"
-                    data-section="mechanics">
-                🧑‍🔧 Mechanics
-            </button>
-
-            <button class="nav-button"
-                    data-section="requests">
-                📋 Service Requests
-            </button>
-
-            <button class="nav-button"
-                    data-section="reviews">
-                ⭐ Reviews
-            </button>
-
-            <button class="nav-button"
-                    data-section="reports">
-                🚩 Reports
-            </button>
-
-            <button class="nav-button"
-                    data-section="settings">
-                ⚙️ Settings
-            </button>
-
-        </aside>
+        <div class="stats-grid">
 
 
-        <!-- MAIN CONTENT -->
-        <main class="admin-main">
+            <div class="stat-card">
 
-
-            <!-- DASHBOARD -->
-            <section id="dashboard"
-                     class="admin-section active">
-
-                <div class="page-title">
-                    <p>ADMINISTRATION</p>
-
-                    <h1>
-                        Dashboard
-                    </h1>
-
-                    <span>
-                        Welcome to WrenchLink Admin.
-                    </span>
-                </div>
-
-
-                <div class="stats-grid">
-
-                    <div class="stat-card">
-                        <span>👥</span>
-                        <h2 id="userCount">0</h2>
-                        <p>Total Users</p>
-                    </div>
-
-
-                    <div class="stat-card">
-                        <span>🧑‍🔧</span>
-                        <h2 id="mechanicCount">0</h2>
-                        <p>Mechanics</p>
-                    </div>
-
-
-                    <div class="stat-card">
-                        <span>📋</span>
-                        <h2 id="requestCount">0</h2>
-                        <p>Service Requests</p>
-                    </div>
-
-
-                    <div class="stat-card">
-                        <span>⭐</span>
-                        <h2 id="reviewCount">0</h2>
-                        <p>Reviews</p>
-                    </div>
-
-                </div>
-
-
-                <div class="welcome-card">
-
-                    <h2>
-                        WrenchLink Control Center
-                    </h2>
-
-                    <p>
-                        This is your administrative area.
-                        From here you will eventually be able
-                        to manage users, mechanics, service
-                        requests, reviews, reports, and settings.
-                    </p>
-
-                </div>
-
-            </section>
-
-
-            <!-- USERS -->
-            <section id="users"
-                     class="admin-section">
-
-                <div class="page-title">
-                    <p>MANAGEMENT</p>
-
-                    <h1>Users</h1>
-
-                    <span>
-                        Manage WrenchLink customer accounts.
-                    </span>
-                </div>
-
-                <div class="empty-card">
+                <span>
                     👥
-                    <h2>No users yet</h2>
-                    <p>
-                        User accounts will appear here once
-                        the database is connected.
-                    </p>
-                </div>
+                </span>
 
-            </section>
+                <h2 id="userCount">
+                    0
+                </h2>
+
+                <p>
+                    Total Users
+                </p>
+
+            </div>
 
 
-            <!-- MECHANICS -->
-            <section id="mechanics"
-                     class="admin-section">
 
-                <div class="page-title">
-                    <p>MANAGEMENT</p>
+            <div class="stat-card">
 
-                    <h1>Mechanics</h1>
-
-                    <span>
-                        Manage and approve mechanics.
-                    </span>
-                </div>
-
-                <div class="empty-card">
+                <span>
                     🧑‍🔧
-                    <h2>No mechanics yet</h2>
-                    <p>
-                        Mechanic applications will appear here.
-                    </p>
-                </div>
+                </span>
 
-            </section>
+                <h2 id="mechanicCount">
+                    0
+                </h2>
+
+                <p>
+                    Mechanics
+                </p>
+
+            </div>
 
 
-            <!-- REQUESTS -->
-            <section id="requests"
-                     class="admin-section">
 
-                <div class="page-title">
-                    <p>SERVICE</p>
+            <div class="stat-card">
 
-                    <h1>Service Requests</h1>
-
-                    <span>
-                        Monitor customer service requests.
-                    </span>
-                </div>
-
-                <div class="empty-card">
+                <span>
                     📋
-                    <h2>No service requests</h2>
-                    <p>
-                        Requests will appear here when customers
-                        begin using WrenchLink.
-                    </p>
-                </div>
+                </span>
 
-            </section>
+                <h2 id="requestCount">
+                    0
+                </h2>
+
+                <p>
+                    Service Requests
+                </p>
+
+            </div>
 
 
-            <!-- REVIEWS -->
-            <section id="reviews"
-                     class="admin-section">
 
-                <div class="page-title">
-                    <p>FEEDBACK</p>
+            <div class="stat-card">
 
-                    <h1>Reviews</h1>
-
-                    <span>
-                        Monitor customer and mechanic reviews.
-                    </span>
-                </div>
-
-                <div class="empty-card">
+                <span>
                     ⭐
-                    <h2>No reviews yet</h2>
-                    <p>
-                        Reviews will appear here.
-                    </p>
+                </span>
+
+                <h2 id="reviewCount">
+                    0
+                </h2>
+
+                <p>
+                    Reviews
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div
+            class="stats-grid"
+            style="margin-top:20px;"
+        >
+
+
+            <div class="stat-card">
+
+                <span>
+                    🟢
+                </span>
+
+                <h2 id="openRequestCount">
+                    0
+                </h2>
+
+                <p>
+                    Open Requests
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span>
+                    🔧
+                </span>
+
+                <h2 id="activeJobCount">
+                    0
+                </h2>
+
+                <p>
+                    Active Jobs
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span>
+                    ✅
+                </span>
+
+                <h2 id="completedJobCount">
+                    0
+                </h2>
+
+                <p>
+                    Completed Jobs
+                </p>
+
+            </div>
+
+
+
+            <div class="stat-card">
+
+                <span>
+                    🚨
+                </span>
+
+                <h2 id="roadsideCount">
+                    0
+                </h2>
+
+                <p>
+                    Roadside Requests
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+
+        <div class="welcome-card">
+
+            <h2>
+                WrenchLink Control Center
+            </h2>
+
+            <p>
+                Manage customers, mechanics, service
+                requests, reviews, reports, and
+                application settings from one place.
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         USERS
+    ================================== -->
+
+    <section
+        id="users"
+        class="admin-section"
+    >
+
+        <div class="page-title">
+
+            <p>
+                MANAGEMENT
+            </p>
+
+            <h1>
+                Users
+            </h1>
+
+            <span>
+                Manage WrenchLink customer accounts.
+            </span>
+
+        </div>
+
+
+        <div
+            id="usersList"
+            class="admin-data-list"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         MECHANICS
+    ================================== -->
+
+    <section
+        id="mechanics"
+        class="admin-section"
+    >
+
+        <div class="page-title">
+
+            <p>
+                MANAGEMENT
+            </p>
+
+            <h1>
+                Mechanics
+            </h1>
+
+            <span>
+                Manage WrenchLink mechanic accounts.
+            </span>
+
+        </div>
+
+
+        <div
+            id="mechanicsList"
+            class="admin-data-list"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         REQUESTS
+    ================================== -->
+
+    <section
+        id="requests"
+        class="admin-section"
+    >
+
+        <div class="page-title">
+
+            <p>
+                SERVICE
+            </p>
+
+            <h1>
+                Service Requests
+            </h1>
+
+            <span>
+                Monitor customer service requests.
+            </span>
+
+        </div>
+
+
+        <div
+            id="requestsList"
+            class="admin-data-list"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         REVIEWS
+    ================================== -->
+
+    <section
+        id="reviews"
+        class="admin-section"
+    >
+
+        <div class="page-title">
+
+            <p>
+                FEEDBACK
+            </p>
+
+            <h1>
+                Reviews
+            </h1>
+
+            <span>
+                Monitor customer and mechanic reviews.
+            </span>
+
+        </div>
+
+
+        <div
+            id="reviewsList"
+            class="admin-data-list"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         REPORTS
+    ================================== -->
+
+    <section
+        id="reports"
+        class="admin-section"
+    >
+
+        <div class="page-title">
+
+            <p>
+                SAFETY
+            </p>
+
+            <h1>
+                Reports
+            </h1>
+
+            <span>
+                Review reported accounts and activity.
+            </span>
+
+        </div>
+
+
+        <div
+            id="reportsList"
+            class="admin-data-list"
+        ></div>
+
+
+    </section>
+
+
+
+    <!-- =================================
+         SETTINGS
+    ================================== -->
+
+    <section
+        id="settings"
+        class="admin-section"
+    >
+
+        <div class="page-title">
+
+            <p>
+                CONFIGURATION
+            </p>
+
+            <h1>
+                Settings
+            </h1>
+
+            <span>
+                Manage WrenchLink application settings.
+            </span>
+
+        </div>
+
+
+        <div class="settings-card">
+
+            <h2>
+                Application Settings
+            </h2>
+
+
+            <label for="appName">
+                Application Name
+            </label>
+
+
+            <input
+                type="text"
+                id="appName"
+                value="WrenchLink"
+            >
+
+
+            <label for="maintenanceMode">
+                Maintenance Mode
+            </label>
+
+
+            <select id="maintenanceMode">
+
+                <option value="false">
+                    Off
+                </option>
+
+                <option value="true">
+                    On
+                </option>
+
+            </select>
+
+
+            <button
+                class="save-btn"
+                id="saveSettingsBtn"
+            >
+                Save Settings
+            </button>
+
+
+            <p
+                id="settingsMessage"
+                style="display:none;"
+            ></p>
+
+        </div>
+
+
+    </section>
+
+
+</main>
+```
+
+</div>
+
+<script>
+
+/* =========================================
+   WRENCHLINK ADMIN
+========================================= */
+
+
+/* =========================================
+   STORAGE HELPERS
+========================================= */
+
+const AdminStorage = {
+
+    get: function(key, fallback) {
+
+        const value =
+            localStorage.getItem(key);
+
+        if (!value) {
+            return fallback;
+        }
+
+        try {
+
+            return JSON.parse(value);
+
+        } catch (error) {
+
+            return fallback;
+
+        }
+
+    },
+
+
+    set: function(key, value) {
+
+        localStorage.setItem(
+            key,
+            JSON.stringify(value)
+        );
+
+    }
+
+};
+
+
+
+/* =========================================
+   HTML ESCAPE
+========================================= */
+
+function escapeHTML(value) {
+
+    if (value === null ||
+        value === undefined) {
+
+        return "";
+
+    }
+
+    return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+}
+
+
+
+/* =========================================
+   CURRENT ADMIN
+========================================= */
+
+const currentUser =
+    AdminStorage.get(
+        "wrenchlinkCurrentUser",
+        null
+    );
+
+
+
+/* =========================================
+   ADMIN ACCESS PROTECTION
+========================================= */
+
+if (
+    !currentUser ||
+    currentUser.role !== "admin"
+) {
+
+    window.location.href =
+        "../login.html";
+
+}
+
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+document
+    .querySelectorAll(".nav-button")
+    .forEach(function(button) {
+
+        button.addEventListener(
+            "click",
+            function() {
+
+                const sectionId =
+                    button.dataset.section;
+
+
+                document
+                    .querySelectorAll(".nav-button")
+                    .forEach(function(navButton) {
+
+                        navButton.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                button.classList.add(
+                    "active"
+                );
+
+
+                document
+                    .querySelectorAll(".admin-section")
+                    .forEach(function(section) {
+
+                        section.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                const section =
+                    document.getElementById(
+                        sectionId
+                    );
+
+
+                if (section) {
+
+                    section.classList.add(
+                        "active"
+                    );
+
+                }
+
+
+                refreshAdminData();
+
+            }
+        );
+
+    });
+
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+document
+    .getElementById("logoutBtn")
+    .addEventListener(
+        "click",
+        function() {
+
+            const confirmed =
+                confirm(
+                    "Are you sure you want to log out?"
+                );
+
+
+            if (!confirmed) {
+                return;
+            }
+
+
+            localStorage.removeItem(
+                "wrenchlinkCurrentUser"
+            );
+
+
+            window.location.href =
+                "../index.html";
+
+        }
+    );
+
+
+
+/* =========================================
+   GET DATA
+========================================= */
+
+function getUsers() {
+
+    return AdminStorage.get(
+        "wrenchlinkUsers",
+        []
+    );
+
+}
+
+
+function getJobs() {
+
+    return AdminStorage.get(
+        "wrenchlinkJobs",
+        []
+    );
+
+}
+
+
+function getReviews() {
+
+    return AdminStorage.get(
+        "wrenchlinkReviews",
+        []
+    );
+
+}
+
+
+function getReports() {
+
+    return AdminStorage.get(
+        "wrenchlinkReports",
+        []
+    );
+
+}
+
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function updateDashboard() {
+
+    const users =
+        getUsers();
+
+
+    const jobs =
+        getJobs();
+
+
+    const reviews =
+        getReviews();
+
+
+    const mechanics =
+        users.filter(function(user) {
+
+            return user.role === "mechanic";
+
+        });
+
+
+    const openJobs =
+        jobs.filter(function(job) {
+
+            return job.status === "Open";
+
+        });
+
+
+    const activeJobs =
+        jobs.filter(function(job) {
+
+            return job.status === "Accepted";
+
+        });
+
+
+    const completedJobs =
+        jobs.filter(function(job) {
+
+            return job.status === "Completed";
+
+        });
+
+
+    const roadsideJobs =
+        jobs.filter(function(job) {
+
+            return job.roadside === true;
+
+        });
+
+
+    document.getElementById(
+        "userCount"
+    ).textContent =
+        users.filter(function(user) {
+
+            return user.role !== "admin";
+
+        }).length;
+
+
+    document.getElementById(
+        "mechanicCount"
+    ).textContent =
+        mechanics.length;
+
+
+    document.getElementById(
+        "requestCount"
+    ).textContent =
+        jobs.length;
+
+
+    document.getElementById(
+        "reviewCount"
+    ).textContent =
+        reviews.length;
+
+
+    document.getElementById(
+        "openRequestCount"
+    ).textContent =
+        openJobs.length;
+
+
+    document.getElementById(
+        "activeJobCount"
+    ).textContent =
+        activeJobs.length;
+
+
+    document.getElementById(
+        "completedJobCount"
+    ).textContent =
+        completedJobs.length;
+
+
+    document.getElementById(
+        "roadsideCount"
+    ).textContent =
+        roadsideJobs.length;
+
+
+    const adminName =
+        currentUser.name ||
+        currentUser.email ||
+        "Administrator";
+
+
+    document.getElementById(
+        "adminWelcome"
+    ).textContent =
+        "Welcome back, " +
+        adminName +
+        ".";
+
+}
+
+
+
+/* =========================================
+   USERS
+========================================= */
+
+function renderUsers() {
+
+    const container =
+        document.getElementById(
+            "usersList"
+        );
+
+
+    const users =
+        getUsers()
+            .filter(function(user) {
+
+                return user.role !== "admin";
+
+            });
+
+
+    if (users.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-card">
+
+                👥
+
+                <h2>
+                    No users yet
+                </h2>
+
+                <p>
+                    Customer and mechanic accounts
+                    will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML = users.map(
+        function(user) {
+
+            return `
+
+                <div class="admin-data-card">
+
+                    <div>
+
+                        <h3>
+                            ${escapeHTML(user.name || "Unnamed User")}
+                        </h3>
+
+                        <p>
+                            ${escapeHTML(user.email || "No email")}
+                        </p>
+
+                        <p>
+                            Role:
+                            <strong>
+                                ${escapeHTML(user.role || "customer")}
+                            </strong>
+                        </p>
+
+                        <p>
+                            Phone:
+                            ${escapeHTML(user.phone || "Not provided")}
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-card-actions">
+
+                        <button
+                            class="admin-action-btn danger"
+                            onclick="deleteUser('${escapeHTML(user.id)}')"
+                        >
+                            Delete
+                        </button>
+
+                    </div>
+
                 </div>
 
-            </section>
+            `;
+
+        }
+    ).join("");
+
+}
 
 
-            <!-- REPORTS -->
-            <section id="reports"
-                     class="admin-section">
 
-                <div class="page-title">
-                    <p>SAFETY</p>
+/* =========================================
+   DELETE USER
+========================================= */
 
-                    <h1>Reports</h1>
+function deleteUser(userId) {
 
-                    <span>
-                        Review reported accounts and activity.
-                    </span>
+    const users =
+        getUsers();
+
+
+    const user =
+        users.find(function(item) {
+
+            return String(item.id) ===
+                String(userId);
+
+        });
+
+
+    if (!user) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete the account for " +
+            user.name +
+            "?\n\nThis cannot be undone."
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    const updatedUsers =
+        users.filter(function(item) {
+
+            return String(item.id) !==
+                String(userId);
+
+        });
+
+
+    AdminStorage.set(
+        "wrenchlinkUsers",
+        updatedUsers
+    );
+
+
+    /*
+     * Remove associated customer profile.
+     */
+
+    const customerProfiles =
+        AdminStorage.get(
+            "wrenchlinkCustomerProfiles",
+            {}
+        );
+
+
+    delete customerProfiles[userId];
+
+
+    AdminStorage.set(
+        "wrenchlinkCustomerProfiles",
+        customerProfiles
+    );
+
+
+    /*
+     * Remove associated mechanic profile.
+     */
+
+    const mechanicProfiles =
+        AdminStorage.get(
+            "wrenchlinkMechanicProfiles",
+            {}
+        );
+
+
+    delete mechanicProfiles[userId];
+
+
+    AdminStorage.set(
+        "wrenchlinkMechanicProfiles",
+        mechanicProfiles
+    );
+
+
+    /*
+     * Remove service area.
+     */
+
+    const serviceAreas =
+        AdminStorage.get(
+            "wrenchlinkServiceAreas",
+            {}
+        );
+
+
+    delete serviceAreas[userId];
+
+
+    AdminStorage.set(
+        "wrenchlinkServiceAreas",
+        serviceAreas
+    );
+
+
+    /*
+     * Jobs belonging to the deleted customer
+     * are removed.
+     *
+     * Jobs assigned to a deleted mechanic
+     * become open again.
+     */
+
+    const jobs =
+        getJobs();
+
+
+    const updatedJobs =
+        jobs
+            .filter(function(job) {
+
+                return String(job.customerId) !==
+                    String(userId);
+
+            })
+            .map(function(job) {
+
+                if (
+                    String(job.mechanicId) ===
+                    String(userId)
+                ) {
+
+                    return {
+
+                        ...job,
+
+                        status: "Open",
+
+                        mechanicId: null,
+
+                        mechanicName: null,
+
+                        mechanicEmail: null,
+
+                        mechanicPhone: null,
+
+                        acceptedAt: null
+
+                    };
+
+                }
+
+
+                return job;
+
+            });
+
+
+    AdminStorage.set(
+        "wrenchlinkJobs",
+        updatedJobs
+    );
+
+
+    refreshAdminData();
+
+}
+
+
+
+/* =========================================
+   MECHANICS
+========================================= */
+
+function renderMechanics() {
+
+    const container =
+        document.getElementById(
+            "mechanicsList"
+        );
+
+
+    const users =
+        getUsers();
+
+
+    const mechanics =
+        users.filter(function(user) {
+
+            return user.role === "mechanic";
+
+        });
+
+
+    if (mechanics.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-card">
+
+                🧑‍🔧
+
+                <h2>
+                    No mechanics yet
+                </h2>
+
+                <p>
+                    Mechanic accounts will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    const profiles =
+        AdminStorage.get(
+            "wrenchlinkMechanicProfiles",
+            {}
+        );
+
+
+    container.innerHTML =
+        mechanics.map(
+            function(mechanic) {
+
+                const profile =
+                    profiles[mechanic.id] ||
+                    {};
+
+
+                const services =
+                    Array.isArray(
+                        profile.services
+                    )
+                        ? profile.services.join(", ")
+                        : profile.services || "Not provided";
+
+
+                return `
+
+                    <div class="admin-data-card">
+
+                        <div>
+
+                            <h3>
+                                🧑‍🔧
+                                ${escapeHTML(
+                                    profile.name ||
+                                    mechanic.name ||
+                                    "Unnamed Mechanic"
+                                )}
+                            </h3>
+
+                            <p>
+                                ${escapeHTML(
+                                    profile.email ||
+                                    mechanic.email ||
+                                    "No email"
+                                )}
+                            </p>
+
+                            <p>
+                                Phone:
+                                ${escapeHTML(
+                                    profile.phone ||
+                                    mechanic.phone ||
+                                    "Not provided"
+                                )}
+                            </p>
+
+                            <p>
+                                Experience:
+                                ${escapeHTML(
+                                    profile.experience ||
+                                    "Not provided"
+                                )}
+                            </p>
+
+                            <p>
+                                Services:
+                                ${escapeHTML(
+                                    services
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="admin-card-actions">
+
+                            <button
+                                class="admin-action-btn"
+                                onclick="viewMechanic('${escapeHTML(mechanic.id)}')"
+                            >
+                                View
+                            </button>
+
+
+                            <button
+                                class="admin-action-btn danger"
+                                onclick="deleteUser('${escapeHTML(mechanic.id)}')"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+
+/* =========================================
+   VIEW MECHANIC
+========================================= */
+
+function viewMechanic(mechanicId) {
+
+    window.open(
+        "../mechanic-profile.html?id=" +
+        encodeURIComponent(mechanicId),
+        "_blank"
+    );
+
+}
+
+
+
+/* =========================================
+   SERVICE REQUESTS
+========================================= */
+
+function renderRequests() {
+
+    const container =
+        document.getElementById(
+            "requestsList"
+        );
+
+
+    const jobs =
+        getJobs();
+
+
+    if (jobs.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-card">
+
+                📋
+
+                <h2>
+                    No service requests
+                </h2>
+
+                <p>
+                    Customer requests will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        jobs.map(function(job) {
+
+            const roadsideLabel =
+                job.roadside
+                    ? "🚨 " +
+                      escapeHTML(
+                          job.roadsideService ||
+                          "Roadside Assistance"
+                      )
+                    : "🔧 Standard Service";
+
+
+            return `
+
+                <div class="admin-data-card">
+
+                    <div>
+
+                        <h3>
+                            ${roadsideLabel}
+                        </h3>
+
+                        <p>
+                            <strong>
+                                Job:
+                            </strong>
+                            ${escapeHTML(job.id)}
+                        </p>
+
+                        <p>
+                            Customer:
+                            ${escapeHTML(
+                                job.customerName ||
+                                "Unknown"
+                            )}
+                        </p>
+
+                        <p>
+                            Vehicle:
+                            ${escapeHTML(
+                                job.vehicle ||
+                                "Not provided"
+                            )}
+                        </p>
+
+                        <p>
+                            Location:
+                            ${escapeHTML(
+                                [
+                                    job.city,
+                                    job.state,
+                                    job.zip
+                                ]
+                                .filter(Boolean)
+                                .join(", ")
+                            )}
+                        </p>
+
+                        <p>
+                            Mechanic:
+                            ${escapeHTML(
+                                job.mechanicName ||
+                                "Not assigned"
+                            )}
+                        </p>
+
+                        <p>
+                            Status:
+                            <strong>
+                                ${escapeHTML(
+                                    job.status ||
+                                    "Unknown"
+                                )}
+                            </strong>
+                        </p>
+
+                        <p>
+                            Created:
+                            ${formatDate(job.createdAt)}
+                        </p>
+
+                    </div>
+
+
+                    <div class="admin-card-actions">
+
+                        ${
+                            job.status !== "Completed" &&
+                            job.status !== "Cancelled"
+                                ? `
+
+                                    <button
+                                        class="admin-action-btn danger"
+                                        onclick="cancelJob('${escapeHTML(job.id)}')"
+                                    >
+                                        Cancel
+                                    </button>
+
+                                `
+                                : ""
+                        }
+
+                    </div>
+
                 </div>
 
-                <div class="empty-card">
-                    🚩
-                    <h2>No reports</h2>
-                    <p>
-                        Reported activity will appear here.
-                    </p>
-                </div>
+            `;
 
-            </section>
+        }).join("");
+
+}
 
 
-            <!-- SETTINGS -->
-            <section id="settings"
-                     class="admin-section">
 
-                <div class="page-title">
-                    <p>CONFIGURATION</p>
+/* =========================================
+   CANCEL JOB
+========================================= */
 
-                    <h1>Settings</h1>
+function cancelJob(jobId) {
 
-                    <span>
-                        Manage WrenchLink settings.
-                    </span>
-                </div>
-
-                <div class="settings-card">
-
-                    <h2>Application Settings</h2>
-
-                    <label>
-                        Application Name
-                    </label>
-
-                    <input
-                        type="text"
-                        value="WrenchLink"
-                        id="appName">
-
-                    <button
-                        class="save-btn"
-                        id="saveSettingsBtn">
-                        Save Settings
-                    </button>
-
-                </div>
-
-            </section>
-
-        </main>
-
-    </div>
+    const jobs =
+        getJobs();
 
 
-    <script src="admin.js"></script>
+    const job =
+        jobs.find(function(item) {
+
+            return String(item.id) ===
+                String(jobId);
+
+        });
+
+
+    if (!job) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Cancel this service request?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    job.status =
+        "Cancelled";
+
+
+    job.cancelledAt =
+        new Date().toISOString();
+
+
+    AdminStorage.set(
+        "wrenchlinkJobs",
+        jobs
+    );
+
+
+    refreshAdminData();
+
+}
+
+
+
+/* =========================================
+   REVIEWS
+========================================= */
+
+function renderReviews() {
+
+    const container =
+        document.getElementById(
+            "reviewsList"
+        );
+
+
+    const reviews =
+        getReviews();
+
+
+    if (reviews.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-card">
+
+                ⭐
+
+                <h2>
+                    No reviews yet
+                </h2>
+
+                <p>
+                    Reviews will appear here once customers
+                    begin reviewing completed jobs.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        reviews.map(
+            function(review, index) {
+
+                return `
+
+                    <div class="admin-data-card">
+
+                        <div>
+
+                            <h3>
+                                ⭐
+                                ${escapeHTML(
+                                    review.rating ||
+                                    "No rating"
+                                )}
+                                / 5
+                            </h3>
+
+                            <p>
+                                Customer:
+                                ${escapeHTML(
+                                    review.customerName ||
+                                    "Unknown"
+                                )}
+                            </p>
+
+                            <p>
+                                Mechanic:
+                                ${escapeHTML(
+                                    review.mechanicName ||
+                                    review.mechanicId ||
+                                    "Unknown"
+                                )}
+                            </p>
+
+                            <p>
+                                ${escapeHTML(
+                                    review.comment ||
+                                    review.text ||
+                                    "No written review."
+                                )}
+                            </p>
+
+                            <p>
+                                ${formatDate(
+                                    review.createdAt
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="admin-card-actions">
+
+                            <button
+                                class="admin-action-btn danger"
+                                onclick="deleteReview(${index})"
+                            >
+                                Delete
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+
+/* =========================================
+   DELETE REVIEW
+========================================= */
+
+function deleteReview(index) {
+
+    const reviews =
+        getReviews();
+
+
+    if (!reviews[index]) {
+        return;
+    }
+
+
+    const confirmed =
+        confirm(
+            "Delete this review?"
+        );
+
+
+    if (!confirmed) {
+        return;
+    }
+
+
+    reviews.splice(
+        index,
+        1
+    );
+
+
+    AdminStorage.set(
+        "wrenchlinkReviews",
+        reviews
+    );
+
+
+    refreshAdminData();
+
+}
+
+
+
+/* =========================================
+   REPORTS
+========================================= */
+
+function renderReports() {
+
+    const container =
+        document.getElementById(
+            "reportsList"
+        );
+
+
+    const reports =
+        getReports();
+
+
+    if (reports.length === 0) {
+
+        container.innerHTML = `
+
+            <div class="empty-card">
+
+                🚩
+
+                <h2>
+                    No reports
+                </h2>
+
+                <p>
+                    Reported activity will appear here.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+        reports.map(
+            function(report, index) {
+
+                return `
+
+                    <div class="admin-data-card">
+
+                        <div>
+
+                            <h3>
+                                🚩
+                                ${escapeHTML(
+                                    report.reason ||
+                                    "Reported Activity"
+                                )}
+                            </h3>
+
+                            <p>
+                                Reporter:
+                                ${escapeHTML(
+                                    report.reporterName ||
+                                    report.reporterEmail ||
+                                    "Unknown"
+                                )}
+                            </p>
+
+                            <p>
+                                Reported User:
+                                ${escapeHTML(
+                                    report.reportedUserName ||
+                                    report.reportedUserId ||
+                                    "Unknown"
+                                )}
+                            </p>
+
+                            <p>
+                                ${escapeHTML(
+                                    report.description ||
+                                    report.details ||
+                                    "No details provided."
+                                )}
+                            </p>
+
+                            <p>
+                                ${formatDate(
+                                    report.createdAt
+                                )}
+                            </p>
+
+                        </div>
+
+
+                        <div class="admin-card-actions">
+
+                            <button
+                                class="admin-action-btn danger"
+                                onclick="deleteReport(${index})"
+                            >
+                                Remove
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                `;
+
+            }
+        ).join("");
+
+}
+
+
+
+/* =========================================
+   DELETE REPORT
+========================================= */
+
+function deleteReport(index) {
+
+    const reports =
+        getReports();
+
+
+    if (!reports[index]) {
+        return;
+    }
+
+
+    reports.splice(
+        index,
+        1
+    );
+
+
+    AdminStorage.set(
+        "wrenchlinkReports",
+        reports
+    );
+
+
+    refreshAdminData();
+
+}
+
+
+
+/* =========================================
+   SETTINGS
+========================================= */
+
+function loadSettings() {
+
+    const settings =
+        AdminStorage.get(
+            "wrenchlinkSettings",
+            {
+                appName: "WrenchLink",
+                maintenanceMode: false
+            }
+        );
+
+
+    document.getElementById(
+        "appName"
+    ).value =
+        settings.appName ||
+        "WrenchLink";
+
+
+    document.getElementById(
+        "maintenanceMode"
+    ).value =
+        settings.maintenanceMode
+            ? "true"
+            : "false";
+
+}
+
+
+document
+    .getElementById(
+        "saveSettingsBtn"
+    )
+    .addEventListener(
+        "click",
+        function() {
+
+            const settings = {
+
+                appName:
+                    document
+                        .getElementById(
+                            "appName"
+                        )
+                        .value
+                        .trim() ||
+                    "WrenchLink",
+
+
+                maintenanceMode:
+                    document
+                        .getElementById(
+                            "maintenanceMode"
+                        )
+                        .value ===
+                    "true"
+
+            };
+
+
+            AdminStorage.set(
+                "wrenchlinkSettings",
+                settings
+            );
+
+
+            const message =
+                document.getElementById(
+                    "settingsMessage"
+                );
+
+
+            message.style.display =
+                "block";
+
+
+            message.textContent =
+                "Settings saved successfully.";
+
+        }
+    );
+
+
+
+/* =========================================
+   DATE FORMAT
+========================================= */
+
+function formatDate(value) {
+
+    if (!value) {
+
+        return "Unknown";
+
+    }
+
+
+    const date =
+        new Date(value);
+
+
+    if (
+        Number.isNaN(
+            date.getTime()
+        )
+    ) {
+
+        return escapeHTML(
+            value
+        );
+
+    }
+
+
+    return escapeHTML(
+        date.toLocaleString()
+    );
+
+}
+
+
+
+/* =========================================
+   REFRESH EVERYTHING
+========================================= */
+
+function refreshAdminData() {
+
+    updateDashboard();
+
+    renderUsers();
+
+    renderMechanics();
+
+    renderRequests();
+
+    renderReviews();
+
+    renderReports();
+
+    loadSettings();
+
+}
+
+
+
+/* =========================================
+   INITIALIZE
+========================================= */
+
+refreshAdminData();
+
+</script>
 
 </body>
 
 </html>
-```

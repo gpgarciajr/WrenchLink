@@ -1,113 +1,151 @@
 <!DOCTYPE html>
 
 <html lang="en">
-
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account | WrenchLink</title>
+    <link rel="stylesheet" href="style.css">
 
-```
-<meta charset="UTF-8">
+<style>
+    .signup-page {
+        max-width: 580px;
+        margin: 40px auto;
+        padding: 24px;
+    }
 
-<meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
->
+    .signup-card {
+        padding: 28px;
+        background: #191c20;
+        color: #f5f5f5;
+        border: 1px solid #34383e;
+        border-radius: 14px;
+    }
 
-<title>Create Account | WrenchLink</title>
+    .signup-card h1,
+    .signup-card h2,
+    .signup-card p,
+    .signup-card label {
+        color: #f5f5f5;
+    }
 
-<link
-    rel="stylesheet"
-    href="style.css"
->
-```
+    .signup-card label {
+        display: block;
+        margin-bottom: 8px;
+    }
+
+    .signup-card input,
+    .signup-card select {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 12px;
+        margin-bottom: 18px;
+        background: #101214;
+        color: #ffffff;
+        border: 1px solid #50545b;
+        border-radius: 7px;
+    }
+
+    .signup-card select option {
+        background: #101214;
+        color: #ffffff;
+    }
+
+    .signup-card input::placeholder {
+        color: #b7bbc2;
+    }
+
+    .signup-card button,
+    .signup-link {
+        box-sizing: border-box;
+        display: block;
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #f4b942;
+        border-radius: 7px;
+        background: #f4b942;
+        color: #111315;
+        font-weight: bold;
+        text-align: center;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .signup-link {
+        margin-top: 12px;
+        background: transparent;
+        color: #f4b942;
+    }
+
+    #signupMessage {
+        display: none;
+        padding: 12px;
+        margin: 12px 0 18px;
+        border-radius: 7px;
+        overflow-wrap: anywhere;
+    }
+
+    #signupMessage.error {
+        display: block;
+        background: #642c2c;
+        border: 1px solid #e07b7b;
+        color: #ffffff;
+    }
+
+    #signupMessage.success {
+        display: block;
+        background: #20472e;
+        border: 1px solid #65c785;
+        color: #ffffff;
+    }
+
+    .signup-note {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+</style>
+
 
 </head>
-
 <body>
+    <header class="site-header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">🔧 WrenchLink</a>
+            <a href="index.html" class="btn btn-small">Back to Home</a>
+        </div>
+    </header>
 
-<header class="site-header">
+<main class="container section signup-page">
+    <div class="section-heading">
+        <p class="eyebrow">JOIN WRENCHLINK</p>
+        <h1>Create Your Account</h1>
+        <p>Find trusted mobile mechanics or connect with customers who need your services.</p>
+    </div>
 
-```
-<div class="container nav-container">
-
-    <a
-        href="index.html"
-        class="logo"
-    >
-        🔧 WrenchLink
-    </a>
-
-
-    <a
-        href="index.html"
-        class="btn btn-small"
-    >
-        Back to WrenchLink
-    </a>
-
-</div>
-```
-
-</header>
-
-<main>
-
-<section class="container section">
-
-```
-<div class="section-heading">
-
-    <p class="eyebrow">
-        WRENCHLINK ACCOUNT
-    </p>
-
-
-    <h1>
-        Create Your Account
-    </h1>
-
-
-    <p>
-        Join WrenchLink and connect with
-        customers or mobile mechanics.
-    </p>
-
-</div>
-
-
-
-<div class="card form-card">
-
-
-    <form id="signupForm">
-
-
-        <div class="form-group">
-
-            <label for="name">
-                Full Name
-            </label>
-
-
+    <section class="signup-card">
+        <form id="signupForm" novalidate>
+            <label for="firstName">First Name</label>
             <input
-                id="name"
-                name="name"
+                id="firstName"
+                name="firstName"
                 type="text"
-                placeholder="Enter your full name"
-                autocomplete="name"
+                placeholder="Enter your first name"
+                autocomplete="given-name"
                 required
             >
 
-        </div>
+            <label for="lastName">Last Name</label>
+            <input
+                id="lastName"
+                name="lastName"
+                type="text"
+                placeholder="Enter your last name"
+                autocomplete="family-name"
+                required
+            >
 
-
-
-        <div class="form-group">
-
-            <label for="email">
-                Email
-            </label>
-
-
+            <label for="email">Email Address</label>
             <input
                 id="email"
                 name="email"
@@ -117,17 +155,7 @@
                 required
             >
 
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label for="phone">
-                Phone Number
-            </label>
-
-
+            <label for="phone">Phone Number</label>
             <input
                 id="phone"
                 name="phone"
@@ -137,50 +165,13 @@
                 required
             >
 
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label for="accountType">
-                Account Type
-            </label>
-
-
-            <select
-                id="accountType"
-                name="accountType"
-                required
-            >
-
-                <option value="">
-                    Select account type
-                </option>
-
-
-                <option value="customer">
-                    Customer
-                </option>
-
-
-                <option value="mechanic">
-                    Mobile Mechanic
-                </option>
-
+            <label for="accountType">Account Type</label>
+            <select id="accountType" name="accountType" required>
+                <option value="customer">Customer — I need a mechanic</option>
+                <option value="mechanic">Mechanic — I provide services</option>
             </select>
 
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label for="password">
-                Password
-            </label>
-
-
+            <label for="password">Password</label>
             <input
                 id="password"
                 name="password"
@@ -191,426 +182,242 @@
                 required
             >
 
-        </div>
-
-
-
-        <div class="form-group">
-
-            <label for="confirmPassword">
-                Confirm Password
-            </label>
-
-
+            <label for="confirmPassword">Confirm Password</label>
             <input
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
-                placeholder="Confirm your password"
+                placeholder="Enter your password again"
                 autocomplete="new-password"
                 minlength="6"
                 required
             >
 
-        </div>
+            <div id="signupMessage" role="alert" aria-live="polite"></div>
 
+            <button type="submit">Create Account</button>
+        </form>
 
+        <p class="signup-note">
+            By creating an account, you acknowledge that you have read our
+            <a href="terms.html">Terms of Service</a> and
+            <a href="privacy.html">Privacy Policy</a>.
+        </p>
 
-        <div
-            id="signupMessage"
-            role="alert"
-            aria-live="polite"
-        ></div>
-
-
-
-        <button
-            type="submit"
-            class="btn btn-primary"
-        >
-            Create Account
-        </button>
-
-
-    </form>
-
-
-
-    <div class="form-divider">
-
-        <span>
-            OR
-        </span>
-
-    </div>
-
-
-
-    <p>
-        Already have a WrenchLink account?
-    </p>
-
-
-    <a
-        href="login.html"
-        class="btn btn-secondary"
-    >
-        Sign In
-    </a>
-
-
-</div>
-```
-
-</section>
-
+        <p>Already have an account?</p>
+        <a href="login.html" class="signup-link">Sign In</a>
+    </section>
 </main>
 
 <footer class="site-footer">
+    <div class="container footer-container">
+        <div class="footer-brand">
+            <strong>🔧 WrenchLink</strong>
+            <p>Connecting drivers with mobile mechanics.</p>
+        </div>
 
-```
-<div class="container footer-container">
-
-
-    <div class="footer-brand">
-
-        <strong>
-            🔧 WrenchLink
-        </strong>
-
-
-        <p>
-            Connecting drivers with mobile mechanics.
-        </p>
-
+        <div class="footer-links">
+            <a href="privacy.html">Privacy</a>
+            <a href="terms.html">Terms</a>
+            <a href="contact.html">Contact</a>
+        </div>
     </div>
 
-
-
-    <div class="footer-links">
-
-        <a href="privacy.html">
-            Privacy
-        </a>
-
-
-        <a href="terms.html">
-            Terms
-        </a>
-
-
-        <a href="contact.html">
-            Contact
-        </a>
-
+    <div class="footer-bottom">
+        <p>© 2026 WrenchLink. All rights reserved.</p>
     </div>
-
-
-</div>
-
-
-
-<div class="footer-bottom">
-
-    <p>
-        © 2026 WrenchLink. All rights reserved.
-    </p>
-
-</div>
-```
-
 </footer>
 
-<script src="app.js"></script>
-
 <script>
+    (function () {
+        const form = document.getElementById("signupForm");
+        const message = document.getElementById("signupMessage");
 
-document
-    .getElementById("signupForm")
-    .addEventListener(
-        "submit",
-        function(event) {
+        function showMessage(text, type) {
+            message.textContent = text;
+            message.className = type;
+        }
 
+        function readUsers() {
+            try {
+                const saved = localStorage.getItem("wrenchlinkUsers");
+
+                if (saved === null) {
+                    return [];
+                }
+
+                const users = JSON.parse(saved);
+                return Array.isArray(users) ? users : null;
+            } catch (error) {
+                return null;
+            }
+        }
+
+        function createId() {
+            return "WL-" + Date.now().toString(36) +
+                "-" + Math.random().toString(36).slice(2, 8);
+        }
+
+        form.addEventListener("submit", function (event) {
             event.preventDefault();
-
-
-            const name =
-                document
-                    .getElementById("name")
-                    .value
-                    .trim();
-
-
-            const email =
-                document
-                    .getElementById("email")
-                    .value
-                    .trim()
-                    .toLowerCase();
-
-
-            const phone =
-                document
-                    .getElementById("phone")
-                    .value
-                    .trim();
-
-
-            const accountType =
-                document
-                    .getElementById("accountType")
-                    .value;
-
-
-            const password =
-                document
-                    .getElementById("password")
-                    .value;
-
-
-            const confirmPassword =
-                document
-                    .getElementById("confirmPassword")
-                    .value;
-
-
-            const message =
-                document
-                    .getElementById("signupMessage");
-
 
             message.textContent = "";
             message.className = "";
 
+            const firstName = document.getElementById("firstName")
+                .value.trim();
 
-            /*
-                BASIC VALIDATION
-            */
+            const lastName = document.getElementById("lastName")
+                .value.trim();
+
+            const email = document.getElementById("email")
+                .value.trim().toLowerCase();
+
+            const phone = document.getElementById("phone")
+                .value.trim();
+
+            const role = document.getElementById("accountType").value;
+
+            const password = document.getElementById("password").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
 
             if (
-                !name ||
+                !firstName ||
+                !lastName ||
                 !email ||
                 !phone ||
-                !accountType ||
                 !password ||
                 !confirmPassword
             ) {
-
-                message.textContent =
-                    "Please complete every field.";
-
-                message.className =
-                    "form-message error";
-
+                showMessage(
+                    "Please complete every required field.",
+                    "error"
+                );
                 return;
-
             }
 
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showMessage(
+                    "Please enter a valid email address.",
+                    "error"
+                );
+                return;
+            }
+
+            if (role !== "customer" && role !== "mechanic") {
+                showMessage(
+                    "Please select a valid account type.",
+                    "error"
+                );
+                return;
+            }
 
             if (password.length < 6) {
-
-                message.textContent =
-                    "Password must be at least 6 characters.";
-
-                message.className =
-                    "form-message error";
-
+                showMessage(
+                    "Your password must contain at least 6 characters.",
+                    "error"
+                );
                 return;
-
             }
 
-
-            if (
-                password !==
-                confirmPassword
-            ) {
-
-                message.textContent =
-                    "Passwords do not match.";
-
-                message.className =
-                    "form-message error";
-
+            if (password !== confirmPassword) {
+                showMessage(
+                    "Your passwords do not match. Please try again.",
+                    "error"
+                );
                 return;
-
             }
 
+            const users = readUsers();
 
-            /*
-                GET EXISTING ACCOUNTS
-            */
-
-            const users =
-                WrenchLinkStorage.get(
-                    "wrenchlinkUsers",
-                    []
+            if (users === null) {
+                showMessage(
+                    "Your saved account data could not be read. Please refresh and try again.",
+                    "error"
                 );
-
-
-            /*
-                PREVENT DUPLICATE EMAILS
-            */
-
-            const existingUser =
-                users.find(
-                    function(user) {
-
-                        return (
-                            String(
-                                user.email || ""
-                            )
-                            .toLowerCase() ===
-                            email
-                        );
-
-                    }
-                );
-
-
-            if (existingUser) {
-
-                message.textContent =
-                    "An account with this email already exists.";
-
-                message.className =
-                    "form-message error";
-
                 return;
-
             }
 
-
-            /*
-                CREATE USER
-            */
-
-            const userId =
-                "WL-" +
-                Date.now() +
-                "-" +
-                Math.floor(
-                    Math.random() * 10000
-                );
-
-
-            const user = {
-
-                id: userId,
-
-                name: name,
-
-                firstName:
-                    name.split(" ")[0],
-
-                lastName:
-                    name
-                        .split(" ")
-                        .slice(1)
-                        .join(" "),
-
-                email: email,
-
-                phone: phone,
-
-                password: password,
-
-                role: accountType,
-
-                createdAt:
-                    new Date().toISOString(),
-
-                mechanicId:
-                    accountType === "mechanic"
-                        ? userId
-                        : null
-
-            };
-
-
-            /*
-                SAVE ACCOUNT
-            */
-
-            users.push(user);
-
-
-            WrenchLinkStorage.set(
-                "wrenchlinkUsers",
-                users
-            );
-
-
-            /*
-                SIGN THE USER IN
-            */
-
-            setCurrentUser({
-
-                id: user.id,
-
-                name: user.name,
-
-                firstName:
-                    user.firstName,
-
-                lastName:
-                    user.lastName,
-
-                email:
-                    user.email,
-
-                role:
-                    user.role,
-
-                mechanicId:
-                    user.mechanicId
-
+            const existingUser = users.find(function (user) {
+                return String(user.email || "")
+                    .trim()
+                    .toLowerCase() === email;
             });
 
+            if (existingUser) {
+                showMessage(
+                    "An account with this email already exists. Please sign in instead.",
+                    "error"
+                );
+                return;
+            }
 
-            /*
-                SUCCESS MESSAGE
-            */
+            const userId = createId();
 
-            message.textContent =
-                "Account created successfully. Redirecting...";
+            const user = {
+                id: userId,
+                name: firstName + " " + lastName,
+                firstName: firstName,
+                lastName: lastName,
+                email: email,
+                phone: phone,
+                role: role,
+                password: password,
+                createdAt: new Date().toISOString()
+            };
 
-            message.className =
-                "form-message success";
+            if (role === "mechanic") {
+                user.mechanicId = userId;
+            }
 
+            const currentUser = {
+                id: user.id,
+                name: user.name,
+                firstName: user.firstName,
+                lastName: user.lastName,
+                email: user.email,
+                phone: user.phone,
+                role: user.role,
+                mechanicId: user.mechanicId || null
+            };
 
-            /*
-                SEND USER TO CORRECT DASHBOARD
-            */
+            try {
+                users.push(user);
 
-            setTimeout(
-                function() {
+                localStorage.setItem(
+                    "wrenchlinkUsers",
+                    JSON.stringify(users)
+                );
 
-                    if (
-                        accountType ===
-                        "mechanic"
-                    ) {
+                localStorage.setItem(
+                    "wrenchlinkCurrentUser",
+                    JSON.stringify(currentUser)
+                );
+            } catch (error) {
+                showMessage(
+                    "We couldn't save your account. Check your browser storage settings and try again.",
+                    "error"
+                );
+                return;
+            }
 
-                        window.location.href =
-                            "mechanic-dashboard.html";
-
-                        return;
-
-                    }
-
-
-                    window.location.href =
-                        "customer-dashboard.html";
-
-                },
-                600
+            showMessage(
+                "Your account has been created successfully. Redirecting...",
+                "success"
             );
 
-        }
-    );
-
+            window.setTimeout(function () {
+                if (role === "mechanic") {
+                    window.location.href = "become-mechanic.html";
+                } else {
+                    window.location.href = "customer-dashboard.html";
+                }
+            }, 700);
+        });
+    })();
 </script>
 
 </body>
-
 </html>
